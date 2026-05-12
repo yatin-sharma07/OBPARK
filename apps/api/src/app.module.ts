@@ -1,10 +1,14 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import { AppController } from './app.controller'
+import { RedisModule } from './redis/redis.module'
+import { env } from './config/env' // triggers crash on missing vars
 
 @Module({
-  imports: [],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    RedisModule,
+  ],
   controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
