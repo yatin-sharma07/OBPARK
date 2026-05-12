@@ -1,1 +1,0 @@
-## This is the documentation for Obrive's Official Ecommerce Website.
