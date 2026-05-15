@@ -8,7 +8,12 @@ export class CacheHelper {
 
   async get<T>(key: string): Promise<T | null> {
     const value = await this.redis.get(key)
-    return value ? JSON.parse(value) : null
+    if (!value) return null
+    try {
+      return JSON.parse(value) as T
+    } catch {
+      return null
+    }
   }
 
   async set(key: string, value: unknown, ttlSeconds: number): Promise<void> {
@@ -17,5 +22,23 @@ export class CacheHelper {
 
   async del(key: string): Promise<void> {
     await this.redis.del(key)
+  }
+
+  async exists(key: string): Promise<boolean> {
+    const count = await this.redis.exists(key)
+    return count > 0
+  }
+
+  // Useful for RC lookups — get or fetch pattern
+  async getOrSet<T>(
+    key: string,
+    ttlSeconds: number,
+    fetchFn: () => Promise<T>,
+  ): Promise<T> {
+    const cached = await this.get<T>(key)
+    if (cached) return cached
+    const fresh = await fetchFn()
+    await this.set(key, fresh, ttlSeconds)
+    return fresh
   }
 }
