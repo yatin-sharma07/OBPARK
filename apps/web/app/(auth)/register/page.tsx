@@ -1,14 +1,31 @@
 'use client'
 import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
 import { EmailInput } from '@/components/forms/EmailInput'
 import { PasswordInput } from '@/components/forms/PasswordInput'
 import { SubmitButton } from '@/components/forms/SubmitButton'
+import { useAuthStore } from '@/store/auth.store'
+import { registerUser } from '@/lib/auth.api'
+
+interface RegisterForm {
+  name: string
+  email: string
+  password: string
+}
 
 export default function RegisterPage() {
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const router = useRouter()
+  const setAuth = useAuthStore((state) => state.setAuth)
+  const { register, handleSubmit, formState: { errors, isSubmitting }, setError } = useForm<RegisterForm>()
 
-  const onSubmit = (data: any) => {
-    console.log(data)
+  const onSubmit = async (data: RegisterForm) => {
+    try {
+      const res = await registerUser(data)
+      setAuth(res.user, res.accessToken)
+      router.push('/')
+    } catch (err: any) {
+      setError('root', { message: err.message })
+    }
   }
 
   return (
@@ -16,9 +33,26 @@ export default function RegisterPage() {
       <div className="w-full max-w-md p-8 border rounded-lg">
         <h1 className="text-2xl font-bold mb-6">Create Account</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-          <EmailInput register={register} error={errors.email?.message as string} />
-          <PasswordInput register={register} error={errors.password?.message as string} />
-          <SubmitButton label="Create Account" />
+          <EmailInput
+            id="name"
+            label="Full Name"
+            error={errors.name?.message}
+            {...register('name', { required: 'Name is required' })}
+          />
+          <EmailInput
+            id="email"
+            error={errors.email?.message}
+            {...register('email', { required: 'Email is required' })}
+          />
+          <PasswordInput
+            id="password"
+            error={errors.password?.message}
+            {...register('password', { required: 'Password is required', minLength: { value: 8, message: 'Minimum 8 characters' } })}
+          />
+          {errors.root && (
+            <p className="text-sm text-red-500">{errors.root.message}</p>
+          )}
+          <SubmitButton label="Create Account" isLoading={isSubmitting} />
         </form>
       </div>
     </div>
