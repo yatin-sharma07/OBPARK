@@ -1,159 +1,318 @@
-# Turborepo starter
+# 🚗 Obrive
 
-This Turborepo starter is maintained by the Turborepo core team.
+> Vehicle-focused ecommerce platform — register your vehicle, check its health, recharge FASTag, and buy compatible auto parts.
 
-## Using this example
+---
 
-Run the following command:
+## 📦 Tech Stack
 
-```sh
-npx create-turbo@latest
+| Layer | Technology |
+|-------|-----------|
+| Monorepo | Turborepo + pnpm workspaces |
+| Backend | NestJS · TypeScript (strict) · GraphQL (Apollo) |
+| Database | PostgreSQL 16 · Prisma ORM |
+| Cache | Redis 7 |
+| Frontend | Next.js 14 (App Router) · Tailwind CSS · shadcn/ui |
+| State | Zustand · TanStack Query · React Hook Form |
+| Payments | Razorpay |
+| Vehicle Data | Vahan / Surepass API |
+| Infra | AWS ECS · S3 · Vercel · Docker |
+
+---
+
+## 🗂 Monorepo Structure
+
+```
+obrive/
+├── apps/
+│   ├── api/        ← NestJS backend (REST + GraphQL)
+│   ├── web/        ← Next.js customer frontend
+│   └── admin/      ← Next.js admin panel
+├── packages/
+│   ├── types/      ← Shared Zod schemas + TypeScript interfaces
+│   └── utils/      ← Shared utility functions
+├── docker-compose.yml
+├── turbo.json
+└── package.json
 ```
 
-## What's inside?
+---
 
-This Turborepo includes the following packages/apps:
+## ⚙️ Prerequisites
 
-### Apps and Packages
+Make sure you have the following installed before proceeding:
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+| Tool | Version | Install |
+|------|---------|---------|
+| Node.js | 20+ | [nodejs.org](https://nodejs.org) |
+| pnpm | 8+ | `npm i -g pnpm` |
+| Docker Desktop | latest | [docker.com](https://www.docker.com/products/docker-desktop) |
+| Git | any | [git-scm.com](https://git-scm.com) |
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+Verify your setup:
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo build
+```bash
+node --version      # v20+
+pnpm --version      # 8+
+docker --version
+docker compose version   # v2+
 ```
 
-Without global `turbo`, use your package manager:
+---
 
-```sh
-cd my-turborepo
-npx turbo build
-pnpm dlx turbo build
-pnpm exec turbo build
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/obrive.git
+cd obrive
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+### 2. Install dependencies
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo build --filter=docs
+```bash
+pnpm install
 ```
 
-Without global `turbo`:
+### 3. Start infrastructure (PostgreSQL + Redis)
 
-```sh
-npx turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+```bash
+docker compose up -d
 ```
 
-### Develop
+Verify both containers are running:
 
-To develop all apps and packages, run the following command:
+```bash
+docker compose ps
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+# Test PostgreSQL
+docker exec obrive_postgres psql -U obrive -d obrive_dev -c "SELECT version();"
 
-```sh
-cd my-turborepo
-turbo dev
+# Test Redis
+docker exec obrive_redis redis-cli ping   # → PONG
 ```
 
-Without global `turbo`, use your package manager:
+### 4. Set up environment variables
 
-```sh
-cd my-turborepo
-npx turbo dev
-pnpm exec turbo dev
-pnpm exec turbo dev
+Copy the example env file for the API:
+
+```bash
+cp apps/api/.env.example apps/api/.env
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+Then fill in the values in `apps/api/.env` (see [Environment Variables](#-environment-variables) below).
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+### 5. Run database migrations
 
-```sh
-turbo dev --filter=web
+```bash
+cd apps/api
+pnpm prisma migrate dev
+pnpm prisma generate
 ```
 
-Without global `turbo`:
+### 6. Start development servers
 
-```sh
-npx turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+Open two terminals from the root:
+
+```bash
+# Terminal 1 — API (runs on http://localhost:3001)
+cd apps/api && pnpm start:dev
+
+# Terminal 2 — Web (runs on http://localhost:3000)
+cd apps/web && pnpm dev
 ```
 
-### Remote Caching
+### 7. Verify everything is working
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+| URL | Expected |
+|-----|----------|
+| `http://localhost:3001/health` | `{ "status": "ok" }` |
+| `http://localhost:3000` | Obrive homepage |
+| `http://localhost:3000/login` | Login page |
+| `http://localhost:3000/register` | Register page |
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+---
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+## 🔑 Environment Variables
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+Create `apps/api/.env` with the following values:
 
-```sh
-cd my-turborepo
-turbo login
+```env
+# Database
+DATABASE_URL="postgresql://obrive:obrive_password@localhost:5432/obrive_dev"
+
+# Redis
+REDIS_URL="redis://localhost:6379"
+
+# JWT — generate strong secrets (min 32 chars)
+JWT_SECRET="your-super-secret-jwt-key-minimum-32-chars-long"
+JWT_REFRESH_SECRET="your-super-secret-refresh-key-min-32-chars"
+
+# App
+PORT=3001
+NODE_ENV=development
+
+# Razorpay (get from https://dashboard.razorpay.com)
+RAZORPAY_KEY_ID=""
+RAZORPAY_KEY_SECRET=""
+RAZORPAY_WEBHOOK_SECRET=""
+
+# Surepass / Vahan API (for RC lookup)
+# Leave empty to use mock data during development
+SUREPASS_API_TOKEN=""
+
+# AWS S3 (for image uploads — Week 3+)
+AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+AWS_REGION=""
+AWS_S3_BUCKET=""
 ```
 
-Without global `turbo`, use your package manager:
+> ⚠️ **Never commit `.env` to version control.** It is already listed in `.gitignore`.
 
-```sh
-cd my-turborepo
-npx turbo login
-pnpm exec turbo login
-pnpm exec turbo login
+> 💡 **No Vahan API keys yet?** Leave `SUREPASS_API_TOKEN` empty — the app falls back to mock RC data automatically during development.
+
+---
+
+## 🐳 Docker Reference
+
+The `docker-compose.yml` at the root spins up PostgreSQL and Redis locally.
+
+```yaml
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: obrive_postgres
+    environment:
+      POSTGRES_USER: obrive
+      POSTGRES_PASSWORD: obrive_password
+      POSTGRES_DB: obrive_dev
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    container_name: obrive_redis
+    ports:
+      - "6379:6379"
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+**Common Docker commands:**
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+```bash
+# Start containers (run this every time you start work)
+docker compose up -d
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+# Stop containers (keeps your data)
+docker compose stop
 
-```sh
-turbo link
+# Start stopped containers
+docker compose start
+
+# View logs
+docker compose logs postgres
+docker compose logs redis
+
+# Full reset — deletes all local data
+docker compose down -v
 ```
 
-Without global `turbo`:
+---
 
-```sh
-npx turbo link
-pnpm exec turbo link
-pnpm exec turbo link
+## 📜 Available Scripts
+
+Run these from the **monorepo root** unless noted otherwise.
+
+```bash
+# Start all apps in dev mode
+pnpm dev
+
+# Build all apps
+pnpm build
+
+# Lint all apps
+pnpm lint
+
+# Run all tests
+pnpm test
 ```
 
-## Useful Links
+**API-specific** (from `apps/api`):
 
-Learn more about the power of Turborepo:
+```bash
+pnpm start:dev          # Start NestJS in watch mode
+pnpm test               # Unit tests
+pnpm test:e2e           # E2E tests
+pnpm prisma studio      # Open Prisma DB GUI in browser
+pnpm prisma migrate dev # Run pending migrations
+pnpm prisma generate    # Regenerate Prisma client
+```
 
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+**Web-specific** (from `apps/web`):
+
+```bash
+pnpm dev        # Start Next.js dev server
+pnpm build      # Production build
+pnpm lint       # ESLint
+```
+
+---
+
+## 🗃 Database
+
+Prisma is used as the ORM. Schema lives at `apps/api/prisma/schema.prisma`.
+
+```bash
+# After editing schema.prisma, always run both:
+pnpm prisma migrate dev --name <describe-your-change>
+pnpm prisma generate
+
+# Open visual DB browser
+pnpm prisma studio
+```
+
+---
+
+## 🔌 External API Keys
+
+Two external APIs are required for full functionality. Both can be replaced with mock data during early development.
+
+### Razorpay (Payments + FASTag recharge)
+1. Sign up at [dashboard.razorpay.com](https://dashboard.razorpay.com)
+2. Go to **Settings → API Keys → Generate Key**
+3. For webhooks: **Settings → Webhooks → Add New Webhook**
+4. Use the **Test Mode** keys during development
+
+### Surepass / Vahan (Vehicle RC lookup)
+1. Sign up at [surepass.io](https://surepass.io)
+2. Get your API token from the dashboard
+3. If unavailable, leave `SUREPASS_API_TOKEN` blank — mock data is served automatically
+
+---
+
+## 🏗 Sprint Plan
+
+This project is built in a 4-week sprint:
+
+| Week | Theme | Key Deliverables |
+|------|-------|-----------------|
+| Week 1 | Foundation | Monorepo · Auth · Vehicle RC · Health Score · Product Catalogue |
+| Week 2 | Commerce Core | Cart · Checkout · Orders · FASTag Recharge · GraphQL |
+| Week 3 | Admin + Realtime | Admin Panel · RBAC · Socket.IO · Coupons |
+| Week 4 | Launch | Load Testing · Security · E2E Tests · Production Deploy |
+
+---
+
+## 🤝 Contributing
+
+1. Branch off `develop` — never commit directly to `main`
+2. Branch naming: `feat/`, `fix/`, `chore/` prefix (e.g. `feat/vehicle-health-score`)
+3. Run `pnpm lint` and `pnpm test` before opening a PR
+4. Keep PRs focused — one feature or fix per PR
+
+---
+
+## 📄 License
+
+Private — All rights reserved © 2025 Obrive.
