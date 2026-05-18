@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { z } from 'zod'
 
 const envSchema = z.object({
@@ -10,4 +11,3 @@ const envSchema = z.object({
 })
 
 export const env = envSchema.parse(process.env)
-// This will CRASH at boot if any variable is missing or invalid
