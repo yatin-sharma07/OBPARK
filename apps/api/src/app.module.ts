@@ -1,13 +1,16 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { PrismaModule } from './prisma/prisma.module'
+import { AuthModule } from './auth/auth.module'
+import { UserModule } from './user/user.module'
 import { AppController } from './app.controller'
-import { RedisModule } from './redis/redis.module'
-import { env } from './config/env' // triggers crash on missing vars
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    RedisModule,
+    PrismaModule,
+    AuthModule,
+    UserModule,
   ],
   controllers: [AppController],
 })
