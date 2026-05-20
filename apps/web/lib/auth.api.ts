@@ -1,4 +1,4 @@
-import { apiPost } from './api'
+import { api } from './api'
 
 interface RegisterPayload {
   email: string
@@ -22,9 +22,9 @@ interface AuthResponse {
 }
 
 export async function registerUser(payload: RegisterPayload): Promise<AuthResponse> {
-  return apiPost<AuthResponse>('/auth/register', payload)
+  return api.post<AuthResponse>('/auth/register', payload)
 }
 
 export async function loginUser(payload: LoginPayload): Promise<AuthResponse> {
-  return apiPost<AuthResponse>('/auth/login', payload)
+  return api.post<AuthResponse>('/auth/login', payload)
 }
