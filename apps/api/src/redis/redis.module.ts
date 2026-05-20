@@ -1,8 +1,7 @@
 import { Module, Global } from '@nestjs/common'
 import IORedis from 'ioredis'
 import { CacheHelper } from './cache.helper'
-
-export const REDIS_CLIENT = 'REDIS_CLIENT'
+import { REDIS_CLIENT } from './redis.constants'
 
 @Global()
 @Module({
