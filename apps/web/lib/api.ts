@@ -1,33 +1,37 @@
-// Keep API on a dedicated port so frontend fallback port changes do not break auth calls.
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002'
+import { useAuthStore } from '@/store/auth.store'
 
-export async function apiPost<T>(endpoint: string, body: unknown): Promise<T> {
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+
+async function request<T>(
+  endpoint: string,
+  options: RequestInit = {}
+): Promise<T> {
+  const token = useAuthStore.getState().accessToken
+
   const res = await fetch(`${BASE_URL}${endpoint}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token && { Authorization: `Bearer ${token}` }),
+      ...options.headers,
+    },
   })
 
   if (!res.ok) {
-    const error = await res.json()
-    throw new Error(error.message || 'Something went wrong')
+    const error = await res.json().catch(() => ({ message: 'Request failed' }))
+    throw new Error(error.message || 'Request failed')
   }
 
   return res.json()
 }
 
-export async function apiGet<T>(endpoint: string, token?: string): Promise<T> {
-  const res = await fetch(`${BASE_URL}${endpoint}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token && { Authorization: `Bearer ${token}` }),
-    },
-  })
-
-  if (!res.ok) {
-    const error = await res.json()
-    throw new Error(error.message || 'Something went wrong')
-  }
-
-  return res.json()
+export const api = {
+  post: <T>(endpoint: string, body: unknown) =>
+    request<T>(endpoint, { method: 'POST', body: JSON.stringify(body) }),
+  get: <T>(endpoint: string) =>
+    request<T>(endpoint, { method: 'GET' }),
+  patch: <T>(endpoint: string, body: unknown) =>
+    request<T>(endpoint, { method: 'PATCH', body: JSON.stringify(body) }),
+  delete: <T>(endpoint: string) =>
+    request<T>(endpoint, { method: 'DELETE' }),
 }
