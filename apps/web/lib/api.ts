@@ -1,4 +1,5 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+// Keep API on a dedicated port so frontend fallback port changes do not break auth calls.
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002'
 
 export async function apiPost<T>(endpoint: string, body: unknown): Promise<T> {
   const res = await fetch(`${BASE_URL}${endpoint}`, {
