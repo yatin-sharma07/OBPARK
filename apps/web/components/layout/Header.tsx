@@ -6,8 +6,10 @@ export function Header() {
       <Link href="/" className="text-xl font-bold">Obrive</Link>
       <nav className="flex gap-6 text-sm">
         <Link href="/products">Products</Link>
+        <Link href="/fastag" className="hover:text-brand-500 transition-colors">FASTag</Link>
         <Link href="/account">Account</Link>
         <Link href="/login">Login</Link>
+        
       </nav>
     </header>
   )

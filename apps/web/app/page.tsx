@@ -1,8 +1,13 @@
+import { HeroSection } from '@/components/home/HeroSection'
+import { FeaturedCategories } from '@/components/home/FeaturedCategories'
+import { FeaturedProducts } from '@/components/home/FeaturedProducts'
+
 export default function HomePage() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-4xl font-bold">Welcome to Obrive</h1>
-      <p className="text-muted-foreground mt-4">Everything for your vehicle</p>
+    <main>
+      <HeroSection />
+      <FeaturedCategories />
+      <FeaturedProducts />
     </main>
   )
 }
