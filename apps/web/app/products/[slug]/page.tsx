@@ -1,67 +1,89 @@
 'use client'
-import { useParams, useRouter } from 'next/navigation'
-import { Button } from '@/components/ui/button'
+import { useParams } from 'next/navigation'
+import { useProduct } from '@/hooks/useProducts'
+import { useVehicles } from '@/hooks/useVehicles'
+import { useAuthStore } from '@/store/auth.store'
 import { Badge } from '@/components/ui/badge'
-import { Card } from '@/components/ui/card'
-
-const mockProducts = [
-  { id: 1, slug: 'car-phone-mount', name: 'Car Phone Mount', category: 'Accessories', price: 499, compatibility: 'All vehicles', image: '📱', description: 'Universal car phone mount with 360 degree rotation. Fits all smartphones. Easy one-touch mounting system.' },
-  { id: 2, slug: 'dash-camera-4k', name: 'Dash Camera 4K', category: 'Electronics', price: 3999, compatibility: 'All vehicles', image: '📷', description: 'Ultra HD 4K dash camera with night vision, wide angle lens, and loop recording. Built-in GPS tracking.' },
-  { id: 3, slug: 'tyre-inflator', name: 'Tyre Inflator', category: 'Tools', price: 1299, compatibility: 'All vehicles', image: '🔧', description: 'Portable digital tyre inflator with auto shut-off. Works with cars, bikes, and SUVs. LED display.' },
-  { id: 4, slug: 'seat-cover-set', name: 'Seat Cover Set', category: 'Interior', price: 2499, compatibility: 'Hyundai Creta', image: '🪑', description: 'Premium leatherette seat covers designed specifically for Hyundai Creta. Water resistant and easy to clean.' },
-  { id: 5, slug: 'led-headlights', name: 'LED Headlights', category: 'Electronics', price: 1899, compatibility: 'All vehicles', image: '💡', description: 'High brightness LED headlight bulbs. 6000K white light. Easy plug and play installation.' },
-  { id: 6, slug: 'car-vacuum-cleaner', name: 'Car Vacuum Cleaner', category: 'Tools', price: 999, compatibility: 'All vehicles', image: '🧹', description: 'Powerful 120W car vacuum cleaner with HEPA filter. Includes multiple attachments for thorough cleaning.' },
-]
+import { Button } from '@/components/ui/button'
+import { useState } from 'react'
 
 export default function ProductDetailPage() {
-  const { slug } = useParams()
-  const router = useRouter()
+  const { slug } = useParams<{ slug: string }>()
+  const { isAuthenticated } = useAuthStore()
+  const { data: vehicles } = useVehicles()
+  const [selectedVrn, setSelectedVrn] = useState<string | undefined>()
+  const { data: product, isLoading } = useProduct(slug, selectedVrn)
 
-  const product = mockProducts.find(p => p.slug === slug)
-
-  if (!product) {
+  if (isLoading) {
     return (
-      <div className="max-w-2xl mx-auto px-4 py-12 text-center">
-        <p className="text-4xl mb-4">🔍</p>
-        <h1 className="text-2xl font-bold mb-2">Product not found</h1>
-        <Button onClick={() => router.push('/products')}>Back to Products</Button>
+      <div className="max-w-4xl mx-auto px-6 py-12 animate-pulse space-y-6">
+        <div className="h-8 bg-gray-200 rounded w-1/2" />
+        <div className="h-4 bg-gray-200 rounded w-1/4" />
+        <div className="h-64 bg-gray-100 rounded-xl" />
       </div>
     )
   }
 
+  if (!product) {
+    return (
+      <div className="max-w-4xl mx-auto px-6 py-12 text-center">
+        <p className="text-4xl mb-4">🔧</p>
+        <p className="font-medium">Product not found</p>
+      </div>
+    )
+  }
+
+  const compatibilityColor =
+    product.compatibilityStatus === 'compatible' ? 'bg-green-100 text-green-700'
+    : product.compatibilityStatus === 'incompatible' ? 'bg-red-100 text-red-700'
+    : 'bg-gray-100 text-gray-600'
+
+  const compatibilityText =
+    product.compatibilityStatus === 'compatible' ? '✓ Fits your selected vehicle'
+    : product.compatibilityStatus === 'incompatible' ? '✕ Does not fit your selected vehicle'
+    : 'Select a vehicle to check compatibility'
+
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
-      <button
-        onClick={() => router.back()}
-        className="text-sm text-muted-foreground hover:text-foreground mb-6 flex items-center gap-1"
-      >
-        ← Back
-      </button>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <Card className="flex items-center justify-center p-12">
-          <span className="text-8xl">{product.image}</span>
-        </Card>
-
-        <div className="space-y-4">
+    <div className="max-w-4xl mx-auto px-6 py-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="aspect-square bg-gray-50 rounded-xl flex items-center justify-center text-8xl">🔧</div>
+        <div className="space-y-5">
           <div>
-            <Badge variant="outline" className="mb-2">{product.category}</Badge>
-            <h1 className="text-3xl font-bold">{product.name}</h1>
+            <p className="text-xs text-muted-foreground mb-1">{product.category.name}</p>
+            <h1 className="text-2xl font-bold" style={{ color: '#074139' }}>{product.name}</h1>
           </div>
-
-          <p className="text-muted-foreground">{product.description}</p>
-
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">Compatible with:</span>
-            <Badge>{product.compatibility}</Badge>
+          <p className="text-3xl font-bold text-gray-900">₹{product.basePrice.toLocaleString('en-IN')}</p>
+          {product.description && <p className="text-sm text-gray-600 leading-relaxed">{product.description}</p>}
+          <div className="space-y-2">
+            {isAuthenticated && vehicles?.length ? (
+              <>
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Check compatibility</p>
+                <div className="flex flex-wrap gap-2">
+                  {vehicles.map((v) => (
+                    <button key={v.id} onClick={() => setSelectedVrn(selectedVrn === v.vrn ? undefined : v.vrn)}
+                      className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${selectedVrn === v.vrn ? 'border-green-500 bg-green-50 text-green-700' : 'border-gray-200 hover:border-gray-300'}`}>
+                      {v.vrn} · {v.make} {v.model}
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : null}
+            <div className={`text-sm px-4 py-2.5 rounded-lg font-medium ${compatibilityColor}`}>{compatibilityText}</div>
           </div>
-
-          <div className="text-3xl font-bold">₹{product.price.toLocaleString()}</div>
-
-          <div className="flex gap-3 pt-2">
-            <Button className="flex-1">Add to Cart</Button>
-            <Button variant="outline" className="flex-1">Buy Now</Button>
-          </div>
+          {product.compatibility?.length > 0 && (
+            <div>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Compatible with</p>
+              <div className="flex flex-wrap gap-2">
+                {product.compatibility.map((r, i) => (
+                  <Badge key={i} variant="outline" className="text-xs">{r.make} {r.model} ({r.yearFrom}–{r.yearTo})</Badge>
+                ))}
+              </div>
+            </div>
+          )}
+          <p className="text-xs text-muted-foreground">{product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}</p>
+          <Button className="w-full" style={{ backgroundColor: '#074139', color: '#A2F1DF' }} disabled={product.stock === 0}>
+            {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
+          </Button>
         </div>
       </div>
     </div>
