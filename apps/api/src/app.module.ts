@@ -6,6 +6,9 @@ import { AuthModule } from './auth/auth.module'
 import { UserModule } from './user/user.module'
 import { VehicleModule } from './vehicle/vehicle.module'
 import { AppController } from './app.controller'
+import { CategoryModule } from './category/category.module'
+import { ProductModule } from './product/product.module'
+
 
 @Module({
   imports: [
@@ -15,6 +18,8 @@ import { AppController } from './app.controller'
     AuthModule,
     UserModule,
     VehicleModule,
+    CategoryModule,
+    ProductModule,
   ],
   controllers: [AppController],
 })
