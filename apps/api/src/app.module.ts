@@ -7,6 +7,9 @@ import { UserModule } from './user/user.module'
 import { VehicleModule } from './vehicle/vehicle.module'
 import { FastagModule } from './fastag/fastag.module'
 import { AppController } from './app.controller'
+import { CategoryModule } from './category/category.module'
+import { ProductModule } from './product/product.module'
+
 
 @Module({
   imports: [
@@ -16,7 +19,8 @@ import { AppController } from './app.controller'
     AuthModule,
     UserModule,
     VehicleModule,
-    FastagModule,
+    CategoryModule,
+    ProductModule,
   ],
   controllers: [AppController],
 })
