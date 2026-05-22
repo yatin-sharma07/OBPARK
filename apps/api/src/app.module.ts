@@ -5,6 +5,7 @@ import { RedisModule } from './redis/redis.module'
 import { AuthModule } from './auth/auth.module'
 import { UserModule } from './user/user.module'
 import { VehicleModule } from './vehicle/vehicle.module'
+import { FastagModule } from './fastag/fastag.module'
 import { AppController } from './app.controller'
 
 @Module({
@@ -15,6 +16,7 @@ import { AppController } from './app.controller'
     AuthModule,
     UserModule,
     VehicleModule,
+    FastagModule,
   ],
   controllers: [AppController],
 })
