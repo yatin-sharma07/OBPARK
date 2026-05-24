@@ -21,6 +21,7 @@ import { ProductModule } from './product/product.module'
     VehicleModule,
     CategoryModule,
     ProductModule,
+    FastagModule,
   ],
   controllers: [AppController],
 })

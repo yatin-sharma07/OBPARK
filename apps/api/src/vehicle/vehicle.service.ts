@@ -25,15 +25,62 @@ export class VehicleService {
 
   async addVehicle(userId: string, dto: AddVehicleDto) {
     const vrn = dto.vrn.toUpperCase().replace(/\s/g, '')
-
+  
+    // Check if vehicle exists — active or soft-deleted
     const existing = await this.prisma.vehicle.findUnique({
       where: { userId_vrn: { userId, vrn } },
     })
-    if (existing) throw new ConflictException('Vehicle already added to your account')
-
+  
+    if (existing) {
+      if (existing.isActive) {
+        // Genuinely already added
+        throw new ConflictException('Vehicle already added to your account')
+      }
+  
+      // Was soft-deleted — reactivate it instead of creating a new row
+      const rcData = await this.getOrFetchRcData(vrn)
+      const healthScore = computeHealthScore(rcData)
+  
+      const vehicle = await this.prisma.vehicle.update({
+        where: { id: existing.id },
+        data: { isActive: true },
+      })
+  
+      // Refresh the RC lookup too
+      await this.prisma.rcLookup.upsert({
+        where: { vehicleId: vehicle.id },
+        update: {
+          rawData: rcData as any,
+          insuranceExpiry: rcData.insuranceExpiry ? new Date(rcData.insuranceExpiry) : null,
+          puccExpiry: rcData.puccExpiry ? new Date(rcData.puccExpiry) : null,
+          fitnessExpiry: rcData.fitnessExpiry ? new Date(rcData.fitnessExpiry) : null,
+          challanCount: rcData.challanCount,
+          fastagActive: rcData.fastagActive,
+          healthScore: healthScore.total,
+          fetchedAt: new Date(),
+          expiresAt: addHours(new Date(), 24),
+        },
+        create: {
+          vehicleId: vehicle.id,
+          vrn,
+          rawData: rcData as any,
+          insuranceExpiry: rcData.insuranceExpiry ? new Date(rcData.insuranceExpiry) : null,
+          puccExpiry: rcData.puccExpiry ? new Date(rcData.puccExpiry) : null,
+          fitnessExpiry: rcData.fitnessExpiry ? new Date(rcData.fitnessExpiry) : null,
+          challanCount: rcData.challanCount,
+          fastagActive: rcData.fastagActive,
+          healthScore: healthScore.total,
+          expiresAt: addHours(new Date(), 24),
+        },
+      })
+  
+      return this.formatVehicleResponse(vehicle, rcData, healthScore)
+    }
+  
+    // Brand new vehicle — original create flow
     const rcData = await this.getOrFetchRcData(vrn)
     const healthScore = computeHealthScore(rcData)
-
+  
     const vehicle = await this.prisma.vehicle.create({
       data: {
         userId,
@@ -45,7 +92,7 @@ export class VehicleService {
         colour: rcData.colour,
       },
     })
-
+  
     await this.prisma.rcLookup.create({
       data: {
         vehicleId: vehicle.id,
@@ -60,7 +107,7 @@ export class VehicleService {
         expiresAt: addHours(new Date(), 24),
       },
     })
-
+  
     return this.formatVehicleResponse(vehicle, rcData, healthScore)
   }
 

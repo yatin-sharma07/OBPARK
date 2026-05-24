@@ -5,13 +5,21 @@ import { useAuthStore } from '@/store/auth.store'
 
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const router = useRouter()
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+  const { isAuthenticated, hydrated } = useAuthStore()
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (hydrated && !isAuthenticated) {
       router.push('/login')
     }
-  }, [isAuthenticated, router])
+  }, [hydrated, isAuthenticated, router])
+
+  if (!hydrated) {
+    return (
+      <div className="flex min-h-[40vh] items-center justify-center text-sm text-muted-foreground">
+        Loading…
+      </div>
+    )
+  }
 
   if (!isAuthenticated) return null
 
