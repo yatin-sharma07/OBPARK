@@ -2,6 +2,7 @@ import { env } from './config/env'
 import { NestFactory } from '@nestjs/core'
 import { ValidationPipe } from '@nestjs/common'
 import { AppModule } from './app.module'
+import cookieParser from 'cookie-parser'
 
 const allowedOrigins = new Set(
   env.CORS_ORIGINS.split(',').map((o) => o.trim()).filter(Boolean),
@@ -20,6 +21,7 @@ function isCorsOriginAllowed(origin: string | undefined): boolean {
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { rawBody: true })
   app.enableShutdownHooks()
+  app.use(cookieParser())
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }))
   app.enableCors({
     origin: (origin, callback) => {

@@ -24,6 +24,7 @@ export function useFastagBalance(vrn: string | null) {
     queryFn: () => api.post<FastagBalance>('/fastag/lookup', { vrn }),
     enabled: !!vrn,
     staleTime: 1000 * 60 * 5,
+    retry: false,
   })
 }
 
@@ -44,7 +45,7 @@ export function useConfirmRecharge() {
       razorpayOrderId: string
       razorpayPaymentId: string
     }) => api.post('/fastag/confirm', { razorpayOrderId, razorpayPaymentId }),
-    onSuccess: () => {
+    onSuccess: (_data, variables) => {
       qc.invalidateQueries({ queryKey: ['fastag', 'balance'] })
     },
   })

@@ -9,6 +9,9 @@ import { RegisterDto } from './dto/register.dto'
 import { LoginDto } from './dto/login.dto'
 import { ConfigService } from '@nestjs/config'
 import * as bcrypt from 'bcrypt'
+import type { JwtPayload } from './strategies/jwt.strategy'
+
+const REFRESH_TTL_DAYS = 7
 
 @Injectable()
 export class AuthService {
@@ -31,8 +34,7 @@ export class AuthService {
       select: { id: true, email: true, name: true, role: true },
     })
 
-    const tokens = await this.generateTokens(user.id, user.email, user.role)
-    return { user, ...tokens }
+    return this.createSession(user.id, user.email, user.role, user)
   }
 
   async login(dto: LoginDto) {
@@ -44,27 +46,76 @@ export class AuthService {
     const valid = await bcrypt.compare(dto.password, user.passwordHash)
     if (!valid) throw new UnauthorizedException('Invalid credentials')
 
-    const tokens = await this.generateTokens(user.id, user.email, user.role)
-    return {
-      user: { id: user.id, email: user.email, name: user.name, role: user.role },
-      ...tokens,
-    }
+    return this.createSession(user.id, user.email, user.role, {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      role: user.role,
+    })
   }
 
-  private async generateTokens(userId: string, email: string, role: string) {
-    const payload = { sub: userId, email, role }
+  async refresh(refreshToken: string) {
+    let payload: JwtPayload
+    try {
+      payload = await this.jwt.verifyAsync<JwtPayload>(refreshToken, {
+        secret: this.config.get<string>('JWT_REFRESH_SECRET'),
+      })
+    } catch {
+      throw new UnauthorizedException('Invalid refresh token')
+    }
+
+    const session = await this.prisma.session.findUnique({
+      where: { refreshToken },
+    })
+    if (!session || session.expiresAt < new Date()) {
+      if (session) {
+        await this.prisma.session.delete({ where: { id: session.id } })
+      }
+      throw new UnauthorizedException('Session expired')
+    }
+
+    await this.prisma.session.delete({ where: { id: session.id } })
+
+    const user = await this.prisma.user.findUnique({
+      where: { id: payload.sub },
+      select: { id: true, email: true, name: true, role: true },
+    })
+    if (!user) throw new UnauthorizedException('User not found')
+
+    return this.createSession(user.id, user.email, user.role, user)
+  }
+
+  async logout(refreshToken: string | undefined) {
+    if (!refreshToken) return
+    await this.prisma.session.deleteMany({ where: { refreshToken } })
+  }
+
+  private async createSession(
+    userId: string,
+    email: string,
+    role: string,
+    user: { id: string; email: string; name: string; role: string },
+  ) {
+    const payload: JwtPayload = { sub: userId, email, role }
 
     const [accessToken, refreshToken] = await Promise.all([
       this.jwt.signAsync(payload, {
-        secret: this.config.get('JWT_SECRET'),
+        secret: this.config.get<string>('JWT_SECRET'),
         expiresIn: '15m',
       }),
       this.jwt.signAsync(payload, {
-        secret: this.config.get('JWT_REFRESH_SECRET'),
-        expiresIn: '7d',
+        secret: this.config.get<string>('JWT_REFRESH_SECRET'),
+        expiresIn: `${REFRESH_TTL_DAYS}d`,
       }),
     ])
 
-    return { accessToken, refreshToken }
+    const expiresAt = new Date()
+    expiresAt.setDate(expiresAt.getDate() + REFRESH_TTL_DAYS)
+
+    await this.prisma.session.create({
+      data: { userId, refreshToken, expiresAt },
+    })
+
+    return { user, accessToken, refreshToken }
   }
 }

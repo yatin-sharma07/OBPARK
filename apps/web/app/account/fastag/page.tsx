@@ -50,7 +50,7 @@ export default function FastagPage() {
 
       {vehicles?.length === 0 && (
         <Card className="p-6 text-center text-muted-foreground">
-          <p className="text-3xl mb-2">🚗</p>
+
           <p className="font-medium">No vehicles added yet</p>
           <p className="text-sm mt-1">Add a vehicle first from My Vehicles page</p>
         </Card>
