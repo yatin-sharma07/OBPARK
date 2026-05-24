@@ -15,6 +15,10 @@ const envSchema = z.object({
   // App
   PORT: z.coerce.number().default(3001),
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+  /** Comma-separated browser origins allowed to call the API (e.g. Next.js dev server) */
+  CORS_ORIGINS: z
+    .string()
+    .default('http://localhost:3000,http://localhost:3002'),
 
   // Razorpay (optional in dev — required in prod)
   RAZORPAY_KEY_ID: z.string().optional(),
