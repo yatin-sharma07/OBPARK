@@ -5,15 +5,15 @@ import { useAuthStore } from '@/store/auth.store'
 
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const router = useRouter()
-  const { isAuthenticated, hydrated } = useAuthStore()
+  const { isAuthenticated, isHydrated } = useAuthStore()  // ← isHydrated not hydrated
 
   useEffect(() => {
-    if (hydrated && !isAuthenticated) {
+    if (isHydrated && !isAuthenticated) {
       router.push('/login')
     }
-  }, [hydrated, isAuthenticated, router])
+  }, [isHydrated, isAuthenticated, router])
 
-  if (!hydrated) {
+  if (!isHydrated) {
     return (
       <div className="flex min-h-[40vh] items-center justify-center text-sm text-muted-foreground">
         Loading…
