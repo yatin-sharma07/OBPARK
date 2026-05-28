@@ -6,6 +6,7 @@ import { useAuthStore } from '@/store/auth.store'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
+import { AddToCartButton } from '@/components/cart/AddToCartButton'
 
 export default function ProductDetailPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -81,9 +82,11 @@ export default function ProductDetailPage() {
             </div>
           )}
           <p className="text-xs text-muted-foreground">{product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}</p>
-          <Button className="w-full" style={{ backgroundColor: '#074139', color: '#A2F1DF' }} disabled={product.stock === 0}>
-            {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
-          </Button>
+          <AddToCartButton
+  productId={product.id}
+  productName={product.name}
+  disabled={product.stock === 0}
+/>
         </div>
       </div>
     </div>
