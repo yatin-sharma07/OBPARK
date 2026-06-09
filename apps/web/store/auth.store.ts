@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
 interface User {
   id: string
@@ -13,29 +14,47 @@ interface AuthState {
   refreshToken: string | null
   isAuthenticated: boolean
   isHydrated: boolean
-  setAuth: (user: User, accessToken: string, refreshToken: string) => void
+  setAuth: (user: User, accessToken: string, refreshToken?: string) => void
   clearAuth: () => void
   setHydrated: (value: boolean) => void
   updateUser: (partial: Partial<User>) => void
 }
 
-export const useAuthStore = create<AuthState>()((set) => ({
-  user: null,
-  accessToken: null,
-  refreshToken: null,
-  isAuthenticated: false,
-  isHydrated: false,
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
+      user: null,
+      accessToken: null,
+      refreshToken: null,
+      isAuthenticated: false,
+      isHydrated: false,
 
-  setAuth: (user, accessToken, refreshToken) =>
-    set({ user, accessToken, refreshToken, isAuthenticated: true }),
+      setAuth: (user, accessToken, refreshToken) =>
+        set((state) => ({
+          user,
+          accessToken,
+          refreshToken: refreshToken ?? state.refreshToken,
+          isAuthenticated: true,
+        })),
 
-  clearAuth: () =>
-    set({ user: null, accessToken: null, refreshToken: null, isAuthenticated: false }),
+      clearAuth: () =>
+        set({ user: null, accessToken: null, refreshToken: null, isAuthenticated: false }),
 
-  setHydrated: (value) => set({ isHydrated: value }),
+      setHydrated: (value) => set({ isHydrated: value }),
 
-  updateUser: (partial) =>
-    set((state) => ({
-      user: state.user ? { ...state.user, ...partial } : null,
-    })),
-}))
+      updateUser: (partial) =>
+        set((state) => ({
+          user: state.user ? { ...state.user, ...partial } : null,
+        })),
+    }),
+    {
+      name: 'obrive-auth',
+      partialize: (state) => ({
+        user: state.user,
+        accessToken: state.accessToken,
+        refreshToken: state.refreshToken,
+        isAuthenticated: state.isAuthenticated,
+      }),
+    },
+  ),
+)

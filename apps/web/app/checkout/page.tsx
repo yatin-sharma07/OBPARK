@@ -45,7 +45,7 @@ export default function CheckoutPage() {
   const saveAddress = useSaveAddress()
 
   const [addressMode, setAddressMode] =
-    useState<AddressMode>('saved')
+    useState<AddressMode>('new')
 
   const [selectedAddressId, setSelectedAddressId] =
     useState<string | null>(null)
