@@ -291,3 +291,42 @@ model RechargeTransaction {
   @@index([vrn])
   @@index([vehicleId])
 }
+
+
+// ─── Audit Log ────────────────────────────────────────────
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String
+  action     String
+  entityId   String?
+  entityType String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([entityType, entityId])
+}
+
+// ─── Coupons ──────────────────────────────────────────────
+
+enum DiscountType {
+  FLAT
+  PERCENTAGE
+}
+
+model Coupon {
+  id            String       @id @default(cuid())
+  code          String       @unique
+  description   String?
+  discountType  DiscountType @default(FLAT)
+  discountValue Decimal      @db.Decimal(10, 2)
+  minOrderValue Decimal?     @db.Decimal(10, 2)
+  maxUses       Int?
+  usedCount     Int          @default(0)
+  isActive      Boolean      @default(true)
+  expiresAt     DateTime?
+  createdAt     DateTime     @default(now())
+
+  @@index([code])
+}
