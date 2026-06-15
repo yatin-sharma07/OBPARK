@@ -17,7 +17,7 @@ const CATEGORIES = [
     title: 'Exterior Accessories',
     slug: 'accessories',
     items: [
-     { name: 'Alloy Wheel Covers', img: 'https://images.unsplash.com/photo-1611016186353-9af58c69a533?w=200&q=80' },
+      { name: 'Alloy Wheel Covers', img: 'https://images.unsplash.com/photo-1611016186353-9af58c69a533?w=200&q=80' },
       { name: 'Chrome garnish kits', img: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=200&q=80' },
       { name: 'Car wraps', img: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=200&q=80' },
       { name: 'Spoilers', img: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=200&q=80' },
@@ -53,34 +53,53 @@ const CATEGORIES = [
 
 export function ProductCategories() {
   return (
-    <section className="px-[52px] py-16 mx-auto max-w-[1700px]">
-      <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '48px' }}>
+    <section className="px-4 sm:px-8 md:px-12 lg:px-[52px] py-12 md:py-16 mx-auto max-w-[1700px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
         {CATEGORIES.map((cat) => (
-          <div key={cat.title} className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm flex flex-col" style={{ gap: '48px' }}>
-            <h3 style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, fontSize: '24px', lineHeight: '100%', color: '#074139' }}>{cat.title}</h3>
-            <div className="flex flex-col" style={{ gap: '32px' }}>
-              <div className="grid grid-cols-3" style={{ gap: '20px' }}>
+          <div key={cat.title} className="bg-white rounded-3xl p-4 sm:p-6 border border-gray-100 shadow-sm flex flex-col gap-8 md:gap-12">
+            <h3
+              className="text-base sm:text-lg md:text-2xl leading-none"
+              style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, color: '#074139' }}
+            >
+              {cat.title}
+            </h3>
+            <div className="flex flex-col gap-4 sm:gap-6 md:gap-8">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-5">
                 {cat.items.slice(0, 3).map((item) => (
-                  <div key={item.name} className="flex flex-col items-center" style={{ gap: '8px' }}>
+                  <div key={item.name} className="flex flex-col items-center gap-2">
                     <div className="w-full aspect-square rounded-xl overflow-hidden bg-gray-50">
                       <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
                     </div>
-                    <span style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, fontSize: '16px', lineHeight: '100%', color: '#074139', textAlign: 'center' }}>{item.name}</span>
+                    <span
+                      className="text-[10px] sm:text-xs md:text-sm leading-none text-center"
+                      style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, color: '#074139' }}
+                    >
+                      {item.name}
+                    </span>
                   </div>
                 ))}
               </div>
-              <div className="grid grid-cols-3" style={{ gap: '20px' }}>
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-5">
                 {cat.items.slice(3, 6).map((item) => (
-                  <div key={item.name} className="flex flex-col items-center" style={{ gap: '8px' }}>
+                  <div key={item.name} className="flex flex-col items-center gap-2">
                     <div className="w-full aspect-square rounded-xl overflow-hidden bg-gray-50">
                       <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
                     </div>
-                    <span style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, fontSize: '16px', lineHeight: '100%', color: '#074139', textAlign: 'center' }}>{item.name}</span>
+                    <span
+                      className="text-[10px] sm:text-xs md:text-sm leading-none text-center"
+                      style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, color: '#074139' }}
+                    >
+                      {item.name}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
-            <Link href={`/products?category=${cat.slug}`} style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, fontSize: '20px', color: '#308F8A' }}>
+            <Link
+              href={`/products?category=${cat.slug}`}
+              className="text-sm sm:text-base md:text-xl leading-none"
+              style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, color: '#308F8A' }}
+            >
               Explore all
             </Link>
           </div>

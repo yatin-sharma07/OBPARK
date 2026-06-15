@@ -33,3 +33,12 @@ body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+
+:root {
+  --font-michroma: 'Michroma', sans-serif;
+  --font-microgamma: 'Microgramma Extended', sans-serif;
+  --font-microgamma-bold: 'Microgramma Extended', sans-serif;
+}
