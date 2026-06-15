@@ -56,7 +56,7 @@ export function Footer() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs mb-1" style={{ color: '#074139', fontFamily: 'var(--font-michroma)' }}>First Name</label>
-                  <input placeholder="First Name" value={form.firstName} onChange={(e) => setForm({ ...form, firstName: e.target.value })} className="w-full px-3 py-2 rounded-lg text-xs border-0 focus:outline-none focus:ring-1 focus:ring-[#074139]" style={{ backgroundColor: 'rgba(255,255,255,0.7)' }} />
+                  <input placeholder="First Name" value={form.firstName} onChange={(e) => setForm({ ...form, firstName: e.target.value })} className="w-full px-3 py-2 rounded-lg text-xs   border-0 focus:outline-none focus:ring-1 focus:ring-[#074139]" style={{ backgroundColor: 'rgba(255,255,255,0.7)' }} />
                 </div>
                 <div>
                   <label className="block text-xs mb-1" style={{ color: '#074139', fontFamily: 'var(--font-michroma)' }}>Last Name</label>
