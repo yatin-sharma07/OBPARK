@@ -10,6 +10,7 @@ import { MintCta } from '@/components/home/MintCta'
 import { Reviews } from '@/components/home/Reviews'
 import {Footer} from "@/components/layout/Footer";
 
+
 export default function HomePage() {
   return (
     <main>

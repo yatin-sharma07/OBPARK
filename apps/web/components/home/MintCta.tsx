@@ -4,7 +4,7 @@ import { microgrammaBold } from '@/lib/fonts'
 export function MintCta() {
   return (
     <section
-      className="relative overflow-hidden flex items-end md:items-center justify-start w-full max-w-[1350px] min-h-[380px] md:min-h-[480px] xl:h-[580px] rounded-[30px] mx-auto mt-10 md:mt-12 px-6 md:px-16 pb-10 md:pb-0"
+      className="relative overflow-hidden flex items-end md:items-center justify-start w-full max-w-[1450px] min-h-[380px] md:min-h-[480px] xl:h-[580px] rounded-[30px] mx-auto mt-10 md:mt-12 px-6 md:px-16 pb-10 md:pb-0"
       style={{
         background: 'linear-gradient(135deg, #62E5CE 0%, #AFFFEF 35%, #A6FDEB 70%, #5DE3CA 100%)',
       }}

@@ -74,7 +74,7 @@ export function HeroSection() {
 
           <Link
             href="/register"
-            className="hidden md:flex items-center gap-2 px-5 py-2 rounded-full whitespace-nowrap text-sm font-normal text-[#A2F1DF] bg-[#074139]"
+            className="hidden md:flex items-center gap-2 px-6 py-3 rounded-full whitespace-nowrap text-sm font-normal text-[#A2F1DF] bg-[#074139]"
             style={{ fontFamily: 'var(--font-michroma)' }}
           >
             SCHEDULE CALL ↗
