@@ -14,7 +14,7 @@ const colors = ['#B0E5CC', '#95D9C0', '#7ACCB4', '#5DBEA7', '#3DA09A', '#167D7F'
 
 export function TrustBadges() {
   return (
-    <section className="bg-white py-16 md:py-24 px-4 md:px-6">
+    <section className=" py-16 md:py-24 px-4 md:px-6">
       <div className="max-w-xl mx-auto flex flex-col items-center">
         {BADGES.map((badge, i) => (
           <div
@@ -42,7 +42,7 @@ export function TrustBadges() {
           </div>
         ))}
 
-        <div className="mt-16 md:mt-28 text-center px-4">
+        <div className="mt-16 md:mt-28 text-center px-3">
           <p
   className="whitespace-nowrap text-[clamp(12px,2vw,32px)] leading-none"
   style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, color: '#4B545A' }}
