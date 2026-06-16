@@ -20,7 +20,7 @@ export function ServicesGrid() {
       <div className="flex flex-col lg:flex-row gap-12  justify-between">
 
         
-        <div className="flex flex-col w-full lg:w-[736px] h-[583px] justify-center gap-6">
+        <div className="flex flex-col w-full lg:w-[736px] h-[583px] justify-center gap-6 mt-12">
           <h2
             className={`${microgrammaBold.className} font-bold text-4xl md:text-5xl xl:text-[56px] leading-tight text-[#074139]`}
           >
@@ -41,7 +41,15 @@ export function ServicesGrid() {
                 className="w-full max-w-[200px] h-[211px] p-4 flex flex-col items-center justify-center gap-4 rounded-[8px] border border-[rgba(7,65,57,0.8)] transition-all hover:bg-[#f0fdf9] hover:scale-105"
               >
                 <div className="flex items-center justify-center  ">
-                  <Image src={s.image} alt={s.label} width={120} height={120} />
+                <div className="w-[120px] h-[120px] rounded-full bg-[#F8FAFA] border-[6px] border-[#59D0B5] flex items-center justify-center overflow-hidden">
+  <Image
+    src={s.image}
+    alt={s.label}
+    width={60}
+    height={60}
+    className="object-contain"
+  />
+</div>
                 </div>
                 <span
                   className={`${microgrammaBold.className} font-bold text-[9px] md:text-[12px] xl:text-[16px] leading-tight text-[#074139] text-center uppercase`}

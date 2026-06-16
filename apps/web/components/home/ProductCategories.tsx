@@ -68,9 +68,9 @@ export function ProductCategories() {
                 {cat.items.slice(0, 3).map((item) => (
                   <div
                     key={item.name}
-                    className="flex flex-col items-center justify-center gap-2 w-full h-auto aspect-square sm:w-[180px] sm:h-[180px] border border-[#ECECEC]"
+                    className="flex flex-col items-center justify-center gap-2 w-full h-auto aspect-square sm:w-[180px] sm:h-[200px] border border-[#ECECEC]"
                   >
-                    <div className="w-[80%] sm:w-[126px] h-[60%] sm:h-[125px] rounded-none overflow-hidden bg-gray-50">
+                    <div className="w-[80%] sm:w-[126px] h-[60%] sm:h-[130px] rounded-none overflow-hidden bg-gray-50">
                       <img
                         src={item.img}
                         alt={item.name}
@@ -90,9 +90,9 @@ export function ProductCategories() {
                 {cat.items.slice(3, 6).map((item) => (
                   <div
                     key={item.name}
-                    className="flex flex-col items-center justify-center gap-2 w-full h-auto aspect-square sm:w-[180px] sm:h-[180px] border border-[#ECECEC]"
+                    className="flex flex-col items-center justify-center gap-2 w-full h-auto aspect-square sm:w-[180px] sm:h-[200px] border border-[#ECECEC]"
                   >
-                    <div className="w-[80%] sm:w-[126px] h-[60%] sm:h-[125px] rounded-none overflow-hidden bg-gray-50">
+                    <div className="w-[80%] sm:w-[126px] h-[60%] sm:h-[130px] rounded-none overflow-hidden bg-gray-50">
                       <img
                         src={item.img}
                         alt={item.name}
