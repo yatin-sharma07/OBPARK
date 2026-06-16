@@ -1,134 +1,139 @@
 'use client'
+
 import Link from 'next/link'
-import { microgrammaBold } from '@/lib/fonts'
-import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { Navbar } from '../Navbar'
 
 export function HeroSection() {
-   const [showNavbar, setShowNavbar] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowNavbar(window.scrollY > 100)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
   return (
-    <section
-      className="relative font-michroma m-3 md:m-6 rounded-[28px] md:rounded-[58px]"
-      style={{
-        minHeight: 'clamp(500px, 70vw, 1117px)',
-        background:
-          'linear-gradient(135deg, #c8f5eb 0%, #a8eddc 30%, #6dd4bc 60%, #2a9d8a 100%)',
-      }}
-    >
-      <div className="relative z-30 p-0">
-       <nav
-  className="sticky top-0 z-50 flex items-center justify-between w-full px-4 sm:px-6 md:px-8 h-[80px] md:h-[120px] xl:h-[160px] rounded-[30px] md:rounded-[60px] border border-white/25"
-  style={{
-    background:
-      'linear-gradient(to bottom, #59D0B5 0%, #CAEDE5 100%)',
-  }}
-        >
-          <div className="hidden md:flex items-center gap-6">
-            <Link
-              href="/about"
-              className="text-[#074139] text-base xl:text-lg font-normal"
-              style={{ fontFamily: 'var(--font-michroma)' }}
-            >
-              About
-            </Link>
+    <>
+      <Navbar />
 
-            <Link
-              href="/products"
-              className="text-[#074139] text-base xl:text-lg font-normal"
-              style={{ fontFamily: 'var(--font-michroma)' }}
-            >
-              Shop
-            </Link>
+      <section
+        className="
+    relative font-michroma
+    m-3 md:m-6
+    rounded-[28px] md:rounded-[58px]
+    overflow-hidden
+    h-[calc(100vh-24px)]
+    sm:h-[calc(100vh-32px)]
+    md:h-[calc(100vh-48px)]
+    min-h-[500px]
+    md:min-h-[560px]
+    lg:min-h-[600px]
+    max-h-[1100px]
+  "
+      >
+        {/* Background Video */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src="/Images/HeroSection/obrive-intro.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
 
-            <Link
-              href="#app"
-              className="text-[#074139] text-base xl:text-lg font-normal"
-              style={{ fontFamily: 'var(--font-michroma)' }}
-            >
-              App Download
-            </Link>
-          </div>
+        {/* Optional dark/green overlay so content stays visible */}
+        <div className="absolute inset-0 bg-[#074139]/20" />
 
-          <span
-            className={`${microgrammaBold.className} absolute left-1/2 -translate-x-1/2 text-[#074139] tracking-[0.12em] whitespace-nowrap text-[clamp(16px,4vw,40px)]`}
-          >
-            OBPARK
-            <sup
-              className="text-[0.45em] align-super ml-0.5"
-              style={{ fontFamily: 'Arial, sans-serif' }}
-            >
-              ©
-            </sup>
-          </span>
+        {/* Navbar space because navbar is fixed */}
+        <div className="relative z-10 h-[72px] sm:h-[78px] md:h-[100px] lg:h-[110px] xl:h-[130px]" />
 
-          <Link
-            href="/register"
-            className="hidden md:flex items-center gap-2 px-6 py-3 rounded-full whitespace-nowrap text-sm font-normal text-[#A2F1DF] bg-[#074139]"
-            style={{ fontFamily: 'var(--font-michroma)' }}
-          >
-            SCHEDULE CALL ↗
-          </Link>
+        {/* Diagonal Light Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+          <motion.div
+            initial={{ opacity: 0, x: -120 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            className="
+              absolute
+              w-[160%] sm:w-[150%] lg:w-[140%]
+              h-[60px] sm:h-[80px] md:h-[100px]
+              -left-[30%] sm:-left-[25%] lg:-left-[20%]
+              top-[43%] md:top-[44%]
+              -rotate-[22deg] sm:-rotate-[20deg] md:-rotate-[18deg]
+              origin-left
+            "
+            style={{
+              background:
+                'linear-gradient(180deg, rgba(180,180,180,0.1) 0%, rgba(220,220,220,0.22) 40%, rgba(180,180,180,0.1) 100%)',
+            }}
+          />
 
-          <Link
-            href="/register"
-            className="md:hidden flex items-center gap-1 px-4 py-2 rounded-full text-[11px] text-[#A2F1DF] bg-[#074139]"
-            style={{ fontFamily: 'var(--font-michroma)' }}
-          >
-            START ↗
-          </Link>
-        </nav>
-      </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 1 }}
+            className="
+              absolute
+              w-[160%] sm:w-[150%] lg:w-[140%]
+              h-[2px]
+              -left-[30%] sm:-left-[25%] lg:-left-[20%]
+              top-[51%] md:top-[52%]
+              -rotate-[22deg] sm:-rotate-[20deg] md:-rotate-[18deg]
+              origin-left
+            "
+            style={{
+              background:
+                'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
+            }}
+          />
+        </div>
 
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute w-[140%] h-[100px] -left-[20%] top-[44%] -rotate-[18deg] origin-left"
+        {/* Center Ball */}
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{
+            duration: 0.8,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="
+            absolute z-20
+            top-1/2 left-1/2
+            -translate-x-1/2 -translate-y-1/2
+            rounded-full
+          "
           style={{
+            width: 'clamp(55px, 8vw, 90px)',
+            height: 'clamp(55px, 8vw, 90px)',
             background:
-              'linear-gradient(180deg, rgba(180,180,180,0.1) 0%, rgba(220,220,220,0.22) 40%, rgba(180,180,180,0.1) 100%)',
+              'radial-gradient(circle at 35% 30%, #5ecfba, #074139 70%)',
+            boxShadow:
+              '0 12px 40px rgba(7,65,57,0.5), inset 0 -4px 8px rgba(0,0,0,0.3)',
           }}
         />
 
-        <div
-          className="absolute w-[140%] h-[2px] -left-[20%] top-[52%] -rotate-[18deg] origin-left"
-          style={{
-            background:
-              'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
-          }}
-        />
-      </div>
-
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
-        style={{
-          width: 'clamp(60px, 8vw, 90px)',
-          height: 'clamp(60px, 8vw, 90px)',
-          background:
-            'radial-gradient(circle at 35% 30%, #5ecfba, #074139 70%)',
-          boxShadow:
-            '0 12px 40px rgba(7,65,57,0.5), inset 0 -4px 8px rgba(0,0,0,0.3)',
-        }}
-      />
-
-      <div className="absolute bottom-4 md:bottom-10 left-1/2 -translate-x-1/2">
-        <Link
-          href="/products"
-          className="flex items-center gap-2 px-4 md:px-7 py-2 md:py-2.5 text-[11px] md:text-sm text-[#074139] bg-[#CAEDE5] border border-[rgba(7,65,57,0.35)] backdrop-blur-sm whitespace-nowrap"
-          style={{ fontFamily: 'var(--font-michroma)' }}
+        {/* Bottom Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="
+            absolute z-20
+            bottom-5 sm:bottom-6 md:bottom-10
+            left-1/2 -translate-x-1/2
+          "
         >
-          DOWNLOAD APP <span className="text-lg font-bold">↗</span>
-        </Link>
-      </div>
-    </section>
+          <Link
+            href="/products"
+            className="
+              flex items-center gap-2
+              px-4 sm:px-5 md:px-7
+              py-2 md:py-2.5
+              text-[10px] sm:text-[11px] md:text-sm
+              text-[#074139]
+              bg-[#CAEDE5]
+              border border-[rgba(7,65,57,0.35)]
+              backdrop-blur-sm whitespace-nowrap
+            "
+            style={{ fontFamily: 'var(--font-michroma)' }}
+          >
+            DOWNLOAD APP <span className="text-base md:text-lg font-bold">↗</span>
+          </Link>
+        </motion.div>
+      </section>
+    </>
   )
 }
