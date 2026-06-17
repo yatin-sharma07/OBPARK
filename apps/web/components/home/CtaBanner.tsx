@@ -20,9 +20,9 @@ export function CtaBanner() {
           style={{ backgroundImage: 'url("/images/banner/bannerpic.png")' }}
         />
 
-        <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full px-4 md:px-10 py-10 lg:py-0 gap-10 lg:gap-8">
+        <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full px-4 md:px-10 py-10 lg:py-0 gap-10 lg:gap-8 h-full">
 
-          <div className="flex flex-col gap-6 max-w-xl text-center lg:text-left">
+          <div className="flex flex-col gap-6 max-w-xl text-center lg:text-left lg:h-[450px] justify-between">
             <h2 className={`${microgrammaBold.className} text-white font-bold text-2xl sm:text-3xl md:text-[40px] leading-tight`}>
               It's time to take control.<br />Ready to break free?
             </h2>
@@ -98,12 +98,12 @@ export function CtaBanner() {
 
       <div className="mt-10 md:mt-16 mb-16 text-center px-4">
         <p
-          className="text-xl sm:text-2xl md:text-[32px] leading-none text-[#4B545A]"
+          className="text-xl sm:text-2xl md:text-[24px] leading-none text-[#4B545A]"
           style={{ fontFamily: 'var(--font-michroma)' }}
         >
           Your journey to better health starts here.
         </p>
-        <h2 className={`${microgrammaBold.className} mt-8 md:mt-12 text-2xl sm:text-3xl md:text-[40px] leading-none text-[#074139] font-bold`}>
+        <h2 className={`${microgrammaBold.className} mt-8 md:mt-12 text-2xl sm:text-3xl md:text-[60px] leading-none text-[#074139] font-bold`}>
           Small Change, Big Impact
         </h2>
       </div>

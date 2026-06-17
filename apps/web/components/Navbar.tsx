@@ -1,28 +1,44 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { microgrammaBold } from '@/lib/fonts'
 
+const mobileLinks = [
+    {
+        label: 'About',
+        href: '/about',
+    },
+    {
+        label: 'Shop',
+        href: '/products',
+    },
+    {
+        label: 'App Download',
+        href: '#app',
+    },
+    {
+        label: 'Schedule Call',
+        href: '/register',
+    },
+]
+
 export function Navbar() {
     const [showNavbar, setShowNavbar] = useState(true)
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const lastScrollY = useRef(0)
 
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY
 
-            // Always show navbar near the top
             if (currentScrollY <= 100) {
                 setShowNavbar(true)
-            }
-            // Scrolling down after 100px = hide navbar
-            else if (currentScrollY > lastScrollY.current) {
+            } else if (currentScrollY > lastScrollY.current) {
                 setShowNavbar(false)
-            }
-            // Scrolling up anywhere = show navbar
-            else {
+                setMobileMenuOpen(false)
+            } else {
                 setShowNavbar(true)
             }
 
@@ -37,110 +53,417 @@ export function Navbar() {
     }, [])
 
     return (
-        <motion.nav
-            initial={{ opacity: 1, y: 0 }}
-            animate={{
-                opacity: showNavbar ? 1 : 0,
-                y: showNavbar ? 0 : -40,
-                pointerEvents: showNavbar ? 'auto' : 'none',
-            }}
-            transition={{
-                duration: 0.35,
-                ease: [0.22, 1, 0.36, 1],
-            }}
-            className="
-    fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50
-    flex items-center justify-between
-    w-[calc(100%_-_24px)] md:w-[calc(100%_-_48px)]
-    h-[clamp(70px,15svh,130px)]
-    px-3 sm:px-4 md:px-8
-    rounded-[30px] md:rounded-[40px]
-    border border-white/35
-    overflow-hidden
-    backdrop-blur-xl
-    shadow-[0_8px_32px_rgba(7,65,57,0.18)]
-  "
-            style={{
-                background:
-                    'linear-gradient(to bottom, rgba(89, 208, 181, 0.38) 0%, rgba(202, 237, 229, 0.22) 100%)',
-            }}
-        >
-            <div className="hidden md:flex items-center gap-4 lg:gap-6 flex-1 min-w-0">
-                <Link
-                    href="/about"
-                    className="text-[#074139] text-xs lg:text-base xl:text-lg font-normal whitespace-nowrap"
-                    style={{ fontFamily: 'var(--font-michroma)' }}
-                >
-                    About
-                </Link>
+        <>
+            <motion.nav
+                initial={{ opacity: 1, y: 0 }}
+                animate={{
+                    opacity: showNavbar ? 1 : 0,
+                    y: showNavbar ? 0 : -32,
+                    pointerEvents: showNavbar ? 'auto' : 'none',
+                }}
+                transition={{
+                    duration: 0.35,
+                    ease: [0.22, 1, 0.36, 1],
+                }}
+                className="
+          fixed
+          top-3
+          sm:top-4
+          md:top-6
 
-                <Link
-                    href="/products"
-                    className="text-[#074139] text-xs lg:text-base xl:text-lg font-normal whitespace-nowrap"
-                    style={{ fontFamily: 'var(--font-michroma)' }}
-                >
-                    Shop
-                </Link>
+          left-3
+          right-3
+          sm:left-4
+          sm:right-4
+          md:left-6
+          md:right-6
 
-                <Link
-                    href="#app"
-                    className="text-[#074139] text-xs lg:text-base xl:text-lg font-normal whitespace-nowrap"
-                    style={{ fontFamily: 'var(--font-michroma)' }}
-                >
-                    App Download
-                </Link>
-            </div>
+          z-50
 
-            <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-                <span
-                    className={`
-            ${microgrammaBold.className}
-            text-[#074139] tracking-[0.12em]
-            whitespace-nowrap text-[clamp(18px,5vw,40px)]
-          `}
+          flex items-center justify-between
+
+          h-[58px]
+          sm:h-[64px]
+          md:h-[80px]
+          lg:h-[90px]
+          xl:h-[100px]
+
+          min-h-[58px]
+          max-h-[100px]
+
+          px-4
+          sm:px-5
+          md:px-7
+          lg:px-8
+
+          rounded-[22px]
+          sm:rounded-[26px]
+          md:rounded-[32px]
+          lg:rounded-[36px]
+
+          border border-[#59D0B5]/70
+          overflow-hidden
+
+          shadow-[0_8px_28px_rgba(7,65,57,0.16)]
+        "
+                style={{
+                    background: 'linear-gradient(to bottom, #59D0B5 0%, #CAEDE5 100%)',
+                }}
+            >
+                {/* LEFT LINKS - DESKTOP */}
+                <div
+                    className="
+            hidden md:flex
+            items-center
+            gap-4
+            lg:gap-5
+            xl:gap-7
+            flex-1
+            min-w-0
+          "
                 >
-                    OBPARK
-                    <sup
-                        className="text-[0.45em] align-super ml-0.5"
-                        style={{ fontFamily: 'Arial, sans-serif' }}
+                    <Link
+                        href="/about"
+                        className="
+              text-[#074139]
+              text-[10px]
+              lg:text-xs
+              xl:text-sm
+              font-normal
+              whitespace-nowrap
+              transition-opacity
+              hover:opacity-70
+            "
                     >
-                        ©
-                    </sup>
-                </span>
-            </Link>
+                        About
+                    </Link>
 
-            <div className="hidden md:flex justify-end flex-1 min-w-0">
-                <Link
-                    href="/register"
-                    className="
-            flex items-center gap-2
-            px-4 lg:px-6 py-2.5 lg:py-3
-            rounded-full whitespace-nowrap
-            text-xs lg:text-sm font-normal
-            text-[#A2F1DF] bg-[#074139]
-          "
-                    style={{ fontFamily: 'var(--font-michroma)' }}
-                >
-                    SCHEDULE CALL ↗
-                </Link>
-            </div>
+                    <Link
+                        href="/products"
+                        className="
+              text-[#074139]
+              text-[10px]
+              lg:text-xs
+              xl:text-sm
+              font-normal
+              whitespace-nowrap
+              transition-opacity
+              hover:opacity-70
+            "
+                    >
+                        Shop
+                    </Link>
 
-            <div className="md:hidden ml-auto">
+                    <Link
+                        href="#app"
+                        className="
+              text-[#074139]
+              text-[10px]
+              lg:text-xs
+              xl:text-sm
+              font-normal
+              whitespace-nowrap
+              transition-opacity
+              hover:opacity-70
+            "
+                    >
+                        App Download
+                    </Link>
+                </div>
+
+                {/* LOGO */}
                 <Link
-                    href="/register"
+                    href="/"
+                    onClick={() => setMobileMenuOpen(false)}
                     className="
-            flex items-center gap-1
-            px-3 sm:px-4 py-2
-            rounded-full
-            text-[10px] sm:ztext-[11px]
-            text-[#A2F1DF] bg-[#074139]
-            whitespace-nowrap
+            absolute
+            left-4
+            sm:left-1/2
+            sm:-translate-x-1/2
+            md:left-1/2
+            md:-translate-x-1/2
+
+            max-w-[55%]
+            sm:max-w-none
+            min-w-0
           "
-                    style={{ fontFamily: 'var(--font-michroma)' }}
                 >
-                    START ↗
+                    <span
+                        className={`
+              ${microgrammaBold.className}
+              block
+              text-[#074139]
+              tracking-[0.10em]
+              sm:tracking-[0.12em]
+              whitespace-nowrap
+              leading-none
+
+              text-[22px]
+              xs:text-[24px]
+              sm:text-[28px]
+              md:text-[30px]
+              lg:text-[34px]
+              xl:text-[38px]
+            `}
+                    >
+                        OBPARK
+                        <sup
+                            className="text-[0.38em] align-super ml-0.5"
+                            style={{ fontFamily: 'Arial, sans-serif' }}
+                        >
+                            ©
+                        </sup>
+                    </span>
                 </Link>
-            </div>
-        </motion.nav>
+
+                {/* RIGHT BUTTON - DESKTOP */}
+                <div
+                    className="
+            hidden md:flex
+            justify-end
+            flex-1
+            min-w-0
+          "
+                >
+                    <Link
+                        href="/register"
+                        className="
+              flex items-center justify-center gap-2
+
+              min-w-[132px]
+              lg:min-w-[150px]
+              xl:min-w-[166px]
+
+              px-4
+              lg:px-5
+              xl:px-6
+
+              py-2.5
+              lg:py-3
+
+              rounded-full
+              whitespace-nowrap
+
+              text-[10px]
+              lg:text-xs
+
+              font-normal
+
+              text-[#A2F1DF]
+              bg-[#074139]
+
+              transition-transform
+              hover:scale-[1.03]
+            "
+                    >
+                        SCHEDULE CALL ↗
+                    </Link>
+                </div>
+
+                {/* HAMBURGER - MOBILE */}
+                <div
+                    className="
+            md:hidden
+            ml-auto
+            flex items-center justify-end
+          "
+                >
+                    <button
+                        type="button"
+                        aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                        aria-expanded={mobileMenuOpen}
+                        onClick={() => setMobileMenuOpen((prev) => !prev)}
+                        className="
+              relative
+              flex
+              h-[36px]
+              w-[42px]
+              items-center
+              justify-center
+              rounded-full
+              bg-[#074139]
+              overflow-hidden
+            "
+                    >
+                        <motion.span
+                            animate={{
+                                rotate: mobileMenuOpen ? 45 : 0,
+                                y: mobileMenuOpen ? 0 : -6,
+                            }}
+                            transition={{
+                                duration: 0.28,
+                                ease: [0.22, 1, 0.36, 1],
+                            }}
+                            className="
+                absolute
+                h-[1.5px]
+                w-[18px]
+                rounded-full
+                bg-[#A2F1DF]
+              "
+                        />
+
+                        <motion.span
+                            animate={{
+                                opacity: mobileMenuOpen ? 0 : 1,
+                                scaleX: mobileMenuOpen ? 0 : 1,
+                            }}
+                            transition={{
+                                duration: 0.2,
+                                ease: [0.22, 1, 0.36, 1],
+                            }}
+                            className="
+                absolute
+                h-[1.5px]
+                w-[18px]
+                rounded-full
+                bg-[#A2F1DF]
+              "
+                        />
+
+                        <motion.span
+                            animate={{
+                                rotate: mobileMenuOpen ? -45 : 0,
+                                y: mobileMenuOpen ? 0 : 6,
+                            }}
+                            transition={{
+                                duration: 0.28,
+                                ease: [0.22, 1, 0.36, 1],
+                            }}
+                            className="
+                absolute
+                h-[1.5px]
+                w-[18px]
+                rounded-full
+                bg-[#A2F1DF]
+              "
+                        />
+                    </button>
+                </div>
+            </motion.nav>
+
+            {/* MOBILE DROPDOWN */}
+            <AnimatePresence>
+                {mobileMenuOpen && showNavbar && (
+                    <motion.div
+                        initial={{
+                            opacity: 0,
+                            y: -16,
+                            scale: 0.96,
+                            filter: 'blur(8px)',
+                        }}
+                        animate={{
+                            opacity: 1,
+                            y: 0,
+                            scale: 1,
+                            filter: 'blur(0px)',
+                        }}
+                        exit={{
+                            opacity: 0,
+                            y: -16,
+                            scale: 0.96,
+                            filter: 'blur(8px)',
+                        }}
+                        transition={{
+                            duration: 0.3,
+                            ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="
+              fixed
+              top-[76px]
+              sm:top-[88px]
+
+              left-3
+              right-3
+              sm:left-4
+              sm:right-4
+
+              z-40
+
+              md:hidden
+
+              rounded-[22px]
+              border border-[#59D0B5]/70
+              overflow-hidden
+              shadow-[0_10px_30px_rgba(7,65,57,0.16)]
+            "
+                        style={{
+                            background:
+                                'linear-gradient(to bottom, #CAEDE5 0%, #EAF8F4 100%)',
+                        }}
+                    >
+                        <motion.div
+                            initial="closed"
+                            animate="open"
+                            exit="closed"
+                            variants={{
+                                open: {
+                                    transition: {
+                                        staggerChildren: 0.055,
+                                        delayChildren: 0.06,
+                                    },
+                                },
+                                closed: {
+                                    transition: {
+                                        staggerChildren: 0.035,
+                                        staggerDirection: -1,
+                                    },
+                                },
+                            }}
+                            className="
+                flex
+                flex-col
+                p-2
+              "
+                        >
+                            {mobileLinks.map((item) => (
+                                <motion.div
+                                    key={item.label}
+                                    variants={{
+                                        open: {
+                                            opacity: 1,
+                                            y: 0,
+                                        },
+                                        closed: {
+                                            opacity: 0,
+                                            y: -8,
+                                        },
+                                    }}
+                                    transition={{
+                                        duration: 0.22,
+                                        ease: [0.22, 1, 0.36, 1],
+                                    }}
+                                >
+                                    <Link
+                                        href={item.href}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="
+                      flex
+                      items-center
+                      justify-between
+                      rounded-[16px]
+
+                      px-4
+                      py-3.5
+
+                      text-[11px]
+                      sm:text-xs
+                      tracking-[0.04em]
+                      text-[#074139]
+
+                      transition-colors
+                      hover:bg-[#59D0B5]/25
+                    "
+                                    >
+                                        <span>{item.label}</span>
+                                        <span>↗</span>
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </>
     )
 }
