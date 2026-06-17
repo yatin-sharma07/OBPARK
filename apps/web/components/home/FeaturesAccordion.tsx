@@ -55,7 +55,7 @@ export function FeaturesAccordion() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{
           duration: 0.7,
-          ease: [0.22, 1, 0.36, 1],
+          ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
         }}
         viewport={{ once: true, amount: 0.2 }}
         className="
@@ -83,7 +83,7 @@ export function FeaturesAccordion() {
           transition={{
             duration: 0.65,
             delay: 0.1,
-            ease: [0.22, 1, 0.36, 1],
+            ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
           }}
           viewport={{ once: true }}
           className="
@@ -148,7 +148,7 @@ export function FeaturesAccordion() {
           transition={{
             duration: 0.65,
             delay: 0.16,
-            ease: [0.22, 1, 0.36, 1],
+            ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
           }}
           viewport={{ once: true }}
           className="
@@ -188,7 +188,7 @@ export function FeaturesAccordion() {
                 }}
                 transition={{
                   duration: 0.45,
-                  ease: [0.22, 1, 0.36, 1],
+                  ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
                 }}
               >
                 <div
@@ -281,7 +281,7 @@ export function FeaturesAccordion() {
                       }}
                       transition={{
                         duration: 0.3,
-                        ease: [0.22, 1, 0.36, 1],
+                        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
                       }}
                       className="
                         flex
@@ -314,7 +314,7 @@ export function FeaturesAccordion() {
                         exit={{ opacity: 0, height: 0, y: -8 }}
                         transition={{
                           duration: 0.35,
-                          ease: [0.22, 1, 0.36, 1],
+                          ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
                         }}
                         className="overflow-hidden"
                       >
