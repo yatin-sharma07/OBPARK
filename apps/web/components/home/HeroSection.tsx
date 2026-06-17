@@ -2,26 +2,35 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Navbar } from '../Navbar'
+
 
 export function HeroSection() {
   return (
     <>
-      <Navbar />
+
 
       <section
         className="
     relative font-michroma
-    m-3 md:m-6
-    rounded-[28px] md:rounded-[58px]
+    mx-3 mt-3 mb-10
+    sm:mx-4 sm:mt-4
+    md:m-6
+
+    rounded-[24px]
+    sm:rounded-[28px]
+    md:rounded-[30px]
+
     overflow-hidden
-    h-[calc(100vh-24px)]
-    sm:h-[calc(100vh-32px)]
+
+    min-h-[720px]
+    sm:min-h-[780px]
+    md:min-h-[calc(100vh-48px)]
+
+    h-auto
     md:h-[calc(100vh-48px)]
-    min-h-[500px]
-    md:min-h-[560px]
-    lg:min-h-[600px]
-    max-h-[1100px]
+
+    max-h-none
+    md:max-h-[980px]
   "
       >
         {/* Background Video */}

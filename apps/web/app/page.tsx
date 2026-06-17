@@ -8,12 +8,14 @@ import { ProductCategories } from '@/components/home/ProductCategories'
 import { FeaturesAccordion } from '@/components/home/FeaturesAccordion'
 import { MintCta } from '@/components/home/MintCta'
 import { Reviews } from '@/components/home/Reviews'
-import {Footer} from "@/components/layout/Footer";
+import { Footer } from "@/components/layout/Footer";
+import { Navbar } from '@/components/Navbar'
 
 
 export default function HomePage() {
   return (
     <main>
+      <Navbar />
       <HeroSection />
       <MarqueeStrip />
       <ServicesGrid />
