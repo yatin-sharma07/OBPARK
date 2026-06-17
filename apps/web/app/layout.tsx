@@ -1,17 +1,9 @@
 import type { Metadata } from 'next'
-import { Michroma } from 'next/font/google'
+import { michroma } from '@/lib/fonts'
 import './globals.css'
 import { ConditionalHeader } from '@/components/layout/ConditionalHeader'
 import { Providers } from '@/components/Providers'
 import Script from 'next/script'
-
-export const michroma = Michroma({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-michroma',
-  display: 'swap',
-  preload: true,
-})
 
 export const metadata: Metadata = {
   title: 'OBPark | Smart Vehicle Commerce, Parking & Mobility Solutions',
