@@ -61,10 +61,10 @@ export function Footer() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
       viewport={{ once: true, amount: 0.2 }}
-      className="px-4 sm:px-8 md:px-[50px] pb-6"
+      className="w-full px-4 sm:px-6 pb-6"
     >
       <div
-        className="rounded-[30px] p-6 sm:p-8 md:p-10 overflow-hidden"
+        className="mx-auto max-w-7xl rounded-[30px] p-6 sm:p-8 md:p-10 overflow-hidden"
         style={{
           background: 'linear-gradient(180deg, #CAEDE5 0%, #59D0B5 100%)',
         }}

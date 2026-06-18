@@ -1,49 +1,96 @@
+import Image from "next/image";
 import FadeIn from "@/components/ui/FadeIn";
+import { microgrammaBold } from "@/lib/fonts";
 
 export default function NoteFromScientist() {
   return (
-    <section className="px-6 py-20 bg-[#EEF3F1]/50">
-      <div className="mx-auto max-w-7xl">
-        <FadeIn>
-          <div className="grid gap-12 lg:grid-cols-12 items-center">
-            {/* Visual/Image Column */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-md aspect-[4/5] rounded-[32px] overflow-hidden bg-slate-300 shadow-xl">
-                {/* Visual placeholder for doctor/scientist */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                <div className="absolute bottom-8 left-8 text-white">
-                  <p className="text-xl font-bold">Dr. Robert Lufkin</p>
-                  <p className="text-sm text-emerald-200">Lead Scientist, Obpark</p>
+    <section className="bg-white px-4 py-4 sm:px-6 sm:py-6 md:py-8">
+      <FadeIn>
+        <div className="mx-auto max-w-7xl">
+          <div className="grid items-stretch gap-8 lg:grid-cols-[360px_1fr] lg:gap-10">
+
+            {/* LEFT PANEL */}
+            <div className="overflow-hidden rounded-[28px] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
+
+              {/* Image */}
+              <div className="relative aspect-[4/5] w-full">
+                <Image
+                  src="/Images/images/scientist.png"
+                  alt="Dr. Robert Lufkin"
+                  fill
+                  priority
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Info Card */}
+              <div className="border-t border-[#EEF3F1] bg-[#F0F9F5] px-6 py-6 text-center">
+                <p className="text-[11px] tracking-wide text-[#5B6368]">
+                  Nosu lead scientist & advisor
+                </p>
+
+                <h3
+                  className={`
+                    ${microgrammaBold.className}
+                    mt-2
+                    text-[20px]
+                    text-[#074139]
+                  `}
+                >
+                  Dr. Robert Lufkin
+                </h3>
+
+                <div className="mt-5 flex justify-center">
+                  <div className="relative h-14 w-44">
+                    <Image
+                      src="/Images/images/ucla.png"
+                      alt="UCLA USC"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Note/Content Column */}
-            <div className="lg:col-span-7">
-              <span className="text-sm font-semibold uppercase tracking-wider text-slate-500">
-                Scientific Approach
-              </span>
-              <h2 className="mt-2 text-4xl font-extrabold text-[#264942] tracking-tight">
-                A Note from our Lead Scientist
+            {/* RIGHT PANEL */}
+            <div className="rounded-[28px] bg-[#F0F9F5] px-8 py-8 md:px-10 md:py-10 flex flex-col justify-center">
+              <h2
+                className={`
+                  ${microgrammaBold.className}
+                  text-[24px]
+                  sm:text-[28px]
+                  lg:text-[32px]
+                  leading-tight
+                  text-[#074139]
+                `}
+              >
+                A Note from Dr. Robert Lufkin
               </h2>
-              
-              <div className="mt-8 space-y-6 text-slate-700 leading-relaxed text-lg italic font-light">
-                <p>
-                  "For decades, we viewed metabolic disease and weight management through a very narrow lens—simply counting calories or prescribing medication. Today, modern science tells a different story. True health is governed by our metabolic health: how our bodies process energy, manage blood sugar, and build cellular resilience."
-                </p>
-                <p>
-                  "By helping users reduce sugar intake, track metabolic habits, and implement small, science-backed behavioral changes, we aren't just managing symptoms. We are addressing the root cause. Obpark is designed to put the power of metabolic control back into your hands, making healthy living intuitive and sustainable."
-                </p>
-              </div>
 
-              <div className="mt-8 border-t border-slate-200 pt-6">
-                <p className="font-bold text-slate-800">Dr. Robert Lufkin, MD</p>
-                <p className="text-sm text-slate-500">Former Professor at UCLA School of Medicine & Advisor to Obpark</p>
+              <div className="mt-8 space-y-8 text-[15px] sm:text-[16px] leading-[1.8] text-[#5B6368] italic">
+                <p>
+                  “Most people don’t realize how sugar controls their energy,
+                  mood, and long-term health until they experience life without
+                  the constant highs and crashes. What I love about Nosu’s
+                  methodology is that it’s not about extreme diets or guilt.
+                  It’s about small, science-backed changes that help people feel
+                  more in control, more balanced, and more themselves.”
+                </p>
+
+                <p>
+                  “And the most unique part about Nosu’s Sweet Shield formula?
+                  You feel it working within minutes. Sugar stops tasting sweet,
+                  which means cravings lose their grip almost instantly. With
+                  Nosu, you can finally enjoy food on your terms, without sugar
+                  calling the shots.”
+                </p>
               </div>
             </div>
+
           </div>
-        </FadeIn>
-      </div>
+        </div>
+      </FadeIn>
     </section>
-  )
+  );
 }
