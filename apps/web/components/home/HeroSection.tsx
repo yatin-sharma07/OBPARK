@@ -15,6 +15,7 @@ export function HeroSection() {
     mx-3 mt-3 mb-10
     sm:mx-4 sm:mt-4
     md:m-6
+    
 
     rounded-[24px]
     sm:rounded-[28px]
@@ -28,6 +29,7 @@ export function HeroSection() {
 
     h-auto
     md:h-[calc(100vh-48px)]
+
 
     max-h-none
     md:max-h-[980px]
