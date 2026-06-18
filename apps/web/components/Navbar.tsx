@@ -64,18 +64,12 @@ export function Navbar() {
                 animate={{
                     opacity: showNavbar ? 1 : 0,
                     y: showNavbar ? 0 : -32,
-                    pointerEvents: showNavbar ? 'auto' : 'none',
-
-                    top: isScrolled ? 24 : 0,
-                    left: isScrolled ? 24 : 0,
-                    right: isScrolled ? 24 : 0,
-                    borderRadius: isScrolled ? 30 : 0,
                 }}
                 transition={{
-                    duration: 0.45,
+                    duration: 0.35,
                     ease: [0.22, 1, 0.36, 1],
                 }}
-                className="
+                className={`
           fixed
           z-50
 
@@ -99,7 +93,41 @@ export function Navbar() {
           overflow-hidden
 
           shadow-[0_8px_28px_rgba(7,65,57,0.16)]
-        "
+
+          transition-all
+          duration-500
+          ease-[cubic-bezier(0.22,1,0.36,1)]
+
+          ${showNavbar ? 'pointer-events-auto' : 'pointer-events-none'}
+
+          ${isScrolled
+                        ? `
+                top-3
+                left-3
+                right-3
+
+                sm:top-4
+                sm:left-4
+                sm:right-4
+
+                md:top-6
+                md:left-6
+                md:right-6
+
+                rounded-[22px]
+                sm:rounded-[26px]
+                md:rounded-[32px]
+                lg:rounded-[30px]
+              `
+                        : `
+                top-0
+                left-0
+                right-0
+
+                rounded-none
+              `
+                    }
+        `}
                 style={{
                     background: 'linear-gradient(to bottom, #59D0B5 0%, #CAEDE5 100%)',
                 }}
@@ -172,8 +200,10 @@ export function Navbar() {
                     className="
             absolute
             left-4
+
             sm:left-1/2
             sm:-translate-x-1/2
+
             md:left-1/2
             md:-translate-x-1/2
 
@@ -362,15 +392,8 @@ export function Navbar() {
                             duration: 0.3,
                             ease: [0.22, 1, 0.36, 1],
                         }}
-                        className="
+                        className={`
               fixed
-              top-[76px]
-              sm:top-[88px]
-
-              left-3
-              right-3
-              sm:left-4
-              sm:right-4
 
               z-40
 
@@ -380,7 +403,30 @@ export function Navbar() {
               border border-[#59D0B5]/70
               overflow-hidden
               shadow-[0_10px_30px_rgba(7,65,57,0.16)]
-            "
+
+              transition-all
+              duration-500
+              ease-[cubic-bezier(0.22,1,0.36,1)]
+
+              ${isScrolled
+                                ? `
+                    top-[76px]
+                    left-3
+                    right-3
+
+                    sm:top-[88px]
+                    sm:left-4
+                    sm:right-4
+                  `
+                                : `
+                    top-[64px]
+                    left-0
+                    right-0
+
+                    sm:top-[70px]
+                  `
+                            }
+            `}
                         style={{
                             background: 'linear-gradient(to bottom, #CAEDE5 0%, #EAF8F4 100%)',
                         }}

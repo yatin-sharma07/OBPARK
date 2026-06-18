@@ -15,7 +15,7 @@ export function HeroSection() {
     mx-3 mt-3 mb-10
     sm:mx-4 sm:mt-4
     md:m-6
-        
+    
 
     rounded-[24px]
     sm:rounded-[28px]
