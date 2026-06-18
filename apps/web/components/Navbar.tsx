@@ -27,11 +27,14 @@ const mobileLinks = [
 export function Navbar() {
     const [showNavbar, setShowNavbar] = useState(true)
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const [isScrolled, setIsScrolled] = useState(false)
     const lastScrollY = useRef(0)
 
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY
+
+            setIsScrolled(currentScrollY > 40)
 
             if (currentScrollY <= 100) {
                 setShowNavbar(true)
@@ -44,6 +47,8 @@ export function Navbar() {
 
             lastScrollY.current = currentScrollY
         }
+
+        handleScroll()
 
         window.addEventListener('scroll', handleScroll, { passive: true })
 
@@ -60,24 +65,18 @@ export function Navbar() {
                     opacity: showNavbar ? 1 : 0,
                     y: showNavbar ? 0 : -32,
                     pointerEvents: showNavbar ? 'auto' : 'none',
+
+                    top: isScrolled ? 24 : 0,
+                    left: isScrolled ? 24 : 0,
+                    right: isScrolled ? 24 : 0,
+                    borderRadius: isScrolled ? 30 : 0,
                 }}
                 transition={{
-                    duration: 0.35,
+                    duration: 0.45,
                     ease: [0.22, 1, 0.36, 1],
                 }}
                 className="
           fixed
-          top-3
-          sm:top-4
-          md:top-6
-
-          left-3
-          right-3
-          sm:left-4
-          sm:right-4
-          md:left-6
-          md:right-6
-
           z-50
 
           flex items-center justify-between
@@ -95,11 +94,6 @@ export function Navbar() {
           sm:px-5
           md:px-7
           lg:px-8
-
-          rounded-[22px]
-          sm:rounded-[26px]
-          md:rounded-[32px]
-          lg:rounded-[36px]
 
           border border-[#59D0B5]/70
           overflow-hidden
@@ -388,8 +382,7 @@ export function Navbar() {
               shadow-[0_10px_30px_rgba(7,65,57,0.16)]
             "
                         style={{
-                            background:
-                                'linear-gradient(to bottom, #CAEDE5 0%, #EAF8F4 100%)',
+                            background: 'linear-gradient(to bottom, #CAEDE5 0%, #EAF8F4 100%)',
                         }}
                     >
                         <motion.div
