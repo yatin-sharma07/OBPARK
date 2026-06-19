@@ -17,7 +17,7 @@ export function CtaBanner() {
 
         <div
           className="absolute inset-0 opacity-50 bg-cover bg-center"
-          style={{ backgroundImage: 'url("/images/banner/bannerpic.png")' }}
+          style={{ backgroundImage: 'url("/Images/banner/bannerpic.png")' }}
         />
 
         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full px-4 md:px-10 py-10 lg:py-0 gap-10 lg:gap-8 h-full">
