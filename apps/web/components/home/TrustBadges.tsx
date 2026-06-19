@@ -1,12 +1,12 @@
 import { microgrammaBold } from '@/lib/fonts'
 
 const BADGES = [
-  'Genuine Parts Guaranteed',
-  'RC Verified Vehicles',
-  'FASTag Certified',
-  'Secure Payments',
-  'Pan India Delivery',
-  'Expert Support',
+  "Smart Parking, Real-time occupancy",
+  "AR Navigation Intuitive wayfinding",
+  "Vehicle Services",
+  "Vehicle products and accessories.",
+  "customer journey analysis",
+  "Unified facility control.",
 ]
 
 const badgeStyles = [
@@ -75,7 +75,7 @@ export function TrustBadges() {
           mx-auto
           flex
           w-full
-          max-w-[760px]
+          max-w-[800px]
           flex-col
           items-center
         "
@@ -193,8 +193,8 @@ export function TrustBadges() {
           <p
             className="
               whitespace-nowrap
-              text-[clamp(12px,2vw,32px)]
-              leading-none
+              text-[clamp(12px,2vw,24px)]
+              leading-none mb-10
             "
             style={{
               fontFamily: 'var(--font-michroma)',
@@ -202,7 +202,7 @@ export function TrustBadges() {
               color: '#4B545A',
             }}
           >
-            Trusted by Indian Vehicle Owners
+            The Parking Problem Nobody Talks About
           </p>
 
           <h2
@@ -218,7 +218,8 @@ export function TrustBadges() {
               color: '#074139',
             }}
           >
-            One platform for everything your vehicle needs
+            Transforms parking from a friction <br />
+            point into a seamless experience.
           </h2>
         </div>
       </div>

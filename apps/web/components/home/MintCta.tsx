@@ -1,8 +1,50 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { microgrammaBold } from '@/lib/fonts'
+
+const comparisonRows = [
+  {
+    capability: 'Occupancy Visibility',
+    traditional: 'Manual inspection.',
+    obpark: 'Real-time (every 2s)',
+  },
+  {
+    capability: 'Customer Wayfinding',
+    traditional: 'Static signage',
+    obpark: 'AR navigation',
+  },
+  {
+    capability: 'Revenue Optimization',
+    traditional: 'Fixed rates',
+    obpark: 'Dynamic pricing',
+  },
+  {
+    capability: 'Data Intelligence',
+    traditional: 'None',
+    obpark: 'AI analytics',
+  },
+  {
+    capability: 'Additional Revenue',
+    traditional: 'None',
+    obpark: '$300K-500K annually',
+  },
+  {
+    capability: 'Customer Experience',
+    traditional: 'Frustration',
+    obpark: '88% faster parking',
+  },
+  {
+    capability: 'Labor Costs',
+    traditional: 'High (manual)',
+    obpark: '30-40% reduction',
+  },
+  {
+    capability: 'Mobile Integration',
+    traditional: 'None or basic',
+    obpark: 'Full platform',
+  },
+]
 
 export function MintCta() {
   return (
@@ -17,192 +59,203 @@ export function MintCta() {
       className="
         relative
         w-full
-        max-w-none
         overflow-hidden
 
-        flex
-        items-end
-        justify-start
-
-        min-h-[360px]
-        sm:min-h-[420px]
-        md:min-h-[500px]
-        lg:min-h-[540px]
-        xl:min-h-[580px]
-
-        rounded-none
-        mx-0
-        mt-8
-        sm:mt-10
-        md:mt-12
-
         px-4
-        sm:px-8
-        md:px-12
-        lg:px-16
-        xl:px-24
+        sm:px-6
+        md:px-8
+        lg:px-12
 
-        py-10
-        sm:py-12
-        md:py-16
-        lg:py-0
-        lg:items-center
+        py-16
+        sm:py-20
+        md:py-24
+        lg:py-28
       "
       style={{
         background:
-          'linear-gradient(135deg, #62E5CE 0%, #AFFFEF 35%, #A6FDEB 70%, #5DE3CA 100%)',
+          'linear-gradient(135deg, #5ED9C6 0%, #93E8D9 45%, #DDF7F1 100%)',
       }}
     >
-      <motion.div
-        initial={{ opacity: 0, x: -35 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{
-          duration: 0.65,
-          delay: 0.12,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        viewport={{ once: true }}
-        className="
-          flex
-          w-full
-          max-w-[625px]
-          flex-col
-
-          gap-8
-          sm:gap-10
-          md:gap-12
-          xl:gap-14
-
-          text-left
-        "
-      >
-        <div
-          className="
-            flex
-            flex-col
-            gap-3
-            md:gap-4
-          "
-        >
-          <motion.h2
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.6,
-              delay: 0.18,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            viewport={{ once: true }}
-            className={`
-              ${microgrammaBold.className}
-              text-[#074139]
-              font-bold
-              leading-tight
-
-              text-[24px]
-              xs:text-[26px]
-              sm:text-[32px]
-              md:text-[38px]
-              lg:text-[42px]
-              xl:text-[48px]
-
-              
-            `}
-          >
-            Balance is within your reach
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.6,
-              delay: 0.26,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            viewport={{ once: true }}
-            className="
-              text-white
-              font-medium
-              leading-tight
-
-              text-[18px]
-              sm:text-2xl
-              md:text-3xl
-              lg:text-[36px]
-              xl:text-[40px]
-            "
-            style={{ fontFamily: 'var(--font-michroma)' }}
-          >
-            It&apos;s time to unlock it
-          </motion.p>
-        </div>
-
+      <div className="mx-auto flex w-full max-w-[1180px] flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.6,
-            delay: 0.34,
+            delay: 0.12,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          viewport={{ once: true }}
+          className="mb-10 text-center md:mb-12"
+        >
+          <h2
+            className={`
+              ${microgrammaBold.className}
+              text-[#074139]
+              font-bold
+              leading-none
+
+              text-[26px]
+              sm:text-[32px]
+              md:text-[42px]
+              lg:text-[48px]
+            `}
+          >
+            OBPARK vs Traditional Parking
+          </h2>
+
+          <p
+            className="
+              mt-4
+              text-[#074139]
+              font-semibold
+              leading-none
+
+              text-[11px]
+              sm:text-[13px]
+              md:text-[16px]
+              lg:text-[18px]
+              
+            "
+            style={{
+              fontFamily: 'var(--font-michroma)',
+              fontWeight: "1000"
+            }}
+          >
+            Why OBPARK is fundamentally different from legacy systems
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.65,
+            delay: 0.22,
             ease: [0.22, 1, 0.36, 1],
           }}
           viewport={{ once: true }}
           className="
             w-full
-            sm:w-auto
+            max-w-[1100px]
+            overflow-x-auto
+            rounded-none
+            bg-white
+            px-5
+            py-8
+            sm:px-8
+            sm:py-10
+            md:px-12
+            md:py-12
+            lg:px-14
           "
         >
-          <Link
-            href="/products"
+          <table
             className="
-              inline-flex
-              items-center
-              justify-center
-
               w-full
-              sm:w-auto
-              sm:min-w-[360px]
-              md:min-w-[430px]
-              xl:min-w-[489px]
-
-              h-[52px]
-              sm:h-[58px]
-              md:h-[66px]
-              xl:h-[76px]
-
-              rounded-[16px]
-              sm:rounded-[18px]
-              md:rounded-[20px]
-
-              bg-white
-              border
-              border-[#074139]/50
-
-              px-5
-              sm:px-8
-
-              text-[#074139]
-              font-normal
-              text-center
-              whitespace-nowrap
-
-              text-[12px]
-              sm:text-sm
-              md:text-lg
-              xl:text-2xl
-
-              transition-all
-              duration-300
-              hover:shadow-md
-              hover:scale-[1.02]
-              active:scale-[0.98]
+              min-w-[720px]
+              border-collapse
             "
-            style={{ fontFamily: 'var(--font-michroma)' }}
           >
-            Explore more about obpark
-          </Link>
+            <thead>
+              <tr>
+                <th
+                  className={`
+                    ${microgrammaBold.className}
+                    pb-8
+                    text-left
+                    text-[13px]
+                    font-bold
+                    text-[#074139]
+                    md:text-[15px]
+                    xl:text-[25px]
+                  `}
+                >
+                  Capability
+                </th>
+
+                <th
+                  className={`
+                    ${microgrammaBold.className}
+                    pb-8
+                    text-left
+                    text-[13px]
+                    font-bold
+                    text-[#074139]
+                    md:text-[15px]
+                     xl:text-[25px]
+                  `}
+                >
+                  Traditional
+                </th>
+
+                <th
+                  className={`
+                    ${microgrammaBold.className}
+                    pb-8
+                    text-left
+                    text-[13px]
+                    font-bold
+                    text-[#074139]
+                    md:text-[15px]
+                     xl:text-[25px]
+                  `}
+                >
+                  OBPARK
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {comparisonRows.map((row) => (
+                <tr key={row.capability}>
+                  <td
+                    className="
+                      py-6
+                      pr-8
+                      text-[13px]
+                      leading-none
+                      text-black
+                      md:text-[15px]
+                    "
+                    style={{ fontFamily: 'var(--font-michroma)' }}
+                  >
+                    {row.capability}
+                  </td>
+
+                  <td
+                    className="
+                      py-4
+                      pr-8
+                      text-[13px]
+                      leading-none
+                      text-black
+                      md:text-[15px]
+                    "
+                    style={{ fontFamily: 'var(--font-michroma)' }}
+                  >
+                    {row.traditional}
+                  </td>
+
+                  <td
+                    className="
+                      py-4
+                      text-[13px]
+                      leading-none
+                      text-black
+                      md:text-[15px]
+                    "
+                    style={{ fontFamily: 'var(--font-michroma)' }}
+                  >
+                    <span className="mr-3 text-[16px]">✓</span>
+                    {row.obpark}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </motion.div>
-      </motion.div>
+      </div>
     </motion.section>
   )
 }
