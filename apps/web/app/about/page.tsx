@@ -3,17 +3,19 @@ import Story from "@/components/about/Story";
 import AdvisoryBoard from "@/components/about/AdvisoryBoard";
 import NoteFromScientist from "@/components/about/NoteFromScientists";
 import FAQ from "@/components/about/FAQ";
-import NewsLetter from "@/components/about/NewsLetter";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 export default function AboutPage() {
     return (
-        <main className="bg-[#F5F6F4]">
+        <main className="overflow-x-hidden bg-white">
+            <Navbar />
             <Hero />
             <Story />
             <AdvisoryBoard />
             <NoteFromScientist />
             <FAQ />
-            <NewsLetter />
+            <Footer />
         </main>
     );
 }
