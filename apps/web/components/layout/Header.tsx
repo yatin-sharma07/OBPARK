@@ -16,7 +16,7 @@ export function Header() {
 
   return (
     <>
-      <header className="border-b px-6 py-4 flex items-center justify-between bg-white sticky top-0 z-40">
+      <header className="border-b px-6 py-8 flex items-center justify-between bg-white sticky top-0 z-40">
         <Link href="/" className="text-xl font-bold" style={{ color: '#074139' }}>
           Obrive
         </Link>
