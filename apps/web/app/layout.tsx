@@ -55,7 +55,7 @@ export default function RootLayout({
 
         <Providers>
           <ConditionalHeader />
-          <main className="min-h-screen w-full max-w-[100vw] overflow-x-hidden">{children}</main>
+          <main className="min-h-screen w-full max-w-[100vw] ">{children}</main>
         </Providers>
       </body>
     </html>
