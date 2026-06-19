@@ -146,8 +146,8 @@ export function Footer() {
 
         <div className="mt-8 space-y-1">
           <div className='flex gap-3'>
-            <Link href="/" className="block text-xs hover:opacity-70" style={{ color: '#074139', fontFamily: 'var(--font-michroma)' }}>Privacy Policy</Link>
-            <Link href="/" className="block text-xs hover:opacity-70" style={{ color: '#074139', fontFamily: 'var(--font-michroma)' }}>Terms & Condition</Link>
+            <Link href="/privacy-policy" className="block text-xs hover:opacity-70" style={{ color: '#074139', fontFamily: 'var(--font-michroma)' }}>Privacy Policy</Link>
+            <Link href="/terms-and-conditions" className="block text-xs hover:opacity-70" style={{ color: '#074139', fontFamily: 'var(--font-michroma)' }}>Terms & Conditions</Link>
           </div>
           <p className="text-xs mt-2 text-base" style={{ color: '#CAEDE5', fontFamily: 'var(--font-michroma)', fontSize: '16px' }}>© OBRIVE All rights reserved.</p>
         </div>
