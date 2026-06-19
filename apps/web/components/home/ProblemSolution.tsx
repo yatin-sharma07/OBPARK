@@ -136,7 +136,7 @@ export function ProblemSolution() {
               `}
               style={{ fontWeight: 700 }}
             >
-              The Problem
+              For Facility Operators
             </motion.h3>
           </div>
 
@@ -168,10 +168,12 @@ export function ProblemSolution() {
               fontFamily: 'var(--font-michroma)',
             }}
           >
-            Vehicle owners in India struggle with scattered services — RC
-            verification, insurance renewals, FASTag recharges, finding genuine
-            parts — all on different platforms with no single source of truth
-            for your vehicle&apos;s health.
+            You have thousands of spaces.
+            30-40% sit empty while customers
+            circle. Your team lacks real-time
+            visibility. Revenue leaks through every
+            crack. And your NPS suffers because
+            parking is the first impression.
           </motion.p>
         </motion.div>
 
@@ -270,7 +272,7 @@ export function ProblemSolution() {
               `}
               style={{ fontWeight: 700 }}
             >
-              The Solution
+              For Visitors & Drivers
             </motion.h3>
           </div>
 
@@ -302,10 +304,11 @@ export function ProblemSolution() {
               fontFamily: 'var(--font-michroma)',
             }}
           >
-            Obpark unifies vehicle services in one platform — FASTag recharge,
-            genuine parts, health scores, compatibility checks, order tracking,
-            and expert support — giving owners a single trusted place to manage
-            their vehicles.
+            Finding parking in a major city
+            averages 15 minutes. Stress
+            accumulates. You arrive frustrated
+            before your visit even begins. No real-
+            time availability data. No guarantees.
           </motion.p>
         </motion.div>
       </motion.div>
