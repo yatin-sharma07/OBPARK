@@ -47,7 +47,7 @@ export function HeroSection() {
         }}
       />
 
-      <div className="relative z-10 px-8 pt-6 flex justify-center">
+      {/* <div className="relative z-10 px-8 pt-6 flex justify-center">
         <nav
           className="flex items-center justify-between w-full max-w-3xl px-6 py-3"
           style={{
@@ -81,7 +81,7 @@ export function HeroSection() {
             SCHEDULE CALL ↗
           </Link>
         </nav>
-      </div>
+      </div> */}
 
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
         <Link
