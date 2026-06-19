@@ -64,7 +64,7 @@ export function Footer() {
       className="w-full px-4 sm:px-6 pb-6"
     >
       <div
-        className="mx-auto max-w-7xl rounded-[30px] p-6 sm:p-8 md:p-10 overflow-hidden"
+        className="mx-auto max-w-full rounded-[30px] p-6 sm:p-8 md:p-10 overflow-hidden"
         style={{
           background: 'linear-gradient(180deg, #CAEDE5 0%, #59D0B5 100%)',
         }}

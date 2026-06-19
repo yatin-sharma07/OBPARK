@@ -180,7 +180,8 @@ export function ServicesGrid() {
               text-[#074139]
             `}
           >
-            Obpark is your complete vehicle companion
+            The Future of
+            Parking Starts Here
           </h2>
 
           <p
@@ -197,9 +198,16 @@ export function ServicesGrid() {
             "
             style={{ fontFamily: 'var(--font-michroma)' }}
           >
-            Everything you need for your vehicle in one place — from documents
-            to accessories, services to finance, designed to simplify every
-            aspect of your vehicle ownership journey.
+            Every day, millions of drivers waste time
+            searching for parking. <br />
+
+            The Operating System for Intelligent Mobility
+            Spaces Real-time occupancy intelligence, AR-
+            powered navigation, and AI-driven insights built
+            for malls, airports, cities, and mobility operators
+            who expect more from parking. OBPARK isn't a
+            parking app. It's a complete mobility ecosystem.
+            Every module multiplies the value of the others.
           </p>
         </motion.div>
 
