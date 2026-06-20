@@ -96,7 +96,7 @@ export function CtaBanner() {
         </div>
       </div>
 
-      <div className="mt-10 md:mt-16 mb-16 text-center px-4">
+      <div className="mt-10 md:mt-16  text-center px-4">
         <p
           className="text-xl sm:text-2xl md:text-[24px] leading-none text-[#4B545A]"
           style={{ fontFamily: 'var(--font-michroma)' }}

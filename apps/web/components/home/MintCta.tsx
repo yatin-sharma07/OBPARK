@@ -95,7 +95,7 @@ export function MintCta() {
               font-bold
               leading-none
 
-              text-[26px]
+              text-[24px]
               sm:text-[32px]
               md:text-[42px]
               lg:text-[48px]
@@ -109,17 +109,16 @@ export function MintCta() {
               mt-4
               text-[#074139]
               font-semibold
-              leading-none
+              leading-tight
 
-              text-[11px]
+              text-[10px]
               sm:text-[13px]
               md:text-[16px]
               lg:text-[18px]
-              
             "
             style={{
               fontFamily: 'var(--font-michroma)',
-              fontWeight: "1000"
+              fontWeight: '1000',
             }}
           >
             Why OBPARK is fundamentally different from legacy systems
@@ -141,8 +140,9 @@ export function MintCta() {
             overflow-x-auto
             rounded-none
             bg-white
-            px-5
-            py-8
+
+            px-3
+            py-6
             sm:px-8
             sm:py-10
             md:px-12
@@ -153,7 +153,8 @@ export function MintCta() {
           <table
             className="
               w-full
-              min-w-[720px]
+              min-w-[560px]
+              sm:min-w-[720px]
               border-collapse
             "
           >
@@ -162,9 +163,11 @@ export function MintCta() {
                 <th
                   className={`
                     ${microgrammaBold.className}
-                    pb-8
+                    pb-6
+                    sm:pb-8
                     text-left
-                    text-[13px]
+                    text-[11px]
+                    sm:text-[13px]
                     font-bold
                     text-[#074139]
                     md:text-[15px]
@@ -177,13 +180,15 @@ export function MintCta() {
                 <th
                   className={`
                     ${microgrammaBold.className}
-                    pb-8
+                    pb-6
+                    sm:pb-8
                     text-left
-                    text-[13px]
+                    text-[11px]
+                    sm:text-[13px]
                     font-bold
                     text-[#074139]
                     md:text-[15px]
-                     xl:text-[25px]
+                    xl:text-[25px]
                   `}
                 >
                   Traditional
@@ -192,13 +197,15 @@ export function MintCta() {
                 <th
                   className={`
                     ${microgrammaBold.className}
-                    pb-8
+                    pb-6
+                    sm:pb-8
                     text-left
-                    text-[13px]
+                    text-[11px]
+                    sm:text-[13px]
                     font-bold
                     text-[#074139]
                     md:text-[15px]
-                     xl:text-[25px]
+                    xl:text-[25px]
                   `}
                 >
                   OBPARK
@@ -211,10 +218,14 @@ export function MintCta() {
                 <tr key={row.capability}>
                   <td
                     className="
-                      py-6
-                      pr-8
-                      text-[13px]
-                      leading-none
+                      py-4
+                      sm:py-6
+                      pr-4
+                      sm:pr-8
+                      text-[10px]
+                      sm:text-[13px]
+                      leading-tight
+                      sm:leading-none
                       text-black
                       md:text-[15px]
                     "
@@ -226,9 +237,12 @@ export function MintCta() {
                   <td
                     className="
                       py-4
-                      pr-8
-                      text-[13px]
-                      leading-none
+                      pr-4
+                      sm:pr-8
+                      text-[10px]
+                      sm:text-[13px]
+                      leading-tight
+                      sm:leading-none
                       text-black
                       md:text-[15px]
                     "
@@ -240,14 +254,18 @@ export function MintCta() {
                   <td
                     className="
                       py-4
-                      text-[13px]
-                      leading-none
+                      text-[10px]
+                      sm:text-[13px]
+                      leading-tight
+                      sm:leading-none
                       text-black
                       md:text-[15px]
                     "
                     style={{ fontFamily: 'var(--font-michroma)' }}
                   >
-                    <span className="mr-3 text-[16px]">✓</span>
+                    <span className="mr-2 sm:mr-3 text-[13px] sm:text-[16px]">
+                      ✓
+                    </span>
                     {row.obpark}
                   </td>
                 </tr>
