@@ -92,29 +92,6 @@ export function HeroSection() {
           />
         </div>
 
-        {/* Center Ball */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{
-            duration: 0.8,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="
-            absolute z-20
-            top-1/2 left-1/2
-            -translate-x-1/2 -translate-y-1/2
-            rounded-full
-          "
-          style={{
-            width: 'clamp(55px, 8vw, 90px)',
-            height: 'clamp(55px, 8vw, 90px)',
-            background:
-              'radial-gradient(circle at 35% 30%, #5ecfba, #074139 70%)',
-            boxShadow:
-              '0 12px 40px rgba(7,65,57,0.5), inset 0 -4px 8px rgba(0,0,0,0.3)',
-          }}
-        />
 
         {/* Bottom Button */}
         <motion.div
