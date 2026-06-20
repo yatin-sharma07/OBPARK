@@ -56,52 +56,170 @@ export function ProductCategories() {
     <section className="py-12 md:py-16 mx-auto max-w-[1500px] px-4 sm:px-6 md:px-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {CATEGORIES.map((cat) => (
-          <div key={cat.title} className="bg-white w-full h-auto md:h-[700px] rounded-[30px] p-6 sm:p-8 pt-8 sm:pt-12 pb-6 sm:pb-8 border border-gray-100 shadow-sm flex flex-col gap-8 md:gap-14">
+          <div
+            key={cat.title}
+            className="
+              bg-white
+              w-full
+              h-auto
+              md:h-[700px]
+              rounded-[24px]
+              sm:rounded-[30px]
+              p-4
+              sm:p-8
+              pt-6
+              sm:pt-12
+              pb-6
+              sm:pb-8
+              border
+              border-gray-100
+              shadow-sm
+              flex
+              flex-col
+              gap-6
+              sm:gap-8
+              md:gap-14
+            "
+          >
             <h3
-              className="text-base sm:text-lg md:text-2xl leading-none"
-              style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, color: '#074139' }}
+              className="
+                text-[13px]
+                sm:text-lg
+                md:text-2xl
+                leading-tight
+                sm:leading-none
+              "
+              style={{
+                fontFamily: 'var(--font-michroma)',
+                fontWeight: 400,
+                color: '#074139',
+              }}
             >
               {cat.title}
             </h3>
+
             <div className="flex flex-col gap-4 sm:gap-6 md:gap-14">
-              <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-7">
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-7">
                 {cat.items.slice(0, 3).map((item) => (
                   <div
                     key={item.name}
-                    className="flex flex-col items-center justify-center gap-2 w-full h-auto aspect-square sm:w-[180px] sm:h-[200px] border border-[#ECECEC]"
+                    className="
+                      flex
+                      flex-col
+                      items-center
+                      justify-center
+                      gap-2
+                      w-full
+                      min-h-[120px]
+                      sm:min-h-[200px]
+                      border
+                      border-[#ECECEC]
+                      p-2
+                    "
                   >
-                    <div className="w-[80%] sm:w-[126px] h-[60%] sm:h-[130px] rounded-none overflow-hidden bg-gray-50">
+                    <div
+                      className="
+                        w-full
+                        max-w-[80px]
+                        sm:max-w-[126px]
+                        h-[70px]
+                        sm:h-[130px]
+                        rounded-none
+                        overflow-hidden
+                        bg-gray-50
+                      "
+                    >
                       <img
                         src={item.img}
                         alt={item.name}
                         className="w-full h-full object-cover"
                       />
                     </div>
+
                     <span
-                      className="h-auto sm:h-[40px] flex items-center justify-center text-center text-[10px] sm:text-[13px] md:text-[16px] leading-tight sm:leading-none px-1"
-                      style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, color: '#074139' }}
+                      className="
+                        min-h-[32px]
+                        sm:h-[40px]
+                        flex
+                        items-center
+                        justify-center
+                        text-center
+                        text-[8px]
+                        sm:text-[13px]
+                        md:text-[16px]
+                        leading-tight
+                        sm:leading-none
+                        px-1
+                      "
+                      style={{
+                        fontFamily: 'var(--font-michroma)',
+                        fontWeight: 400,
+                        color: '#074139',
+                      }}
                     >
                       {item.name}
                     </span>
                   </div>
                 ))}
               </div>
-              <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-8">
+
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8">
                 {cat.items.slice(3, 6).map((item) => (
                   <div
                     key={item.name}
-                    className="flex flex-col items-center justify-center gap-2 w-full h-auto aspect-square sm:w-[180px] sm:h-[200px] border border-[#ECECEC]"
+                    className="
+                      flex
+                      flex-col
+                      items-center
+                      justify-center
+                      gap-2
+                      w-full
+                      min-h-[120px]
+                      sm:min-h-[200px]
+                      border
+                      border-[#ECECEC]
+                      p-2
+                    "
                   >
-                    <div className="w-[80%] sm:w-[126px] h-[60%] sm:h-[130px] rounded-none overflow-hidden bg-gray-50">
+                    <div
+                      className="
+                        w-full
+                        max-w-[80px]
+                        sm:max-w-[126px]
+                        h-[70px]
+                        sm:h-[130px]
+                        rounded-none
+                        overflow-hidden
+                        bg-gray-50
+                      "
+                    >
                       <img
                         src={item.img}
                         alt={item.name}
                         className="w-full h-full object-cover"
                       />
                     </div>
+
                     <span
-                      className="h-auto sm:h-[40px] flex items-center justify-center text-center text-[10px] sm:text-[13px] md:text-[16px] leading-tight sm:leading-none px-1"
-                      style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, color: '#074139' }}
+                      className="
+                        min-h-[32px]
+                        sm:h-[40px]
+                        flex
+                        items-center
+                        justify-center
+                        text-center
+                        text-[8px]
+                        sm:text-[13px]
+                        md:text-[16px]
+                        leading-tight
+                        sm:leading-none
+                        px-1
+                      "
+                      style={{
+                        fontFamily: 'var(--font-michroma)',
+                        fontWeight: 400,
+                        color: '#074139',
+                      }}
                     >
                       {item.name}
                     </span>
@@ -109,10 +227,20 @@ export function ProductCategories() {
                 ))}
               </div>
             </div>
+
             <Link
               href={`/products?category=${cat.slug}`}
-              className="text-base sm:text-lg md:text-[20px] leading-none"
-              style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, color: '#308F8A' }}
+              className="
+                text-sm
+                sm:text-lg
+                md:text-[20px]
+                leading-none
+              "
+              style={{
+                fontFamily: 'var(--font-michroma)',
+                fontWeight: 400,
+                color: '#308F8A',
+              }}
             >
               Explore all
             </Link>
