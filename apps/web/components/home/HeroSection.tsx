@@ -23,7 +23,7 @@ export function HeroSection() {
 
     overflow-hidden
 
-    min-h-[720px]
+    min-h-[680px]
     sm:min-h-[780px]
     md:min-h-[calc(100vh-48px)]
 
