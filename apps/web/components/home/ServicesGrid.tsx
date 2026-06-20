@@ -7,55 +7,55 @@ import { microgrammaBold } from '@/lib/fonts'
 
 const SERVICES = [
   {
-    image: '/images/services/pic1.jpeg',
+    image: '/Images/services/pic1.jpeg',
     label: 'AR NAVIGATION',
     href: '/products',
     alt: 'AR navigation service for smart vehicle assistance',
   },
   {
-    image: '/images/services/pic2.jpeg',
+    image: '/Images/services/pic2.jpeg',
     label: 'E-CHALLAN',
     href: '/account/vehicles',
     alt: 'E-Challan checking service for vehicle owners',
   },
   {
-    image: '/images/services/pic3.jpeg',
+    image: '/Images/services/pic3.jpeg',
     label: 'PUC',
     href: '/account/vehicles',
     alt: 'PUC certificate service for vehicles',
   },
   {
-    image: '/images/services/pic4.jpeg',
+    image: '/Images/services/pic4.jpeg',
     label: 'VEHICLE OWNER DETAILS',
     href: '/account/vehicles',
     alt: 'Vehicle owner details verification service',
   },
   {
-    image: '/images/services/pic5.jpeg',
+    image: '/Images/services/pic5.jpeg',
     label: 'PERSONAL LOAN',
     href: '/products',
     alt: 'Personal loan service for vehicle users',
   },
   {
-    image: '/images/services/pic6.jpeg',
+    image: '/Images/services/pic6.jpeg',
     label: 'QUICK SERVICES',
     href: '/products',
     alt: 'Quick vehicle services on OBPark',
   },
   {
-    image: '/images/services/pic7.jpeg',
+    image: '/Images/services/pic7.jpeg',
     label: 'EV STATIONS',
     href: '/products?category=accessories',
     alt: 'EV charging station finder for electric vehicles',
   },
   {
-    image: '/images/services/pic8.jpeg',
+    image: '/Images/services/pic8.jpeg',
     label: 'CAR INSURANCE',
     href: '/products',
     alt: 'Car insurance service for vehicle owners',
   },
   {
-    image: '/images/services/pic9.jpeg',
+    image: '/Images/services/pic9.jpeg',
     label: 'CAR LOAN',
     href: '/products',
     alt: 'Car loan service for vehicle buyers',
@@ -180,7 +180,8 @@ export function ServicesGrid() {
               text-[#074139]
             `}
           >
-            Obpark is your complete vehicle companion
+            The Future of
+            Parking Starts Here
           </h2>
 
           <p
@@ -197,9 +198,16 @@ export function ServicesGrid() {
             "
             style={{ fontFamily: 'var(--font-michroma)' }}
           >
-            Everything you need for your vehicle in one place — from documents
-            to accessories, services to finance, designed to simplify every
-            aspect of your vehicle ownership journey.
+            Every day, millions of drivers waste time
+            searching for parking. <br />
+
+            The Operating System for Intelligent Mobility
+            Spaces Real-time occupancy intelligence, AR-
+            powered navigation, and AI-driven insights built
+            for malls, airports, cities, and mobility operators
+            who expect more from parking. OBPARK isn't a
+            parking app. It's a complete mobility ecosystem.
+            Every module multiplies the value of the others.
           </p>
         </motion.div>
 

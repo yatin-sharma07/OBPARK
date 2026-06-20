@@ -17,17 +17,17 @@ export function CtaBanner() {
 
         <div
           className="absolute inset-0 opacity-50 bg-cover bg-center"
-          style={{ backgroundImage: 'url("/images/banner/bannerpic.png")' }}
+          style={{ backgroundImage: 'url("/Images/banner/bannerpic.png")' }}
         />
 
         <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full px-4 md:px-10 py-10 lg:py-0 gap-10 lg:gap-8 h-full">
 
-          <div className="flex flex-col gap-6 max-w-xl text-center lg:text-left lg:h-[450px] justify-between">
-            <h2 className={`${microgrammaBold.className} text-white font-bold text-2xl sm:text-3xl md:text-[40px] leading-tight`}>
+          <div className="flex flex-col gap-6 max-w-4xl text-center lg:text-left lg:h-[450px] justify-between">
+            <h2 className={`${microgrammaBold.className} text-white font-bold text-2xl sm:text-3xl md:text-[40px] leading-tight tracking-[0.2em]`}>
               It's time to take control.<br />Ready to break free?
             </h2>
             <p
-              className="text-white font-normal text-base sm:text-lg md:text-[24px] leading-relaxed"
+              className="text-white font-normal text-base sm:text-lg md:text-[24px] leading-relaxed tracking-[0.15em]"
               style={{ fontFamily: 'var(--font-michroma)' }}
             >
               Unhealthy eating made less tempting, with science. Claim your 15% discount today.
@@ -101,10 +101,10 @@ export function CtaBanner() {
           className="text-xl sm:text-2xl md:text-[24px] leading-none text-[#4B545A]"
           style={{ fontFamily: 'var(--font-michroma)' }}
         >
-          Your journey to better health starts here.
+          The Future of Intelligent Mobility.
         </p>
         <h2 className={`${microgrammaBold.className} mt-8 md:mt-12 text-2xl sm:text-3xl md:text-[60px] leading-none text-[#074139] font-bold`}>
-          Small Change, Big Impact
+          Small change, big impact
         </h2>
       </div>
 
