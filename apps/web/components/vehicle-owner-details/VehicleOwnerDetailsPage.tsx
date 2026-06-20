@@ -78,20 +78,27 @@ export function VehicleOwnerDetailsPage() {
           </form>
 
           <div className="relative mt-4 md:mt-6 w-full max-w-[722px] h-[180px] sm:h-[220px] md:h-[267px] mx-auto">
-            <Image src="/images/vehicledetails/heropic.png" alt="Vehicles" fill className="object-contain" />
+            <Image
+  src="/images/vehicledetails/heropic.png"
+  alt="Vehicles"
+  fill
+  sizes="(max-width: 768px) 100vw, 722px"
+  className="object-contain"
+/>
           </div>
 
           <p className={`${microgrammaBold.className} mt-4 md:mt-6 font-bold text-center text-[16px] md:text-[26px] leading-[100%] text-[#074139]`}>
             Explore Everything About Your Vehicle
           </p>
 
-          <div className="mt-10 md:mt-16 w-full overflow-x-auto">
-            <div className="flex items-center gap-4 w-max mx-auto px-4 h-[42px]">
+          
+<div className="mt-10 md:mt-16 w-full">
+  <div className="flex items-center flex-wrap justify-center gap-4 mx-auto px-4">
               {NAV_ITEMS.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="flex items-center gap-1.5 rounded-[8px] border border-[#074139]/20 bg-white px-4 py-2 text-xs md:text-sm font-medium text-[#074139] transition hover:bg-[#FFFFFF] whitespace-nowrap h-[42px]"
+                  className="flex items-center gap-1.5 rounded-[8px] border border-[#074139]/20 bg-white px-4 py-1 text-xs md:text-sm font-medium text-[#074139] hover:bg-[#f0fdf9]"
                 >
                   <Image
                     src={item.icon}
@@ -100,11 +107,12 @@ export function VehicleOwnerDetailsPage() {
                     height={40}
                   />
                   <span>{item.label}</span>
-                  <span className="text-[#074139]/60">›</span>
+                  <span className="text-[#074139]/60 text-2xl">›</span>
                 </Link>
               ))}
             </div>
-          </div>
+          </div>  
+
 
         </div>
       </section>
@@ -125,8 +133,7 @@ export function VehicleOwnerDetailsPage() {
               className="flex flex-col items-center justify-start gap-6 p-6 md:p-8 bg-white rounded-[20px] border border-[#CECECE] text-center"
             >
               <div
-                className="w-[80px] h-[80px] rounded-[10px] flex items-center justify-center shrink-0"
-                style={{ background: 'linear-gradient(135deg, #CAEDE5, #59D0B5)' }}
+                className="w-[80px] h-[80px] rounded-[10px] flex items-center justify-center shrink-0 bg-gradient-to-br from-[#CAEDE5] to-[#59D0B5] transition-all duration-300 hover:scale-110 hover:shadow-xl hover:-translate-y-1"
               >
                 <img src={card.icon} alt={card.text} className="w-full h-full object-contain" />
               </div>
@@ -158,23 +165,28 @@ export function VehicleOwnerDetailsPage() {
               OBPARK
             </h3>
 
-            <div className="bg-white rounded-[20px] p-6 md:p-8 flex flex-col gap-6">
-              {[
-                "Enter 'Car Number'/'Vehicle Registration Number' in the above box.",
-                "Click on 'Check Details' and get the information within seconds.",
-              ].map((step, i) => (
-                <div key={i} className="flex items-start gap-4">
-                  <div className="w-7 h-7 rounded-full border-[0.5px] border-[#3C9792]/30 flex items-center justify-center shrink-0">
-                    <span className="font-microgamma text-[11px] font-medium text-[#3C9792]">
-                      {i + 1}
-                    </span>
-                  </div>
-                  <p className="font-microgamma text-[14px] md:text-[18px] leading-[28px] md:leading-[32px] font-medium text-[#074139]">
-                    {step}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <div className="bg-white rounded-[20px] p-6 md:p-8 flex flex-col">
+  {[
+    "Enter 'Car Number'/'Vehicle Registration Number' in the above box.",
+    "Click on 'Check Details' and get the information within seconds.",
+  ].map((step, i, arr) => (
+    <div key={i} className="flex items-stretch gap-4">
+      <div className="flex flex-col items-center">
+        <div className="w-7 h-7 rounded-full border-[0.5px] border-[#3C9792]/30 flex items-center justify-center shrink-0">
+          <span className="font-microgamma text-[11px] font-medium text-[#3C9792]">
+            {i + 1}
+          </span>
+        </div>
+        {i !== arr.length - 1 && (
+          <div className="w-px min-h-[40px] flex-1 border-l-2 border-dotted border-[#3C9792]/50 my-1" />
+        )}
+      </div>
+      <p className="font-microgamma text-[14px] md:text-[18px] leading-[28px] md:leading-[32px] font-medium text-[#074139] pb-6">
+        {step}
+      </p>
+    </div>
+  ))}
+</div>
           </div>
 
           <div className="flex flex-col gap-6 p-6 md:p-10 rounded-[20px] bg-transparent min-h-[400px]">
@@ -183,28 +195,33 @@ export function VehicleOwnerDetailsPage() {
             </h3>
 
             <div
-              className="bg-white rounded-[20px] p-6 md:p-8 flex flex-col gap-3 min-h-[100px]"
-              style={{ border: '0.5px solid #CECECE' }}
-            >
-              {[
-                'Go to the Pariavahan website.',
-                "Select 'Know Your Vehicle Details' from the 'Informational Services' dropdown.",
-                'Provide your mobile phone number and fill in the displayed verification code.',
-                'Complete the sign-in process or create an account.',
-                "Enter the vehicle registration number and click on 'Search Vehicle' or 'Vahan Search' to get the details.",
-              ].map((step, i) => (
-                <div key={i} className="flex items-start gap-4">
-                  <div className="w-7 h-7 rounded-full border-[0.5px] border-[#3C9792] flex items-center justify-center shrink-0">
-                    <span className="font-microgamma font-medium text-[11px] text-[#3C9792]">
-                      {i + 1}
-                    </span>
-                  </div>
-                  <p className="font-microgamma text-[14px] md:text-[18px] leading-[28px] md:leading-[32px] font-medium text-[#074139]">
-                    {step}
-                  </p>
-                </div>
-              ))}
-            </div>
+  className="bg-white rounded-[20px] p-6 md:p-8 flex flex-col min-h-[100px]"
+  style={{ border: '0.5px solid #CECECE' }}
+>
+  {[
+    'Go to the Pariavahan website.',
+    "Select 'Know Your Vehicle Details' from the 'Informational Services' dropdown.",
+    'Provide your mobile phone number and fill in the displayed verification code.',
+    'Complete the sign-in process or create an account.',
+    "Enter the vehicle registration number and click on 'Search Vehicle' or 'Vahan Search' to get the details.",
+  ].map((step, i, arr) => (
+    <div key={i} className="flex items-stretch gap-4">
+      <div className="flex flex-col items-center">
+        <div className="w-7 h-7 rounded-full border-[0.5px] border-[#3C9792] flex items-center justify-center shrink-0">
+          <span className="font-microgamma font-medium text-[11px] text-[#3C9792]">
+            {i + 1}
+          </span>
+        </div>
+        {i !== arr.length - 1 && (
+          <div className="w-px min-h-[40px] flex-1 border-l-2 border-dotted border-[#3C9792] my-1" />
+        )}
+      </div>
+      <p className="font-microgamma text-[14px] md:text-[18px] leading-[28px] md:leading-[32px] font-medium text-[#074139] pb-6">
+        {step}
+      </p>
+    </div>
+  ))}
+</div>
           </div>
 
         </div>
@@ -217,15 +234,16 @@ export function VehicleOwnerDetailsPage() {
           style={{ backgroundColor: '#EAF6F4' }}
         >
           <Image
-            src="/images/vehicledetails/backgroundimage.png"
-            alt="Vehicle Owner Details Background"
-            fill
-            className="object-cover object-right md:object-center"
-            priority
-          />
+  src="/images/vehicledetails/backgroundimage.png"
+  alt="Vehicle Owner Details Background"
+  fill
+  sizes="100vw"
+  className="object-cover object-right md:object-center"
+  priority
+/>
 
           <div className="relative z-10 flex flex-col gap-4 md:gap-8 px-6 sm:px-10 md:px-16 mt-10 py-10 md:py-16 max-w-full md:max-w-[900px]">
-            <div className="flex flex-col gap-2 md:gap-4">
+            <div className="flex flex-col gap-2 md:gap-2">
               <h2 className={`${microgrammaBold.className} text-2xl sm:text-3xl md:text-[48px] font-bold tracking-[0.05em] text-[#074139]`}>
                 Check and verify
               </h2>
@@ -240,36 +258,28 @@ export function VehicleOwnerDetailsPage() {
 
             <div className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8">
               <div className="flex items-center gap-2">
-                <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 border-[#074139] flex items-center justify-center shrink-0 text-[#074139]">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 2l8 4v6c0 5-4 8-8 10-4-2-8-5-8-10V6z" />
-                    <path d="M9 12l2 2 4-4" />
-                  </svg>
+                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-[#074139] bg-[##f0fdf9] flex items-center justify-center shrink-0 text-[#074139]">
+                   <Image src="/images/vehicledetails/vector1.png" alt="Instant" width={20} height={20} />
                 </span>
-                <span className="text-xs sm:text-[16px] leading-tight" style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, color: '#000000' }}>
+                <span className="font-michroma font-medium text-[#000000] text-xs sm:text-[16px] leading-tight">
                   Verified &amp;<br />Authentic Records
                 </span>
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 border-[#074139] flex items-center justify-center shrink-0 text-[#074139]">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="5" y="11" width="14" height="9" rx="2" />
-                    <path d="M8 11V7a4 4 0 0 1 8 0v4" />
-                  </svg>
+                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-[#074139] flex items-center justify-center shrink-0 text-[#074139]">
+                  <Image src="/images/vehicledetails/group.png" alt="Instant" width={20} height={20} />
                 </span>
-                <span className="text-xs sm:text-[16px] leading-tight" style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, color: '#000000' }}>
+                <span className="font-michroma font-medium text-[#000000] text-xs sm:text-[16px] leading-tight">
                   A Secure &amp;<br />Private
                 </span>
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 border-[#074139] flex items-center justify-center shrink-0 text-[#074139]">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M13 2L4 14h6l-1 8 9-12h-6z" />
-                  </svg>
+                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-[#074139] flex items-center justify-center shrink-0 text-[#074139]">
+                  <Image src="/images/vehicledetails/vector.png" alt="Instant" width={18} height={18} />
                 </span>
-                <span className="text-xs sm:text-sm leading-tight" style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, color: '#000000' }}>
+                <span className="font-michroma font-medium text-[#000000] text-xs sm:text-[16px] leading-tight">
                   Instant<br />Results
                 </span>
               </div>
@@ -294,7 +304,7 @@ export function VehicleOwnerDetailsPage() {
           FAQs on Checking Vehicle Owner Details by Number Plate Online
         </h2>
 
-        <div className="flex flex-col gap-4 md:gap-[56px]">
+        <div className="flex flex-col gap-4 md:gap-5">
           {FAQ_QUESTIONS.map((question, i) => (
             <div
               key={i}
@@ -307,7 +317,7 @@ export function VehicleOwnerDetailsPage() {
               >
                 {question}
               </p>
-              <span className="text-[#074139] text-xl shrink-0 ml-4">›</span>
+              <span className="text-[#000000] text-3xl rotate-90 shrink-0 ml-4">›</span>
             </div>
           ))}
         </div>
