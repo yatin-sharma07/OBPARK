@@ -24,7 +24,7 @@ const content: Record<
     OBPARK: {
         description:
             "E-Challan meaning is a fine imposed by the traffic police on individuals who violate traffic rules in India. It is a strong measure to prevent increasing traffic violations and ensure the safety of people on the road.",
-        image: "/images/e-challan/HowToCheck.png",
+        image: "/Images/e-challan/HowToCheck.png",
         steps: [
             {
                 number: "01",
@@ -57,7 +57,7 @@ const content: Record<
         title: "Parivahan",
         description:
             "E-Challan meaning is a fine imposed by the traffic police on individuals who violate traffic rules in India. It is a strong measure to prevent increasing traffic violations and ensure the safety of people on the road.",
-        image: "/images/e-challan/HowToCheck.png",
+        image: "/Images/e-challan/HowToCheck.png",
         steps: [
             {
                 number: "01",
@@ -90,7 +90,7 @@ const content: Record<
         title: "Offline",
         description:
             "E-Challan meaning is a fine imposed by the traffic police on individuals who violate traffic rules in India. It is a strong measure to prevent increasing traffic violations and ensure the safety of people on the road.",
-        image: "/images/e-challan/HowToCheck.png",
+        image: "/Images/e-challan/HowToCheck.png",
         steps: [
             {
                 number: "01",

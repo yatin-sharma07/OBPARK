@@ -141,13 +141,9 @@ export function MintCta() {
             rounded-none
             bg-white
 
-            px-3
-            py-6
-            sm:px-8
-            sm:py-10
-            md:px-12
-            md:py-12
-            lg:px-14
+            p-2
+            sm:p-3
+            md:p-3
           "
         >
           <table
@@ -163,15 +159,20 @@ export function MintCta() {
                 <th
                   className={`
                     ${microgrammaBold.className}
-                    pb-6
-                    sm:pb-8
+                    bg-[#073f36]
+                    px-3
+                    py-3
+                    sm:px-4
+                    sm:py-4
                     text-left
                     text-[11px]
                     sm:text-[13px]
                     font-bold
-                    text-[#074139]
+                    text-white
                     md:text-[15px]
-                    xl:text-[25px]
+                    xl:text-[18px]
+                    border-r-[8px]
+                    border-white
                   `}
                 >
                   Capability
@@ -180,15 +181,20 @@ export function MintCta() {
                 <th
                   className={`
                     ${microgrammaBold.className}
-                    pb-6
-                    sm:pb-8
+                    bg-[#073f36]
+                    px-3
+                    py-3
+                    sm:px-4
+                    sm:py-4
                     text-left
                     text-[11px]
                     sm:text-[13px]
                     font-bold
-                    text-[#074139]
+                    text-white
                     md:text-[15px]
-                    xl:text-[25px]
+                    xl:text-[18px]
+                    border-r-[8px]
+                    border-white
                   `}
                 >
                   Traditional
@@ -197,15 +203,18 @@ export function MintCta() {
                 <th
                   className={`
                     ${microgrammaBold.className}
-                    pb-6
-                    sm:pb-8
+                    bg-[#073f36]
+                    px-3
+                    py-3
+                    sm:px-4
+                    sm:py-4
                     text-left
                     text-[11px]
                     sm:text-[13px]
                     font-bold
-                    text-[#074139]
+                    text-white
                     md:text-[15px]
-                    xl:text-[25px]
+                    xl:text-[18px]
                   `}
                 >
                   OBPARK
@@ -215,17 +224,16 @@ export function MintCta() {
 
             <tbody>
               {comparisonRows.map((row) => (
-                <tr key={row.capability}>
+                <tr key={row.capability} className="border-b border-[#dedede] last:border-b-0">
                   <td
                     className="
                       py-4
-                      sm:py-6
-                      pr-4
-                      sm:pr-8
+                      sm:py-5
+                      px-2
+                      sm:px-3
                       text-[10px]
                       sm:text-[13px]
                       leading-tight
-                      sm:leading-none
                       text-black
                       md:text-[15px]
                     "
@@ -237,12 +245,12 @@ export function MintCta() {
                   <td
                     className="
                       py-4
-                      pr-4
-                      sm:pr-8
+                      sm:py-5
+                      px-2
+                      sm:px-3
                       text-[10px]
                       sm:text-[13px]
                       leading-tight
-                      sm:leading-none
                       text-black
                       md:text-[15px]
                     "
@@ -254,16 +262,18 @@ export function MintCta() {
                   <td
                     className="
                       py-4
+                      sm:py-5
+                      px-2
+                      sm:px-3
                       text-[10px]
                       sm:text-[13px]
                       leading-tight
-                      sm:leading-none
                       text-black
                       md:text-[15px]
                     "
                     style={{ fontFamily: 'var(--font-michroma)' }}
                   >
-                    <span className="mr-2 sm:mr-3 text-[13px] sm:text-[16px]">
+                    <span className="mr-2 sm:mr-3 text-[13px] sm:text-[16px] text-[#23e64a]">
                       ✓
                     </span>
                     {row.obpark}
