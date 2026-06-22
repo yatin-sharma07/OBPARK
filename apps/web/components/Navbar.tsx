@@ -280,7 +280,7 @@ export function Navbar() {
               hover:scale-[1.03]
             "
                     >
-                        SCHEDULE CALL ↗
+                        SCHEDULE CALL   <img src="/Images/Navbar/Vector.png" alt="" className='ml-2' />
                     </Link>
                 </div>
 
