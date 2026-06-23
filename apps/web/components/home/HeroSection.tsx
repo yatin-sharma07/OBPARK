@@ -118,7 +118,13 @@ export function HeroSection() {
             "
             style={{ fontFamily: 'var(--font-michroma)' }}
           >
-            DOWNLOAD APP <span className="text-base md:text-lg font-bold">↗</span>
+            DOWNLOAD APP <span
+              className="inline-block h-4 w-4 bg-[#074139]"
+              style={{
+                WebkitMask: 'url("/Images/Navbar/Vector.png") center / contain no-repeat',
+                mask: 'url("/Images/Navbar/Vector.png") center / contain no-repeat',
+              }}
+            />
           </Link>
         </motion.div>
       </section>
