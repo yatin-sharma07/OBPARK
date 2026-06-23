@@ -38,6 +38,9 @@ export const metadata: Metadata = {
       'Everything for your vehicle — vehicle commerce, parking, services, bookings, and app-based automotive convenience.',
     images: ['https://obpark.com/og-image.png'],
   },
+  icons: {
+    icon: '/Images/layout/obrive-logo.svg',
+  },
 }
 
 export default function RootLayout({

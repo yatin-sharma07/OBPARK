@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button'
 import { ShoppingCart } from 'lucide-react'
 import { CartDrawer } from '@/components/cart/CartDrawer'
 
+import Image from 'next/image'
+
 export function Header() {
   const { isAuthenticated, isHydrated, user } = useAuthStore()
   const logout = useLogout()
@@ -17,8 +19,14 @@ export function Header() {
   return (
     <>
       <header className="border-b px-6 py-4 flex items-center justify-between bg-white sticky top-0 z-40">
-        <Link href="/" className="text-xl font-bold" style={{ color: '#074139' }}>
-          Obrive
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            src="/Images/layout/obrive-logo.svg"
+            alt="Obrive Logo"
+            width={120}
+            height={40}
+            className="object-contain"
+          />
         </Link>
 
         <nav className="flex items-center gap-6 text-sm">

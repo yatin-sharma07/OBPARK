@@ -6,23 +6,23 @@ import { microgrammaBold } from '@/lib/fonts'
 
 const FEATURES = [
   {
-    title: 'RC Verified & Health Score',
+    title: 'Premium Malls',
     description:
-      'Every vehicle on Obpark is verified through the government Vahan database. Get a real-time health score out of 100 based on insurance, PUCC, RC fitness, challans and FASTag status.',
+      'Premium Mall, Delhi 2500 spaces | Premium Shopping Destination | 6-Month Implementation.',
     image:
       'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80',
   },
   {
-    title: 'Genuine Parts with Compatibility Check',
+    title: 'The Challenges',
     description:
-      'Browse thousands of car accessories and parts. Every product is checked against your vehicle make, model and year before you add to cart — no wrong fitment ever.',
+      'Customers complained about 20+ minute parking waits. 40% of visitors didn’t enter due to parking friction. Manual ticketing created bottlenecks. No data on peak hours.',
     image:
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
   },
   {
-    title: 'FASTag Recharge & Smart Alerts',
+    title: 'The Solutions',
     description:
-      'Recharge your FASTag in seconds. Set low balance alerts and never get stopped at a toll again. Supports all major banks — HDFC, ICICI, SBI, Axis and more.',
+      'Real-time occupancy management, AR navigation, dynamic pricing, vehicle services integration, automated gates, analytics dashboard.',
     image:
       'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&q=80',
   },
@@ -120,7 +120,7 @@ export function FeaturesAccordion() {
                 fontWeight: 400,
               }}
             >
-              What&apos;s our promise
+              Customer Success
             </p>
           </div>
 
@@ -137,7 +137,7 @@ export function FeaturesAccordion() {
             `}
             style={{ fontWeight: 700 }}
           >
-            Our platform is no-nonsense
+            Simple Solutions,<br />Real Results.
           </h2>
         </motion.div>
 
