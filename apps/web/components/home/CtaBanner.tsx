@@ -24,13 +24,14 @@ export function CtaBanner() {
 
           <div className="flex flex-col gap-6 max-w-4xl text-center lg:text-left lg:h-[450px] justify-between">
             <h2 className={`${microgrammaBold.className} text-white font-bold text-2xl sm:text-3xl md:text-[40px] leading-tight tracking-[0.2em]`}>
-              It's time to take control.<br />Ready to break free?
+              It&apos;s time to move smarter.<br />Ready for the future?
             </h2>
             <p
               className="text-white font-normal text-base sm:text-lg md:text-[24px] leading-relaxed tracking-[0.15em]"
               style={{ fontFamily: 'var(--font-michroma)' }}
             >
-              Unhealthy eating made less tempting, with science. Claim your 15% discount today.
+              Experience seamless mobility powered by intelligent solutions.
+              Transform your journey with smarter spaces today.
             </p>
           </div>
 
@@ -104,7 +105,7 @@ export function CtaBanner() {
           The Future of Intelligent Mobility.
         </p>
         <h2 className={`${microgrammaBold.className} mt-8 md:mt-12 text-2xl sm:text-3xl md:text-[60px] leading-none text-[#074139] font-bold`}>
-          Small change, big impact
+          Tomorrow Moves Smarter
         </h2>
       </div>
 
