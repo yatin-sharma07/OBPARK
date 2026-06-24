@@ -147,7 +147,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 space-y-1">
+        <div className="mt-8 space-y-1 flex justify-between">
           <div className="flex gap-3">
             <Link
               href="/"
