@@ -38,7 +38,7 @@ export function CheckChallanPending() {
               onClick={() => setTab('pending')}
               className={`${
   microgrammaBold.className
-} text-lg sm:text-[24px] text-[#074139] pb-2 whitespace-nowrap ${tab === 'pending' ? 'border-b-2 border-[#074139]' : ''}`}
+} text-lg sm:text-[24px] text-[#074139] pb-2 whitespace-nowrap ${tab === 'pending' ? 'border-b-2 border-[#000000]' : ''}`}
             >
               Pending
             </button>
@@ -46,7 +46,7 @@ export function CheckChallanPending() {
               onClick={() => setTab('paid')}
               className={`${
   microgrammaBold.className
-} text-lg sm:text-[24px] text-[#074139] pb-2 whitespace-nowrap ${tab === 'paid' ? 'border-b-2 border-[#074139]' : ''}`}
+} text-lg sm:text-[24px] text-[#074139] pb-2 whitespace-nowrap ${tab === 'paid' ? 'border-b-2 border-[#000000]' : ''}`}
             >
               Paid
             </button>
