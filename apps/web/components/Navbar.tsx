@@ -250,7 +250,7 @@ export function Navbar() {
           "
                 >
                     <Link
-                        href="/register"
+                        href="https://calendly.com/obrive-inc/talk-to-ob-experts?month=2026-06"
                         className="
               flex items-center justify-center gap-2
 
@@ -280,7 +280,7 @@ export function Navbar() {
               hover:scale-[1.03]
             "
                     >
-                        SCHEDULE CALL ↗
+                        SCHEDULE CALL   <img src="/Images/Navbar/Vector.png" alt="" className='ml-2' />
                     </Link>
                 </div>
 

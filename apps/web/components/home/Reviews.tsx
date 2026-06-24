@@ -7,7 +7,7 @@ import { microgrammaBold } from '@/lib/fonts'
 const INDUSTRIES = [
   {
     title: 'Airports',
-    image: '/Images/reviews/review-1.png',
+    image: '/Images/reviews/review-3.png',
     painPoint:
       "International travelers don't know facility availability. Queue delays.",
     solution:
@@ -24,7 +24,7 @@ const INDUSTRIES = [
   },
   {
     title: 'Hospitals',
-    image: '/Images/reviews/review-3.png',
+    image: '/Images/reviews/review-5.png',
     painPoint: 'Patient stress about parking. Emergency capacity critical.',
     solution:
       'Priority spaces, wayfinding, integration with registration, real-time visibility.',
