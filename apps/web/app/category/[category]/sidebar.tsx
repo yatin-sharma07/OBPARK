@@ -9,9 +9,9 @@ export function Sidebar() {
   const [isOpen, setIsOpen] = useState({
     price: true,
     brand: true,
-    memory: true,
-    protection: false,
-    screenDiagonal: false,
+    productType: true,
+    Category: false,
+    vehicleCompatibility: false,
     screenType: false,
     battery: false,
   });
@@ -113,76 +113,105 @@ export function Sidebar() {
           {isOpen.brand ? <ChevronUp className="h-4 w-4 text-slate-400" /> : <ChevronDown className="h-4 w-4 text-slate-400" />}
         </button>
 
-        {isOpen.brand && (
-          <div className="mt-3">
-            <div className="relative flex items-center mb-3">
-              <Search className="absolute left-2.5 h-3.5 w-3.5 text-slate-400" />
-              <input type="text" placeholder="Search" className="w-full bg-slate-50 border border-transparent rounded pl-8 pr-3 py-1.5 text-[8px] outline-none focus:bg-white focus:border-slate-200" />
-            </div>
-            <div className="space-y-2 max-h-40  text-[8px] overflow-y-auto pr-1">
-              <FilterCheckbox label="Apple" count={18} checked={true} />
-              <FilterCheckbox label="Samsung" count={125} />
-              <FilterCheckbox label="Xiaomi" count={68} />
-              <FilterCheckbox label="Poco" count={44} />
-              <FilterCheckbox label="OPPO" count={36} />
-            </div>
-          </div>
-        )}
+{isOpen.brand && (
+  <div className="mt-3">
+    <div className="relative flex items-center mb-3">
+      <Search className="absolute left-2.5 h-3.5 w-3.5 text-slate-400" />
+      <input
+        type="text"
+        placeholder="Search"
+        className="w-full bg-slate-50 border border-transparent rounded pl-8 pr-3 py-1.5 text-[8px] outline-none"
+      />
+    </div>
+
+    <div className="space-y-2 max-h-50 text-[8px] overflow-y-visible pr-1">
+      <FilterCheckbox label="Qubo" count={4} />
+      <FilterCheckbox label="Ambrane" count={3} />
+      <FilterCheckbox label="Brago" count={3} />
+      <FilterCheckbox label="Portronics" count={2} />
+      <FilterCheckbox label="Morelian" count={3} />
+      <FilterCheckbox label="Eveready" count={1} />
+      <FilterCheckbox label="ESR" count={1} />
+    </div>
+  </div>
+)}
       </div>
 
       {/* ================= MEMORY SECTION ================= */}
       <div className="border-b border-slate-80 pb-5">
-        <button onClick={() => toggleSection("memory")} className="flex items-center justify-between w-full font-semibold text-slate-800 text-[8px] outline-none">
-          <span>Built-in memory</span>
-          {isOpen.memory ? <ChevronUp className="h-4 w-4 text-slate-400" /> : <ChevronDown className="h-4 w-4 text-slate-400" />}
+        <button onClick={() => toggleSection("productType")} className="flex items-center justify-between w-full font-semibold text-slate-800 text-[8px] outline-none">
+          <span>Product Type</span>
+          {isOpen.productType ? <ChevronUp className="h-4 w-4 text-slate-400" /> : <ChevronDown className="h-4 w-4 text-slate-400" />}
         </button>
 
-        {isOpen.memory && (
-          <div className="mt-3 space-y-2 text-[8px]">
-            <FilterCheckbox label="16GB" count={65} />
-            <FilterCheckbox label="32GB" count={123} />
-            <FilterCheckbox label="64GB" count={48} />
-            <FilterCheckbox label="128GB" count={50} />
-          </div>
+        {isOpen.productType && (
+              <div className="mt-3 space-y-2 text-[8px]">
+                <FilterCheckbox label="Dash Cam" count={3} />
+                <FilterCheckbox label="Car Charger" count={5} />
+                <FilterCheckbox label="Bluetooth Receiver" count={2} />
+                <FilterCheckbox label="Vacuum Cleaner" count={2} />
+                <FilterCheckbox label="HUD Display" count={3} />
+                <FilterCheckbox label="Tyre Inflator" count={1} />
+              </div>
         )}
       </div>
 
       {/* ================= PASSTHROUGH COLLAPSED DROPDOWNS ================= */}
-      {/* Protection Class */}
+      {/* Category Class */}
       <div className="border-b border-slate-80 pb-5">
-        <button onClick={() => toggleSection("protection")} className="flex items-center justify-between w-full font-semibold text-slate-800 text-[8px] outline-none">
-          <span>Protection class</span>
-          {isOpen.protection ? <ChevronUp className="h-4 w-4 text-slate-400" /> : <ChevronDown className="h-4 w-4 text-slate-400" />}
+        <button onClick={() => toggleSection("Category")} className="flex items-center justify-between w-full font-semibold text-slate-800 text-[8px] outline-none">
+          <span>Category</span>
+          {isOpen.Category ? <ChevronUp className="h-4 w-4 text-slate-400" /> : <ChevronDown className="h-4 w-4 text-slate-400" />}
         </button>
-        {isOpen.protection && <div className="mt-3 text-[8px] text-slate-400 pl-1">No options loaded.</div>}
+        {isOpen.Category && <div className="mt-3 text-[8px] text-slate-400 pl-1">No options loaded.</div>}
+      
+          <div className="mt-3 space-y-2 text-[8px]">
+            <FilterCheckbox label="EV Accessories" count={9} />
+            <FilterCheckbox label="Smart Electronics" count={9} />
+            <FilterCheckbox label="Exterior Accessories" count={9} />
+            <FilterCheckbox label="Emergency Utility" count={9} />
+          </div>  
+
       </div>
 
-      {/* Screen Diagonal */}
+      {/* Vehicle Compatibility */}
       <div className="border-b border-slate-80 pb-5">
-        <button onClick={() => toggleSection("screenDiagonal")} className="flex items-center justify-between w-full font-semibold text-slate-800 text-[8px] outline-none">
-          <span>Screen diagonal</span>
-          {isOpen.screenDiagonal ? <ChevronUp className="h-4 w-4 text-slate-400" /> : <ChevronDown className="h-4 w-4 text-slate-400" />}
+        <button onClick={() => toggleSection("vehicleCompatibility")} className="flex items-center justify-between w-full font-semibold text-slate-800 text-[8px] outline-none">
+          <span>Vehicle Compatibility</span>
+          {isOpen.vehicleCompatibility ? <ChevronUp className="h-4 w-4 text-slate-400" /> : <ChevronDown className="h-4 w-4 text-slate-400" />}
         </button>
-        {isOpen.screenDiagonal && <div className="mt-3 text-[8px] text-slate-400 pl-1">No options loaded.</div>}
+        {isOpen.vehicleCompatibility &&
+        <div className="mt-3 text-[8px] text-slate-400 pl-1">
+            <div className="mt-3 space-y-2 text-[8px]">
+              <FilterCheckbox label="Cars" count={36} />
+              <FilterCheckbox label="SUV" count={12} />
+              <FilterCheckbox label="Bike" count={6} />
+              <FilterCheckbox label="EV Vehicles" count={9} />
+              <FilterCheckbox label="Universal Fit" count={18} />
+            </div>
+        </div>}
+      
+      
+      
       </div>
 
       {/* Screen Type */}
-      <div className="border-b border-slate-80 pb-5">
+      {/* <div className="border-b border-slate-80 pb-5">
         <button onClick={() => toggleSection("screenType")} className="flex items-center justify-between w-full font-semibold text-slate-800 text-[8px] outline-none">
           <span>Screen type</span>
           {isOpen.screenType ? <ChevronUp className="h-4 w-4 text-slate-400" /> : <ChevronDown className="h-4 w-4 text-slate-400" />}
         </button>
         {isOpen.screenType && <div className="mt-3 text-[8px] text-slate-400 pl-1">No options loaded.</div>}
-      </div>
+      </div> */}
 
       {/* Battery Capacity */}
-      <div className="pb-5">
+      {/* <div className="pb-5">
         <button onClick={() => toggleSection("battery")} className="flex items-center justify-between w-full font-semibold text-slate-800 text-[8px] outline-none">
           <span>Battery capacity</span>
           {isOpen.battery ? <ChevronUp className="h-4 w-4 text-slate-400" /> : <ChevronDown className="h-4 w-4 text-slate-400" />}
         </button>
         {isOpen.battery && <div className="mt-3 text-[8px] text-slate-400 pl-1">No options loaded.</div>}
-      </div>
+      </div> */}
 
     </aside>
   );

@@ -15,7 +15,7 @@ import { Navbar } from '@/components/Navbar'
 export default function HomePage() {
   return (
     <main>
-      <Navbar />
+      {/* <Navbar /> */}
       <HeroSection />
       <MarqueeStrip />
       <ServicesGrid />
@@ -26,7 +26,7 @@ export default function HomePage() {
       <MintCta />
       <Reviews />
       <FeaturesAccordion />
-      <Footer />
+      {/* <Footer /> */}
     </main>
   )
 }
