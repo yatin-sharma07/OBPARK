@@ -1,153 +1,277 @@
-"use client";
-import React from "react";
-// import { Instagram, Facebook, MessageCircle } from "lucide-react";
-import { MessageCircle } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import obriveLogo from "@/app/assets/logo/obpark_title_logo.svg";
-import facebookLogo from "@/app/assets/logo/facebookLogo.svg";
-import instagramLogo from "@/app/assets/logo/instagramLogo.svg";
-import whatsappLogo from "@/app/assets/logo/whatsappLogo.svg";
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { microgrammaBold } from '@/lib/fonts'
+
+const aboutLinks = ['Home', 'About', 'Shop']
+
+const supportLinks = [
+  'FAQs',
+  'Shipping Policy',
+  'Refund Policy',
+  'My Account',
+  'Contact',
+]
+
+const socials = [
+  {
+    label: 'Instagram',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <rect x="2" y="2" width="20" height="20" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Facebook',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+      </svg>
+    ),
+  },
+  {
+    label: 'WhatsApp',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="currentColor">
+        <path d="M16 0C7.163 0 0 7.163 0 16c0 2.833.737 5.49 2.027 7.8L0 32l8.43-2.01A15.93 15.93 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 0 1-6.771-1.854l-.486-.29-5.007 1.194 1.151-4.872-.317-.5A13.226 13.226 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.878c-.398-.199-2.35-1.159-2.714-1.292-.363-.132-.627-.198-.891.199-.264.397-1.023 1.292-1.254 1.556-.23.265-.462.298-.86.1-.397-.2-1.677-.618-3.193-1.97-1.18-1.053-1.977-2.352-2.208-2.75-.23-.397-.024-.612.173-.81.178-.177.397-.464.596-.695.198-.232.264-.398.397-.663.132-.265.066-.497-.033-.696-.1-.199-.892-2.149-1.222-2.944-.322-.773-.648-.668-.891-.68-.23-.012-.497-.015-.762-.015-.265 0-.695.1-1.059.497-.364.397-1.39 1.358-1.39 3.313 0 1.955 1.423 3.843 1.621 4.108.199.265 2.8 4.274 6.785 5.995.948.409 1.688.653 2.264.835.951.302 1.816.26 2.5.158.762-.114 2.35-.96 2.682-1.888.33-.928.33-1.723.23-1.888-.099-.165-.363-.265-.761-.464z" />
+      </svg>
+    ),
+  },
+]
 
 export function Footer() {
-const router = useRouter();
+  const [form, setForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+  })
 
+  const updateForm = (field: keyof typeof form, value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }))
+  }
 
   return (
-    <footer className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-12">
-      {/* Main Footer Container Box with custom layout styling matching image_fcf540.png */}
-      <div className="w-full  bg-gradient-to-b from-[#CAEDE5] to-[#59D0B5] rounded-[2.5rem] p-12 text-[#022c22]">
-        
-        {/* TOP ROW: Brand Logo & Social Icons */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 pb-8 border-b border-black"
-        onClick={() => router.push("/")}
-        >
-          <div className="flex flex-rowtext-3xl font-black tracking-widest font-mono">
-            
-                        <Image
-                            src={obriveLogo}
-                            alt="Obrive Logo"
-                            width={250}
-                            height={60}
-                        />
-            
-            <span className="text-[8px] font-medium font-sans align-top relative -top-[6.7px] text-[#022c22]">©</span>
-          </div>
+    <motion.footer
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+      viewport={{ once: true, amount: 0.2 }}
+      className="w-full px-4 pb-4 sm:px-5 sm:pb-5"
+    >
+      <div
+        className="w-full rounded-[18px] p-6 sm:p-8 md:p-12 overflow-hidden"
+        style={{
+          background: 'linear-gradient(180deg, #CAEDE5 0%, #59D0B5 100%)',
+        }}
+      >
+        <div className="flex items-center justify-between gap-4 pb-8 mb-8 border-b border-black">
+          <span
+            className={`${microgrammaBold.className} text-3xl sm:text-4xl md:text-[56px] leading-none`}
+            style={{ color: '#074139' }}
+          >
+            OBPARK
+            <sup className="ml-[2px] align-super font-sans text-[0.45em]">
+              ©
+            </sup>
+          </span>
 
-
-          
-          {/* Social Icons with circular transparent backgrounds */}
-          <div className="flex items-center gap-3">
-                        <Image
-                            src={instagramLogo}
-                            alt="instagramLogo"
-                            width={50}
-                            height={50}
-                        />
-
-                        <Image
-                            src={facebookLogo}
-                            alt="facebookLogo"
-                            width={50}
-                            height={50}
-                        />
-
-                        <Image
-                            src={whatsappLogo}
-                            alt="whatsappLogo"
-                            width={50}
-                            height={50}
-                        />
+          <div className="flex items-center gap-2 sm:gap-3">
+            {socials.map((s) => (
+              <button
+                key={s.label}
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                style={{
+                  backgroundColor: 'rgba(7,65,57,0.12)',
+                  color: '#074139',
+                }}
+              >
+                {s.icon}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* MIDDLE SECTION: Navigation Links & Newsletter Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pt-10 pb-12">
-          
-          {/* Column 1: About Links */}
-          <div className="md:col-span-2 space-y-4">
-            <h4 className="text-sm font-bold tracking-wider opacity-90">About</h4>
-            <ul className="space-y-2 text-xs font-medium opacity-75">
-              <li><Link href="#" className="hover:opacity-100 transition-opacity">Home</Link></li>
-              <li><Link href="#" className="hover:opacity-100 transition-opacity">About</Link></li>
-              <li><Link href="#" className="hover:opacity-100 transition-opacity">Shop</Link></li>
-            </ul>
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[180px_180px_1fr] gap-8 lg:gap-6">
+          <FooterLinks title="About" links={aboutLinks} />
 
-          {/* Column 2: Support Links */}
-          <div className="md:col-span-3 space-y-4">
-            <h4 className="text-sm font-bold tracking-wider opacity-90">Support</h4>
-            <ul className="space-y-2 text-xs font-medium opacity-75">
-              <li><Link href="#" className="hover:opacity-100 transition-opacity">Faqs</Link></li>
-              <li><Link href="#" className="hover:opacity-100 transition-opacity">Shipping Policy</Link></li>
-              <li><Link href="#" className="hover:opacity-100 transition-opacity">Refund Policy</Link></li>
-              <li><Link href="#" className="hover:opacity-100 transition-opacity">My Account</Link></li>
-              <li><Link href="#" className="hover:opacity-100 transition-opacity">Contact</Link></li>
-            </ul>
-          </div>
+          <FooterLinks title="Support" links={supportLinks} />
 
-          {/* Column 3: The Custom Newsletter Subscription Box Layout */}
-          <div className="md:col-span-7 bg-white/40 backdrop-blur-sm rounded-3xl p-6 md:p-8 border border-white/20 max-w-lg ml-auto w-full">
-            <h4 className="text-sm font-bold tracking-wide mb-6 text-[#022c22]">
-              Subscribe to our newsletter
-            </h4>
-            
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-              {/* First Name & Last Name Twin Fields */}
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-[10px] uppercase font-bold tracking-wider text-[#022c22]/70 block mb-1.5">First Name</label>
-                  <input 
-                    type="text" 
-                    placeholder="First Name" 
-                    className="w-full bg-white/50 border border-transparent rounded-xl px-4 py-2.5 text-xs text-[#022c22] placeholder-[#022c22]/40 outline-none focus:bg-white focus:border-emerald-300 transition-all"
-                  />
-                </div>
-                <div>
-                  <label className="text-[10px] uppercase font-bold tracking-wider text-[#022c22]/70 block mb-1.5">Last Name</label>
-                  <input 
-                    type="text" 
-                    placeholder="Last Name" 
-                    className="w-full bg-white/50 border border-transparent rounded-xl px-4 py-2.5 text-xs text-[#022c22] placeholder-[#022c22]/40 outline-none focus:bg-white focus:border-emerald-300 transition-all"
-                  />
-                </div>
-              </div>
+          <div className="sm:col-span-2 lg:col-span-1 lg:justify-self-end">
+            <FooterTitle>Subscribe to our newsletter</FooterTitle>
 
-              {/* Email Field */}
-              <div>
-                <label className="text-[10px] uppercase font-bold tracking-wider text-[#022c22]/70 block mb-1.5">Email Id</label>
-                <input 
-                  type="email" 
-                  placeholder="Email Id" /* Matches exact image placeholder quirk text placeholder */
-                  className="w-full bg-white/50 border border-transparent rounded-xl px-4 py-2.5 text-xs text-[#022c22] placeholder-[#022c22]/40 outline-none focus:bg-white focus:border-emerald-300 transition-all"
+            <div
+              className="w-full lg:w-[460px] rounded-xl p-4 sm:p-6 flex flex-col gap-4 sm:gap-6"
+              style={{ backgroundColor: 'rgba(255,255,255,0.8)' }}
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                <InputField
+                  label="First Name"
+                  placeholder="First Name"
+                  value={form.firstName}
+                  onChange={(value) => updateForm('firstName', value)}
+                />
+
+                <InputField
+                  label="Last Name"
+                  placeholder="Last Name"
+                  value={form.lastName}
+                  onChange={(value) => updateForm('lastName', value)}
                 />
               </div>
 
-              {/* Dark Submit Button */}
-              <button 
-                type="submit" 
-                className="w-full bg-[#022c22] hover:bg-[#064e3b] text-white text-xs font-bold tracking-wider py-3.5 rounded-xl transition-colors shadow-sm mt-2"
+              <InputField
+                label="Email Id"
+                placeholder="Email"
+                value={form.email}
+                onChange={(value) => updateForm('email', value)}
+              />
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`${microgrammaBold.className} w-full py-3 rounded-full text-sm transition-opacity hover:opacity-90`}
+                style={{
+                  backgroundColor: '#074139',
+                  color: '#FFFFFF',
+                  fontSize: '14px',
+                }}
               >
                 Submit
-              </button>
-            </form>
-          </div>
-
-        </div>
-
-        {/* BOTTOM ROW: Privacy Links & Copyright Details */}
-        <div className="pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-[10px] font-bold tracking-wide opacity-60">
-          <div className="flex gap-6">
-            <Link href="#" className="hover:opacity-100 transition-opacity">Privacy Policy</Link>
-            <Link href="#" className="hover:opacity-100 transition-opacity">Terms & Condition</Link>
-          </div>
-          <div>
-            © OBPARK All rights reserved.
+              </motion.button>
+            </div>
           </div>
         </div>
 
+        <div className="mt-8 space-y-1 flex justify-between">
+          <div className="flex gap-3">
+            <Link
+              href="/"
+              className="block text-xs hover:opacity-70"
+              style={{
+                color: '#074139',
+                fontFamily: 'var(--font-michroma)',
+              }}
+            >
+              Privacy Policy
+            </Link>
+
+            <Link
+              href="/"
+              className="block text-xs hover:opacity-70"
+              style={{
+                color: '#074139',
+                fontFamily: 'var(--font-michroma)',
+              }}
+            >
+              Terms & Condition
+            </Link>
+          </div>
+
+          <p
+            className="text-xs mt-2"
+            style={{
+              color: '#CAEDE5',
+              fontFamily: 'var(--font-michroma)',
+              fontSize: '16px',
+            }}
+          >
+            © OBRIVE All rights reserved.
+          </p>
+        </div>
       </div>
-    </footer>
-  );
+    </motion.footer>
+  )
+}
+
+function FooterLinks({
+  title,
+  links,
+}: {
+  title: string
+  links: string[]
+}) {
+  return (
+    <div>
+      <FooterTitle>{title}</FooterTitle>
+
+      <div className="space-y-3">
+        {links.map((link) => (
+          <FooterLink key={link} href="/">
+            {link}
+          </FooterLink>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function FooterTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <p
+      className={`${microgrammaBold.className} mb-4 md:mb-6 text-lg md:text-2xl leading-none`}
+      style={{ color: '#074139' }}
+    >
+      {children}
+    </p>
+  )
+}
+
+function FooterLink({
+  href,
+  children,
+}: {
+  href: string
+  children: React.ReactNode
+}) {
+  return (
+    <Link
+      href={href}
+      className="block hover:opacity-70 transition-opacity text-sm"
+      style={{
+        color: '#074139',
+        fontFamily: 'var(--font-michroma)',
+      }}
+    >
+      {children}
+    </Link>
+  )
+}
+
+function InputField({
+  label,
+  placeholder,
+  value,
+  onChange,
+}: {
+  label: string
+  placeholder: string
+  value: string
+  onChange: (value: string) => void
+}) {
+  return (
+    <div className="min-w-0">
+      <label
+        className="block text-xs mb-1"
+        style={{
+          color: '#074139',
+          fontFamily: 'var(--font-michroma)',
+        }}
+      >
+        {label}
+      </label>
+
+      <input
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full min-w-0 px-3 py-2 rounded-lg text-xs border-0 focus:outline-none focus:ring-1 focus:ring-[#074139]"
+        style={{ backgroundColor: 'rgba(255,255,255,0.7)' }}
+      />
+    </div>
+  )
 }

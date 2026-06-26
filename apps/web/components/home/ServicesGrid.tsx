@@ -1,53 +1,350 @@
+'use client'
+
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { microgrammaBold } from '@/lib/fonts'
 
 const SERVICES = [
-  { icon: '🗺️', label: 'AR NAVIGATION', href: '/products' },
-  { icon: '📋', label: 'E-CHALLAN', href: '/account/vehicles' },
-  { icon: '💨', label: 'PUC', href: '/account/vehicles' },
-  { icon: '👤', label: 'VEHICLE OWNER DETAILS', href: '/account/vehicles' },
-  { icon: '💰', label: 'PERSONAL LOAN', href: '/products' },
-  { icon: '⚡', label: 'QUICK SERVICES', href: '/products' },
-  { icon: '🔋', label: 'EV STATIONS', href: '/products?category=accessories' },
-  { icon: '🛡️', label: 'CAR INSURANCE', href: '/products' },
-  { icon: '🏦', label: 'CAR LOAN', href: '/products' },
+  {
+    image: '/Images/services/pic1.jpeg',
+    label: 'AR NAVIGATION',
+    href: '/products',
+    alt: 'AR navigation service for smart vehicle assistance',
+  },
+  {
+    image: '/Images/services/pic2.jpeg',
+    label: 'E-CHALLAN',
+    href: '/account/vehicles',
+    alt: 'E-Challan checking service for vehicle owners',
+  },
+  {
+    image: '/Images/services/pic3.jpeg',
+    label: 'PUC',
+    href: '/account/vehicles',
+    alt: 'PUC certificate service for vehicles',
+  },
+  {
+    image: '/Images/services/pic4.jpeg',
+    label: 'VEHICLE OWNER DETAILS',
+    href: '/account/vehicles',
+    alt: 'Vehicle owner details verification service',
+  },
+  {
+    image: '/Images/services/pic5.jpeg',
+    label: 'PERSONAL LOAN',
+    href: '/products',
+    alt: 'Personal loan service for vehicle users',
+  },
+  {
+    image: '/Images/services/pic6.jpeg',
+    label: 'QUICK SERVICES',
+    href: '/products',
+    alt: 'Quick vehicle services on OBPark',
+  },
+  {
+    image: '/Images/services/pic7.jpeg',
+    label: 'EV STATIONS',
+    href: '/products?category=accessories',
+    alt: 'EV charging station finder for electric vehicles',
+  },
+  {
+    image: '/Images/services/pic8.jpeg',
+    label: 'CAR INSURANCE',
+    href: '/products',
+    alt: 'Car insurance service for vehicle owners',
+  },
+  {
+    image: '/Images/services/pic9.jpeg',
+    label: 'CAR LOAN',
+    href: '/products',
+    alt: 'Car loan service for vehicle buyers',
+  },
 ]
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  },
+}
+
+const textVariants = {
+  hidden: { opacity: 0, x: -35 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  },
+}
+
+const cardContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.15,
+    },
+  },
+}
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 26,
+    scale: 0.96,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  },
+}
 
 export function ServicesGrid() {
   return (
-    <section className="px-6 py-20 max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 className="text-4xl font-bold leading-tight mb-5" style={{ color: '#074139' }}>
-            Obpark is your complete vehicle companion
+    <motion.section
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.18 }}
+      className="
+        w-full
+        max-w-[100vw]
+        overflow-hidden
+        px-4
+        sm:px-5
+        md:px-6
+        py-12
+        sm:py-14
+        md:py-20
+        mx-auto
+      "
+    >
+      <div
+        className="
+          mx-auto
+          flex
+          w-full
+          max-w-[1700px]
+          flex-col
+          lg:flex-row
+          gap-10
+          md:gap-12
+          justify-between
+          items-center
+          lg:items-start
+        "
+      >
+        {/* LEFT TEXT */}
+        <motion.div
+          variants={textVariants}
+          className="
+            flex
+            flex-col
+            w-full
+            max-w-[736px]
+            lg:w-[736px]
+            min-h-auto
+            lg:h-[583px]
+            justify-center
+            gap-5
+            md:gap-6
+            mt-0
+            lg:mt-12
+            text-center
+            lg:text-left
+          "
+        >
+          <h2
+            className={`
+              ${microgrammaBold.className}
+              font-bold
+              text-[28px]
+              sm:text-4xl
+              md:text-5xl
+              xl:text-[56px]
+              leading-tight
+              text-[#074139]
+            `}
+          >
+            The Future of
+            Parking Starts Here
           </h2>
-          <p className="text-gray-500 text-base leading-relaxed max-w-sm">
-            Everything you need for your vehicle in one place — from documents to accessories, services to finance.
-          </p>
-        </div>
 
-        <div className="rounded-3xl p-6 shadow-sm" style={{ backgroundColor: 'white', border: '1px solid #e5e7eb' }}>
-          <div className="grid grid-cols-3 gap-3">
-            {SERVICES.map((s) => (
-              <Link
-                key={s.label}
-                href={s.href}
-                className="flex flex-col items-center gap-2.5 p-4 rounded-2xl transition-all hover:bg-[#f0fdf9] hover:shadow-sm hover:scale-105"
-                style={{ border: '1px solid #f0f0f0' }}
+          <p
+            className="
+              text-sm
+              sm:text-base
+              md:text-xl
+              xl:text-2xl
+              leading-[1.8]
+              text-[#999C9C]
+              max-w-[680px]
+              mx-auto
+              lg:mx-0
+            "
+            style={{ fontFamily: 'var(--font-michroma)' }}
+          >
+            Every day, millions of drivers waste time
+            searching for parking. <br />
+
+            The Operating System for Intelligent Mobility
+            Spaces Real-time occupancy intelligence, AR-
+            powered navigation, and AI-driven insights built
+            for malls, airports, cities, and mobility operators
+            who expect more from parking. OBPARK isn't a
+            parking app. It's a complete mobility ecosystem.
+            Every module multiplies the value of the others.
+          </p>
+        </motion.div>
+
+        {/* RIGHT GRID BOX */}
+        <motion.div
+          variants={cardContainerVariants}
+          className="
+            w-full
+            max-w-[814px]
+            lg:max-w-[814px]
+            min-h-auto
+            lg:min-h-[800px]
+            rounded-[30px]
+            md:rounded-[60px]
+            bg-white
+            border
+            border-[#07413980]
+            shadow-[0_4px_25px_0_rgba(7,65,57,0.10)]
+            p-4
+            sm:p-5
+            md:p-6
+            lg:p-10
+          "
+        >
+          <div
+            className="
+              grid
+              grid-cols-2
+              sm:grid-cols-2
+              lg:grid-cols-3
+              gap-4
+              sm:gap-5
+              md:gap-8
+              justify-items-center
+            "
+          >
+            {SERVICES.map((service) => (
+              <motion.div
+                key={service.label}
+                variants={cardVariants}
+                className="w-full flex justify-center"
               >
-                <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center text-xl"
-                  style={{ background: 'linear-gradient(135deg, #e0faf5, #A2F1DF)' }}
+                <Link
+                  href={service.href}
+                  aria-label={`Open ${service.label.toLowerCase()} service`}
+                  className="
+                    w-full
+                    max-w-[200px]
+                    min-w-[130px]
+                    h-[170px]
+                    sm:h-[190px]
+                    md:h-[211px]
+                    p-3
+                    sm:p-4
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    gap-3
+                    sm:gap-4
+                    rounded-[8px]
+                    border
+                    border-[rgba(7,65,57,0.8)]
+                    transition-all
+                    duration-300
+                    hover:bg-[#f0fdf9]
+                    hover:scale-105
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-[#59D0B5]
+                    focus:ring-offset-2
+                  "
                 >
-                  {s.icon}
-                </div>
-                <span className="text-[9px] font-bold text-center uppercase tracking-wide leading-tight" style={{ color: '#074139' }}>
-                  {s.label}
-                </span>
-              </Link>
+                  <div className="flex items-center justify-center">
+                    <div
+                      className="
+                        relative
+                        w-[88px]
+                        h-[88px]
+                        sm:w-[104px]
+                        sm:h-[104px]
+                        md:w-[120px]
+                        md:h-[120px]
+                        rounded-full
+                        bg-[#F8FAFA]
+                        border-[5px]
+                        md:border-[6px]
+                        border-[#59D0B5]
+                        flex
+                        items-center
+                        justify-center
+                        overflow-hidden
+                      "
+                    >
+                      <Image
+                        src={service.image}
+                        alt={service.alt}
+                        title={service.label}
+                        width={70}
+                        height={70}
+                        sizes="(max-width: 640px) 50px, (max-width: 768px) 60px, 70px"
+                        loading="lazy"
+                        className="
+                          h-[48px]
+                          w-[48px]
+                          sm:h-[56px]
+                          sm:w-[56px]
+                          md:h-[60px]
+                          md:w-[60px]
+                          object-contain
+                        "
+                      />
+                    </div>
+                  </div>
+
+                  <span
+                    className={`
+                      ${microgrammaBold.className}
+                      font-bold
+                      text-[8px]
+                      sm:text-[9px]
+                      md:text-[12px]
+                      xl:text-[16px]
+                      leading-tight
+                      text-[#074139]
+                      text-center
+                      uppercase
+                    `}
+                  >
+                    {service.label}
+                  </span>
+                </Link>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }

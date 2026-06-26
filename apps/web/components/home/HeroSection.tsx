@@ -1,102 +1,133 @@
+'use client'
+
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+
 
 export function HeroSection() {
   return (
-    <section
-      className="relative overflow-hidden rounded-3xl mx-4 mt-4"
-      style={{ minHeight: '92vh', background: 'linear-gradient(135deg, #c8f5eb 0%, #a8eddc 30%, #6dd4bc 60%, #2a9d8a 100%)' }}
-    >
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute"
-          style={{
-            width: '140%',
-            height: '100px',
-            background: 'linear-gradient(180deg, rgba(180,180,180,0.1) 0%, rgba(220,220,220,0.22) 40%, rgba(180,180,180,0.1) 100%)',
-            top: '44%',
-            left: '-20%',
-            transform: 'rotate(-18deg)',
-            transformOrigin: 'left center',
-          }}
-        />
-        <div
-          className="absolute"
-          style={{
-            width: '140%',
-            height: '2px',
-            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
-            top: '52%',
-            left: '-20%',
-            transform: 'rotate(-18deg)',
-            transformOrigin: 'left center',
-          }}
-        />
-      </div>
+    <>
 
-      <div
-        className="absolute"
-        style={{
-          width: '80px',
-          height: '80px',
-          borderRadius: '50%',
-          top: '50%',
-          left: '53%',
-          transform: 'translate(-50%, -50%)',
-          background: 'radial-gradient(circle at 35% 30%, #5ecfba, #074139 70%)',
-          boxShadow: '0 12px 40px rgba(7,65,57,0.5), inset 0 -4px 8px rgba(0,0,0,0.3)',
-        }}
-      />
 
-      {/* <div className="relative z-10 px-8 pt-6 flex justify-center">
-        <nav
-          className="flex items-center justify-between w-full max-w-3xl px-6 py-3"
-          style={{
-            backgroundColor: 'rgba(255,255,255,0.25)',
-            backdropFilter: 'blur(12px)',
-            borderRadius: '999px',
-            border: '1px solid rgba(255,255,255,0.4)',
-          }}
+      <section
+        className="
+    relative font-michroma
+    mx-3 mt-3 mb-10
+    sm:mx-4 sm:mt-4
+    md:m-6
+    
+
+    rounded-[24px]
+    sm:rounded-[28px]
+    md:rounded-[30px]
+
+    overflow-hidden
+
+    min-h-[680px]
+    sm:min-h-[780px]
+    md:min-h-[calc(100vh-48px)]
+
+    h-auto
+    md:h-[calc(100vh-48px)]
+
+
+    max-h-none
+    md:max-h-[980px]
+  "
+      >
+        {/* Background Video */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src="/Images/HeroSection/obrive-intro.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+
+        {/* Optional dark/green overlay so content stays visible */}
+        <div className="absolute inset-0 bg-[#074139]/20" />
+
+        {/* Navbar space because navbar is fixed */}
+        <div className="relative z-10 h-[72px] sm:h-[78px] md:h-[100px] lg:h-[110px] xl:h-[130px]" />
+
+        {/* Diagonal Light Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+          <motion.div
+            initial={{ opacity: 0, x: -120 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            className="
+              absolute
+              w-[160%] sm:w-[150%] lg:w-[140%]
+              h-[60px] sm:h-[80px] md:h-[100px]
+              -left-[30%] sm:-left-[25%] lg:-left-[20%]
+              top-[43%] md:top-[44%]
+              -rotate-[22deg] sm:-rotate-[20deg] md:-rotate-[18deg]
+              origin-left
+            "
+            style={{
+              background:
+                'linear-gradient(180deg, rgba(180,180,180,0.1) 0%, rgba(220,220,220,0.22) 40%, rgba(180,180,180,0.1) 100%)',
+            }}
+          />
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 1 }}
+            className="
+              absolute
+              w-[160%] sm:w-[150%] lg:w-[140%]
+              h-[2px]
+              -left-[30%] sm:-left-[25%] lg:-left-[20%]
+              top-[51%] md:top-[52%]
+              -rotate-[22deg] sm:-rotate-[20deg] md:-rotate-[18deg]
+              origin-left
+            "
+            style={{
+              background:
+                'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
+            }}
+          />
+        </div>
+
+
+        {/* Bottom Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="
+            absolute z-20
+            bottom-5 sm:bottom-6 md:bottom-10
+            left-1/2 -translate-x-1/2
+          "
         >
-          <div className="flex items-center gap-6">
-            <Link href="/about" className="text-sm font-medium hover:opacity-70 transition-opacity" style={{ color: '#074139' }}>
-              About
-            </Link>
-            <Link href="/products" className="text-sm font-medium hover:opacity-70 transition-opacity" style={{ color: '#074139' }}>
-              Shop
-            </Link>
-            <Link href="#app" className="text-sm font-medium hover:opacity-70 transition-opacity" style={{ color: '#074139' }}>
-              App Download
-            </Link>
-          </div>
-
-          <span className="absolute left-1/2 -translate-x-1/2 text-lg font-black tracking-widest" style={{ color: '#074139' }}>
-            OBPARK®
-          </span>
-
           <Link
-            href="/register"
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all hover:opacity-90"
-            style={{ backgroundColor: '#074139', color: '#A2F1DF' }}
+            href="/products"
+            className="
+              flex items-center gap-2
+              px-4 sm:px-5 md:px-7
+              py-2 md:py-2.5
+              text-[10px] sm:text-[11px] md:text-sm
+              text-[#074139]
+              bg-[#CAEDE5]
+              border border-[rgba(7,65,57,0.35)]
+              backdrop-blur-sm whitespace-nowrap
+            "
+            style={{ fontFamily: 'var(--font-michroma)' }}
           >
-            SCHEDULE CALL ↗
+            DOWNLOAD APP <span
+              className="inline-block h-4 w-4 bg-[#074139]"
+              style={{
+                WebkitMask: 'url("/Images/Navbar/Vector.png") center / contain no-repeat',
+                mask: 'url("/Images/Navbar/Vector.png") center / contain no-repeat',
+              }}
+            />
           </Link>
-        </nav>
-      </div> */}
-
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-        <Link
-          href="/products"
-          className="flex items-center gap-2 px-7 py-2.5 rounded-full text-sm font-semibold tracking-widest transition-all hover:bg-white/30"
-          style={{
-            border: '1px solid rgba(7,65,57,0.35)',
-            color: '#074139',
-            backgroundColor: 'rgba(255,255,255,0.15)',
-            backdropFilter: 'blur(8px)',
-          }}
-        >
-          DOWNLOAD APP ↗
-        </Link>
-      </div>
-    </section>
+        </motion.div>
+      </section>
+    </>
   )
 }

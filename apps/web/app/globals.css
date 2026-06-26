@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -29,6 +30,7 @@
   border-color: hsl(var(--border));
 }
 
+<<<<<<< HEAD
 /* body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
@@ -67,4 +69,19 @@
 body {
   background-color: #59D0B51A; /* Replace with your desired color hex or name */
   min-height: 100vh;
+=======
+body {
+  background-color: #F0FAF5;
+  color: hsl(var(--foreground));
+}
+input::placeholder {
+  font-family: var(--font-michroma);
+}
+
+
+:root {
+  --font-michroma: 'Michroma', sans-serif;
+  --font-microgamma: 'Microgramma Extended', sans-serif;
+  --font-microgamma-bold: 'Microgramma Extended', sans-serif;
+>>>>>>> 3944446130e51b4e0c3eef275cdb436c87727b5a
 }
