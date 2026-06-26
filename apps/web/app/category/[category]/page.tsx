@@ -25,7 +25,7 @@ export default async function CategoryPage({ params }: PageProps) {
     <div className="rounded-xl overflow-hidden">
       {products.length === 0 ? (
         <div className="p-12 text-center text-slate-400 text-sm">
-          No products found for this category loop. Try testing <code className="bg-slate-100 px-1 py-0.5 rounded text-rose-500">/electronics-smart-gadgets</code>
+          No products found for this category loop. Try testing <code className="bg-slate-100 px-1 py-0.5 rounded text-rose-500">/electronics-smart-gadgets, /exterior-accessories, /emergency-utility-products, /ev-electric-vehicle-accessories</code>
         </div>
       ) : (
         /* Grid hata kar initial vertical stack class aur divide border wapas laga di hain */

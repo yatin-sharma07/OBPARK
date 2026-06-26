@@ -10,8 +10,10 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
+// NEW TYPE
 import { SingleProduct } from "@/app/category/mock-data/types";
 
+// icons unchanged
 import truckIcon from "@/app/assets/icons/truck.svg";
 import cartsIcon from "@/app/assets/icons/carts.svg";
 import globeIcon from "@/app/assets/icons/globe.svg";
@@ -22,16 +24,13 @@ interface ProductInfoProps {
 }
 
 export function ProductInfo({ product }: ProductInfoProps) {
+  // use galleryImages instead of old images[]
+  // const [activeImage, setActiveImage] = useState(
+  //   product.galleryImages[0]
+  // );
 
-  // COMBINED IMAGE ARRAY
-  const allImages = [
-    product.imagePath,
-    ...extraImages.extraImagesSet.slice(0, 3),
-  ];
-
-  // DEFAULT MAIN IMAGE = PRODUCT IMAGE
   const [activeImage, setActiveImage] = useState(
-    allImages[0]
+    extraImages.extraImagesSet[0]
   );
 
   const [quantity, setQuantity] = useState(1);
@@ -77,11 +76,11 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
             {/* Dot indicator */}
             <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5">
-              {allImages.map((_, idx) => (
+              {product.galleryImages.map((_, idx) => (
                 <span
                   key={idx}
                   className={`h-1.5 rounded-full transition-all ${
-                    activeImage === allImages[idx]
+                    activeImage === product.galleryImages[idx]
                       ? "w-4 bg-teal-800"
                       : "w-1.5 bg-slate-200"
                   }`}
@@ -92,7 +91,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
           {/* Thumbnails */}
           <div className="grid grid-cols-4 gap-3">
-            {allImages.map((img, i) => (
+            {extraImages.extraImagesSet.map((img, i) => (
               <button
                 key={i}
                 onClick={() => setActiveImage(img)}
@@ -115,6 +114,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
         {/* RIGHT SECTION */}
         <div className="lg:col-span-6 space-y-6">
 
+          {/* Title */}
           <div className="space-y-2">
             <h1 className="text-xl md:text-2xl font-black text-slate-900 leading-snug tracking-tight">
               {product.title}
@@ -171,7 +171,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
             </div>
           </div>
 
-          {/* ACCORDIONS */}
+          {/* ACCORDION 1 */}
           <div className="space-y-3">
 
             <div className="bg-white border border-none rounded-[1.5rem] overflow-hidden transition-all">
@@ -224,6 +224,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
               )}
             </div>
 
+            {/* ACCORDION 2 */}
             <div className="bg-white border-none rounded-[1.5rem] overflow-hidden transition-all">
 
               <button
@@ -258,7 +259,10 @@ export function ProductInfo({ product }: ProductInfoProps) {
                           key={idx}
                           className="marker:text-teal-700"
                         >
-                          <strong>{item.heading}</strong> : {item.content}
+                          <strong>
+                            {item.heading}
+                          </strong>{" "}
+                          : {item.content}
                         </li>
                       )
                     )}
@@ -273,18 +277,37 @@ export function ProductInfo({ product }: ProductInfoProps) {
           <div className="flex flex-wrap items-center gap-1.5 pt-1">
 
             <div className="bg-white rounded-l-3xl rounded-r-2xl px-4 py-6 flex items-center gap-2 text-[10px] font-bold text-slate-600">
-              <Image src={truckIcon} alt="truck" width={14} height={14} />
+              <Image
+                src={truckIcon}
+                alt="truck"
+                width={14}
+                height={14}
+              />
               <span>{product.shippingBadges[0]}</span>
             </div>
 
             <div className="bg-white rounded-2xl px-4 py-6 flex items-center gap-2 text-[10px] font-bold text-slate-600">
-              <Image src={globeIcon} alt="globe" width={14} height={14} />
-              <span>{product.shippingBadges[1]}</span>
+              <Image
+                src={globeIcon}
+                alt="globe"
+                width={14}
+                height={14}
+              />
+              <span>
+                {product.shippingBadges[1]}
+              </span>
             </div>
 
             <div className="bg-white rounded-l-2xl rounded-r-3xl px-4 py-6 flex items-center gap-2 text-[10px] font-bold text-slate-600">
-              <Image src={cartsIcon} alt="cart" width={14} height={14} />
-              <span>{product.shippingBadges[2]}</span>
+              <Image
+                src={cartsIcon}
+                alt="cart"
+                width={14}
+                height={14}
+              />
+              <span>
+                {product.shippingBadges[2]}
+              </span>
             </div>
 
           </div>
