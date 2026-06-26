@@ -1,42 +1,4 @@
-import { Category, OtherProductImages } from "./types";
-
-export const extraImages: OtherProductImages =
-  {
-    extraImagesSet: [
-      "/products/extraImages/Image-1.png",
-      "/products/extraImages/Image-2.png",
-      "/products/extraImages/Image-3.png",
-      "/products/extraImages/Image-4.png",
-    ],
-
-    electronicsImages: [
-      "/products/electronics/qubo-dashcam-1.png",
-      "/products/electronics/qubo-dashcam-2.png",
-      "/products/electronics/qubo-dashcam-3.png",
-      "/products/electronics/qubo-dashcam-4.png",
-    ],
-
-    evAccessoriesImages: [
-      "/products/electronics/qubo-dashcam-1.png",
-      "/products/electronics/qubo-dashcam-2.png",
-      "/products/electronics/qubo-dashcam-3.png",
-      "/products/electronics/qubo-dashcam-4.png",
-    ],
-
-    exteriorAccessoriesImages: [
-      "/products/electronics/qubo-dashcam-1.png",
-      "/products/electronics/qubo-dashcam-2.png",
-      "/products/electronics/qubo-dashcam-3.png",
-      "/products/electronics/qubo-dashcam-4.png",
-    ],
-
-    enuImages: [
-      "/products/electronics/qubo-dashcam-1.png",
-      "/products/electronics/qubo-dashcam-2.png",
-      "/products/electronics/qubo-dashcam-3.png",
-      "/products/electronics/qubo-dashcam-4.png",
-    ],
-  };
+import { Category } from "./types";
 
 export const MockData: Category[] = [
 

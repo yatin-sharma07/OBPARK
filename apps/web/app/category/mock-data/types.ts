@@ -65,6 +65,13 @@ export interface SingleProduct {
   };
 }
 
+export interface OtherProductImages {
+  extraImagesSet: string[];
+  electronicsImages: string[];
+  evAccessoriesImages: string[];
+  exteriorAccessoriesImages: string[];
+  enuImages: string[];
+}
 
 
 export const productCategories: ProductCategory[] = [
