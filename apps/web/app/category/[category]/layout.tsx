@@ -21,11 +21,10 @@ export default async function CategoryLayout({ children, params }: CategoryLayou
   const resolvedParams = await params; 
   
   return (
-    /* 2. CRUCIAL CHANGE HERE:
-      We append `michroma.className` right into the string list of your container classes. 
+    /*  We append `michroma.className` right into the string list of your container classes. 
       This injects Next.js font rendering directly across this whole tree wrapper block!
     */
-    <div className={`${michroma.className} min-h-screen bg-transparent`}>
+    <div className={`${michroma.className} min-h-screen bg-transparent mt-30`}>
       
       {/* Passing the parameter into our header prop */}
       <Header categoryName={resolvedParams.category} />

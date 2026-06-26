@@ -1,10 +1,8 @@
 import React from "react";
 import { notFound } from "next/navigation";
 
-// NEW DATA SOURCE
+//DATA SOURCE
 import { MockData } from "@/app/category/mock-data/mock-data";
-
-// EXISTING UI COMPONENTS (unchanged)
 import { ProductInfo } from "./productDetails";
 import { SimilarProducts } from "./similarProducts";
 import { CustomerReviews } from "./customerReviews";
@@ -41,7 +39,7 @@ export default async function ProductPage({
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16 mt-25">
       
       {/* Product Main Details Section */}
       <ProductInfo product={productData} />

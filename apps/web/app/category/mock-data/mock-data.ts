@@ -3689,7 +3689,7 @@ items: [
 {
 id: "cat-4",
 categoryName: "Emergency & Utility  Products",
-slug: "exterior-utility-products",
+slug: "emergency-utility-products",
 
 items: [
 
