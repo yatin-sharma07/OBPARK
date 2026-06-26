@@ -15,11 +15,6 @@ import { Navbar } from '@/components/Navbar'
 export default function HomePage() {
   return (
     <main>
-<<<<<<< HEAD
-      <HeroSection />
-      <MarqueeStrip />
-      <ServicesGrid />
-=======
       <Navbar />
       <HeroSection />
       <MarqueeStrip />
@@ -32,7 +27,6 @@ export default function HomePage() {
       <Reviews />
       <FeaturesAccordion />
       <Footer />
->>>>>>> 3944446130e51b4e0c3eef275cdb436c87727b5a
     </main>
   )
 }
