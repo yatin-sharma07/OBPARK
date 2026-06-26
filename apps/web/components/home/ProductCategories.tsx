@@ -3,7 +3,7 @@ import Link from 'next/link'
 const CATEGORIES = [
   {
     title: 'EV (Electric Vehicle) Accessories',
-    slug: 'ev-accessories',
+    slug: 'ev-accessories', 
     items: [
       { name: '7.5 kW Portable EV Charger', img: '/Images/box1/box1pic1.png' },
       { name: 'Charging Cable holders', img: '/Images/box1/box1pic2.png' },
@@ -15,7 +15,7 @@ const CATEGORIES = [
   },
   {
     title: 'Exterior Accessories',
-    slug: 'accessories',
+    slug: 'exterior-accessories',  
     items: [
       { name: 'Alloy Wheel Covers', img: '/Images/box2/pic1.png' },
       { name: 'Chrome garnish kits', img: '/Images/box2/pic2.png' },
@@ -27,7 +27,7 @@ const CATEGORIES = [
   },
   {
     title: 'Electronics & Smart Gadgets',
-    slug: 'electrical',
+    slug: 'electronics-smart-gadgets',  
     items: [
       { name: 'Jump Starters', img: '/Images/box3/pic1.png' },
       { name: 'Tyre inflators', img: '/Images/box3/pic2.png' },
@@ -39,7 +39,7 @@ const CATEGORIES = [
   },
   {
     title: 'Emergency & Utility Products',
-    slug: 'accessories',
+    slug: 'emergency-utility-products',  
     items: [
       { name: 'Dash cams', img: '/Images/box4/pic1.png' },
       { name: 'Android infotainment system', img: '/Images/box4/pic2.png' },
@@ -51,6 +51,7 @@ const CATEGORIES = [
   },
 ]
 
+
 export function ProductCategories() {
   return (
     <section className="py-12 md:py-16 mx-auto max-w-[1500px] px-4 sm:px-6 md:px-8">
@@ -59,36 +60,13 @@ export function ProductCategories() {
           <div
             key={cat.title}
             className="
-              bg-white
-              w-full
-              h-auto
-              md:h-[700px]
-              rounded-[24px]
-              sm:rounded-[30px]
-              p-4
-              sm:p-8
-              pt-6
-              sm:pt-12
-              pb-6
-              sm:pb-8
-              border
-              border-gray-100
-              shadow-sm
-              flex
-              flex-col
-              gap-6
-              sm:gap-8
-              md:gap-14
+              bg-white w-full h-auto md:h-[700px] rounded-[24px] sm:rounded-[30px]
+              p-4 sm:p-8 pt-6 sm:pt-12 pb-6 sm:pb-8 border border-gray-100
+              shadow-sm flex flex-col gap-6 sm:gap-8 md:gap-14
             "
           >
             <h3
-              className="
-                text-[13px]
-                sm:text-lg
-                md:text-2xl
-                leading-tight
-                sm:leading-none
-              "
+              className="text-[13px] sm:text-lg md:text-2xl leading-tight sm:leading-none"
               style={{
                 fontFamily: 'var(--font-michroma)',
                 fontWeight: 400,
@@ -98,64 +76,20 @@ export function ProductCategories() {
               {cat.title}
             </h3>
 
+            {/* --- Items Grid Sections (Top 3) --- */}
             <div className="flex flex-col gap-4 sm:gap-6 md:gap-14">
               <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-7">
                 {cat.items.slice(0, 3).map((item) => (
                   <div
                     key={item.name}
-                    className="
-                      flex
-                      flex-col
-                      items-center
-                      justify-center
-                      gap-2
-                      w-full
-                      min-h-[120px]
-                      sm:min-h-[200px]
-                      border
-                      border-[#ECECEC]
-                      p-2
-                    "
+                    className="flex flex-col items-center justify-center gap-2 w-full min-h-[120px] sm:min-h-[200px] border border-[#ECECEC] p-2"
                   >
-                    <div
-                      className="
-                        w-full
-                        max-w-[80px]
-                        sm:max-w-[126px]
-                        h-[70px]
-                        sm:h-[130px]
-                        rounded-none
-                        overflow-hidden
-                        bg-gray-50
-                      "
-                    >
-                      <img
-                        src={item.img}
-                        alt={item.name}
-                        className="w-full h-full object-cover"
-                      />
+                    <div className="w-full max-w-[80px] sm:max-w-[126px] h-[70px] sm:h-[130px] rounded-none overflow-hidden bg-gray-50">
+                      <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
                     </div>
-
                     <span
-                      className="
-                        min-h-[32px]
-                        sm:h-[40px]
-                        flex
-                        items-center
-                        justify-center
-                        text-center
-                        text-[8px]
-                        sm:text-[13px]
-                        md:text-[16px]
-                        leading-tight
-                        sm:leading-none
-                        px-1
-                      "
-                      style={{
-                        fontFamily: 'var(--font-michroma)',
-                        fontWeight: 400,
-                        color: '#074139',
-                      }}
+                      className="min-h-[32px] sm:h-[40px] flex items-center justify-center text-center text-[8px] sm:text-[13px] md:text-[16px] leading-tight sm:leading-none px-1"
+                      style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, color: '#074139' }}
                     >
                       {item.name}
                     </span>
@@ -163,63 +97,19 @@ export function ProductCategories() {
                 ))}
               </div>
 
+              {/* --- Items Grid Sections (Bottom 3) --- */}
               <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8">
                 {cat.items.slice(3, 6).map((item) => (
                   <div
                     key={item.name}
-                    className="
-                      flex
-                      flex-col
-                      items-center
-                      justify-center
-                      gap-2
-                      w-full
-                      min-h-[120px]
-                      sm:min-h-[200px]
-                      border
-                      border-[#ECECEC]
-                      p-2
-                    "
+                    className="flex flex-col items-center justify-center gap-2 w-full min-h-[120px] sm:min-h-[200px] border border-[#ECECEC] p-2"
                   >
-                    <div
-                      className="
-                        w-full
-                        max-w-[80px]
-                        sm:max-w-[126px]
-                        h-[70px]
-                        sm:h-[130px]
-                        rounded-none
-                        overflow-hidden
-                        bg-gray-50
-                      "
-                    >
-                      <img
-                        src={item.img}
-                        alt={item.name}
-                        className="w-full h-full object-cover"
-                      />
+                    <div className="w-full max-w-[80px] sm:max-w-[126px] h-[70px] sm:h-[130px] rounded-none overflow-hidden bg-gray-50">
+                      <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
                     </div>
-
                     <span
-                      className="
-                        min-h-[32px]
-                        sm:h-[40px]
-                        flex
-                        items-center
-                        justify-center
-                        text-center
-                        text-[8px]
-                        sm:text-[13px]
-                        md:text-[16px]
-                        leading-tight
-                        sm:leading-none
-                        px-1
-                      "
-                      style={{
-                        fontFamily: 'var(--font-michroma)',
-                        fontWeight: 400,
-                        color: '#074139',
-                      }}
+                      className="min-h-[32px] sm:h-[40px] flex items-center justify-center text-center text-[8px] sm:text-[13px] md:text-[16px] leading-tight sm:leading-none px-1"
+                      style={{ fontFamily: 'var(--font-michroma)', fontWeight: 400, color: '#074139' }}
                     >
                       {item.name}
                     </span>
@@ -228,14 +118,10 @@ export function ProductCategories() {
               </div>
             </div>
 
+            {/* FIXED: Link updated to point exactly to your /category/[category] route */}
             <Link
-              href={`/products?category=${cat.slug}`}
-              className="
-                text-sm
-                sm:text-lg
-                md:text-[20px]
-                leading-none
-              "
+              href={`/category/${cat.slug}`}
+              className="text-sm sm:text-lg md:text-[20px] leading-none cursor-pointer hover:underline"
               style={{
                 fontFamily: 'var(--font-michroma)',
                 fontWeight: 400,
