@@ -1,39 +1,49 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { microgrammaBold } from "@/lib/fonts";
+} from '@/components/ui/accordion';
+import { microgrammaBold } from '@/lib/fonts';
 
 const faqs = [
   {
-    question: "What is Nosu?",
+    question: 'Real-Time Occupancy',
     answer:
-      "Nosu is a metabolic health company. We help people make better choices around food and lifestyle to support long-term health and metabolic resilience. Our goal is to support behavior change through tools that work with your biology, not against it.",
+      'Live space tracking with 99.2% accuracy, updated every 2 seconds via IoT sensors and computer vision.',
   },
   {
-    question: "How is Nosu different from other supplements?",
+    question: 'AR Navigation',
     answer:
-      "Nosu focuses on science-backed metabolic support and long-term behavior change.",
+      'Indoor wayfinding that guides customers with spatial precision, reducing parking time from 15 minutes to 2 minutes.',
   },
   {
-    question: "Where are your products made?",
+    question: 'Digital Twins',
     answer:
-      "Our products are manufactured in certified facilities with strict quality controls.",
+      '3D virtual replicas of facilities synced in real-time, enabling predictive modeling and operational optimization.',
   },
   {
-    question: "How does Nosu support metabolic health?",
+    question: 'AI Analytics',
     answer:
-      "By helping users reduce sugar intake and build sustainable habits.",
+      'Predictive demand modeling, revenue optimization, and operational recommendations driven by machine learning.',
+  },
+  {
+    question: 'Services Marketplace',
+    answer:
+      'In-app vehicle services including car wash, fuel, EV charging, and insurance that generate $250K-400K annual commission.',
+  },
+  {
+    question: 'Facility Operations',
+    answer:
+      'Unified command center for pricing, enforcement, staff management, and security integration.',
   },
 ];
 
-const leftColumn = [0, 2];
-const rightColumn = [1, 3];
+const leftColumn = [0, 2, 4];
+const rightColumn = [1, 3, 5];
 
 function FAQColumn({
   indices,
@@ -50,7 +60,7 @@ function FAQColumn({
       collapsible
       value={openItem}
       onValueChange={onValueChange}
-      className="flex flex-col gap-4"
+      className="flex w-full flex-col gap-4"
     >
       {indices.map((index) => {
         const itemValue = `item-${index}`;
@@ -61,10 +71,10 @@ function FAQColumn({
           <AccordionItem
             key={itemValue}
             value={itemValue}
-            className={`overflow-hidden border-0 transition-[background-color,border-radius] duration-300 ${
+            className={`w-full overflow-hidden border-0 transition-[background-color,border-radius] duration-300 ${
               isOpen
-                ? "rounded-[30px] bg-white"
-                : "min-h-[88px] rounded-[16px] bg-[#266D74] sm:min-h-[120px]"
+                ? 'rounded-[24px] bg-white'
+                : 'min-h-[64px] rounded-[10px] bg-[#266D74] sm:min-h-[64px]'
             }`}
           >
             <AccordionTrigger
@@ -75,10 +85,10 @@ function FAQColumn({
                 justify-between
                 gap-4
                 border-0
-                px-5
-                py-5
+                px-6
+                py-4
                 sm:px-8
-                sm:py-8
+                sm:py-5
                 shadow-none
                 outline-none
                 hover:no-underline
@@ -93,11 +103,12 @@ function FAQColumn({
             >
               <span
                 className={`flex-1 text-left text-base font-medium leading-snug sm:text-lg ${
-                  isOpen ? "text-[#143B38]" : "text-white"
+                  isOpen ? 'text-[#143B38]' : 'text-white'
                 }`}
               >
                 {faq.question}
               </span>
+
               {!isOpen && (
                 <span
                   className="shrink-0 text-2xl font-light leading-none text-white"
@@ -108,7 +119,7 @@ function FAQColumn({
               )}
             </AccordionTrigger>
 
-            <AccordionContent className="border-0 px-5 pb-5 pt-0 text-sm leading-relaxed text-[#222222] sm:px-8 sm:pb-8 sm:text-base">
+            <AccordionContent className="border-0 px-6 pb-5 pt-0 text-sm leading-relaxed text-[#222222] sm:px-8 sm:pb-6 sm:text-base">
               {faq.answer}
             </AccordionContent>
           </AccordionItem>
@@ -119,38 +130,38 @@ function FAQColumn({
 }
 
 export default function FAQ() {
-  const [openItem, setOpenItem] = useState("");
+  const [openItem, setOpenItem] = useState('');
 
   return (
-    <section className="px-4 py-4 sm:px-6 sm:py-6 md:py-8 bg-white">
-      <div className="mx-auto max-w-7xl rounded-2xl bg-[#EAF3EE] p-5 sm:rounded-[24px] sm:p-8 md:rounded-[30px] md:p-10 lg:p-[50px]">
-        <p className="mb-3 text-xs text-[#0B4944] sm:mb-4 sm:text-sm">
-          Frequently Asked Questions (FAQ)
+    <section className="w-full bg-white px-4 py-4 sm:px-6 sm:py-6 md:py-8">
+      <div className="w-full rounded-2xl bg-[#EAF3EE] p-5 sm:rounded-[24px] sm:p-8 md:rounded-[30px] md:p-10 lg:p-[50px]">
+        <p className="mb-5 text-sm text-[#0B4944] sm:text-base">
+          What We Build
         </p>
 
         <h2
           className={`
             ${microgrammaBold.className}
-            mb-6
+            mb-8
             text-3xl
+            leading-[1.12]
+            text-[#0B4944]
             sm:text-4xl
             md:text-5xl
             lg:text-[48px]
-            leading-[1.12]
-            text-[#0B4944]
-            sm:mb-8
             md:mb-10
           `}
         >
-          About Nosu
+          About OBPARK
         </h2>
 
-        <div className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2">
+        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-8 lg:gap-10">
           <FAQColumn
             indices={leftColumn}
             openItem={openItem}
             onValueChange={setOpenItem}
           />
+
           <FAQColumn
             indices={rightColumn}
             openItem={openItem}
