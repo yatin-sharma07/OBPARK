@@ -12,7 +12,7 @@ const infrastructureData = [
     featured: true,
   },
   {
-      icon: '/Images/about/2.png',
+    icon: '/Images/about/2.png',
     title: "We're building the infrastructure for a world where:",
     description:
       "Autonomous Vehicles AVs will coordinate with OBPARK's digital twin to find optimal spaces, charge autonomously, and communicate with facility systems without human intervention.",
@@ -24,7 +24,7 @@ const infrastructureData = [
       'City-wide occupancy data will optimize traffic flow, reduce emissions by 80%, and enable dynamic congestion pricing that works across multiple facilities.',
   },
   {
-      icon: '/Images/about/4.png',
+    icon: '/Images/about/4.png',
     title: 'Seamless Commerce',
     description:
       'Parking facilities become commerce hubs where customers discover services, book appointments, and make purchases while their vehicles are parked.',
@@ -51,12 +51,12 @@ export default function Story() {
             className="text-center"
           >
             <h2
-              className={`${microgrammaBold.className} text-3xl sm:text-[30px] md:text-[48px] lg:text-[60px] font-bold text-[#59D0B5]`}
+              className={`${microgrammaBold.className} text-3xl sm:text-[30px] md:text-[38px] lg:text-[40px] font-bold text-[#59D0B5]`}
             >
               Who We Are
             </h2>
 
-            <p className="mt-6 text-base sm:text-lg md:text-xl text-[#3E7071] max-w-[1100px] mx-auto text-left">
+            <p className="mt-6 text-base sm:text-[14px] md:text-[18px] text-[#3E7071] max-w-[1100px] mx-auto text-left">
               Obrive Industries Private Limited is a Bangalore-based Spatial Computing and Immersive Technology company. We develop intelligent digital solutions that bridge the gap between physical and digital worlds.
             </p>
           </motion.div>
@@ -69,12 +69,12 @@ export default function Story() {
             className="text-center lg:mt-30 md:mt-20 sm:mt-10 mt-10"
           >
             <h2
-              className={`${microgrammaBold.className} text-3xl sm:text-[30px] md:text-[48px] lg:text-[60px] font-bold text-[#59D0B5]`}
+              className={`${microgrammaBold.className} text-3xl sm  :text-[30px] md:text-[38px] lg:text-[40px] font-bold text-[#59D0B5]`}
             >
               Innovation at Our Core
             </h2>
 
-            <p className="mt-6 text-base sm:text-lg md:text-xl text-[#3E7071] max-w-[1100px] mx-auto text-left flex flex-col gap-5">
+            <p className="mt-6 text-base sm:text-[14px] md:text-[18px] text-[#3E7071] max-w-[1100px] mx-auto text-left flex flex-col gap-5">
               <span>
                 We're not just building software. We're architecting the infrastructure for intelligent spaces. Every product, every feature, every decision is guided by one principle: how do we help facilities understand their spaces, serve their customers, and unlock hidden value?
               </span>
@@ -115,13 +115,13 @@ export default function Story() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.08 }}
                   className={`
-                    flex items-start gap-4
+                    flex items-center gap-4
                     ${item.featured ? 'bg-white rounded-[12px] p-3 sm:p-4 max-w-full' : ''}
                   `}
                 >
                   <div
                     className={`
-                      shrink-0 overflow-hidden bg-white flex items-center justify-center
+                      shrink-0 overflow-hidden bg-white flex flex-col items-center justify-center
                       ${item.featured ? 'w-[58px] h-[58px] rounded-[8px]' : 'w-[54px] h-[54px] rounded-[8px]'}
                       sm:w-[64px] sm:h-[64px]
                     `}
@@ -138,7 +138,7 @@ export default function Story() {
                       <h3
                         className={`
                           ${microgrammaBold.className}
-                          text-[10px] sm:text-xs md:text-sm
+                          text-[10px] sm:text-xs md:text-[16px]
                           font-bold text-[#06443B]
                           leading-tight mb-2
                         `}

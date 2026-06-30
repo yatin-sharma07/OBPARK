@@ -32,8 +32,8 @@ export default function AdvisoryBoard() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   return (
-    <section className="w-full overflow-hidden bg-white px-4 py-4 sm:px-6 sm:py-6 md:py-8">
-      <div className="grid w-full grid-cols-1 items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16 xl:gap-20">
+    <section className="w-full overflow-hidden bg-white px-4 py-3 sm:px-20 sm:py-5 md:py-6 lg:mb-20">
+      <div className="grid w-full grid-cols-1 items-center gap-7 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10 xl:gap-12">
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -42,17 +42,17 @@ export default function AdvisoryBoard() {
           transition={{ duration: 0.6 }}
           className="w-full"
         >
-          <p className="mb-4 text-base text-[#42D8BC] sm:text-lg">
+          <p className="mb-3 text-sm text-[#42D8BC] sm:text-base">
             About Obpark
           </p>
 
           <h2
-            className={`${microgrammaBold.className} text-3xl font-bold text-[#06483F] sm:text-4xl md:text-5xl`}
+            className={`${microgrammaBold.className} text-2xl font-bold text-[#06483F] sm:text-3xl md:text-[40px]`}
           >
             Our Story
           </h2>
 
-          <div className="mt-8 max-w-[760px] space-y-6 text-base leading-[1.55] text-[#4A4A4A] sm:text-lg md:text-[19px]">
+          <div className="mt-6 max-w-[660px] space-y-4 text-sm leading-[1.5] text-[#4A4A4A] sm:text-base md:text-[16px] leading-[1.7]">
             <p>
               In a world that moves faster every day, parking infrastructure
               hasn&apos;t evolved in decades. Drivers waste 15 minutes
@@ -88,7 +88,7 @@ export default function AdvisoryBoard() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex w-full flex-col gap-5"
+          className="flex w-full flex-col gap-3 sm:gap-4"
         >
           {accordions.map((item, index) => {
             const isActive = activeIndex === index;
@@ -100,7 +100,7 @@ export default function AdvisoryBoard() {
                 onClick={() => setActiveIndex(isActive ? null : index)}
                 layout
                 animate={{
-                  height: isActive ? 200 : 155,
+                  height: isActive ? 165 : 115,
                 }}
                 transition={{
                   height: {
@@ -113,8 +113,14 @@ export default function AdvisoryBoard() {
                   },
                 }}
                 className="
-                  group relative w-full cursor-pointer overflow-hidden rounded-[14px]
-                  text-left will-change-transform
+                  group
+                  relative
+                  w-full
+                  cursor-pointer
+                  overflow-hidden
+                  rounded-[12px]
+                  text-left
+                  will-change-transform
                 "
               >
                 {/* Background Image */}
@@ -122,8 +128,14 @@ export default function AdvisoryBoard() {
                   src={item.image}
                   alt={item.title}
                   className="
-                    absolute inset-0 h-full w-full object-cover
-                    transition-transform duration-700 ease-out
+                    absolute
+                    inset-0
+                    h-full
+                    w-full
+                    object-cover
+                    transition-transform
+                    duration-700
+                    ease-out
                     group-hover:scale-105
                   "
                 />
@@ -139,21 +151,30 @@ export default function AdvisoryBoard() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   className={`
-                    absolute left-1/2 top-1/2 z-20
-                    flex min-h-[72px] w-[calc(100%-40px)]
-                    -translate-x-1/2 -translate-y-1/2
-                    items-center justify-between
-                    rounded-[14px] bg-white/65
-                    px-5 backdrop-blur-md
-                    sm:px-6
+                    absolute
+                    left-1/2
+                    top-1/2
+                    z-20
+                    flex
+                    min-h-[54px]
+                    w-[calc(100%-32px)]
+                    -translate-x-1/2
+                    -translate-y-1/2
+                    items-center
+                    justify-between
+                    rounded-[12px]
+                    bg-white/65
+                    px-4
+                    backdrop-blur-md
+                    sm:px-5
                     ${isActive ? 'hidden' : 'block'}
                   `}
                 >
-                  <span className="text-base text-[#0C403A] sm:text-lg">
+                  <span className="text-sm text-[#0C403A] sm:text-base">
                     {item.title}
                   </span>
 
-                  <span className="text-2xl leading-none text-[#0C403A] sm:text-3xl">
+                  <span className="text-xl leading-none text-[#0C403A] sm:text-2xl">
                     {isActive ? '−' : '+'}
                   </span>
                 </motion.div>
@@ -172,13 +193,21 @@ export default function AdvisoryBoard() {
                         ease: [0.22, 1, 0.36, 1],
                       }}
                       className="
-                        absolute bottom-5 left-5 right-5 z-20
-                        rounded-[14px] bg-white/70
-                        px-5 py-5 backdrop-blur-md
-                        sm:px-6 sm:py-6
+                        absolute
+                        bottom-4
+                        left-4
+                        right-4
+                        z-20
+                        rounded-[12px]
+                        bg-white/70
+                        px-4
+                        py-4
+                        backdrop-blur-md
+                        sm:px-5
+                        sm:py-4
                       "
                     >
-                      <p className="text-sm leading-[1.35] text-black sm:text-base md:text-lg">
+                      <p className="text-xs leading-[1.35] text-black sm:text-sm md:text-[15px]">
                         {item.content}
                       </p>
                     </motion.div>

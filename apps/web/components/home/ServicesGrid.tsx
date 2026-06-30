@@ -126,7 +126,7 @@ export function ServicesGrid() {
         overflow-hidden
         px-4
         sm:px-5
-        md:px-6
+        md:px-20
         py-12
         sm:py-14
         md:py-20
@@ -172,10 +172,10 @@ export function ServicesGrid() {
             className={`
               ${microgrammaBold.className}
               font-bold
-              text-[28px]
-              sm:text-4xl
-              md:text-5xl
-              xl:text-[56px]
+              text-[20px]
+              sm:text-2xl
+              md:text-3xl
+              xl:text-[38px]
               leading-tight
               text-[#074139]
             `}
@@ -186,10 +186,10 @@ export function ServicesGrid() {
 
           <p
             className="
-              text-sm
-              sm:text-base
-              md:text-xl
-              xl:text-2xl
+              text-[11px]
+              sm:text-[13px]
+              md:text-[15px]
+              xl:text-base
               leading-[1.8]
               text-[#999C9C]
               max-w-[680px]
@@ -200,6 +200,7 @@ export function ServicesGrid() {
           >
             Every day, millions of drivers waste time
             searching for parking. <br />
+            <br />
 
             The Operating System for Intelligent Mobility
             Spaces Real-time occupancy intelligence, AR-
@@ -216,12 +217,12 @@ export function ServicesGrid() {
           variants={cardContainerVariants}
           className="
             w-full
-            max-w-[814px]
-            lg:max-w-[814px]
+            max-w-[700px]
+            lg:max-w-[700px]
             min-h-auto
-            lg:min-h-[800px]
+            lg:min-h-[680px]
             rounded-[30px]
-            md:rounded-[60px]
+            md:rounded-[40px]
             bg-white
             border
             border-[#07413980]
@@ -229,7 +230,7 @@ export function ServicesGrid() {
             p-4
             sm:p-5
             md:p-6
-            lg:p-10
+            lg:p-8
           "
         >
           <div
@@ -238,9 +239,9 @@ export function ServicesGrid() {
               grid-cols-2
               sm:grid-cols-2
               lg:grid-cols-3
-              gap-4
-              sm:gap-5
-              md:gap-8
+              gap-3
+              sm:gap-4
+              md:gap-6
               justify-items-center
             "
           >
@@ -255,19 +256,19 @@ export function ServicesGrid() {
                   aria-label={`Open ${service.label.toLowerCase()} service`}
                   className="
                     w-full
-                    max-w-[200px]
-                    min-w-[130px]
-                    h-[170px]
-                    sm:h-[190px]
-                    md:h-[211px]
-                    p-3
-                    sm:p-4
+                    max-w-[160px]
+                    min-w-[110px]
+                    h-[140px]
+                    sm:h-[160px]
+                    md:h-[175px]
+                    p-2
+                    sm:p-3
                     flex
                     flex-col
                     items-center
                     justify-center
-                    gap-3
-                    sm:gap-4
+                    gap-2
+                    sm:gap-3
                     rounded-[8px]
                     border
                     border-[rgba(7,65,57,0.8)]
@@ -285,16 +286,16 @@ export function ServicesGrid() {
                     <div
                       className="
                         relative
-                        w-[88px]
-                        h-[88px]
-                        sm:w-[104px]
-                        sm:h-[104px]
-                        md:w-[120px]
-                        md:h-[120px]
+                        w-[72px]
+                        h-[72px]
+                        sm:w-[84px]
+                        sm:h-[84px]
+                        md:w-[96px]
+                        md:h-[96px]
                         rounded-full
                         bg-[#F8FAFA]
-                        border-[5px]
-                        md:border-[6px]
+                        border-[4px]
+                        md:border-[5px]
                         border-[#59D0B5]
                         flex
                         items-center
@@ -311,12 +312,12 @@ export function ServicesGrid() {
                         sizes="(max-width: 640px) 50px, (max-width: 768px) 60px, 70px"
                         loading="lazy"
                         className="
-                          h-[48px]
-                          w-[48px]
-                          sm:h-[56px]
-                          sm:w-[56px]
-                          md:h-[60px]
-                          md:w-[60px]
+                          h-[36px]
+                          w-[36px]
+                          sm:h-[44px]
+                          sm:w-[44px]
+                          md:h-[48px]
+                          md:w-[48px]
                           object-contain
                         "
                       />
@@ -327,10 +328,10 @@ export function ServicesGrid() {
                     className={`
                       ${microgrammaBold.className}
                       font-bold
-                      text-[8px]
-                      sm:text-[9px]
-                      md:text-[12px]
-                      xl:text-[16px]
+                      text-[6px]
+                      sm:text-[7.5px]
+                      md:text-[9px]
+                      xl:text-[11px]
                       leading-tight
                       text-[#074139]
                       text-center
