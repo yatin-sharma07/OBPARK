@@ -145,10 +145,10 @@ export function ProductCategories() {
                         justify-center
                         text-center
                         text-[8px]
-                        sm:text-[13px]
-                        md:text-[16px]
+                        sm:text-[12px]
+                        md:text-[14px]
                         leading-tight
-                        sm:leading-none
+                       sm:leading-snug
                         px-1
                       "
                       style={{

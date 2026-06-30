@@ -17,9 +17,9 @@ export function ProblemSolution() {
         px-4
         sm:px-5
         md:px-6
-        py-12
-        sm:py-14
-        md:py-16
+        py-8
+        sm:py-10
+        md:py-12
       "
     >
       <motion.div
@@ -33,12 +33,12 @@ export function ProblemSolution() {
         className="
           mx-auto
           flex
-          max-w-[1500px]
+          max-w-[1240px]
           flex-col
           md:flex-row
           justify-center
-          gap-5
-          sm:gap-6
+          gap-4
+          sm:gap-5
         "
       >
         {/* PROBLEM CARD */}
@@ -59,30 +59,30 @@ export function ProblemSolution() {
             flex
             w-full
             md:w-1/2
-            lg:w-[782px]
-            min-h-[430px]
-            sm:min-h-[480px]
-            md:h-[620px]
-            lg:h-[757px]
+            lg:w-[620px]
+            min-h-[340px]
+            sm:min-h-[380px]
+            md:h-[480px]
+            lg:h-[590px]
             flex-col
 
-            rounded-[20px]
+            rounded-[16px]
             border
 
-            p-5
-            sm:p-8
-            md:p-10
+            p-4
+            sm:p-5
+            md:p-7
           "
         >
-          <div className="flex flex-col gap-6 sm:gap-8">
+          <div className="flex flex-col gap-4 sm:gap-5">
             <button
               type="button"
               aria-label="Toggle problem card"
               onClick={() => setActiveLeft((prev) => !prev)}
               className="
                 relative
-                h-6
-                w-10
+                h-5
+                w-8
                 shrink-0
                 rounded-full
                 transition-colors
@@ -99,7 +99,7 @@ export function ProblemSolution() {
               <motion.span
                 initial={false}
                 animate={{
-                  x: activeLeft ? 16 : 0,
+                  x: activeLeft ? 14 : 0,
                 }}
                 transition={{
                   type: 'spring',
@@ -108,8 +108,8 @@ export function ProblemSolution() {
                 }}
                 className="
                   absolute
-                  left-1
-                  top-1
+                  left-0.5
+                  top-0.5
                   h-4
                   w-4
                   rounded-full
@@ -128,9 +128,9 @@ export function ProblemSolution() {
               viewport={{ once: true }}
               className={`
                 ${microgrammaBold.className}
-                text-[30px]
-                sm:text-4xl
-                md:text-[40px]
+                text-[23px]
+                sm:text-[28px]
+                md:text-[32px]
                 leading-none
                 text-[#074139]
               `}
@@ -151,16 +151,16 @@ export function ProblemSolution() {
             viewport={{ once: true }}
             className="
               mt-auto
-              pt-8
-              text-[14px]
-              sm:text-base
-              md:text-xl
-              lg:text-2xl
-              leading-[2]
-              md:leading-[40px]
-              tracking-[0.06em]
-              sm:tracking-[0.08em]
-              md:tracking-[0.1em]
+              pt-5
+              text-[12px]
+              sm:text-[14px]
+              md:text-[16px]
+              lg:text-[18px]
+              leading-[1.85]
+              md:leading-[30px]
+              tracking-[0.045em]
+              sm:tracking-[0.06em]
+              md:tracking-[0.08em]
               text-[#484848]
             "
             style={{
@@ -195,30 +195,30 @@ export function ProblemSolution() {
             flex
             w-full
             md:w-1/2
-            lg:w-[782px]
-            min-h-[430px]
-            sm:min-h-[480px]
-            md:h-[620px]
-            lg:h-[757px]
+            lg:w-[620px]
+            min-h-[340px]
+            sm:min-h-[380px]
+            md:h-[480px]
+            lg:h-[590px]
             flex-col
 
-            rounded-[20px]
+            rounded-[16px]
             border
 
-            p-5
-            sm:p-8
-            md:p-10
+            p-4
+            sm:p-5
+            md:p-7
           "
         >
-          <div className="flex flex-col gap-6 sm:gap-8">
+          <div className="flex flex-col gap-4 sm:gap-5">
             <button
               type="button"
               aria-label="Toggle solution card"
               onClick={() => setActiveRight((prev) => !prev)}
               className="
                 relative
-                h-6
-                w-10
+                h-5
+                w-8
                 shrink-0
                 rounded-full
                 transition-colors
@@ -235,7 +235,7 @@ export function ProblemSolution() {
               <motion.span
                 initial={false}
                 animate={{
-                  x: activeRight ? 16 : 0,
+                  x: activeRight ? 14 : 0,
                 }}
                 transition={{
                   type: 'spring',
@@ -244,8 +244,8 @@ export function ProblemSolution() {
                 }}
                 className="
                   absolute
-                  left-1
-                  top-1
+                  left-0.5
+                  top-0.5
                   h-4
                   w-4
                   rounded-full
@@ -264,9 +264,9 @@ export function ProblemSolution() {
               viewport={{ once: true }}
               className={`
                 ${microgrammaBold.className}
-                text-[30px]
-                sm:text-4xl
-                md:text-[40px]
+                text-[23px]
+                sm:text-[28px]
+                md:text-[32px]
                 leading-none
                 text-[#074139]
               `}
@@ -287,16 +287,16 @@ export function ProblemSolution() {
             viewport={{ once: true }}
             className="
               mt-auto
-              pt-8
-              text-[14px]
-              sm:text-base
-              md:text-[20px]
-              lg:text-[24px]
-              leading-[2]
-              md:leading-[40px]
-              tracking-[0.06em]
-              sm:tracking-[0.08em]
-              md:tracking-[0.1em]
+              pt-5
+              text-[12px]
+              sm:text-[14px]
+              md:text-[16px]
+              lg:text-[18px]
+              leading-[1.85]
+              md:leading-[30px]
+              tracking-[0.045em]
+              sm:tracking-[0.06em]
+              md:tracking-[0.08em]
               text-[#484848]
             "
             style={{
