@@ -71,11 +71,10 @@ function FAQColumn({
           <AccordionItem
             key={itemValue}
             value={itemValue}
-            className={`w-full overflow-hidden border-0 transition-[background-color,border-radius] duration-300 ${
-              isOpen
+            className={`w-full overflow-hidden border-0 transition-[background-color,border-radius] duration-300 ${isOpen
                 ? 'rounded-[24px] bg-white'
                 : 'min-h-[64px] rounded-[10px] bg-[#266D74] sm:min-h-[64px]'
-            }`}
+              }`}
           >
             <AccordionTrigger
               className="
@@ -102,9 +101,8 @@ function FAQColumn({
               "
             >
               <span
-                className={`flex-1 text-left text-base font-medium leading-snug sm:text-lg ${
-                  isOpen ? 'text-[#143B38]' : 'text-white'
-                }`}
+                className={`flex-1 text-left text-base font-medium leading-snug sm:text-lg ${isOpen ? 'text-[#143B38]' : 'text-white'
+                  }`}
               >
                 {faq.question}
               </span>
@@ -146,9 +144,8 @@ export default function FAQ() {
             text-3xl
             leading-[1.12]
             text-[#0B4944]
-            sm:text-4xl
-            md:text-5xl
-            lg:text-[48px]
+            sm:text-[30px]            md:text-[36px]
+            lg:text-[40px]
             md:mb-10
           `}
         >

@@ -175,7 +175,7 @@ export function Footer() {
           <p
             className="text-xs mt-2"
             style={{
-              color: '#CAEDE5',
+              color: '#074139',
               fontFamily: 'var(--font-michroma)',
               fontSize: '16px',
             }}
