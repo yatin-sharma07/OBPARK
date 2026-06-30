@@ -106,8 +106,8 @@ export function Reviews() {
               text-[#074139]
               text-[24px]
               sm:text-[32px]
-              md:text-[42px]
-              lg:text-[48px]
+              md:text-[38px]
+              lg:text-[40px]
               leading-[1.15]
               font-bold
             `}

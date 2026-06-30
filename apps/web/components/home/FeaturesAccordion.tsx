@@ -40,14 +40,14 @@ export function FeaturesAccordion() {
         bg-[#EAF6F2]
 
         px-4
-        sm:px-6
-        md:px-[50px]
+        sm:px-5
+        md:px-8
 
-        py-16
-        sm:py-20
-        md:py-28
-        lg:py-32
-        xl:py-36
+        py-4
+        sm:py-4
+        md:py-3
+        lg:py-4
+        xl:py-5
       "
     >
       <motion.div
@@ -62,18 +62,18 @@ export function FeaturesAccordion() {
           mx-auto
           flex
           w-full
-          max-w-[1500px]
+          max-w-[1180px]
           flex-col
           lg:flex-row
           items-start
           justify-between
 
-          gap-10
-          md:gap-12
-          lg:gap-16
+          gap-7
+          md:gap-8
+          lg:gap-10
 
           min-h-auto
-          lg:min-h-[760px]
+          lg:min-h-[520px]
         "
       >
         {/* LEFT SIDE */}
@@ -93,25 +93,22 @@ export function FeaturesAccordion() {
             flex-col
             justify-start
             items-start
-            gap-6
-            md:gap-8
+            gap-4
+            md:gap-5
 
             lg:sticky
-            lg:top-28
-            lg:max-w-[634px]
+            lg:top-3
+            lg:max-w-[480px]
 
             pt-0
-            
           "
         >
           <div className="flex items-center gap-3">
-
-
             <p
               className="
-                text-base
-                sm:text-lg
-                md:text-xl
+                text-xs
+                sm:text-sm
+                md:text-base
                 leading-none
                 text-[#4B545A]
               "
@@ -127,11 +124,11 @@ export function FeaturesAccordion() {
           <h2
             className={`
               ${microgrammaBold.className}
-              text-[30px]
-              sm:text-4xl
-              md:text-5xl
-              lg:text-[48px]
-              xl:text-[56px]
+              text-[24px]
+              sm:text-[30px]
+              md:text-[36px]
+              lg:text-[38px]
+              xl:text-[44px]
               leading-[1.12]
               text-[#074139]
             `}
@@ -157,12 +154,12 @@ export function FeaturesAccordion() {
             flex-1
             flex-col
 
-            gap-5
-            sm:gap-6
-            md:gap-7
+            gap-3
+            sm:gap-3.5
+            md:gap-4
 
-            lg:max-w-[760px]
-            xl:max-w-[820px]
+            lg:max-w-[560px]
+            xl:max-w-[610px]
           "
         >
           {FEATURES.map((feature, index) => {
@@ -179,12 +176,12 @@ export function FeaturesAccordion() {
                   w-full
                   cursor-pointer
                   overflow-hidden
-                  rounded-[18px]
-                  sm:rounded-[20px]
+                  rounded-[12px]
+                  sm:rounded-[14px]
                   bg-white
                 "
                 animate={{
-                  height: isOpen ? 330 : 214,
+                  height: isOpen ? 250 : 125,
                 }}
                 transition={{
                   duration: 0.45,
@@ -218,12 +215,11 @@ export function FeaturesAccordion() {
                     flex-col
                     justify-center
 
-                    px-4
-                    sm:px-6
-                    md:px-8
+                    px-3
+                    sm:px-3.5
+                    md:px-4
 
-                    py-5
-                    sm:py-6
+                    py-3
                   "
                 >
                   <div
@@ -233,18 +229,17 @@ export function FeaturesAccordion() {
                       justify-between
                       gap-3
 
-                      rounded-[16px]
-                      sm:rounded-[18px]
+                      rounded-[10px]
+                      sm:rounded-[12px]
 
-                      px-4
-                      py-4
+                      px-3
+                      py-2.5
 
-                      sm:px-6
-                      sm:py-5
+                      sm:px-3.5
+                      sm:py-3
 
-                      md:px-7
-                      md:py-13
-
+                      md:px-4
+                      md:py-6
 
                       backdrop-blur-[2px]
                     "
@@ -258,11 +253,11 @@ export function FeaturesAccordion() {
                         flex-1
                         truncate
 
-                        text-sm
-                        sm:text-base
-                        md:text-xl
-                        lg:text-[22px]
-                        xl:text-[24px]
+                        text-[11px]
+                        sm:text-xs
+                        md:text-sm
+                        lg:text-base
+                        xl:text-[18px]
 
                         leading-none
                         text-black
@@ -285,16 +280,16 @@ export function FeaturesAccordion() {
                       }}
                       className="
                         flex
-                        h-8
-                        w-8
-                        sm:h-9
-                        sm:w-9
+                        h-5
+                        w-5
+                        sm:h-6
+                        sm:w-6
                         shrink-0
                         items-center
                         justify-center
                         rounded-full
 
-                        text-xl
+                        text-sm
                       "
                       style={{
                         backgroundColor: 'rgba(255,255,255,0.6)',
@@ -318,16 +313,15 @@ export function FeaturesAccordion() {
                         }}
                         className="overflow-hidden"
                       >
-                        <div className="mt-4 px-1 sm:px-2">
+                        <div className="mt-2 px-1">
                           <p
                             className="
-                              rounded-lg
-                              p-3
-                              sm:p-4
+                              rounded-md
+                              p-2
 
-                              text-xs
-                              sm:text-sm
-                              md:text-base
+                              text-[9px]
+                              sm:text-[10px]
+                              md:text-[14px]
 
                               leading-relaxed
                               text-black

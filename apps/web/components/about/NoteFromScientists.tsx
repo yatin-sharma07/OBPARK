@@ -5,7 +5,7 @@ import { microgrammaBold } from '@/lib/fonts';
 
 export default function NoteFromScientist() {
   return (
-    <section className="w-full bg-white px-4 py-4 sm:px-6 sm:py-6 md:py-8 lg:mb-20">
+    <section className="w-full bg-white px-4 py-3 sm:px-5 sm:py-5 md:py-6 lg:mb-14">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -15,11 +15,11 @@ export default function NoteFromScientist() {
           grid
           w-full
           grid-cols-1
-          gap-4
-          sm:gap-5
+          gap-3
+          sm:gap-4
           md:grid-cols-2
-          md:gap-7
-          lg:h-[857px]
+          md:gap-5
+          lg:h-[720px]
           lg:grid-cols-[0.78fr_1.4fr]
         "
       >
@@ -28,12 +28,12 @@ export default function NoteFromScientist() {
           className="
             relative
             overflow-hidden
-            rounded-[10px]
-            min-h-[360px]
-            sm:min-h-[460px]
-            md:min-h-[600px]
+            rounded-[9px]
+            min-h-[300px]
+            sm:min-h-[380px]
+            md:min-h-[500px]
             lg:min-h-0
-            lg:h-[857px]
+            lg:h-[720px]
           "
         >
           <img
@@ -49,29 +49,29 @@ export default function NoteFromScientist() {
             flex
             flex-col
             justify-center
-            rounded-[10px]
+            rounded-[9px]
             bg-[#F0F9F5]
-            px-5
-            py-6
-            sm:px-7
-            sm:py-8
-            md:px-10
-            md:py-10
-            lg:h-[857px]
-            lg:px-12
-            lg:py-10
+            px-4
+            py-5
+            sm:px-6
+            sm:py-6
+            md:px-8
+            md:py-8
+            lg:h-[720px]
+            lg:px-10
+            lg:py-8
           "
         >
           <h2
             className={`
               ${microgrammaBold.className}
               text-[#06483F]
-              text-xl
+              text-lg
               font-bold
               leading-tight
-              sm:text-2xl
-              md:text-[28px]
-              lg:text-[40px]
+              sm:text-xl
+              md:text-[24px]
+              lg:text-[34px]
             `}
           >
             The Vision Behind OBPARK
@@ -79,15 +79,16 @@ export default function NoteFromScientist() {
 
           <div
             className="
-              mt-6
-              max-w-[850px]
-              space-y-5
-              text-sm
+              mt-5
+              max-w-[760px]
+              space-y-4
+              text-xs
               leading-[1.45]
               text-[#3E7071]
-              sm:text-base
-              md:text-[17px]
-              lg:text-[24px]
+              sm:text-sm
+              md:text-[15px]
+              lg:text-[18px]
+              leading-[1.80]
             "
           >
             <p>
@@ -110,10 +111,9 @@ export default function NoteFromScientist() {
               OBPARK changes this. By combining spatial computing, augmented
               reality navigation, real-time occupancy intelligence, and
               AI-powered analytics, OBPARK transforms traditional parking
-              infrastructure into:
+              infrastructure into : Intelligent Spaces.
             </p>
 
-            <p>Intelligent Spaces.</p>
           </div>
         </div>
       </motion.div>

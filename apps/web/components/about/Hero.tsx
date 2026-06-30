@@ -97,19 +97,20 @@ export default function Hero() {
           <h1
             className={`
               ${microgrammaBold.className}
-              text-3xl
-              sm:text-4xl
-              md:text-[48px]
-              lg:text-[60px]
+              text-2xl
+              sm:text-3xl
+              md:text-[38px]
+              lg:text-[40px]
               font-bold
               text-[#59D0B5]
               leading-tight
+              lg:mb-10
             `}
           >
             Building the Operating System for Intelligent Mobility Spaces
           </h1>
 
-          <p className="mt-6 text-base sm:text-lg md:text-xl text-[#3E7071] max-w-[1100px] mx-auto text-left flex flex-col gap-5">
+          <p className="mt-6 text-base sm:text-lg md:text-[18px] text-[#3E7071] max-w-[1100px] mx-auto text-left flex flex-col gap-5">
             At Obrive Industries, we&apos;re reimagining how people move through
             and interact with physical spaces.
             <br />
