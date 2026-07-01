@@ -185,7 +185,7 @@ export default function Story() {
                 muted
                 loop
                 playsInline
-                className="w-full h-full object-cover"
+                className="w-full max-h-[500px] object-cover"
               />
             </motion.div>
           </div>
