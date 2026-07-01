@@ -34,7 +34,7 @@ export default function Hero() {
         {/* Background Video */}
         <video
           className="absolute inset-0 w-full h-full object-cover"
-          src="/Images/about/about-header.mp4"
+          src="/Images/HeroSection/obrive-intro.mp4"
           autoPlay
           muted
           loop
