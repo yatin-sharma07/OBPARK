@@ -160,7 +160,7 @@ export function CtaBanner() {
             md:mt-8
             text-lg
             sm:text-2xl
-            md:text-[40px]
+            md:text-[36px]
             leading-none
             text-[#074139]
             font-bold

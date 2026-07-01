@@ -51,7 +51,7 @@ export default function Story() {
             className="text-center"
           >
             <h2
-              className={`${microgrammaBold.className} text-3xl sm:text-[30px] md:text-[38px] lg:text-[40px] font-bold text-[#59D0B5]`}
+              className={`${microgrammaBold.className} text-3xl sm:text-[30px] md:text-[34px] lg:text-[36px] font-bold text-[#59D0B5]`}
             >
               Who We Are
             </h2>
@@ -69,7 +69,7 @@ export default function Story() {
             className="text-center lg:mt-30 md:mt-20 sm:mt-10 mt-10"
           >
             <h2
-              className={`${microgrammaBold.className} text-3xl sm  :text-[30px] md:text-[38px] lg:text-[40px] font-bold text-[#59D0B5]`}
+              className={`${microgrammaBold.className} text-3xl sm  :text-[30px] md:text-[34px] lg:text-[36px] font-bold text-[#59D0B5]`}
             >
               Innovation at Our Core
             </h2>
@@ -162,7 +162,7 @@ export default function Story() {
               ))}
             </div>
 
-            {/* Right Visual Box */}
+            {/* Right Video Box */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -179,14 +179,14 @@ export default function Story() {
                 overflow-hidden
               "
             >
-              {/* Replace this with image/video whenever ready */}
-              {/* 
-              <img
-                src="/Images/About/future-map.png"
-                alt="Future intelligent mobility spaces"
-                className="w-full h-full object-cover"
+              <video
+                src="/Images/about/about-1.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full max-h-[500px] object-cover"
               />
-              */}
             </motion.div>
           </div>
         </motion.div>
