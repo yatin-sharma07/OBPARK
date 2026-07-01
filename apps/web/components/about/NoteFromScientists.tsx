@@ -60,6 +60,7 @@ export default function NoteFromScientist() {
             lg:h-[720px]
             lg:px-10
             lg:py-8
+            text-center
           "
         >
           <h2
