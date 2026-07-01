@@ -34,7 +34,7 @@ export default function Hero() {
         {/* Background Video */}
         <video
           className="absolute inset-0 w-full h-full object-cover"
-          src="/Images/HeroSection/obrive-intro.mp4"
+          src="/Images/about/about-header.mp4"
           autoPlay
           muted
           loop
@@ -98,9 +98,9 @@ export default function Hero() {
             className={`
               ${microgrammaBold.className}
               text-2xl
-              sm:text-3xl
-              md:text-[38px]
-              lg:text-[40px]
+              sm:text-2xl
+              md:text-[34px]
+              lg:text-[36px]
               font-bold
               text-[#59D0B5]
               leading-tight
