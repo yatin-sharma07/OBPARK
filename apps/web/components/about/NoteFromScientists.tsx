@@ -36,10 +36,13 @@ export default function NoteFromScientist() {
             lg:h-[720px]
           "
         >
-          <img
-            src="/Images/about/about-vision.png"
-            alt="The Vision Behind OBPARK"
-            className="absolute inset-0 h-full w-full object-cover"
+          <video
+            src="/Images/about/about-header.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
           />
         </div>
 
@@ -60,6 +63,7 @@ export default function NoteFromScientist() {
             lg:h-[720px]
             lg:px-10
             lg:py-8
+            text-center
           "
         >
           <h2
