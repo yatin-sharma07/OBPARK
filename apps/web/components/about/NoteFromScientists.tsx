@@ -37,7 +37,7 @@ export default function NoteFromScientist() {
           "
         >
           <video
-            src="/Images/about/about-header.mp4"
+            src="/Images/about/about-4.mp4"
             autoPlay
             muted
             loop
@@ -64,6 +64,7 @@ export default function NoteFromScientist() {
             lg:px-10
             lg:py-8
             text-center
+            items-center
           "
         >
           <h2
@@ -93,6 +94,7 @@ export default function NoteFromScientist() {
               md:text-[15px]
               lg:text-[18px]
               leading-[1.80]
+
             "
           >
             <p>

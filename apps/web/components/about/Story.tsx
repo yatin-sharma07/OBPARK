@@ -116,7 +116,7 @@ export default function Story() {
                   transition={{ duration: 0.5, delay: index * 0.08 }}
                   className={`
                     flex items-center gap-4
-                    ${item.featured ? 'bg-white rounded-[12px] p-3 sm:p-4 max-w-full' : ''}
+                    ${item.featured ? 'bg-white rounded-[12px] p-3 sm:p-4 max-w-full ' : ''}
                   `}
                 >
                   <div
@@ -180,12 +180,12 @@ export default function Story() {
               "
             >
               <video
-                src="/Images/about/about-1.mp4"
+                src="/Images/about/about-3.mp4"
                 autoPlay
                 muted
                 loop
                 playsInline
-                className="w-full max-h-[500px] object-cover"
+                className="w-full max-h-[660px] object-cover"
               />
             </motion.div>
           </div>
