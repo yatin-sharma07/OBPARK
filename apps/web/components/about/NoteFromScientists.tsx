@@ -1,96 +1,128 @@
-import Image from "next/image";
-import FadeIn from "@/components/ui/FadeIn";
-import { microgrammaBold } from "@/lib/fonts";
+'use client';
+
+import { motion } from 'framer-motion';
+import { microgrammaBold } from '@/lib/fonts';
 
 export default function NoteFromScientist() {
   return (
-    <section className="bg-white px-4 py-4 sm:px-6 sm:py-6 md:py-8">
-      <FadeIn>
-        <div className="mx-auto max-w-7xl">
-          <div className="grid items-stretch gap-8 lg:grid-cols-[360px_1fr] lg:gap-10">
+    <section className="w-full bg-white px-4 py-3 sm:px-5 sm:py-5 md:py-6 lg:mb-14">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="
+          grid
+          w-full
+          grid-cols-1
+          gap-3
+          sm:gap-4
+          md:grid-cols-2
+          md:gap-5
+          lg:h-[720px]
+          lg:grid-cols-[0.78fr_1.4fr]
+        "
+      >
+        {/* Left Image */}
+        <div
+          className="
+            relative
+            overflow-hidden
+            rounded-[9px]
+            min-h-[300px]
+            sm:min-h-[380px]
+            md:min-h-[500px]
+            lg:min-h-0
+            lg:h-[720px]
+          "
+        >
+          <video
+            src="/Images/about/about-4.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-            {/* LEFT PANEL */}
-            <div className="overflow-hidden rounded-[28px] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
+        {/* Right Content Card */}
+        <div
+          className="
+            flex
+            flex-col
+            justify-center
+            rounded-[9px]
+            bg-[#F0F9F5]
+            px-4
+            py-5
+            sm:px-6
+            sm:py-6
+            md:px-8
+            md:py-8
+            lg:h-[720px]
+            lg:px-10
+            lg:py-8
+            text-center
+            items-center
+          "
+        >
+          <h2
+            className={`
+              ${microgrammaBold.className}
+              text-[#06483F]
+              text-lg
+              font-bold
+              leading-tight
+              sm:text-xl
+              md:text-[24px]
+              lg:text-[34px]
+            `}
+          >
+            The Vision Behind OBPARK
+          </h2>
 
-              {/* Image */}
-              <div className="relative aspect-[4/5] w-full">
-                <Image
-                  src="/Images/images/scientist.png"
-                  alt="Dr. Robert Lufkin"
-                  fill
-                  priority
-                  className="object-cover"
-                />
-              </div>
+          <div
+            className="
+              mt-5
+              max-w-[760px]
+              space-y-4
+              text-xs
+              leading-[1.45]
+              text-[#3E7071]
+              sm:text-sm
+              md:text-[15px]
+              lg:text-[18px]
+              leading-[1.80]
 
-              {/* Info Card */}
-              <div className="border-t border-[#EEF3F1] bg-[#F0F9F5] px-6 py-6 text-center">
-                <p className="text-[11px] tracking-wide text-[#5B6368]">
-                  Nosu lead scientist & advisor
-                </p>
+            "
+          >
+            <p>
+              OBPARK was created to solve a problem that affects millions of
+              people every day: the broken experience of finding and parking a
+              vehicle.
+            </p>
 
-                <h3
-                  className={`
-                    ${microgrammaBold.className}
-                    mt-2
-                    text-[20px]
-                    text-[#074139]
-                  `}
-                >
-                  Dr. Robert Lufkin
-                </h3>
+            <p>
+              But more importantly, OBPARK was created to unlock value that
+              facility operators didn&apos;t know existed. A 1,000-space
+              facility typically operates at 65-70% occupancy. That&apos;s
+              $400K-500K in missed revenue every year. Customers leave malls
+              and airports without visiting due to parking frustration. Staff
+              spend hours on manual enforcement and ticketing. Data that could
+              drive smarter decisions simply doesn&apos;t exist.
+            </p>
 
-                <div className="mt-5 flex justify-center">
-                  <div className="relative h-14 w-44">
-                    <Image
-                      src="/Images/images/ucla.png"
-                      alt="UCLA USC"
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* RIGHT PANEL */}
-            <div className="rounded-[28px] bg-[#F0F9F5] px-8 py-8 md:px-10 md:py-10 flex flex-col justify-center">
-              <h2
-                className={`
-                  ${microgrammaBold.className}
-                  text-[24px]
-                  sm:text-[28px]
-                  lg:text-[32px]
-                  leading-tight
-                  text-[#074139]
-                `}
-              >
-                A Note from Dr. Robert Lufkin
-              </h2>
-
-              <div className="mt-8 space-y-8 text-[15px] sm:text-[16px] leading-[1.8] text-[#5B6368] italic">
-                <p>
-                  “Most people don’t realize how sugar controls their energy,
-                  mood, and long-term health until they experience life without
-                  the constant highs and crashes. What I love about Nosu’s
-                  methodology is that it’s not about extreme diets or guilt.
-                  It’s about small, science-backed changes that help people feel
-                  more in control, more balanced, and more themselves.”
-                </p>
-
-                <p>
-                  “And the most unique part about Nosu’s Sweet Shield formula?
-                  You feel it working within minutes. Sugar stops tasting sweet,
-                  which means cravings lose their grip almost instantly. With
-                  Nosu, you can finally enjoy food on your terms, without sugar
-                  calling the shots.”
-                </p>
-              </div>
-            </div>
+            <p>
+              OBPARK changes this. By combining spatial computing, augmented
+              reality navigation, real-time occupancy intelligence, and
+              AI-powered analytics, OBPARK transforms traditional parking
+              infrastructure into : Intelligent Spaces.
+            </p>
 
           </div>
         </div>
-      </FadeIn>
+      </motion.div>
     </section>
   );
 }

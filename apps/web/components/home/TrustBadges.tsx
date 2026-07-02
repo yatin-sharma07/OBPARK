@@ -1,54 +1,54 @@
 import { microgrammaBold } from '@/lib/fonts'
 
 const BADGES = [
-  "Smart Parking, Real-time occupancy",
-  "AR Navigation Intuitive wayfinding",
-  "Vehicle Services",
-  "Vehicle products and accessories.",
-  "customer journey analysis",
-  "Unified facility control.",
+  'Smart Parking, Real-time occupancy',
+  'AR Navigation Intuitive wayfinding',
+  'Vehicle Services',
+  'Vehicle products and accessories.',
+  'Customer journey analysis',
+  'Unified facility control.',
 ]
 
 const badgeStyles = [
   {
     color: '#B0E5CC',
     rotate: '-0.2deg',
-    width: '92%',
+    width: '90%',
     marginLeft: '0%',
     zIndex: 5,
   },
   {
     color: '#95D9C0',
     rotate: '-2.5deg',
-    width: '93%',
+    width: '91%',
     marginLeft: '0.5%',
     zIndex: 6,
   },
   {
     color: '#7ACCB4',
     rotate: '3deg',
-    width: '94%',
+    width: '92%',
     marginLeft: '1%',
     zIndex: 7,
   },
   {
     color: '#5DBEA7',
     rotate: '-3.7deg',
-    width: '96%',
-    marginLeft: '5%',
+    width: '94%',
+    marginLeft: '4%',
     zIndex: 8,
   },
   {
     color: '#3DA09A',
     rotate: '2deg',
-    width: '93%',
+    width: '91%',
     marginLeft: '0%',
     zIndex: 9,
   },
   {
     color: '#167D7F',
     rotate: '0deg',
-    width: '94%',
+    width: '92%',
     marginLeft: '0%',
     zIndex: 10,
   },
@@ -61,13 +61,13 @@ export function TrustBadges() {
         w-full
         max-w-[100vw]
         overflow-hidden
-       
+
         px-4
         sm:px-6
         md:px-8
-        py-14
-        sm:py-16
-        md:py-24
+        py-12
+        sm:py-14
+        md:py-5
       "
     >
       <div
@@ -75,7 +75,7 @@ export function TrustBadges() {
           mx-auto
           flex
           w-full
-          max-w-[800px]
+          max-w-[720px]
           flex-col
           items-center
         "
@@ -102,12 +102,13 @@ export function TrustBadges() {
                   relative
                   flex
                   items-center
-                  gap-3
-                  sm:gap-4
+                  gap-2.5
+                  sm:gap-3
+                  md:gap-4
 
-                  h-[50px]
-                  sm:h-[65px]
-                  md:h-[90px]
+                  h-[46px]
+                  sm:h-[58px]
+                  md:h-[78px]
 
                   rounded-[6px]
                   sm:rounded-[7px]
@@ -131,26 +132,33 @@ export function TrustBadges() {
               >
                 <div
                   className="
-    flex
-    h-[40px]
-    w-[40px]
-    sm:h-[48px]
-    sm:w-[48px]
-    md:h-[56px]
-    md:w-[56px]
-    shrink-0
-    items-center
-    justify-center
-    rounded-full
-    bg-[#D8F4EC]
-  "
+                    flex
+                    h-[34px]
+                    w-[34px]
+                    sm:h-[42px]
+                    sm:w-[42px]
+                    md:h-[50px]
+                    md:w-[50px]
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-[#D8F4EC]
+                  "
                 >
                   <svg
-                    width="32"
-                    height="32"
+                    width="30"
+                    height="30"
                     viewBox="0 0 24 24"
                     fill="none"
-                    className="h-[24px] w-[24px] sm:h-[28px] sm:w-[28px] md:h-[32px] md:w-[32px]"
+                    className="
+                      h-[21px]
+                      w-[21px]
+                      sm:h-[25px]
+                      sm:w-[25px]
+                      md:h-[29px]
+                      md:w-[29px]
+                    "
                   >
                     <path
                       d="M12 2.7L20 7.3V16.7L12 21.3L4 16.7V7.3L12 2.7Z"
@@ -160,7 +168,6 @@ export function TrustBadges() {
                     <path d="M12 2.7V21.3" stroke="#074139" strokeWidth="1.1" />
                     <path d="M4 7.3L20 16.7" stroke="#074139" strokeWidth="1.1" />
                     <path d="M20 7.3L4 16.7" stroke="#074139" strokeWidth="1.1" />
-
                   </svg>
                 </div>
 
@@ -169,10 +176,10 @@ export function TrustBadges() {
                     block
                     min-w-0
                     truncate
-                    text-[12px]
-                    sm:text-[17px]
-                    md:text-[24px]
-                    lg:text-[26px]
+                    text-[11px]
+                    sm:text-[15px]
+                    md:text-[21px]
+                    lg:text-[22px]
                     leading-none
                     tracking-[0.01em]
                     text-[#074139]
@@ -189,12 +196,13 @@ export function TrustBadges() {
           })}
         </div>
 
-        <div className="mt-16 md:mt-28 text-center px-3">
+        <div className="mt-12 md:mt-35 text-center px-3">
           <p
             className="
               whitespace-nowrap
-              text-[clamp(12px,2vw,24px)]
-              leading-none mb-10
+              text-[clamp(11px,1.8vw,21px)]
+              leading-none
+              mb-8
             "
             style={{
               fontFamily: 'var(--font-michroma)',
@@ -210,7 +218,7 @@ export function TrustBadges() {
               ${microgrammaBold.className}
               mt-3
               whitespace-nowrap
-              text-[clamp(16px,2.8vw,40px)]
+              text-[clamp(15px,2.5vw,33px)]
               leading-none
             `}
             style={{

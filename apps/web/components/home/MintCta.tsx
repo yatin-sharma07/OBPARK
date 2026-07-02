@@ -97,8 +97,8 @@ export function MintCta() {
 
               text-[24px]
               sm:text-[32px]
-              md:text-[42px]
-              lg:text-[48px]
+              md:text-[38px]
+              lg:text-[40px]
             `}
           >
             OBPARK vs Traditional Parking
@@ -112,9 +112,9 @@ export function MintCta() {
               leading-tight
 
               text-[10px]
-              sm:text-[13px]
-              md:text-[16px]
-              lg:text-[18px]
+              sm:text-[11px]
+              md:text-[13px]
+              lg:text-[15px]
             "
             style={{
               fontFamily: 'var(--font-michroma)',
