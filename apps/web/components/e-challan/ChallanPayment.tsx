@@ -8,7 +8,7 @@ export function ChallanPayment() {
 
   return (
     <div className="min-h-screen p-4 sm:p-6" style={{ background: '#F0FAF5' }}>
-      <div className="mx-auto mt-6 sm:mt-10 w-full max-w-[1344px] grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-start">
+      <div className="mx-auto mt-6 sm:mt-25 w-full max-w-[1344px] grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-start">
 
         <div className="w-full max-w-[650px] bg-white rounded-2xl p-6 sm:p-10">
           <div className=" rounded-xl p-5 sm:p-8">

@@ -42,7 +42,7 @@ export function CheckChallanPaid() {
 
   return (
     <div className="min-h-screen bg-[#F0FAF5] p-4 sm:p-6">
-      <div className="mx-auto mt-8 sm:mt-15 w-full max-w-[1344px] rounded-3xl">
+      <div className="mx-auto mt-8 sm:mt-25 w-full max-w-[1344px] rounded-3xl">
         
         {/* Vehicle Info */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full h-auto sm:h-[118px] px-4 sm:px-8 py-4">
@@ -107,7 +107,7 @@ export function CheckChallanPaid() {
               challans.map((c, i) => (
                 <div
                   key={i}
-                  className="bg-white rounded-2xl p-4 sm:p-5 shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
+                  className="bg-white rounded-2xl p-4 sm:p-5 shadow-md"
                 >
                   <div className="flex flex-col gap-2 pb-3">
                     <p className="font-michroma text-sm tracking-wide text-[#074139]">

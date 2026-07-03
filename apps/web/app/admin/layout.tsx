@@ -1,64 +1,55 @@
+// apps/web/app/admin/layout.tsx
 'use client'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { AdminRoute } from '@/components/auth/AdminRoute'
-import { LayoutDashboard, Package, ShoppingBag, Tag, LogOut } from 'lucide-react'
-import { useLogout } from '@/hooks/useAuth'
 
-const NAV_ITEMS = [
-  { href: '/admin',          label: 'Dashboard', icon: LayoutDashboard, exact: true },
-  { href: '/admin/products', label: 'Products',  icon: Package },
-  { href: '/admin/orders',   label: 'Orders',    icon: ShoppingBag },
-  { href: '/admin/coupons',  label: 'Coupons',   icon: Tag },
-]
+import { useState } from 'react'
+import { Menu, X } from 'lucide-react'
+import { Sidebar } from '@/components/admin/layout/Sidebar'
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname()
-  const logout = useLogout()
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
   return (
-    <AdminRoute>
-      <div className="flex min-h-screen bg-gray-50">
-        <aside className="w-56 bg-white border-r flex flex-col shrink-0">
-          <div className="px-6 py-5 border-b">
-            <Link href="/" className="font-bold text-lg" style={{ color: '#074139' }}>
-              Obrive
-            </Link>
-            <p className="text-xs text-muted-foreground mt-0.5">Admin Panel</p>
-          </div>
+    <div className="flex min-h-screen bg-gray-50">
+      {/* Desktop sidebar */}
+      <aside className="hidden lg:flex lg:w-64 lg:shrink-0 border-r">
+        <Sidebar />
+      </aside>
 
-          <nav className="flex-1 px-3 py-4 space-y-1">
-            {NAV_ITEMS.map(({ href, label, icon: Icon, exact }) => {
-              const active = exact ? pathname === href : pathname.startsWith(href)
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                    active ? 'text-white' : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                  style={active ? { backgroundColor: '#074139' } : {}}
-                >
-                  <Icon className="h-4 w-4 shrink-0" />
-                  {label}
-                </Link>
-              )
-            })}
-          </nav>
+      {/* Floating hamburger — mobile only, always visible, above everything */}
+      <button
+        onClick={() => setDrawerOpen(true)}
+        aria-label="Open menu"
+        className="lg:hidden fixed top-3 left-3 z-[60] w-10 h-10 rounded-full bg-white border shadow-md flex items-center justify-center text-gray-600"
+      >
+        <Menu className="h-5 w-5" />
+      </button>
 
-          <div className="px-3 py-4 border-t">
-            <button
-              onClick={logout}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-500 hover:bg-red-50 transition-colors"
-            >
-              <LogOut className="h-4 w-4 shrink-0" />
-              Logout
-            </button>
-          </div>
-        </aside>
-
-        <main className="flex-1 p-8 overflow-y-auto">{children}</main>
+      {/* Mobile drawer */}
+      <div className={`fixed inset-0 z-50 lg:hidden ${drawerOpen ? '' : 'pointer-events-none'}`}>
+        <div
+          onClick={() => setDrawerOpen(false)}
+          className={`absolute inset-0 bg-black/40 transition-opacity ${drawerOpen ? 'opacity-100' : 'opacity-0'}`}
+        />
+        <div
+          className={`absolute left-0 top-0 h-full w-72 max-w-[85%] shadow-xl transition-transform ${
+            drawerOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        >
+          <button
+            onClick={() => setDrawerOpen(false)}
+            aria-label="Close menu"
+            className="absolute right-3 top-4 p-1.5 rounded-lg text-gray-400 hover:bg-gray-100 z-10"
+          >
+            <X className="h-5 w-5" />
+          </button>
+          <Sidebar onNavigate={() => setDrawerOpen(false)} />
+        </div>
       </div>
-    </AdminRoute>
+
+      {/* Main column */}
+      <div className="flex flex-1 flex-col min-w-0">
+        {children}
+      </div>
+    </div>
   )
 }

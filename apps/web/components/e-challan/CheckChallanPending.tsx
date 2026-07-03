@@ -17,7 +17,7 @@ export function CheckChallanPending() {
 
   return (
     <div className="min-h-screen p-4 sm:p-6" style={{ background: '#F0FAF5' }}>
-      <div className="mx-auto mt-8 sm:mt-15 w-full max-w-[1344px] rounded-3xl">
+      <div className="mx-auto mt-8 sm:mt-25 w-full max-w-[1344px] rounded-3xl">
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full h-auto sm:h-[118px] px-4 sm:px-8 py-4 sm:py-0">
           <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -60,7 +60,7 @@ export function CheckChallanPending() {
             )}
 
             {challans.map((c, i) => (
-              <div key={i} className="bg-white rounded-2xl p-4 sm:p-5">
+              <div key={i} className="bg-white rounded-2xl p-4 sm:p-5 shadow-md">
                 <div className="flex flex-col gap-2 pb-3">
                   <p className="font-michroma text-sm tracking-wide text-[#074139]">#{c.id}</p>
                   <p className={`${microgrammaBold.className} text-base text-[#E53E3E]`}>₹{c.amount}</p>
@@ -68,7 +68,7 @@ export function CheckChallanPending() {
                   <p className="font-michroma text-sm text-[#333333]">Issued on {c.date}</p>
                   <p className="font-michroma text-xs text-[#666666]">Medium: {c.medium} &nbsp;&nbsp; Source: {c.source}</p>
                 </div>
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-t border-[#000000]/30 pt-2.5">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-t border-[#000000]/30  pt-2.5">
                   <p className="font-michroma text-xs text-[#999999]">Last updated {c.updated}</p>
                   <button className="mr-220 font-michroma text-xs font-bold text-[#074139]">View details &gt;</button>
                 </div>
