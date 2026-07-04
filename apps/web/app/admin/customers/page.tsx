@@ -2,7 +2,7 @@
 
 import { AreaChart, Area, XAxis, ResponsiveContainer, Tooltip } from 'recharts'
 import { MoreVertical, FileText, Trash2 } from 'lucide-react'
-import { div } from 'framer-motion/m'
+import { microgrammaBold } from '@/lib/fonts'
 
 // TODO: replace with GET /admin/customers once that endpoint exists
 // Needs: per-user order count + total spend aggregation, joined from `orders` + `users`
@@ -28,7 +28,7 @@ export default function CustomersPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="bg-white border-b px-6 py-4 flex items-center justify-between sticky top-0 z-10">
-        <h1 className="text-xl font-bold text-gray-800">Customers</h1>
+        <h1 className={`${microgrammaBold.className} text-[24px] font-bold text-gray-800`}>Customers</h1>
         <div className="w-9 h-9 rounded-full bg-gray-300" />
       </div>
 
@@ -43,7 +43,7 @@ export default function CustomersPage() {
             ].map((k) => (
               <div key={k.label} className="bg-white border rounded-xl p-5">
                 <div className="flex items-start justify-between">
-                  <p className="text-sm font-semibold text-gray-700">{k.label}</p>
+                  <p className={`${microgrammaBold.className} text-[18px] font-semibold text-gray-700`}>{k.label}</p>
                   <MoreVertical className="h-4 w-4 text-gray-300" />
                 </div>
                 <p className="text-2xl font-bold text-gray-800 mt-1">{k.value}</p>
@@ -54,13 +54,14 @@ export default function CustomersPage() {
 
           <div className="lg:col-span-3 bg-white border rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-semibold text-gray-800">Customer Overview</h2>
+              <h2 className={`${microgrammaBold.className} font-semibold text-gray-800`}>Customer Overview</h2>
               <div className="flex gap-1 text-xs">
                 <button className="px-3 py-1.5 rounded-full bg-green-50 text-green-600 border border-green-200">This week</button>
                 <button className="px-3 py-1.5 rounded-full text-gray-500 border">Last week</button>
               </div>
             </div>
-            <div className="flex gap-8 mb-4 border-b pb-4">
+            <div className="overflow-x-auto">
+            <div className="flex gap-8 mb-4 border-b pb-4 min-w-[500px]">
               {/* TODO: replace with real aggregate counts once /admin/customers exists */}
               {[
                 { value: '—', label: 'Active Customers' },
@@ -73,6 +74,7 @@ export default function CustomersPage() {
                   <p className="text-xs text-gray-400">{s.label}</p>
                 </div>
               ))}
+            </div>
             </div>
             <ResponsiveContainer width="100%" height={180}>
               <AreaChart data={OVERVIEW_CHART}>
@@ -93,7 +95,7 @@ export default function CustomersPage() {
         {/* Customer table */}
         <div className="bg-white border rounded-xl p-6">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full min-w-[700px] text-sm">
             <thead>
               <tr className="text-left text-xs text-gray-500 border-b">
                 <th className="pb-3 font-medium">Customer Id</th>
@@ -131,9 +133,10 @@ export default function CustomersPage() {
           </table>
             </div>
 
-          <div className="flex items-center justify-between mt-4">
-            <button className="text-sm text-gray-500">← Previous</button>
-            <div className="flex gap-1">
+          <div className="flex items-center justify-between mt-4 flex-wrap gap-2">
+            <button className={`${microgrammaBold.className} text-[16px] disabled:opacity-40 bg-white text-[#074139] shadow-md rounded-[5px] px-4 py-2 leading-none`}
+            >← Previous</button>
+            <div className="flex gap-1 flex-wrap">
               {[1, 2, 3, 4, 5].map((n) => (
                 <button
                   key={n}
@@ -144,7 +147,8 @@ export default function CustomersPage() {
                 </button>
               ))}
             </div>
-            <button className="text-sm text-gray-500">Next →</button>
+            <button className={`${microgrammaBold.className} text-[16px] disabled:opacity-40 bg-white text-[#074139] shadow-md rounded-[5px] px-4 py-2 leading-none`}
+            >Next →</button>
           </div>
         </div>
       </div>

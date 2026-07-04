@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/api'
 import { Plus, MoreVertical, Search, Filter, ArrowUpDown, MoreHorizontal, FileText, Trash2 } from 'lucide-react'
+import { microgrammaBold } from '@/lib/fonts'
 
 interface AdminOrder {
   id: string
@@ -58,8 +59,8 @@ export default function OrdersPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="bg-white border-b px-6 py-4 flex items-center justify-between sticky top-0 z-10">
-        <h1 className="text-xl font-bold text-gray-800">Order Management</h1>
-        <div className="flex items-center gap-4 flex-1 max-w-md mx-8">
+        <h1 className={`${microgrammaBold.className} text-[24px] font-bold text-gray-800`}>Order Management</h1>
+        <div className="hidden md:flex items-center gap-4 flex-1 max-w-md mx-8">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input placeholder="Search data, users, or reports" className="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none" />
@@ -69,24 +70,24 @@ export default function OrdersPage() {
       </div>
 
       <div className="p-6 space-y-6">
-        <div className="flex items-center justify-between">
-          <h2 className="font-semibold text-lg text-gray-800">Order List</h2>
+        <div className="flex items-center justify-between flex-wrap gap-3">
+          <h2 className={`${microgrammaBold.className} font-semibold text-[22px] text-gray-800`}>Order List</h2>
           <div className="flex gap-2">
-            <button className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm text-white font-medium" style={{ backgroundColor: '#074139' }}>
+            <button className={`${microgrammaBold.className} flex items-center gap-1.5 px-4 py-2 rounded-lg text-[18px] text-white font-medium`} style={{ backgroundColor: '#074139' }}>
               <Plus className="h-4 w-4" /> Add Order
             </button>
-            <button className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm border font-medium text-gray-600">
+            <button className={`${microgrammaBold.className} flex items-center gap-1.5 px-4 py-2 rounded-lg text-[18px] border font-medium text-gray-600`}>
               More Action <MoreVertical className="h-4 w-4" />
             </button>
           </div>
         </div>
 
         {/* KPI cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 ">
           {kpis.map((k) => (
-            <div key={k.label} className="bg-white border rounded-xl p-5">
+            <div key={k.label} className="bg-white border rounded-xl p-5 shadow-md">
               <div className="flex items-start justify-between">
-                <p className="text-sm font-semibold text-gray-700">{k.label}</p>
+                <p className={`${microgrammaBold.className} text-[18px] font-semibold text-gray-700`}>{k.label}</p>
                 <MoreVertical className="h-4 w-4 text-gray-300" />
               </div>
               <div className="mt-2 flex items-baseline gap-2">
@@ -99,14 +100,14 @@ export default function OrdersPage() {
         </div>
 
         {/* Filter tabs + search row */}
-        <div className="bg-white border rounded-xl p-4">
+        <div className="bg-white border rounded-xl p-4 shadow-md">
           <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
-            <div className="flex bg-gray-50 rounded-lg p-1 text-sm">
+            <div className="flex bg-gray-50 rounded-lg p-1 text-sm overflow-x-auto">
               {TABS.map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-1.5 rounded-md font-medium transition-colors ${
+                  className={`px-4 py-1.5 rounded-md font-medium transition-colors whitespace-nowrap ${
                     activeTab === tab ? 'bg-white shadow-sm' : 'text-gray-500'
                   }`}
                   style={activeTab === tab ? { color: '#074139' } : {}}
@@ -116,7 +117,7 @@ export default function OrdersPage() {
               ))}
             </div>
             <div className="flex items-center gap-2">
-              <div className="relative">
+              <div className="relative hidden sm:block">
                 <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400" />
                 <input placeholder="Search order report" className="pl-8 pr-2 py-1.5 rounded-lg bg-gray-50 border text-xs outline-none w-48" />
               </div>
@@ -127,7 +128,8 @@ export default function OrdersPage() {
           </div>
 
           {/* Table */}
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+          <table className="w-full min-w-[800px] text-sm">
             <thead>
               <tr className="text-left text-xs text-gray-600 bg-green-50">
                 <th className="px-3 py-2.5 font-medium rounded-l-lg w-10"><input type="checkbox" /></th>
@@ -182,17 +184,18 @@ export default function OrdersPage() {
               )}
             </tbody>
           </table>
+          </div>
 
           {/* Pagination */}
-          <div className="flex items-center justify-between mt-4">
+          <div className="flex items-center justify-between mt-4 flex-wrap gap-2">
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="text-sm text-gray-500 disabled:opacity-40"
+               className={`${microgrammaBold.className} text-[16px] font-bold text-[#074139] bg-white rounded-[5px] shadow-sm px-4 py-2 leading-none`}
             >
               ← Previous
             </button>
-            <div className="flex gap-1">
+            <div className="flex gap-1 flex-wrap">
               {[...Array(Math.min(totalPages, 5))].map((_, i) => (
                 <button
                   key={i}
@@ -207,7 +210,7 @@ export default function OrdersPage() {
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page >= totalPages}
-              className="text-sm text-gray-500 disabled:opacity-40"
+              className={`${microgrammaBold.className} text-[16px] font-bold text-[#074139] bg-white rounded-[5px] shadow-sm px-4 py-2 leading-none`}
             >
               Next →
             </button>
