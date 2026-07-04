@@ -45,7 +45,7 @@ const SERVICES = [
   {
     image: '/Images/services/pic7.jpeg',
     label: 'EV STATIONS',
-    href: '/products?category=accessories',
+    href: '/ev-charging',
     alt: 'EV charging station finder for electric vehicles',
   },
   {

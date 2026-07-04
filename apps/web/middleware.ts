@@ -15,9 +15,10 @@ export function middleware(request: NextRequest) {
     path === '/about' ||
     path === '/coming-soon' ||
     path === '/login' ||
+    path === '/ev-charging' ||
     path.startsWith('/_next') ||
     path.startsWith('/api') ||
-    path.startsWith('/Images') || 
+    path.startsWith('/Images') ||
     path === '/favicon.ico' ||
     path.match(/\.(.*)$/) // Skip all files with extensions to allow assets
   ) {
