@@ -45,13 +45,13 @@ const SERVICES = [
   {
     image: '/Images/services/pic7.jpeg',
     label: 'EV STATIONS',
-    href: '/ev-charging',
+    href: '/services/ev-charging',
     alt: 'EV charging station finder for electric vehicles',
   },
   {
     image: '/Images/services/pic8.jpeg',
     label: 'CAR INSURANCE',
-    href: '/products',
+    href: '/services/car-insurance',
     alt: 'Car insurance service for vehicle owners',
   },
   {
