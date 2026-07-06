@@ -17,6 +17,7 @@ export function middleware(request: NextRequest) {
     path === '/login' ||
     path === '/services/ev-charging' ||
     path === '/services/car-insurance' ||
+    path === '/services/car-services' ||
     path.startsWith('/_next') ||
     path.startsWith('/api') ||
     path.startsWith('/Images') ||
