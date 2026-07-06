@@ -14,23 +14,25 @@ export default function EChallanPage() {
     return (
         <main className="min-h-screen bg-[#eefaf6] text-[#074c43]">
             <Navbar />
-            <div className="mx-auto max-w-screen px-4 py-4 sm:px-6">
+            <div className="px-3 sm:px-4 md:px-6">
+                <div className="mx-auto max-w-screen py-4">
 
-                <section className="rounded-[28px] bg-white shadow-[0_12px_30px_rgba(7,76,67,0.08)]">
+                    <section className="rounded-[28px] bg-white shadow-[0_12px_30px_rgba(7,76,67,0.08)]">
 
-                    <HeroSection />
-                </section>
+                        <HeroSection />
+                    </section>
 
-                <AvoidSection />
-                <HowToPaySection />
-                <ComparisonSection />
-            </div>
+                    <AvoidSection />
+                    <HowToPaySection />
+                    <ComparisonSection />
+                </div>
 
-            <CtaBanner />
+                <CtaBanner />
 
-            <div className="mx-auto max-w-screen px-4 py-10 sm:px-6">
-                <FaqSection />
-                <Footer />
+                <div className="mx-auto max-w-screen py-10">
+                    <FaqSection />
+                    <Footer />
+                </div>
             </div>
         </main>
     );

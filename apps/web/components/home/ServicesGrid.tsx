@@ -15,7 +15,7 @@ const SERVICES = [
   {
     image: '/Images/services/pic2.jpeg',
     label: 'E-CHALLAN',
-    href: '/account/vehicles',
+    href: '/e-challan',
     alt: 'E-Challan checking service for vehicle owners',
   },
   {
