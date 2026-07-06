@@ -16,22 +16,39 @@ const fadeUpVariants = {
 
 export default function Hero() {
     return (
-        <section className="relative mt-20 w-full overflow-hidden rounded-b-[22px] bg-white px-4 py-8 sm:px-6 md:px-10 lg:px-12 xl:px-14">
-            <div className="mx-auto flex min-h-[540px] w-full max-w-none flex-col items-center gap-10 lg:min-h-[600px] lg:flex-row lg:gap-6">
+        <section className="relative mt-20 w-full overflow-hidden rounded-b-[22px] bg-white px-4 py-8 sm:px-6 md:px-10 lg:min-h-[640px] lg:px-12 xl:px-14">
+            {/* Right Image Background - desktop */}
+            <motion.div
+                initial={{ opacity: 0, x: 45 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="pointer-events-none absolute right-0 top-0 hidden h-full w-[58%] lg:block"
+            >
+                <Image
+                    src="/Images/car-service/hero-bg.png"
+                    alt="Car Services"
+                    fill
+                    priority
+                    className="object-cover object-center"
+                />
+            </motion.div>
+
+            <div className="relative z-10 mx-auto flex min-h-[540px] w-full max-w-none flex-col items-center gap-10 lg:min-h-[600px] lg:flex-row lg:gap-0">
                 {/* Left Content */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
                     variants={fadeUpVariants}
-                    className="relative z-10 flex w-full flex-1 flex-col justify-center pt-4 lg:max-w-[50%]"
+                    className="relative z-10 flex w-full flex-col justify-center pt-4 lg:w-[48%]"
                 >
                     <h1
                         className={`${microgrammaBold.className} mb-5 text-[32px] font-bold leading-[1.12] text-[#00473f] sm:text-[40px] md:text-[45px] lg:text-[48px] xl:text-[50px]`}
                     >
                         Find the Best
-
-                        Car <br />Services Near You
+                        <br />
+                        Car Services Near You
                     </h1>
 
                     <p className="mb-7 max-w-[470px] text-sm font-medium leading-relaxed text-[#4c6661] sm:text-base md:text-[15px]">
@@ -125,20 +142,20 @@ export default function Hero() {
                     </div>
                 </motion.div>
 
-                {/* Right Image Only - unchanged */}
+                {/* Mobile Image */}
                 <motion.div
                     initial={{ opacity: 0, x: 45 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="relative h-[330px] w-full flex-1 sm:h-[430px] md:h-[520px] lg:h-[590px] lg:max-w-[52%] xl:h-[640px]"
+                    className="relative h-[330px] w-full sm:h-[430px] md:h-[520px] lg:hidden"
                 >
                     <Image
-                        src="/Images/car-services/hero-bg.png"
+                        src="/Images/car-service/hero-bg.png"
                         alt="Car Services"
                         fill
                         priority
-                        className="object-contain object-center lg:object-right"
+                        className="object-cover object-center"
                     />
                 </motion.div>
             </div>
