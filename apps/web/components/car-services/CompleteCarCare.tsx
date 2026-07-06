@@ -17,14 +17,14 @@ const points = [
 export default function CompleteCarCare() {
     return (
         <section className="w-full bg-white px-4 py-8 sm:px-5 lg:px-5">
-            <div className="relative mx-auto w-full max-w-none overflow-hidden rounded-[22px] shadow-xl">
+            <div className="relative mx-auto w-full max-w-none overflow-hidden rounded-[22px] shadow-xl ">
                 {/* Background Image */}
                 <Image
                     src="/Images/car-service/care-bg.png"
                     alt="Complete car care background"
                     fill
                     priority
-                    className="object-cover object-center"
+                    className="object-fill object-center"
                 />
 
                 {/* Content */}

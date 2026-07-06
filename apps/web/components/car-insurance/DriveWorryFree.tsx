@@ -29,7 +29,7 @@ export default function DriveWorryFree() {
                     alt="Drive worry free background"
                     fill
                     priority
-                    className="object-cover object-center"
+                    className="object-fill object-center"
                 />
 
                 {/* Content */}
