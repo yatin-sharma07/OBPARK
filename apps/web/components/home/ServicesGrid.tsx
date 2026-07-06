@@ -39,7 +39,7 @@ const SERVICES = [
   {
     image: '/Images/services/pic6.jpeg',
     label: 'CAR SERVICES',
-    href: '/products',
+    href: '/services/car-services',
     alt: 'Quick vehicle services on OBPark',
   },
   {
