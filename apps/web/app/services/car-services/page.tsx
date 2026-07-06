@@ -12,16 +12,18 @@ export default function CarServicesPage() {
     return (
         <main className="overflow-x-hidden bg-[#F8FAFC]">
             <Navbar />
-            <div className="mx-5 w-[calc(100%-40px)] shadow-[0px_0px_30px_rgba(0,0,0,0.08)] bg-white min-h-screen">
-                <Hero />
-                <ExploreTopServices />
-                <WhyChoose />
-                <HowItWorks />
-                <CompleteCarCare />
-                <CarServicesForEveryNeed />
-                <FAQ />
+            <div className="px-3 sm:px-4 md:px-6">
+                <div className="shadow-[0px_0px_30px_rgba(0,0,0,0.08)] bg-white min-h-screen">
+                    <Hero />
+                    <ExploreTopServices />
+                    <WhyChoose />
+                    <HowItWorks />
+                    <CompleteCarCare />
+                    <CarServicesForEveryNeed />
+                    <FAQ />
+                </div>
+                <Footer />
             </div>
-            <Footer />
         </main>
     );
 }
