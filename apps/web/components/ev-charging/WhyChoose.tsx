@@ -2,6 +2,22 @@
 
 import { microgrammaBold } from '@/lib/fonts';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+
+const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15,
+        },
+    },
+};
 
 export default function WhyChoose() {
     const features = [
@@ -23,17 +39,28 @@ export default function WhyChoose() {
     ];
 
     return (
-        <section className="w-full bg-white px-4 py-16">
+        <section className="w-full px-4 py-16">
             <div className="mx-auto max-w-full text-center">
-                <h2
+                <motion.h2
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
                     className={`${microgrammaBold.className} mb-12 text-2xl font-bold text-[#0B402F] sm:text-2xl md:text-[34px] lg:text-[36px]`}
                 >
                     Why choose OBPARK EV
-                </h2>
+                </motion.h2>
 
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                <motion.div
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="grid grid-cols-1 gap-8 md:grid-cols-3"
+                >
                     {features.map((feature, index) => (
-                        <div
+                        <motion.div
+                            variants={fadeInUp}
                             key={index}
                             className="flex flex-col items-center rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-shadow hover:shadow-md"
                         >
@@ -43,7 +70,6 @@ export default function WhyChoose() {
                                     alt={feature.title}
                                     width={34}
                                     height={34}
-
                                     className="h-[34px] w-[34px] object-contain"
                                 />
                             </div>
@@ -55,9 +81,9 @@ export default function WhyChoose() {
                             <p className="text-center text-base text-[#3E7071] sm:text-lg md:text-[16px]">
                                 {feature.description}
                             </p>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

@@ -16,19 +16,19 @@ const points = [
 
 export default function CompleteCarCare() {
     return (
-        <section className="w-full bg-white px-4 py-8 sm:px-5 lg:px-5">
-            <div className="relative mx-auto w-full max-w-none overflow-hidden rounded-[22px] shadow-xl ">
+        <section className="w-full py-8">
+            <div className="relative mx-auto w-full max-w-none overflow-hidden aspect-[1728/708]">
                 {/* Background Image */}
                 <Image
                     src="/Images/car-service/care-bg.png"
                     alt="Complete car care background"
                     fill
                     priority
-                    className="object-fill object-center"
+                    className="object-cover object-center"
                 />
 
                 {/* Content */}
-                <div className="relative z-10 flex min-h-[360px] w-full items-center px-5 py-8 sm:px-8 md:px-10 lg:min-h-[390px] lg:px-12 xl:min-h-[410px]">
+                <div className="relative z-10 flex min-h-[420px] w-full items-center px-5 py-8 sm:px-8 md:px-10 lg:min-h-0 lg:h-full lg:px-12">
                     {/* Left Content */}
                     <div className="w-full max-w-[560px] text-white">
                         <motion.h2

@@ -2,6 +2,22 @@
 
 import { microgrammaBold } from '@/lib/fonts';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+
+const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.08,
+        },
+    },
+};
 
 export default function ForEveryNeed() {
     const needs = [
@@ -38,17 +54,28 @@ export default function ForEveryNeed() {
     ];
 
     return (
-        <section className="w-full bg-white px-4 py-16">
+        <section className="w-full px-4 py-16">
             <div className="mx-auto max-w-full text-center">
-                <h2
+                <motion.h2
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
                     className={`${microgrammaBold.className} mb-12 text-2xl font-bold text-[#0B402F] sm:text-2xl md:text-[34px] lg:text-[36px]`}
                 >
                     EV Charging Stations for Every Need
-                </h2>
+                </motion.h2>
 
-                <div className="grid grid-cols-2 gap-9 md:grid-cols-3 lg:grid-cols-6">
+                <motion.div
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="grid grid-cols-2 gap-9 md:grid-cols-3 lg:grid-cols-6"
+                >
                     {needs.map((need, index) => (
-                        <div
+                        <motion.div
+                            variants={fadeInUp}
                             key={index}
                             className="
                                 flex min-h-[180px] flex-col items-center justify-center
@@ -71,9 +98,9 @@ export default function ForEveryNeed() {
                             <p className="text-center text-xs leading-relaxed text-gray-500">
                                 {need.description}
                             </p>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

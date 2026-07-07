@@ -1,8 +1,9 @@
 'use client';
 
-import { microgrammaBold } from '@/lib/fonts';
 import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import { microgrammaBold } from '@/lib/fonts';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FAQ() {
     const faqs = [
@@ -30,59 +31,78 @@ export default function FAQ() {
 
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+    const toggleFaq = (index: number) => {
+        setOpenIndex(openIndex === index ? null : index);
+    };
+
     return (
-        <section className="w-full bg-white px-4 py-12 sm:py-14 md:py-16">
+        <section className="w-full px-4 py-12 sm:py-14 md:py-16">
             <div className="mx-auto max-w-full">
-                <h2
+                <motion.h2
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
                     className={`${microgrammaBold.className} mb-8 text-center text-2xl font-bold text-[#0B402F] sm:text-[28px] md:text-[34px] lg:text-[36px]`}
                 >
                     FAQs on EV Charging Stations
-                </h2>
+                </motion.h2>
 
-                <div className="w-full">
+                <div className="w-full space-y-4">
                     {faqs.map((faq, index) => {
                         const isOpen = openIndex === index;
 
                         return (
-                            <div
+                            <motion.div
                                 key={index}
+                                initial={{ opacity: 0, y: 14 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.08 }}
                                 className="
                                     overflow-hidden border border-[#E4EAEA] bg-white
                                     shadow-[0_2px_10px_rgba(11,64,47,0.04)]
-                                    first:rounded-t-[12px] last:rounded-b-[12px]
-                                    [&:not(:first-child)]:-mt-px
+                                    rounded-2xl
                                 "
                             >
                                 <button
                                     type="button"
-                                    onClick={() =>
-                                        setOpenIndex(isOpen ? null : index)
-                                    }
+                                    onClick={() => toggleFaq(index)}
                                     className="
                                         flex w-full items-center justify-between
-                                        px-6 py-4 text-left outline-none
-                                        sm:px-10
+                                        px-6 py-4 text-left outline-none transition-colors
+                                        hover:bg-[#f8fbfa] sm:px-10
                                     "
                                 >
                                     <span className="text-sm font-bold text-[#174B43] sm:text-base md:text-[17px]">
                                         {faq.question}
                                     </span>
 
-                                    {isOpen ? (
-                                        <ChevronUp className="h-5 w-5 flex-shrink-0 text-[#174B43]" />
-                                    ) : (
-                                        <ChevronDown className="h-5 w-5 flex-shrink-0 text-[#174B43]" />
-                                    )}
+                                    <ChevronDown
+                                        className={`h-5 w-5 flex-shrink-0 text-[#174B43] transition-transform duration-300 ${
+                                            isOpen ? 'rotate-180' : ''
+                                        }`}
+                                    />
                                 </button>
 
-                                {isOpen && (
-                                    <div className="px-6 pb-5 sm:px-10">
-                                        <p className="max-w-5xl text-sm leading-relaxed text-[#3E7071] sm:text-base">
-                                            {faq.answer}
-                                        </p>
-                                    </div>
-                                )}
-                            </div>
+                                <AnimatePresence initial={false}>
+                                    {isOpen && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: 'auto', opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                            className="overflow-hidden"
+                                        >
+                                            <div className="border-t border-[#E4EAEA] bg-[#f8fbfa] px-6 pb-5 pt-4 sm:px-10">
+                                                <p className="max-w-5xl text-sm leading-relaxed text-[#3E7071] sm:text-base">
+                                                    {faq.answer}
+                                                </p>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </motion.div>
                         );
                     })}
                 </div>
