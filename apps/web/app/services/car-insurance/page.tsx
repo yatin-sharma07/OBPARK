@@ -9,18 +9,30 @@ import { Footer } from "@/components/layout/Footer";
 
 export default function CarInsurancePage() {
     return (
-        <main className="overflow-x-hidden bg-[#F8FAFC]">
+        <main className="min-h-screen bg-[#eefaf6] text-[#074c43] overflow-x-hidden">
             <Navbar />
             <div className="px-3 sm:px-4 md:px-6">
-                <div className="shadow-[0px_0px_30px_rgba(0,0,0,0.08)] bg-white min-h-screen">
-                    <Hero />
+                <div className="mx-auto max-w-screen py-4">
+                    <section className="rounded-[28px] bg-white shadow-[0_12px_30px_rgba(7,76,67,0.08)] overflow-hidden min-h-[calc(100vh-32px)] lg:h-[calc(100vh-32px)]">
+                        <Hero />
+                    </section>
+
                     <WhyChoose />
                     <HowItWorks />
-                    <DriveWorryFree />
-                    <ForEveryNeed />
-                    <FAQ />
                 </div>
-                <Footer />
+            </div>
+
+            <DriveWorryFree />
+
+            <div className="px-3 sm:px-4 md:px-6">
+                <div className="mx-auto max-w-screen py-4">
+                    <ForEveryNeed />
+                </div>
+
+                <div className="mx-auto max-w-screen py-10">
+                    <FAQ />
+                    <Footer />
+                </div>
             </div>
         </main>
     );

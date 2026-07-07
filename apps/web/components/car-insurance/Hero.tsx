@@ -21,15 +21,15 @@ export default function Hero() {
     const [activeTab, setActiveTab] = useState('New Policy');
 
     return (
-        <section className="relative mt-20 w-full overflow-hidden rounded-b-[22px] px-4 py-8 sm:px-6 md:px-10 lg:px-12 xl:px-14">
-            <div className="mx-auto flex min-h-[540px] w-full max-w-none flex-col items-center gap-10 lg:min-h-[600px] lg:flex-row lg:gap-6">
+        <section className="relative w-full h-full min-h-[calc(100vh-32px)] lg:min-h-0 flex flex-col justify-center overflow-hidden px-4 py-8 sm:px-6 md:px-10 lg:px-12 xl:px-14">
+            <div className="relative z-10 mx-auto flex min-h-[540px] w-full max-w-none flex-col items-center gap-10 lg:h-full lg:min-h-0 lg:flex-row lg:gap-0">
                 {/* Left Content */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
                     variants={fadeUpVariants}
-                    className="relative z-10 flex w-full flex-1 flex-col justify-center pt-4 lg:max-w-[50%]"
+                    className="relative z-10 flex w-full flex-1 flex-col justify-center pt-4 lg:max-w-[48%]"
                 >
                     <h1
                         className={`${microgrammaBold.className} mb-3 text-[30px] font-bold leading-[1.12] text-[#074139] sm:text-[38px] md:text-[46px] lg:text-[52px] xl:text-[58px]`}
@@ -178,23 +178,40 @@ export default function Hero() {
                     </div>
                 </motion.div>
 
-                {/* Right Image Only - unchanged */}
+                {/* Mobile Image */}
                 <motion.div
-                    initial={{ opacity: 0, x: 45 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="relative h-[330px] w-full flex-1 sm:h-[430px] md:h-[520px] lg:h-[590px] lg:max-w-[52%] xl:h-[640px]"
+                    className="relative h-[330px] w-full sm:h-[430px] md:h-[520px] lg:hidden"
                 >
                     <Image
                         src="/Images/car-insurance/hero-bg.png"
                         alt="Car Insurance"
                         fill
                         priority
-                        className="object-contain object-center lg:object-right"
+                        className="object-contain object-center"
                     />
                 </motion.div>
             </div>
+
+            {/* Right Image Background - desktop */}
+            <motion.div
+                initial={{ opacity: 0, x: 45 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="pointer-events-none absolute inset-0 hidden lg:block"
+            >
+                <Image
+                    src="/Images/car-insurance/hero-bg.png"
+                    alt="Car Insurance"
+                    fill
+                    priority
+                    className="object-cover object-right"
+                />
+            </motion.div>
         </section>
     );
 }
