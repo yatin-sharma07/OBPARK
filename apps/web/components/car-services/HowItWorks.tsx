@@ -34,7 +34,7 @@ const steps = [
 
 export default function HowItWorks() {
     return (
-        <section className="w-full overflow-hidden bg-white px-4 py-14 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+        <section className="w-full overflow-hidden px-4 py-14 sm:px-6 md:px-8 lg:px-10 xl:px-12">
             <div className="mx-auto w-full max-w-none text-center">
                 <motion.h2
                     initial={{ opacity: 0, y: -18 }}

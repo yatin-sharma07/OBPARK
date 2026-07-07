@@ -2,6 +2,22 @@
 
 import { microgrammaBold } from '@/lib/fonts';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+
+const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.08,
+        },
+    },
+};
 
 export default function Explore() {
     const tabs = [
@@ -32,17 +48,28 @@ export default function Explore() {
     ];
 
     return (
-        <section className="w-full bg-white px-4 py-8 sm:py-10">
+        <section className="w-full px-4 py-8 sm:py-10">
             <div className="mx-auto max-w-full text-center">
-                <h2
+                <motion.h2
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
                     className={`${microgrammaBold.className} mb-8 text-2xl font-bold leading-tight text-[#0B402F] sm:text-[28px] md:text-[34px] lg:text-[36px]`}
                 >
                     Explore Everything About EV Charging
-                </h2>
+                </motion.h2>
 
-                <div className="flex flex-wrap justify-center gap-3 sm:gap-4 lg:flex-nowrap lg:gap-5">
+                <motion.div
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="flex flex-wrap justify-center gap-3 sm:gap-4 lg:flex-nowrap lg:gap-5"
+                >
                     {tabs.map((tab, index) => (
-                        <button
+                        <motion.button
+                            variants={fadeInUp}
                             key={index}
                             className="
                                 flex h-[50px] w-full max-w-[260px] items-center justify-center gap-3
@@ -67,9 +94,9 @@ export default function Explore() {
                             <span className="whitespace-nowrap">
                                 {tab.label}
                             </span>
-                        </button>
+                        </motion.button>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

@@ -16,25 +16,25 @@ const fadeUpVariants = {
 
 export default function Hero() {
     return (
-        <section className="relative mt-20 w-full overflow-hidden rounded-b-[22px] bg-white px-4 py-8 sm:px-6 md:px-10 lg:min-h-[640px] lg:px-12 xl:px-14">
+        <section className="relative w-full h-full min-h-[calc(100vh-32px)] lg:min-h-0 flex flex-col justify-center overflow-hidden px-4 py-8 sm:px-6 md:px-10 lg:px-12 xl:px-14">
             {/* Right Image Background - desktop */}
             <motion.div
                 initial={{ opacity: 0, x: 45 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="pointer-events-none absolute right-0 top-0 hidden h-full w-[58%] lg:block"
+                className="pointer-events-none absolute inset-0 hidden lg:block"
             >
                 <Image
                     src="/Images/car-service/hero-bg.png"
                     alt="Car Services"
                     fill
                     priority
-                    className="object-cover object-center"
+                    className="object-cover object-right"
                 />
             </motion.div>
 
-            <div className="relative z-10 mx-auto flex min-h-[540px] w-full max-w-none flex-col items-center gap-10 lg:min-h-[600px] lg:flex-row lg:gap-0">
+            <div className="relative z-10 mx-auto flex min-h-[540px] w-full max-w-none flex-col items-center gap-10 lg:h-full lg:min-h-0 lg:flex-row lg:gap-0">
                 {/* Left Content */}
                 <motion.div
                     initial="hidden"
@@ -44,14 +44,14 @@ export default function Hero() {
                     className="relative z-10 flex w-full flex-col justify-center pt-4 lg:w-[48%]"
                 >
                     <h1
-                        className={`${microgrammaBold.className} mb-5 text-[32px] font-bold leading-[1.12] text-[#00473f] sm:text-[40px] md:text-[45px] lg:text-[48px] xl:text-[50px]`}
+                        className={`${microgrammaBold.className} mb-5 text-[34px] font-bold leading-[1.12] text-[#00473f] sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[56px]`}
                     >
                         Find the Best
                         <br />
                         Car Services Near You
                     </h1>
 
-                    <p className="mb-7 max-w-[470px] text-sm font-medium leading-relaxed text-[#4c6661] sm:text-base md:text-[15px]">
+                    <p className="mb-7 max-w-2xl text-base font-medium leading-relaxed text-[#4c6661] sm:text-lg md:text-[18px]">
                         Book trusted car services at your convenience.
                         <br />
                         Genuine care for your car.

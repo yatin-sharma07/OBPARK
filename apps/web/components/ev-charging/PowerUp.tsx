@@ -2,6 +2,7 @@
 
 import { microgrammaBold } from '@/lib/fonts';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 export default function PowerUp() {
     const features = [
@@ -47,29 +48,34 @@ export default function PowerUp() {
     ];
 
     return (
-        <section className="w-full bg-white px-4 py-12 sm:py-14 md:py-16">
-            <div className="mx-auto max-w-full">
-                <div
-                    className="
-                        relative min-h-[500px] overflow-hidden rounded-[22px]
-                        bg-[#0B402F] bg-cover bg-center bg-no-repeat
-                        px-7 py-10 shadow-[0_10px_35px_rgba(11,64,47,0.12)]
-                        sm:px-10 md:px-12 lg:min-h-[510px] lg:px-12 lg:py-14
-                    "
-                    style={{
-                        backgroundImage:
-                            'url(/Images/ev-charging/power-up-bg.png)',
-                    }}
-                >
+        <section className="w-full py-12 sm:py-14 md:py-16">
+            <div className="relative w-full overflow-hidden aspect-[1728/708]">
+                {/* Background Image */}
+                <Image
+                    src="/Images/ev-charging/power-up-bg.png"
+                    alt="Power Up background"
+                    fill
+                    priority
+                    className="object-cover"
+                />
+
+                {/* Content */}
+                <div className="relative z-10 flex min-h-[420px] w-full items-center px-7 py-10 sm:px-10 md:px-12 lg:min-h-0 lg:h-full lg:px-12 lg:py-14">
                     {/* Left Content */}
-                    <div className="relative z-10 max-w-[570px] text-white">
-                        <h2
-                            className={`${microgrammaBold.className} mb-6 text-[30px] font-bold leading-[1.25] text-white sm:text-[38px] whitespace-nowrap md:text-[40px] lg:text-[42px]`}
-                        >
-                            Power Up Your Journey
-                            <br />
-                            With OBPARK EV
-                        </h2>
+                    <motion.div
+                        initial={{ opacity: 0, x: -45 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                        className="relative z-10 max-w-[570px] text-white"
+                    >
+                    <h2
+                        className={`${microgrammaBold.className} mb-6 text-[30px] font-bold leading-[1.25] text-white sm:text-[38px] whitespace-nowrap md:text-[40px] lg:text-[42px]`}
+                    >
+                        Power Up Your Journey
+                        <br />
+                        With OBPARK EV
+                    </h2>
 
                         <p className="mb-10 max-w-[470px] text-base font-medium leading-relaxed text-white/90 sm:text-lg">
                             India&apos;s most reliable platform to find, compare and
@@ -114,7 +120,7 @@ export default function PowerUp() {
                                 />
                             </span>
                         </button>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

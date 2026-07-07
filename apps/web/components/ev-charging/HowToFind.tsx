@@ -1,6 +1,17 @@
 'use client';
 
 import { microgrammaBold } from '@/lib/fonts';
+import { motion } from 'framer-motion';
+
+const slideInLeft = {
+    hidden: { opacity: 0, x: -40 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
+};
+
+const slideInRight = {
+    hidden: { opacity: 0, x: 40 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
+};
 
 export default function HowToFind() {
     const obparkSteps = [
@@ -18,17 +29,25 @@ export default function HowToFind() {
     ];
 
     return (
-        <section className="w-full bg-white px-4 py-12 sm:py-14 md:py-16">
+        <section className="w-full px-4 py-12 sm:py-14 md:py-16">
             <div className="mx-auto max-w-full text-center">
-                <h2
+                <motion.h2
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
                     className={`${microgrammaBold.className} mb-8 text-2xl font-bold leading-tight text-[#0B402F] sm:text-[28px] md:text-[34px] lg:text-[36px]`}
                 >
                     How to find EV charging stations
-                </h2>
+                </motion.h2>
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                     {/* OBPARK EV Section */}
-                    <div
+                    <motion.div
+                        variants={slideInLeft}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
                         className="
                             rounded-[18px] border border-[#C7F1E7]
                             bg-[#CFF4EA] px-7 py-9 text-left
@@ -73,10 +92,14 @@ export default function HowToFind() {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Parivahan Section */}
-                    <div
+                    <motion.div
+                        variants={slideInRight}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
                         className="
                             rounded-[18px] border border-[#E8ECEC]
                             bg-white px-7 py-9 text-left
@@ -113,7 +136,7 @@ export default function HowToFind() {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>
