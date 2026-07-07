@@ -21,19 +21,19 @@ const points = [
 
 export default function DriveWorryFree() {
     return (
-        <section className="w-full bg-white px-4 py-8 sm:px-5 lg:px-5">
-            <div className="relative mx-auto w-full max-w-none overflow-hidden rounded-[22px] shadow-xl">
+        <section className="w-full py-8">
+            <div className="relative mx-auto w-full max-w-none overflow-hidden aspect-[1728/708]">
                 {/* Background Image */}
                 <Image
                     src="/Images/car-insurance/worry-free.png"
                     alt="Drive worry free background"
                     fill
                     priority
-                    className="object-fill object-center"
+                    className="object-cover object-center"
                 />
 
                 {/* Content */}
-                <div className="relative z-10 flex min-h-[520px] w-full flex-col justify-between gap-8 px-5 py-8 sm:px-8 md:px-10 lg:min-h-[440px] lg:flex-row lg:items-center lg:px-10 xl:min-h-[470px] xl:px-12">
+                <div className="relative z-10 flex min-h-[420px] w-full flex-col justify-between gap-8 px-5 py-8 sm:px-8 md:px-10 lg:min-h-0 lg:h-full lg:flex-row lg:items-center lg:px-10 xl:px-12">
                     {/* Left Content */}
                     <div className="w-full max-w-[600px] text-white">
                         <motion.h2

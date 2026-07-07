@@ -36,7 +36,7 @@ export default function FAQ() {
     };
 
     return (
-        <section className="w-full bg-white px-4 py-14 sm:px-5 md:px-8 lg:px-10 xl:px-12">
+        <section className="w-full px-4 py-14 sm:px-5 md:px-8 lg:px-10 xl:px-12">
             <div className="mx-auto w-full max-w-none">
                 <motion.h2
                     initial={{ opacity: 0, y: -18 }}
