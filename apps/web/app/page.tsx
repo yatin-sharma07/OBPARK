@@ -16,18 +16,20 @@ export default function HomePage() {
   return (
     <main>
       <Navbar />
-      <HeroSection />
-      <MarqueeStrip />
-      <ServicesGrid />
-      <TrustBadges />
-      <ProblemSolution />
-      <CtaBanner />
-      <ProductCategories />
-      <MintCta />
-      <Reviews />
-      <FeaturesAccordion />
+      <div className="px-1 sm:px-4 md:px-1">
+        <HeroSection />
+        <MarqueeStrip />
+        <ServicesGrid />
+        <TrustBadges />
+        <ProblemSolution />
+        <CtaBanner />
+        <ProductCategories />
+        <MintCta />
+        <Reviews />
+        <FeaturesAccordion />
       
-      <Footer />
+        <Footer />
+      </div>
     </main>
   )
 }

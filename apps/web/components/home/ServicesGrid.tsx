@@ -15,7 +15,7 @@ const SERVICES = [
   {
     image: '/Images/services/pic2.jpeg',
     label: 'E-CHALLAN',
-    href: '/account/vehicles',
+    href: '/e-challan',
     alt: 'E-Challan checking service for vehicle owners',
   },
   {
@@ -39,19 +39,19 @@ const SERVICES = [
   {
     image: '/Images/services/pic6.jpeg',
     label: 'CAR SERVICES',
-    href: '/products',
+    href: '/services/car-services',
     alt: 'Quick vehicle services on OBPark',
   },
   {
     image: '/Images/services/pic7.jpeg',
     label: 'EV STATIONS',
-    href: '/products?category=accessories',
+    href: '/services/ev-charging',
     alt: 'EV charging station finder for electric vehicles',
   },
   {
     image: '/Images/services/pic8.jpeg',
     label: 'CAR INSURANCE',
-    href: '/products',
+    href: '/services/car-insurance',
     alt: 'Car insurance service for vehicle owners',
   },
   {
