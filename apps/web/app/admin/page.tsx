@@ -181,8 +181,8 @@ export default function DashboardPage() {
               <h2 className={`${microgrammaBold.className} font-semibold text-[18px] text-gray-800`}>Report for this week</h2>
               <div className="flex items-center gap-2">
                 <div className="flex gap-1 text-xs">
-                  <button className={' ${microgrammaBold.className} px-3 py-1.5 rounded-full bg-green-50 text-green-600 border border-green-200'}>This week</button>
-                  <button className={' ${microgrammaBold.className} px-3 py-1.5 rounded-full text-gray-500 hover:bg-gray-50 border border-gray-200'}>Last week</button>
+                  <button className={'' + microgrammaBold.className + ' px-3 py-1.5 rounded-full bg-green-50 text-green-600 border border-green-200'}>This week</button>
+                  <button className={'' + microgrammaBold.className + ' px-3 py-1.5 rounded-full text-gray-500 hover:bg-gray-50 border border-gray-200'}>Last week</button>
                 </div>
                 <MoreVertical className="h-4 w-4 text-gray-300" />
               </div>
@@ -198,7 +198,7 @@ export default function DashboardPage() {
                 { value: '₹' + ((stats?.totalRevenue ?? 250000) / 1000).toFixed(0) + 'k', label: 'Revenue' },
               ].map((s, i) => (
                 <div key={i} className={`${i === 0 ? 'border-b-2 border-green-500 pb-1' : ''}`}>
-                  <p className="text-lg font-bold text-gray-800">{s.value}</p>
+                  <p className="text-[16px] font-bold text-gray-800">{s.value}</p>
                   <p className="text-xs text-gray-400">{s.label}</p>
                 </div>
               ))}

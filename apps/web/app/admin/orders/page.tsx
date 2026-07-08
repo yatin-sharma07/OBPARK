@@ -73,10 +73,10 @@ export default function OrdersPage() {
         <div className="flex items-center justify-between flex-wrap gap-3">
           <h2 className={`${microgrammaBold.className} font-semibold text-[22px] text-gray-800`}>Order List</h2>
           <div className="flex gap-2">
-            <button className={`${microgrammaBold.className} flex items-center gap-1.5 px-4 py-2 rounded-lg text-[18px] text-white font-medium`} style={{ backgroundColor: '#074139' }}>
+            <button className={`${microgrammaBold.className} flex items-center gap-1.5 px-4 py-2 rounded-lg text-[16px] text-white font-medium`} style={{ backgroundColor: '#074139' }}>
               <Plus className="h-4 w-4" /> Add Order
             </button>
-            <button className={`${microgrammaBold.className} flex items-center gap-1.5 px-4 py-2 rounded-lg text-[18px] border font-medium text-gray-600`}>
+            <button className={`${microgrammaBold.className} flex items-center gap-1.5 px-4 py-2 rounded-lg text-[16px] border font-medium text-gray-600`}>
               More Action <MoreVertical className="h-4 w-4" />
             </button>
           </div>
@@ -191,7 +191,7 @@ export default function OrdersPage() {
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
-               className={`${microgrammaBold.className} text-[16px] font-bold text-[#074139] bg-white rounded-[5px] shadow-sm px-4 py-2 leading-none`}
+              className={`${microgrammaBold.className} text-[16px] font-bold text-[#074139] bg-white rounded-[5px] shadow-sm px-4 py-2 leading-none`}
             >
               ← Previous
             </button>

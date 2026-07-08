@@ -20,6 +20,7 @@ const NAV_GROUPS = [
       { href: '/admin/coupons', label: 'Coupon Code', icon: Ticket },
       { href: '/admin/categories', label: 'Categories', icon: FolderTree },
       { href: '/admin/transactions', label: 'Transaction', icon: CreditCard },
+      { href: '/admin/analytics', label: 'Analytics', icon: LayoutDashboard },
       { href: '/admin/brands', label: 'Brand', icon: Star },
     ],
   },
