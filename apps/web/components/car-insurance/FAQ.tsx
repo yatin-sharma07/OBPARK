@@ -43,7 +43,7 @@ export default function FAQ() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.55 }}
-                    className={`${microgrammaBold.className} mb-9 text-center text-[24px] font-bold leading-tight text-[#06483f] sm:text-[28px] md:text-[32px] lg:text-[36px]`}
+                    className={`${microgrammaBold.className} mb-9 text-center text-[22px] font-bold leading-tight text-[#06483f] sm:text-[26px] md:text-[30px] lg:text-[36px]`}
                 >
                     FAQs on Car Insurance
                 </motion.h2>
@@ -62,12 +62,12 @@ export default function FAQ() {
                                 onClick={() => toggleFaq(idx)}
                                 className="flex w-full items-center justify-between gap-4 bg-white px-5 py-5 text-left transition-colors hover:bg-[#f8fbfa] sm:px-6 md:px-8"
                             >
-                                <span className="text-[15px] font-bold leading-relaxed text-[#06483f] sm:text-[16px] md:text-[18px]">
+                                <span className="text-[14px] font-bold leading-relaxed text-[#06483f] sm:text-[15px] md:text-[17px]">
                                     {faq.question}
                                 </span>
 
                                 <ChevronDown
-                                    size={24}
+                                    size={22}
                                     strokeWidth={2.4}
                                     className={`shrink-0 text-[#06483f] transition-transform duration-300 ${openIndex === idx ? 'rotate-180' : ''
                                         }`}
@@ -83,7 +83,7 @@ export default function FAQ() {
                                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                                         className="overflow-hidden"
                                     >
-                                        <div className="border-t border-[#dfe9e6] bg-[#f8fbfa] px-5 py-5 text-[14px] font-medium leading-[1.8] text-[#4f6964] sm:px-6 sm:text-[15px] md:px-8">
+                                        <div className="border-t border-[#dfe9e6] bg-[#f8fbfa] px-5 py-5 text-[13px] font-medium leading-[1.8] text-[#4f6964] sm:px-6 sm:text-[14px] md:px-8 md:text-[15px]">
                                             {faq.answer}
                                         </div>
                                     </motion.div>

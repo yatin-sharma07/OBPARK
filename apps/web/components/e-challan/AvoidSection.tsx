@@ -45,7 +45,7 @@ export default function AvoidSection() {
                 <SectionHeading title="Pay challan on time to avoid" />
 
                 <motion.div
-                    className="grid gap-6 sm:grid-cols-3"
+                    className="grid grid-cols-1 gap-6 sm:grid-cols-3"
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
@@ -56,7 +56,7 @@ export default function AvoidSection() {
                             key={card.title}
                             variants={itemVariants}
                             whileHover={{ y: -5 }}
-                            className="flex min-h-[140px] flex-col items-center justify-center rounded-[10px] border border-[#d7e3df] bg-white px-5 py-8 text-center shadow-sm transition-shadow hover:shadow-md cursor-default"
+                            className="flex min-h-[130px] flex-col items-center justify-center rounded-[10px] border border-[#d7e3df] bg-white px-5 py-8 text-center shadow-sm transition-shadow hover:shadow-md cursor-default"
                         >
                             <div className="relative h-12 w-12">
                                 <Image

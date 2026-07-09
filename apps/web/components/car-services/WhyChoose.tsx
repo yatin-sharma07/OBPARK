@@ -84,11 +84,11 @@ export default function WhyChoose() {
                                 />
                             </div>
 
-                            <h3 className={`mb-3 text-[18px] font-bold leading-tight text-[#06483f] sm:text-[19px] lg:text-[17px] whitespace-nowrap ${microgrammaBold.className}`}>
+                            <h3 className={`mb-3 text-[16px] font-bold leading-tight text-[#06483f] sm:text-[18px] lg:text-[17px] ${microgrammaBold.className}`}>
                                 {feature.title}
                             </h3>
 
-                            <p className="max-w-[260px] text-[14px] font-medium leading-[1.7] text-[#4f6964] sm:text-[13px] ">
+                            <p className="max-w-[260px] text-[13px] font-medium leading-[1.7] text-[#4f6964] sm:text-[14px]">
                                 {feature.desc}
                             </p>
                         </motion.div>

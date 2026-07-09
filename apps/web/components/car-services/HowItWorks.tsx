@@ -86,7 +86,7 @@ export default function HowItWorks() {
                                 {step.title}
                             </h3>
 
-                            <p className="max-w-[250px] text-[14px] font-medium leading-[1.7] text-[#46645f] sm:text-[15px]">
+                            <p className="mx-auto text-[13px] font-medium leading-[1.7] text-[#46645f] sm:text-[14px] lg:text-[15px]">
                                 {step.desc}
                             </p>
                         </motion.div>

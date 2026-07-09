@@ -197,14 +197,15 @@ export default function HowToPaySection() {
                 <SectionHeading title="How to Check & Pay E-Challan?" />
 
                 <div className="mb-10 flex justify-center">
-                    <div className="flex rounded-[8px] border border-[#9bb9b0] bg-white p-1">
+                    {/* Tab bar — scrollable on very small screens */}
+                    <div className="flex overflow-x-auto rounded-[8px] border border-[#9bb9b0] bg-white p-1 max-w-full">
                         {(["OBPARK", "Parivahan", "Offline"] as TabType[]).map(
                             (tab) => (
                                 <button
                                     key={tab}
                                     type="button"
                                     onClick={() => setSection(tab)}
-                                    className={`h-[52px] w-40 rounded-[5px] px-6 py-2 text-[15px] font-black transition-all duration-200 ${section === tab
+                                    className={`h-[44px] min-w-[90px] flex-shrink-0 rounded-[5px] px-4 py-2 text-[13px] font-black transition-all duration-200 sm:h-[52px] sm:min-w-[120px] sm:px-6 sm:text-[15px] ${section === tab
                                             ? "bg-gradient-to-br from-[#B0E5CC] to-[#187E80] text-white shadow-md"
                                             : "bg-white text-[#074c43] hover:bg-gradient-to-br hover:from-[#B0E5CC] hover:to-[#187E80] hover:text-white"
                                         }`}
@@ -227,16 +228,16 @@ export default function HowToPaySection() {
                     >
                         <motion.div variants={leftVariants}>
                             {activeContent.title && (
-                                <h3 className="mb-5 text-[22px] font-black text-[#074c43]">
+                                <h3 className="mb-5 text-[18px] font-black text-[#074c43] sm:text-[22px]">
                                     {activeContent.title}
                                 </h3>
                             )}
 
-                            <p className="max-w-[520px] text-[13px] leading-7 text-[#247064]">
+                            <p className="text-[13px] leading-7 text-[#247064]">
                                 {activeContent.description}
                             </p>
 
-                            <div className="relative mt-6 h-[260px] w-full max-w-[420px] sm:h-[340px]">
+                            <div className="relative mt-6 h-[200px] w-full max-w-full sm:h-[280px] md:h-[340px]">
                                 <Image
                                     src={activeContent.image}
                                     alt={`${section} E-Challan process`}

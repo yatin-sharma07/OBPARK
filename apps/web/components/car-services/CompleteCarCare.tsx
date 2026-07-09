@@ -17,7 +17,7 @@ const points = [
 export default function CompleteCarCare() {
     return (
         <section className="w-full py-8">
-            <div className="relative mx-auto w-full max-w-none overflow-hidden aspect-[1728/708]">
+            <div className="relative mx-auto w-full max-w-none overflow-hidden sm:aspect-[1728/708]">
                 {/* Background Image */}
                 <Image
                     src="/Images/car-service/care-bg.png"
@@ -79,7 +79,7 @@ export default function CompleteCarCare() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.35 }}
-                            className="flex h-[56px] w-full max-w-[280px] items-center justify-between rounded-lg bg-[#00574d] px-6 text-sm font-bold text-white shadow-[0_8px_22px_rgba(0,0,0,0.22)] transition hover:bg-[#06483f] sm:text-sm whitespace-nowrap"
+                            className="flex h-[52px] w-full max-w-[280px] items-center justify-between rounded-lg bg-[#00574d] px-5 text-sm font-bold text-white shadow-[0_8px_22px_rgba(0,0,0,0.22)] transition hover:bg-[#06483f] sm:h-[56px] sm:px-6"
                         >
                             Book Your Service Now
                             <span className="text-xl leading-none ml-2">→</span>

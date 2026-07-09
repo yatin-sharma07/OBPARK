@@ -74,7 +74,7 @@ export default function WhyChoose() {
                                 />
                             </div>
 
-                            <h3 className={`${microgrammaBold.className} mb-4 text-[24px] font-bold text-[#0B402F]`}>
+                            <h3 className={`${microgrammaBold.className} mb-4 text-[18px] font-bold text-[#0B402F] sm:text-[20px] md:text-[22px] lg:text-[24px]`}>
                                 {feature.title}
                             </h3>
 

@@ -5,28 +5,28 @@ import { ChevronDown } from 'lucide-react';
 import { microgrammaBold } from '@/lib/fonts';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function FaqSection() {
+export default function FAQ() {
     const faqs = [
         {
-            question: "How can I check my e-Challan status?",
-            answer: "You can easily check your e-Challan status by entering your vehicle registration number or challan number in the search box."
+            question: 'Can I check vehicle owner details using just the number plate?',
+            answer:
+                'Yes, you can check the vehicle owner details using just the vehicle registration number (number plate). Simply enter the number in the search box to get started.',
         },
         {
-            question: "Is it safe to pay e-Challans online?",
-            answer: "Yes, our platform uses secure payment gateways to ensure your transaction is safe and instantly updated."
+            question: 'Can I check vehicle owner details using just the number plate?',
+            answer:
+                'Yes, you can check the vehicle owner details using just the vehicle registration number (number plate). Simply enter the number in the search box to get started.',
         },
         {
-            question: "What happens if I don't pay my e-Challan?",
-            answer: "Failure to pay an e-Challan may result in additional penalties, legal action, or issues during vehicle registration renewal."
+            question: 'Can I check vehicle owner details using just the number plate?',
+            answer:
+                'Yes, you can check the vehicle owner details using just the vehicle registration number (number plate). Simply enter the number in the search box to get started.',
         },
         {
-            question: "How long does it take to update the challan status?",
-            answer: "The status is usually updated instantly after a successful payment, but it may take up to 24 hours to reflect in the official government records."
+            question: 'Can I check vehicle owner details using just the number plate?',
+            answer:
+                'Yes, you can check the vehicle owner details using just the vehicle registration number (number plate). Simply enter the number in the search box to get started.',
         },
-        {
-            question: "Can I pay multiple challans at once?",
-            answer: "Yes, you can view all pending challans for your vehicle and pay them together in a single transaction."
-        }
     ];
 
     const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -43,9 +43,9 @@ export default function FaqSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    className={`${microgrammaBold.className} mb-8 text-center text-[20px] font-bold text-[#0B402F] sm:text-[24px] md:text-[28px] lg:text-[32px]`}
+                    className={`${microgrammaBold.className} mb-8 text-center text-xl font-bold text-[#0B402F] sm:text-[24px] md:text-[28px] lg:text-[32px]`}
                 >
-                    FAQs on E-Challan
+                    FAQs on Checking Vehicle Owner Details by Number Plate Online
                 </motion.h2>
 
                 <div className="w-full space-y-4">
@@ -70,8 +70,8 @@ export default function FaqSection() {
                                     onClick={() => toggleFaq(index)}
                                     className="
                                         flex w-full items-center justify-between
-                                        gap-3 px-5 py-4 text-left outline-none
-                                        transition-colors hover:bg-[#f8fbfa] sm:px-10
+                                        px-6 py-4 text-left outline-none transition-colors
+                                        hover:bg-[#f8fbfa] sm:px-10
                                     "
                                 >
                                     <span className="text-sm font-bold text-[#174B43] sm:text-base md:text-[17px]">
@@ -79,8 +79,9 @@ export default function FaqSection() {
                                     </span>
 
                                     <ChevronDown
-                                        className={`h-5 w-5 flex-shrink-0 text-[#174B43] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''
-                                            }`}
+                                        className={`h-5 w-5 flex-shrink-0 text-[#174B43] transition-transform duration-300 ${
+                                            isOpen ? 'rotate-180' : ''
+                                        }`}
                                     />
                                 </button>
 
@@ -93,8 +94,8 @@ export default function FaqSection() {
                                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                                             className="overflow-hidden"
                                         >
-                                            <div className="border-t border-[#E4EAEA] bg-[#f8fbfa] px-5 pb-5 pt-4 sm:px-10">
-                                                <p className="text-sm leading-relaxed text-[#3E7071] sm:text-base">
+                                            <div className="border-t border-[#E4EAEA] bg-[#f8fbfa] px-6 pb-5 pt-4 sm:px-10">
+                                                <p className="max-w-5xl text-sm leading-relaxed text-[#3E7071] sm:text-base">
                                                     {faq.answer}
                                                 </p>
                                             </div>

@@ -79,7 +79,7 @@ export default function ExploreTopServices() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7"
+                    className="grid w-full grid-cols-2 gap-5 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7"
                 >
                     {needs.map((need, idx) => (
                         <motion.div
@@ -97,11 +97,11 @@ export default function ExploreTopServices() {
                                 />
                             </div>
 
-                            <h3 className={`mb-3 flex min-h-[44px] max-w-[170px] items-center justify-center text-center text-[15px] font-bold leading-[1.45] text-[#06483f] sm:text-[16px] ${microgrammaBold.className}`}>
+                            <h3 className={`mb-3 flex min-h-[44px] w-full items-center justify-center text-center text-[13px] font-bold leading-[1.45] text-[#06483f] sm:text-[15px] lg:text-[16px] ${microgrammaBold.className}`}>
                                 {need.title}
                             </h3>
 
-                            <p className="max-w-[175px] text-[12px] font-medium leading-[1.7] text-[#4f6964] sm:text-[13px]">
+                            <p className="w-full text-[11px] font-medium leading-[1.7] text-[#4f6964] sm:text-[12px] lg:text-[13px]">
                                 {need.desc}
                             </p>
                         </motion.div>

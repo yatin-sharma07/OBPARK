@@ -49,7 +49,7 @@ export default function PowerUp() {
 
     return (
         <section className="w-full py-12 sm:py-14 md:py-16">
-            <div className="relative w-full overflow-hidden aspect-[1728/708]">
+            <div className="relative w-full overflow-hidden sm:aspect-[1728/708]">
                 {/* Background Image */}
                 <Image
                     src="/Images/ev-charging/power-up-bg.png"
@@ -70,7 +70,7 @@ export default function PowerUp() {
                         className="relative z-10 max-w-[570px] text-white"
                     >
                     <h2
-                        className={`${microgrammaBold.className} mb-6 text-[30px] font-bold leading-[1.25] text-white sm:text-[38px] whitespace-nowrap md:text-[40px] lg:text-[42px]`}
+                        className={`${microgrammaBold.className} mb-6 text-[26px] font-bold leading-[1.25] text-white sm:text-[34px] md:text-[38px] lg:text-[42px]`}
                     >
                         Power Up Your Journey
                         <br />
@@ -102,7 +102,7 @@ export default function PowerUp() {
 
                         <button
                             className="
-                                flex h-[56px] items-center gap-4 rounded-[12px]
+                                flex w-full sm:w-auto h-[52px] sm:h-[56px] items-center justify-center sm:justify-start gap-4 rounded-[12px]
                                 bg-[#06493E] px-7 text-base font-bold text-white
                                 shadow-[0_8px_18px_rgba(0,0,0,0.15)]
                                 transition-all duration-300 hover:bg-[#043B33]
@@ -110,7 +110,7 @@ export default function PowerUp() {
                         >
                             Explore Stations
 
-                            <span className="flex h-8 w-8 items-center justify-center rounded-full  ">
+                            <span className="flex h-8 w-8 items-center justify-center rounded-full">
                                 <Image
                                     src="/Images/ev-charging/explore-1.png"
                                     alt=""

@@ -41,11 +41,12 @@ export default function HowItWorks() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.55 }}
-                    className={`${microgrammaBold.className} mb-12 text-[24px] font-bold leading-tight text-[#06483f] sm:text-[28px] md:text-[32px] lg:mb-16 lg:text-[36px]`}
+                    className={`${microgrammaBold.className} mb-12 text-[22px] font-bold leading-tight text-[#06483f] sm:text-[26px] md:text-[30px] lg:mb-16 lg:text-[36px]`}
                 >
                     How it works?
                 </motion.h2>
 
+                {/* 2-col on sm, 4-col on lg */}
                 <div className="mx-auto grid w-full grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
                     {steps.map((step, idx) => (
                         <motion.div
@@ -67,13 +68,13 @@ export default function HowItWorks() {
                             )}
 
                             <div className="relative z-10 mb-6">
-                                <div className="flex h-[92px] w-[92px] items-center justify-center rounded-full bg-[#dff5f0] sm:h-[100px] sm:w-[100px]">
+                                <div className="flex h-[84px] w-[84px] items-center justify-center rounded-full bg-[#dff5f0] sm:h-[92px] sm:w-[92px] lg:h-[92px] lg:w-[92px]">
                                     <Image
                                         src={step.icon}
                                         alt={step.title}
                                         width={48}
                                         height={48}
-                                        className="h-[48px] w-[48px] object-contain sm:h-[54px] sm:w-[54px]"
+                                        className="h-[44px] w-[44px] object-contain sm:h-[48px] sm:w-[48px]"
                                     />
                                 </div>
 
@@ -82,11 +83,11 @@ export default function HowItWorks() {
                                 </div>
                             </div>
 
-                            <h3 className={`${microgrammaBold.className} mb-3 text-[17px] font-bold leading-tight text-[#06483f] sm:text-[18px] lg:text-[19px]`}>
+                            <h3 className={`${microgrammaBold.className} mb-3 text-[15px] font-bold leading-tight text-[#06483f] sm:text-[17px] lg:text-[16px] xl:text-[18px]`}>
                                 {step.title}
                             </h3>
 
-                            <p className="max-w-[250px] text-[14px] font-medium leading-[1.7] text-[#46645f] sm:text-[15px]">
+                            <p className="max-w-[220px] text-[13px] font-medium leading-[1.7] text-[#46645f] sm:text-[14px] sm:max-w-[250px]">
                                 {step.desc}
                             </p>
                         </motion.div>
