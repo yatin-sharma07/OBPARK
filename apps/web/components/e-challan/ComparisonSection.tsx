@@ -43,16 +43,17 @@ function StatusIcon({ active }: { active: boolean }) {
 
 export default function ComparisonSection() {
     return (
-        <section className="pb-12">
+        <section className="pb-12 px-4 sm:px-6 md:px-12">
             <SectionHeading title="E-Challans made simple with OBPARK" />
 
-            <div className="mx-auto max-w-[920px] overflow-hidden rounded-t-[8px]">
-                <table className="w-full border-collapse text-left text-[12px] text-[#074c43]">
+            {/* overflow-x-auto ensures table is scrollable on narrow viewports */}
+            <div className="mx-auto max-w-[920px] overflow-x-auto rounded-t-[8px]">
+                <table className="w-full min-w-[320px] border-collapse text-left text-[12px] text-[#074c43]">
                     <thead>
                         <tr className="bg-[#064c43] text-white">
-                            <th className="px-6 py-4 font-black">Basis of Comparison</th>
-                            <th className="px-6 py-4 text-center font-black">OBPARK</th>
-                            <th className="px-6 py-4 text-center font-black">Other</th>
+                            <th className="px-4 py-3 font-black sm:px-6 sm:py-4">Basis of Comparison</th>
+                            <th className="px-4 py-3 text-center font-black sm:px-6 sm:py-4">OBPARK</th>
+                            <th className="px-4 py-3 text-center font-black sm:px-6 sm:py-4">Other</th>
                         </tr>
                     </thead>
 
@@ -62,11 +63,11 @@ export default function ComparisonSection() {
                                 key={row.label}
                                 className={row.highlight ? "bg-[#c9f0e8]" : "bg-[#eefaf6]"}
                             >
-                                <td className="px-6 py-4">{row.label}</td>
-                                <td className="px-6 py-4 text-center">
+                                <td className="px-4 py-3 sm:px-6 sm:py-4">{row.label}</td>
+                                <td className="px-4 py-3 text-center sm:px-6 sm:py-4">
                                     <StatusIcon active={row.obpark} />
                                 </td>
-                                <td className="px-6 py-4 text-center">
+                                <td className="px-4 py-3 text-center sm:px-6 sm:py-4">
                                     <StatusIcon active={row.other} />
                                 </td>
                             </tr>

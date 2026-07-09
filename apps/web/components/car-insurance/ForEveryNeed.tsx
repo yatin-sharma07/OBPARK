@@ -64,11 +64,15 @@ export default function ForEveryNeed() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.55 }}
-                    className={`${microgrammaBold.className} mb-9 text-center text-[24px] font-bold leading-tight text-[#06483f] sm:text-[28px] md:text-[32px] lg:text-[36px]`}
+                    className={`${microgrammaBold.className} mb-9 text-center text-[22px] font-bold leading-tight text-[#06483f] sm:text-[26px] md:text-[30px] lg:text-[36px]`}
                 >
                     Car Insurance for Every Need
                 </motion.h2>
 
+                {/*
+                 * 6-column grid only on lg+. On md use 3 cols, sm use 2, xs uses 1.
+                 * Previously was jumping from 3-col straight to 6-col.
+                 */}
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
@@ -80,7 +84,7 @@ export default function ForEveryNeed() {
                         <motion.div
                             key={idx}
                             variants={itemVariants}
-                            className="flex min-h-[245px] w-full flex-col items-center justify-start rounded-[18px] border border-[#dfe9e6] bg-white px-4 py-7 text-center shadow-[0_0_20px_rgba(0,0,0,0.025)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(0,0,0,0.07)] sm:min-h-[255px] lg:min-h-[260px]"
+                            className="flex min-h-[220px] w-full flex-col items-center justify-start rounded-[18px] border border-[#dfe9e6] bg-white px-4 py-7 text-center shadow-[0_0_20px_rgba(0,0,0,0.025)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(0,0,0,0.07)] sm:min-h-[240px] lg:min-h-[260px]"
                         >
                             <div className="mb-5 flex h-[64px] w-[64px] items-center justify-center">
                                 <Image
@@ -92,11 +96,11 @@ export default function ForEveryNeed() {
                                 />
                             </div>
 
-                            <h3 className={`mb-3 flex min-h-[44px] max-w-[170px] items-center justify-center text-center text-[15px] font-bold leading-[1.45] text-[#06483f] sm:text-[16px] ${microgrammaBold.className}`}>
+                            <h3 className={`mb-3 flex min-h-[44px] w-full max-w-full items-center justify-center text-center text-[14px] font-bold leading-[1.45] text-[#06483f] sm:text-[15px] lg:text-[14px] ${microgrammaBold.className}`}>
                                 {need.title}
                             </h3>
 
-                            <p className="max-w-[175px] text-[12px] font-medium leading-[1.7] text-[#4f6964] sm:text-[13px]">
+                            <p className="w-full text-[12px] font-medium leading-[1.7] text-[#4f6964] sm:text-[13px]">
                                 {need.desc}
                             </p>
                         </motion.div>

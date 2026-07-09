@@ -19,6 +19,8 @@ export function middleware(request: NextRequest) {
     path === '/services/car-insurance' ||
     path === '/services/car-services' ||
     path === '/e-challan' ||
+    path === '/services/vehicle-owner' ||
+    path === '/services/puc' ||
     path === '/services/ev-charging' ||
     path.startsWith('/_next') ||
     path.startsWith('/api') ||

@@ -21,13 +21,13 @@ const SERVICES = [
   {
     image: '/Images/services/pic3.jpeg',
     label: 'PUC',
-    href: '/account/vehicles',
+    href: '/services/puc',
     alt: 'PUC certificate service for vehicles',
   },
   {
     image: '/Images/services/pic4.jpeg',
     label: 'VEHICLE OWNER DETAILS',
-    href: '/account/vehicles',
+    href: '/services/vehicle-owner',
     alt: 'Vehicle owner details verification service',
   },
   {

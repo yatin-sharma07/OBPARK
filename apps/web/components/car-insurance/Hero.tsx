@@ -32,9 +32,9 @@ export default function Hero() {
                     className="relative z-10 flex w-full flex-1 flex-col justify-center pt-4 lg:max-w-[48%]"
                 >
                     <h1
-                        className={`${microgrammaBold.className} mb-3 text-[30px] font-bold leading-[1.12] text-[#074139] sm:text-[38px] md:text-[46px] lg:text-[52px] xl:text-[58px]`}
+                        className={`${microgrammaBold.className} mb-3 text-[26px] font-bold leading-[1.12] text-[#074139] sm:text-[34px] md:text-[42px] lg:text-[52px] xl:text-[58px]`}
                     >
-                        Compare & Buy
+                        Compare &amp; Buy
                         <br />
                         Car Insurance Online
                     </h1>
@@ -56,7 +56,7 @@ export default function Hero() {
                                         type="button"
                                         onClick={() => setActiveTab(tab)}
                                         className={`
-                      relative px-2 py-3 text-[11px] transition sm:text-[13px]
+                      relative px-1 py-3 text-[10px] transition sm:px-2 sm:text-[13px]
                       ${index !== 0 ? 'border-l border-[#e8eeee]' : ''}
                       ${isActive
                                                 ? 'bg-white font-bold text-[#074139]'
@@ -133,8 +133,8 @@ export default function Hero() {
                             </button>
                         </div>
 
-                        {/* Features - unchanged */}
-                        <div className="mt-7 grid grid-cols-2 gap-3 text-xs font-semibold text-[#143f39] sm:grid-cols-4 sm:text-sm whitespace-nowrap">
+                        {/* Features */}
+                        <div className="mt-7 grid grid-cols-2 gap-3 text-xs font-semibold text-[#143f39] sm:grid-cols-4 sm:text-sm">
                             <span className="flex items-center gap-2">
                                 <Image
                                     src="/Images/car-insurance/tick.png"
@@ -169,8 +169,8 @@ export default function Hero() {
                                 <Image
                                     src="/Images/car-insurance/tick.png"
                                     alt="Online"
-                                    width={35}
-                                    height={35}
+                                    width={30}
+                                    height={30}
                                 />
                                 100% Online
                             </span>
@@ -184,7 +184,7 @@ export default function Hero() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="relative h-[330px] w-full sm:h-[430px] md:h-[520px] lg:hidden"
+                    className="relative h-[260px] w-full sm:h-[380px] md:h-[480px] lg:hidden"
                 >
                     <Image
                         src="/Images/car-insurance/hero-bg.png"

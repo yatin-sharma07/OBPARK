@@ -151,7 +151,7 @@ export default function CarServicesForEveryNeed() {
                             </div>
 
                             <div>
-                                <h4 className="text-[22px] font-black leading-none text-[#087365]">
+                                <h4 className="text-[18px] font-black leading-none text-[#087365] sm:text-[20px] lg:text-[22px]">
                                     {stat.value}
                                 </h4>
                                 <p className="mt-1 text-[12px] font-semibold text-[#315d56]">
