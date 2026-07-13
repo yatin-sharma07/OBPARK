@@ -17,11 +17,24 @@ import cartsIcon from "@/app/assets/icons/carts.svg";
 import globeIcon from "@/app/assets/icons/globe.svg";
 import { extraImages } from "@/app/category/mock-data/mock-data";
 
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/store/auth.store";
+import { useAddToCart } from "@/hooks/useCart";
+import { useCartStore } from "@/store/cart.store";
+import { VehicleSelectDialog } from "@/components/cart/VehicleSelectDialog";
+
 interface ProductInfoProps {
   product: SingleProduct;
 }
 
 export function ProductInfo({ product }: ProductInfoProps) {
+  const router = useRouter();
+  const { isAuthenticated } = useAuthStore();
+  const addToCart = useAddToCart();
+  const openCart = useCartStore((s) => s.openCart);
+
+  const [showDialog, setShowDialog] = useState(false);
+  const [isBuyNow, setIsBuyNow] = useState(false);
 
   // COMBINED IMAGE ARRAY
   const allImages = [
@@ -49,6 +62,57 @@ export function ProductInfo({ product }: ProductInfoProps) {
     setQuantity((prev) =>
       prev > 1 ? prev - 1 : 1
     );
+
+  const handleAddToCart = () => {
+    setIsBuyNow(false);
+    setShowDialog(true);
+  };
+
+  const handleBuyNow = async () => {
+    // Save to sessionStorage to make cart dynamic for the mockup
+    const cartItem = {
+      id: product.id,
+      name: product.title,
+      description: 'Standard Package',
+      price: `$ ${product.price}`,
+      priceVal: product.price,
+      quantity: quantity,
+      image: activeImage,
+      vehicle: null
+    };
+    sessionStorage.setItem('mockup_cart_item', JSON.stringify(cartItem));
+
+    // Unconditionally redirect to /cart immediately to show the cart mockup "anyhow"
+    try {
+      if (isAuthenticated) {
+        await addToCart.mutateAsync({
+          productId: product.id,
+          quantity: quantity,
+        });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    router.push("/cart");
+  };
+
+  const handleConfirm = async (vehicleId: string | null) => {
+    try {
+      await addToCart.mutateAsync({
+        productId: product.id,
+        vehicleId: vehicleId ?? undefined,
+        quantity: quantity,
+      });
+    } catch (e) {
+      console.error(e);
+    }
+    setShowDialog(false);
+    if (isBuyNow) {
+      router.push("/cart");
+    } else {
+      openCart();
+    }
+  };
 
   return (
     <div className="space-y-8 animate-fadeIn">
@@ -314,20 +378,35 @@ export function ProductInfo({ product }: ProductInfoProps) {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-
-              <button className="w-full bg-white border-2 border-teal-800 text-teal-800 font-black text-xs uppercase tracking-widest py-4 rounded-xl">
-                Add to cart
+              <button
+                disabled={addToCart.isPending}
+                onClick={handleAddToCart}
+                className="w-full bg-white border-2 border-teal-800 text-teal-800 font-black text-xs uppercase tracking-widest py-4 rounded-xl disabled:opacity-50"
+              >
+                {addToCart.isPending && !isBuyNow ? "Adding..." : "Add to cart"}
               </button>
 
-              <button className="w-full bg-teal-800 text-white font-black text-xs uppercase tracking-widest py-4 rounded-xl">
-                Buy Now
+              <button
+                disabled={addToCart.isPending}
+                onClick={handleBuyNow}
+                className="w-full bg-teal-800 text-white font-black text-xs uppercase tracking-widest py-4 rounded-xl disabled:opacity-50"
+              >
+                {addToCart.isPending && isBuyNow ? "Processing..." : "Buy Now"}
               </button>
-
             </div>
           </div>
 
         </div>
       </div>
+
+      {showDialog && (
+        <VehicleSelectDialog
+          productName={product.title}
+          onConfirm={handleConfirm}
+          onCancel={() => setShowDialog(false)}
+          isLoading={addToCart.isPending}
+        />
+      )}
     </div>
   );
 }

@@ -14,6 +14,15 @@ export function middleware(request: NextRequest) {
     path === '/' ||
     path === '/about' ||
     path === '/coming-soon' ||
+    path === '/e-challan' ||
+    path === '/register' ||
+    path.startsWith('/cart') ||
+    path.startsWith('/checkout') ||
+    path.startsWith('/payment') ||
+    path.startsWith('/login') ||
+    path.startsWith('/account') ||
+    path.startsWith('/admin') ||
+    path.startsWith('/services') ||
     path.startsWith('/category') ||
     path.startsWith('/product')  ||
     path.startsWith('/_next') ||
