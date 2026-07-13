@@ -34,10 +34,11 @@ export interface Vehicle {
   }
 }
 
-export function useVehicles() {
+export function useVehicles(enabled = true) {
   return useQuery({
     queryKey: ['vehicles'],
     queryFn: () => api.get<Vehicle[]>('/vehicles'),
+    enabled,
   })
 }
 

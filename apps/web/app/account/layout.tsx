@@ -7,7 +7,7 @@ import { Car, Zap, ShoppingBag, Settings } from 'lucide-react'
 
 const NAV_ITEMS = [
   { href: '/account/vehicles', label: 'My Vehicles', icon: Car },
-  { href: '/account/fastag', label: 'FASTag', icon: Zap },
+  { href: '/services/fastag', label: 'FASTag', icon: Zap },
   { href: '/account/orders', label: 'Orders', icon: ShoppingBag },
   { href: '/account/settings', label: 'Settings', icon: Settings },
 ]

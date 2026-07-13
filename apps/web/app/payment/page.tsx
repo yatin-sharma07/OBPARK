@@ -1,12 +1,22 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useEffect, useState, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { microgrammaBold } from '@/lib/fonts'
-import { ChevronDown, ArrowRight } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
+import { useInitiateRecharge, useConfirmRecharge } from '@/hooks/useFastag'
 
-export default function PaymentPage() {
+function PaymentContent() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const isFastag = searchParams.get('type') === 'fastag'
+  const fastagAmount = searchParams.get('amount')
+  const fastagVrn = searchParams.get('vrn')
+
+  const initiateRecharge = useInitiateRecharge()
+  const confirmRecharge = useConfirmRecharge()
+  const [isProcessing, setIsProcessing] = useState(false)
+
   const [addressData, setAddressData] = useState<{
     firstName: string
     lastName: string
@@ -19,6 +29,8 @@ export default function PaymentPage() {
   const [subtotal, setSubtotal] = useState(180)
 
   useEffect(() => {
+    if (isFastag) return
+    
     // Load dynamic address data from checkout
     const storedAddress = sessionStorage.getItem('mockup_address')
     if (storedAddress) {
@@ -31,7 +43,29 @@ export default function PaymentPage() {
       const parsedCart = JSON.parse(storedCart)
       setSubtotal(parsedCart.priceVal * parsedCart.quantity)
     }
-  }, [])
+  }, [isFastag])
+
+  const handleFastagPayment = async () => {
+    if (!fastagVrn || !fastagAmount) return
+    setIsProcessing(true)
+    try {
+      const order = await initiateRecharge.mutateAsync({
+        vrn: fastagVrn,
+        amount: Number(fastagAmount),
+      })
+      if (order.mockPaymentId) {
+        await confirmRecharge.mutateAsync({
+          razorpayOrderId: order.orderId,
+          razorpayPaymentId: order.mockPaymentId,
+        })
+        router.push(`/services/fastag?success=true&vrn=${fastagVrn}`)
+      }
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setIsProcessing(false)
+    }
+  }
 
   const fullName = addressData 
     ? `${addressData.firstName} ${addressData.lastName}`
@@ -40,6 +74,8 @@ export default function PaymentPage() {
   const fullAddress = addressData
     ? `${addressData.address}, ${addressData.city}, ${addressData.state} - ${addressData.postalCode}`
     : 'A-102, Shanti Apartments, Near [Landmark] Municipal Park, Koramangala, Bengaluru, Karnataka - 560034'
+
+  const displayAmount = isFastag ? Number(fastagAmount) : subtotal
 
   return (
     <div className="w-full bg-[#eefaf6] min-h-screen pt-32 pb-24 px-4 sm:px-6 md:px-8 font-sans">
@@ -50,27 +86,29 @@ export default function PaymentPage() {
           <div className="lg:col-span-7 space-y-6">
             
             {/* Delivering To Card */}
-            <div className="bg-white rounded-[32px] p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
-              <div className="flex justify-between items-start gap-4">
-                <div className="space-y-1">
-                  <p className="text-sm">
-                    <span className="font-black text-slate-900">Delivering to</span>{' '}
-                    <span className="text-slate-500 font-medium">{fullName}</span>
-                  </p>
-                  <p className="text-sm font-black text-slate-900 mt-2">Address</p>
-                  <p className="text-sm text-slate-500 leading-relaxed font-medium max-w-sm">
-                    {fullAddress}
-                  </p>
+            {!isFastag && (
+              <div className="bg-white rounded-[32px] p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+                <div className="flex justify-between items-start gap-4">
+                  <div className="space-y-1">
+                    <p className="text-sm">
+                      <span className="font-black text-slate-900">Delivering to</span>{' '}
+                      <span className="text-slate-500 font-medium">{fullName}</span>
+                    </p>
+                    <p className="text-sm font-black text-slate-900 mt-2">Address</p>
+                    <p className="text-sm text-slate-500 leading-relaxed font-medium max-w-sm">
+                      {fullAddress}
+                    </p>
+                  </div>
+                  <button 
+                    onClick={() => router.push('/checkout')}
+                    className="text-teal-600 font-medium text-sm underline shrink-0 hover:text-teal-700 transition-colors"
+                  >
+                    Change
+                  </button>
                 </div>
-                <button 
-                  onClick={() => router.push('/checkout')}
-                  className="text-teal-600 font-medium text-sm underline shrink-0 hover:text-teal-700 transition-colors"
-                >
-                  Change
-                </button>
               </div>
-            </div>
-
+            )}
+ 
             {/* Payment Method Card */}
             <div className="bg-white rounded-[32px] p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.02)] space-y-8">
               <h3 className="font-black text-slate-900 text-sm tracking-wide">Payment method</h3>
@@ -94,7 +132,7 @@ export default function PaymentPage() {
                       <div className="bg-slate-100 text-blue-900 px-2 py-1 rounded text-[10px] font-black shadow-sm">PayPal</div>
                       <div className="bg-[#1A1F71] text-white px-2.5 py-1 rounded text-[10px] font-black shadow-sm">VISA</div>
                     </div>
-
+ 
                     <div className="space-y-4">
                       <div>
                         <label className="block text-xs font-semibold text-slate-700 mb-1.5">Card Number</label>
@@ -124,16 +162,26 @@ export default function PaymentPage() {
                         </div>
                       </div>
                     </div>
-
+ 
                     <div className="flex items-center gap-2 pt-2">
                       <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500 border-slate-300 shadow-sm" />
                       <span className="text-xs text-slate-500 font-medium">Save card details</span>
                     </div>
-
+ 
                     <div className="pt-4">
-                      <button className="bg-gradient-to-r from-teal-700 to-[#7dc9b6] hover:from-teal-800 hover:to-[#68bbab] transition-all duration-300 text-white font-medium text-sm px-6 py-3 rounded-lg shadow-sm w-full sm:w-64 tracking-wide">
-                        Pay <span className="font-black">USD</span> {subtotal.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-                      </button>
+                      {isFastag ? (
+                        <button 
+                          onClick={handleFastagPayment}
+                          disabled={isProcessing}
+                          className="bg-gradient-to-r from-teal-700 to-[#7dc9b6] hover:from-teal-800 hover:to-[#68bbab] transition-all duration-300 text-white font-medium text-sm px-6 py-3 rounded-lg shadow-sm w-full sm:w-64 tracking-wide"
+                        >
+                          {isProcessing ? 'Processing...' : <>Pay <span className="font-black">INR</span> {displayAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</>}
+                        </button>
+                      ) : (
+                        <button className="bg-gradient-to-r from-teal-700 to-[#7dc9b6] hover:from-teal-800 hover:to-[#68bbab] transition-all duration-300 text-white font-medium text-sm px-6 py-3 rounded-lg shadow-sm w-full sm:w-64 tracking-wide">
+                          Pay <span className="font-black">USD</span> {displayAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                        </button>
+                      )}
                     </div>
                     
                     <p className="text-[10px] text-slate-400 leading-relaxed max-w-sm pt-2">
@@ -141,9 +189,9 @@ export default function PaymentPage() {
                     </p>
                   </div>
                 </div>
-
+ 
                 <hr className="border-slate-100" />
-
+ 
                 {/* UPI Option */}
                 <label className="flex items-center gap-3 cursor-pointer py-1">
                   <div className="w-4 h-4 rounded-full border border-slate-300 bg-white shrink-0"></div>
@@ -152,9 +200,9 @@ export default function PaymentPage() {
                     <span className="font-black italic text-slate-900 tracking-tighter">UPI</span>
                   </span>
                 </label>
-
+ 
                 <hr className="border-slate-100" />
-
+ 
                 {/* Net Banking Option */}
                 <div className="space-y-3 py-1">
                   <label className="flex items-center gap-3 cursor-pointer">
@@ -170,38 +218,54 @@ export default function PaymentPage() {
                     </div>
                   </div>
                 </div>
-
+ 
                 <hr className="border-slate-100" />
-
+ 
                 {/* COD Option */}
-                <label className="flex items-center gap-3 cursor-pointer py-1">
-                  <div className="w-4 h-4 rounded-full border border-slate-300 bg-white shrink-0"></div>
-                  <span className="font-medium text-slate-800 text-sm">Cash on Delivery/Pay on Delivery</span>
-                </label>
-
+                {!isFastag && (
+                  <label className="flex items-center gap-3 cursor-pointer py-1">
+                    <div className="w-4 h-4 rounded-full border border-slate-300 bg-white shrink-0"></div>
+                    <span className="font-medium text-slate-800 text-sm">Cash on Delivery/Pay on Delivery</span>
+                  </label>
+                )}
+ 
               </div>
             </div>
           </div>
-
+ 
           {/* Right Column: Order Summary */}
           <div className="lg:col-span-5 bg-white rounded-[32px] p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
             <div className="space-y-4">
               <div className="flex justify-between items-center text-xs sm:text-sm font-semibold text-slate-600">
-                <span>Items:</span>
-                <span className="text-slate-900 font-bold">${subtotal.toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
+                <span>{isFastag ? 'FASTag Recharge:' : 'Items:'}</span>
+                <span className="text-slate-900 font-bold">
+                  {isFastag 
+                    ? `₹${displayAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}` 
+                    : `$${displayAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })}`}
+                </span>
               </div>
-              <div className="flex justify-between items-center text-xs sm:text-sm font-semibold text-slate-600 pb-4">
-                <span>Delivery:</span>
-                <span className="text-slate-400 text-[10px]">Calculated at next step</span>
-              </div>
+              {!isFastag && (
+                <div className="flex justify-between items-center text-xs sm:text-sm font-semibold text-slate-600 pb-4">
+                  <span>Delivery:</span>
+                  <span className="text-slate-400 text-[10px]">Calculated at next step</span>
+                </div>
+              )}
               <div className="flex justify-between items-center text-xs sm:text-sm font-semibold text-slate-600 pt-4 border-t border-slate-200">
                 <span>Total:</span>
-                <span className="text-slate-900 font-bold">${subtotal.toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
+                <span className="text-slate-900 font-bold">
+                  {isFastag 
+                    ? `₹${displayAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}` 
+                    : `$${displayAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })}`}
+                </span>
               </div>
               
               <div className="flex justify-between items-center text-sm font-black pt-6 mt-6 border-t-2 border-slate-800 text-slate-900">
                 <span>Order Total:</span>
-                <span>${subtotal.toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
+                <span>
+                  {isFastag 
+                    ? `₹${displayAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}` 
+                    : `$${displayAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })}`}
+                </span>
               </div>
             </div>
           </div>
@@ -209,5 +273,13 @@ export default function PaymentPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function PaymentPage() {
+  return (
+    <Suspense fallback={<div className="w-full min-h-screen bg-[#eefaf6] flex items-center justify-center font-sans">Loading payment details...</div>}>
+      <PaymentContent />
+    </Suspense>
   )
 }

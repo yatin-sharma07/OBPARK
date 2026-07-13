@@ -1,12 +1,9 @@
-import { Navbar } from '@/components/Navbar'
-import { Footer } from "@/components/layout/Footer";
 import { Construction, HomeIcon } from "lucide-react";
 import Link from 'next/link';
 
 export default function ComingSoonPage() {
   return (
     <main>
-      <Navbar />
       <div className="flex flex-col items-center justify-center min-h-[100vh] px-4 text-center font-michroma pt-32 pb-20">
         <Construction className="w-24 h-24 text-[#074139] mb-8 animate-pulse" />
         <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-[#074139]">
