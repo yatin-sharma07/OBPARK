@@ -1,0 +1,332 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Enums ────────────────────────────────────────────────
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  CAPTURED
+  FAILED
+  REFUNDED
+}
+
+enum FuelType {
+  PETROL
+  DIESEL
+  ELECTRIC
+  CNG
+  HYBRID
+}
+
+enum RechargeStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+// ─── Users & Auth ─────────────────────────────────────────
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  phone        String?
+  role         Role      @default(CUSTOMER)
+  isVerified   Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  sessions     Session[]
+  addresses    Address[]
+  vehicles     Vehicle[]
+  cart         Cart?
+  orders       Order[]
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  refreshToken String   @unique
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ─── Addresses ────────────────────────────────────────────
+
+model Address {
+  id         String   @id @default(cuid())
+  userId     String
+  label      String   // "Home", "Office" etc
+  line1      String
+  line2      String?
+  city       String
+  state      String
+  pincode    String
+  isDefault  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders     Order[]
+}
+
+// ─── Vehicles ─────────────────────────────────────────────
+
+model Vehicle {
+  id           String    @id @default(cuid())
+  userId       String
+  vrn          String    // Vehicle Registration Number e.g. MH12AB1234
+  make         String    // e.g. Maruti
+  model        String    // e.g. Swift
+  year         Int
+  fuelType     FuelType  @default(PETROL)
+  colour       String?
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  user              User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  rcLookup          RcLookup?
+  cartItems         CartItem[]
+  rechargeTransactions RechargeTransaction[]
+
+  @@unique([userId, vrn])
+  @@index([vrn])
+}
+
+model RcLookup {
+  id              String   @id @default(cuid())
+  vehicleId       String   @unique
+  vrn             String   @unique
+  rawData         Json     // Full Vahan API response (encrypted)
+  insuranceExpiry DateTime?
+  puccExpiry      DateTime?
+  fitnessExpiry   DateTime?
+  challanCount    Int      @default(0)
+  fastagActive    Boolean  @default(false)
+  healthScore     Int      @default(0)
+  fetchedAt       DateTime @default(now())
+  expiresAt       DateTime // fetchedAt + 24h
+
+  vehicle         Vehicle  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  @@index([vrn])
+}
+
+// ─── Products & Categories ────────────────────────────────
+
+model Category {
+  id          String     @id @default(cuid())
+  name        String
+  slug        String     @unique
+  description String?
+  imageUrl    String?
+  parentId    String?
+  isActive    Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+
+  parent      Category?  @relation("CategoryTree", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryTree")
+  products    Product[]
+}
+
+model Product {
+  id            String        @id @default(cuid())
+  name          String
+  slug          String        @unique
+  description   String?
+  categoryId    String
+  basePrice     Decimal       @db.Decimal(10, 2)
+  images        String[]      // Array of S3 URLs
+  compatibility Json          // [{ make, model, yearFrom, yearTo }]
+  isActive      Boolean       @default(true)
+  stock         Int           @default(0)
+  sku           String        @unique
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  category      Category      @relation(fields: [categoryId], references: [id])
+  variants      Variant[]
+  cartItems     CartItem[]
+  orderItems    OrderItem[]
+
+  @@index([slug])
+  @@index([categoryId])
+}
+
+model Variant {
+  id         String   @id @default(cuid())
+  productId  String
+  name       String   // e.g. "500ml", "Red"
+  price      Decimal  @db.Decimal(10, 2)
+  stock      Int      @default(0)
+  sku        String   @unique
+  createdAt  DateTime @default(now())
+
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+// ─── Cart ─────────────────────────────────────────────────
+
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String     @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     CartItem[]
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  cartId    String
+  productId String
+  vehicleId String?  // VRN-linked — which vehicle this part is for
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id])
+  vehicle   Vehicle? @relation(fields: [vehicleId], references: [id])
+
+  @@unique([cartId, productId, vehicleId])
+}
+
+// ─── Orders ───────────────────────────────────────────────
+
+model Order {
+  id              String      @id @default(cuid())
+  userId          String
+  addressId       String
+  status          OrderStatus @default(PENDING)
+  subtotal        Decimal     @db.Decimal(10, 2)
+  discount        Decimal     @default(0) @db.Decimal(10, 2)
+  total           Decimal     @db.Decimal(10, 2)
+  couponCode      String?
+  notes           String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  user            User        @relation(fields: [userId], references: [id])
+  address         Address     @relation(fields: [addressId], references: [id])
+  items           OrderItem[]
+  payment         Payment?
+
+  @@index([userId])
+  @@index([status])
+}
+
+model OrderItem {
+  id          String   @id @default(cuid())
+  orderId     String
+  productId   String
+  // Snapshot — never rely on product FK for price/name
+  productName String
+  productSku  String
+  unitPrice   Decimal  @db.Decimal(10, 2)
+  quantity    Int
+  total       Decimal  @db.Decimal(10, 2)
+
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product     Product  @relation(fields: [productId], references: [id])
+}
+
+// ─── Payments ─────────────────────────────────────────────
+
+model Payment {
+  id                String        @id @default(cuid())
+  orderId           String        @unique
+  razorpayOrderId   String        @unique
+  razorpayPaymentId String?
+  amount            Decimal       @db.Decimal(10, 2)
+  status            PaymentStatus @default(PENDING)
+  idempotencyKey    String        @unique
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  order             Order         @relation(fields: [orderId], references: [id])
+
+  @@index([razorpayOrderId])
+}
+
+// ─── FASTag Recharge ──────────────────────────────────────
+
+model RechargeTransaction {
+  id                String         @id @default(cuid())
+  vehicleId         String
+  vrn               String
+  amount            Decimal        @db.Decimal(10, 2)
+  razorpayOrderId   String         @unique
+  razorpayPaymentId String?
+  status            RechargeStatus @default(PENDING)
+  idempotencyKey    String         @unique
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  vehicle           Vehicle        @relation(fields: [vehicleId], references: [id])
+
+  @@index([vrn])
+  @@index([vehicleId])
+}
+
+
+// ─── Audit Log ────────────────────────────────────────────
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String
+  action     String
+  entityId   String?
+  entityType String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([entityType, entityId])
+}
+
+// ─── Coupons ──────────────────────────────────────────────
+
+enum DiscountType {
+  FLAT
+  PERCENTAGE
+}
+
+model Coupon {
+  id            String       @id @default(cuid())
+  code          String       @unique
+  description   String?
+  discountType  DiscountType @default(FLAT)
+  discountValue Decimal      @db.Decimal(10, 2)
+  minOrderValue Decimal?     @db.Decimal(10, 2)
+  maxUses       Int?
+  usedCount     Int          @default(0)
+  isActive      Boolean      @default(true)
+  expiresAt     DateTime?
+  createdAt     DateTime     @default(now())
+
+  @@index([code])
+}

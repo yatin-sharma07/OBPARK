@@ -7,7 +7,6 @@ import { useCart } from '@/hooks/useCart'
 import { Button } from '@/components/ui/button'
 import { ShoppingCart } from 'lucide-react'
 import { CartDrawer } from '@/components/cart/CartDrawer'
-
 import Image from 'next/image'
 
 export function Header() {

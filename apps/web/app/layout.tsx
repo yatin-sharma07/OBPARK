@@ -4,6 +4,9 @@ import './globals.css'
 import { ConditionalHeader } from '@/components/layout/ConditionalHeader'
 import { Providers } from '@/components/Providers'
 import Script from 'next/script'
+import { Footer } from "@/components/layout/Footer";
+import { Navbar } from '@/components/Navbar'
+import  Header  from '@/components/Header'
 
 export const metadata: Metadata = {
   title: 'OBPark | Smart Vehicle Commerce, Parking & Mobility Solutions',
@@ -50,7 +53,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={michroma.variable} suppressHydrationWarning>
-      <body className={`${michroma.className} antialiased bg-white`}>
+      <body className={`${michroma.className} antialiased`}>
         <Script
           src="https://checkout.razorpay.com/v1/checkout.js"
           strategy="afterInteractive"
@@ -58,7 +61,10 @@ export default function RootLayout({
 
         <Providers>
           <ConditionalHeader />
+        {/* <Header /> */}
+          <Navbar />
           <main className="min-h-screen w-full max-w-[100vw] ">{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>
