@@ -56,9 +56,9 @@ const SERVICES = [
   },
   {
     image: '/Images/services/pic9.jpeg',
-    label: 'CAR LOAN',
-    href: '/products',
-    alt: 'Car loan service for vehicle buyers',
+    label: 'FASTAG',
+    href: '/services/fastag',
+    alt: 'FASTag recharge and balance check service',
   },
 ]
 

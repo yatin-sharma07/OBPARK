@@ -11,14 +11,14 @@ export default function HeroSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full flex flex-col items-center px-4 pb-8 pt-4 text-center sm:px-6 md:pb-12 mt-20 lg:mt-20"
+            className="w-full h-full min-h-[calc(100vh-32px)] lg:min-h-0 flex flex-col justify-center items-center px-4 pb-8 pt-20 sm:pt-24 lg:pt-32 text-center sm:px-6 md:pb-12 lg:mt-0"
         >
             <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className={`max-w-[1000px] text-[24px] leading-[1.15] tracking-[-0.03em] text-[#074c43] sm:text-[34px] md:text-[48px] lg:text-[64px] lg:mt-20 ${microgrammaBold.className}`}
+                className={`max-w-[1000px] text-[24px] leading-[1.15] tracking-[-0.03em] text-[#074c43] sm:text-[34px] md:text-[48px] lg:text-[64px] ${microgrammaBold.className}`}
             >
                 E-Challan: Check &amp; Pay Traffic E-Challan Online by Vehicle Number
             </motion.h1>
