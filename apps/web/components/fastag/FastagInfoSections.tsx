@@ -1,5 +1,37 @@
+'use client'
+
 import Image from 'next/image'
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, Wallet, ShieldCheck, ArrowRight } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { microgrammaBold } from '@/lib/fonts'
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: "easeOut" as const } 
+  }
+}
+
+const scaleUp = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    scale: 1, 
+    transition: { duration: 0.6, ease: "easeOut" as const } 
+  }
+}
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
 
 export function FastagMandatorySection() {
   const cards = [
@@ -18,26 +50,42 @@ export function FastagMandatorySection() {
   ]
 
   return (
-    <section className="py-20 bg-[#f4fcf9]">
+    <section className="py-20 bg-[#f4fcf9] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-center gap-4 mb-16">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+          className="flex items-center justify-center gap-4 mb-16"
+        >
           <div className="h-[1px] w-12 sm:w-24 bg-gray-300"></div>
           <h2 className="text-2xl sm:text-3xl font-bold text-[#143B33]">Why FASTag Is Mandatory</h2>
           <div className="h-[1px] w-12 sm:w-24 bg-gray-300"></div>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <motion.div 
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"
+        >
           {cards.map((card, idx) => (
-            <div key={idx} className="bg-white rounded-2xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+            <motion.div 
+              key={idx} 
+              variants={fadeInUp}
+              className="bg-white rounded-2xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow border border-gray-100"
+            >
               <div className="w-16 h-16 relative mb-6">
                 <Image src={card.icon} alt="Icon" fill className="object-contain" />
               </div>
               <p className="text-[#3F665D] font-medium leading-relaxed">
                 {card.text}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -64,28 +112,48 @@ export function FastagBenefitsSection() {
   ]
 
   return (
-    <section className="py-20 bg-[#f4fcf9]">
+    <section className="py-20 bg-[#f4fcf9] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="order-2 lg:order-1">
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            className="order-2 lg:order-1"
+          >
             <h2 className="text-3xl font-bold text-[#143B33] mb-4">What are the benefits of FASTag?</h2>
             <p className="text-[#3F665D] mb-12 max-w-md">
               FASTag saves time, reduces fuel use, and makes your travel smoother with easy, cashless toll payments.
             </p>
             
-            <div className="relative w-full aspect-[4/3] max-w-lg mx-auto">
+            <motion.div 
+              variants={scaleUp}
+              className="relative w-full aspect-[4/3] max-w-lg mx-auto"
+            >
               <Image 
                 src="/Images/fastag/benefits_of_fastag.png" 
                 alt="Benefits of FASTag" 
                 fill 
                 className="object-contain"
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           
-          <div className="order-1 lg:order-2 space-y-4">
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="order-1 lg:order-2 space-y-4"
+          >
             {benefits.map((b, i) => (
-              <div key={i} className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4">
+              <motion.div 
+                key={i} 
+                variants={fadeInUp}
+                className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4 hover:translate-x-1 transition-transform"
+              >
                 <div className="bg-[#e0f7f1] p-3 rounded-lg text-[#0A3D31] shrink-0">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
@@ -93,9 +161,9 @@ export function FastagBenefitsSection() {
                   <h3 className="font-bold text-[#143B33] mb-1">{b.title}</h3>
                   <p className="text-sm text-[#3F665D] leading-relaxed">{b.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -123,13 +191,23 @@ export function FastagDocumentsSection() {
   ]
 
   return (
-    <section className="py-20 bg-[#f4fcf9]">
+    <section className="py-20 bg-[#f4fcf9] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
-          <div className="space-y-4">
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="space-y-4"
+          >
             {documents.map((d, i) => (
-              <div key={i} className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4">
+              <motion.div 
+                key={i} 
+                variants={fadeInUp}
+                className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4 hover:translate-x-1 transition-transform"
+              >
                 <div className="bg-[#e0f7f1] p-3 rounded-lg text-[#0A3D31] shrink-0">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
@@ -137,34 +215,40 @@ export function FastagDocumentsSection() {
                   <h3 className="font-bold text-[#143B33] mb-1">{d.title}</h3>
                   <p className="text-sm text-[#3F665D] leading-relaxed">{d.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="text-right">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            className="text-right"
+          >
             <h2 className="text-3xl font-bold text-[#143B33] mb-4">Documents required for FASTag registration</h2>
             <p className="text-[#3F665D] mb-12 max-w-md ml-auto">
               Keep the following documents ready to ensure a quick and hassle-free FASTag registration process.
             </p>
             
-            <div className="relative w-full aspect-[4/3] max-w-lg ml-auto">
+            <motion.div 
+              variants={scaleUp}
+              className="relative w-full aspect-[4/3] max-w-lg ml-auto"
+            >
               <Image 
                 src="/Images/fastag/document_req_fastag.png" 
                 alt="Documents required for FASTag" 
                 fill 
                 className="object-contain"
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           
         </div>
       </div>
     </section>
   )
 }
-
-import { Wallet, ShieldCheck, ArrowRight } from 'lucide-react'
-import { microgrammaBold } from '@/lib/fonts'
 
 export function FastagBannerSection() {
   return (
@@ -182,52 +266,76 @@ export function FastagBannerSection() {
 
       {/* Content overlay */}
       <div className="relative z-10 w-full px-6 sm:px-12 md:px-16 lg:px-24 py-16 sm:py-24">
-        <div className="max-w-xl text-left space-y-6 sm:space-y-8">
+        <motion.div 
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="max-w-xl text-left space-y-6 sm:space-y-8"
+        >
           
           <div className="space-y-4">
-            <span className="text-xs sm:text-sm font-bold text-[#0B402F] tracking-wider uppercase block">
+            <motion.span 
+              variants={fadeInUp}
+              className="text-xs sm:text-sm font-bold text-[#0B402F] tracking-wider uppercase block"
+            >
               Fast. Secure. Seamless.
-            </span>
-            <h2 className={`${microgrammaBold.className} text-[#0B402F] text-2xl sm:text-3xl md:text-4xl lg:text-[42px] leading-[1.2] font-bold`}>
+            </motion.span>
+            <motion.h2 
+              variants={fadeInUp}
+              className={`${microgrammaBold.className} text-[#0B402F] text-2xl sm:text-3xl md:text-4xl lg:text-[42px] leading-[1.2] font-bold`}
+            >
               Pay Tolls Effortlessly <br /> with FASTag
-            </h2>
-            <p className="text-[#3E7071] text-sm sm:text-base leading-relaxed font-medium max-w-md">
+            </motion.h2>
+            <motion.p 
+              variants={fadeInUp}
+              className="text-[#3E7071] text-sm sm:text-base leading-relaxed font-medium max-w-md"
+            >
               Recharge, check balance and manage your FASTag in just a few clicks.
-            </p>
+            </motion.p>
           </div>
 
           {/* Feature Icons Row */}
-          <div className="flex gap-8 pt-2">
-            <div className="flex flex-col items-center text-center gap-2 max-w-[120px]">
-              <div className="w-12 h-12 rounded-full border border-[#0B402F]/20 flex items-center justify-center bg-white shadow-sm">
+          <motion.div 
+            variants={staggerContainer}
+            className="flex gap-8 pt-2"
+          >
+            <motion.div 
+              variants={scaleUp}
+              className="flex flex-col items-center text-center gap-2 max-w-[120px]"
+            >
+              <div className="w-12 h-12 rounded-full border border-[#0B402F]/20 flex items-center justify-center bg-white shadow-sm hover:scale-105 transition-transform">
                 <Wallet className="w-5 h-5 text-[#0B402F]" />
               </div>
               <span className="text-[10px] sm:text-xs font-bold text-gray-700 leading-tight">
                 Check FASTag Balance
               </span>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col items-center text-center gap-2 max-w-[120px]">
-              <div className="w-12 h-12 rounded-full border border-[#0B402F]/20 flex items-center justify-center bg-white shadow-sm">
+            <motion.div 
+              variants={scaleUp}
+              className="flex flex-col items-center text-center gap-2 max-w-[120px]"
+            >
+              <div className="w-12 h-12 rounded-full border border-[#0B402F]/20 flex items-center justify-center bg-white shadow-sm hover:scale-105 transition-transform">
                 <ShieldCheck className="w-5 h-5 text-[#0B402F]" />
               </div>
               <span className="text-[10px] sm:text-xs font-bold text-gray-700 leading-tight">
                 Secure Toll Payments
               </span>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Button */}
-          <div className="pt-4">
-            <button className="bg-[#0B402F] hover:bg-[#083023] text-white font-bold py-3.5 px-6 rounded-lg text-xs sm:text-sm tracking-wide shadow-md flex items-center gap-3 transition-colors">
+          <motion.div variants={fadeInUp} className="pt-4">
+            <button className="bg-[#0B402F] hover:bg-[#083023] text-white font-bold py-3.5 px-6 rounded-lg text-xs sm:text-sm tracking-wide shadow-md flex items-center gap-3 transition-all hover:scale-[1.03]">
               Manage FASTag
               <span className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
                 <ArrowRight className="w-3.5 h-3.5" />
               </span>
             </button>
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
       </div>
     </section>
   )

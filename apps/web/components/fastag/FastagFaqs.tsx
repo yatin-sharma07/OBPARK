@@ -2,6 +2,26 @@
 
 import { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 25 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: "easeOut" as const } 
+  }
+}
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08
+    }
+  }
+}
 
 export function FastagFaqs() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
@@ -39,16 +59,31 @@ export function FastagFaqs() {
   }
 
   return (
-    <section className="py-20 bg-[#f4fcf9]">
+    <section className="py-20 bg-[#f4fcf9] overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-[#143B33] mb-10 text-left">FASTag FAQs</h2>
+        <motion.h2 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="text-3xl font-bold text-[#143B33] mb-10 text-left"
+        >
+          FASTag FAQs
+        </motion.h2>
         
-        <div className="space-y-4">
+        <motion.div 
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="space-y-4"
+        >
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx
             return (
-              <div 
+              <motion.div 
                 key={idx} 
+                variants={fadeInUp}
                 className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
               >
                 <button
@@ -63,15 +98,24 @@ export function FastagFaqs() {
                   )}
                 </button>
                 
-                {isOpen && (
-                  <div className="px-5 pb-5 pt-1 text-[#3F665D] leading-relaxed text-sm">
-                    {faq.a}
-                  </div>
-                )}
-              </div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                    >
+                      <div className="px-5 pb-5 pt-1 text-[#3F665D] leading-relaxed text-sm">
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             )
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
