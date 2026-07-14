@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
 import { useChangePassword } from '@/hooks/useProfile'
+import { microgrammaBold } from '@/lib/fonts'
 
 export function ChangePasswordCard() {
   const [showCurrent, setShowCurrent] = useState(false)
@@ -19,7 +20,7 @@ export function ChangePasswordCard() {
   return (
     <div className="bg-white border rounded-xl p-6 space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="font-semibold text-gray-800">Change Password</h3>
+        <h3 className={`font-semibold text-gray-800 ${microgrammaBold.className}`}>Change Password</h3>
         <button className="text-xs text-blue-500">Need help?</button>
       </div>
 
@@ -80,7 +81,7 @@ export function ChangePasswordCard() {
       <button
         onClick={handleSave}
         disabled={changePassword.isPending || !form.current || !form.next || form.next !== form.confirm}
-        className="w-full py-2.5 rounded-lg text-sm text-white font-medium disabled:opacity-50"
+        className={` ${microgrammaBold.className} w-full py-2.5 rounded-lg text-sm text-white font-medium disabled:opacity-50`}
         style={{ backgroundColor: '#074139' }}
       >
         {changePassword.isPending ? 'Saving...' : 'Save Change'}

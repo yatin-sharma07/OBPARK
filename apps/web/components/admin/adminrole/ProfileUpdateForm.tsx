@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Upload, Trash2, Wand2, Pencil } from 'lucide-react'
 import { useUpdateProfile } from '@/hooks/useProfile'
 import type { AdminProfile } from './types'
+import { microgrammaBold } from '@/lib/fonts'
 
 interface ProfileUpdateFormProps {
   profile?: AdminProfile
@@ -45,10 +46,10 @@ export function ProfileUpdateForm({ profile }: ProfileUpdateFormProps) {
   return (
     <div className="bg-white border rounded-xl p-6 space-y-5">
       <div className="flex items-center justify-between">
-        <h3 className="font-semibold text-gray-800">Profile Update</h3>
+        <h3 className={`font-semibold text-gray-800 ${microgrammaBold.className}`}>Profile Update</h3>
         <button
           onClick={() => setEditing(!editing)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs text-gray-600"
+          className={` ${microgrammaBold.className} flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs text-gray-600`}
         >
           <Pencil className="h-3.5 w-3.5" /> {editing ? 'Cancel' : 'Edit'}
         </button>
@@ -58,12 +59,12 @@ export function ProfileUpdateForm({ profile }: ProfileUpdateFormProps) {
         <div className="w-14 h-14 rounded-full bg-gray-200 shrink-0" />
         <button
           disabled={!editing}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-white font-medium disabled:opacity-50"
+          className={` ${microgrammaBold.className} flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-white font-medium disabled:opacity-50`}
           style={{ backgroundColor: '#074139' }}
         >
           <Upload className="h-3.5 w-3.5" /> Upload New
         </button>
-        <button disabled={!editing} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs text-gray-600 disabled:opacity-50">
+        <button disabled={!editing} className={` ${microgrammaBold.className} flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs text-gray-600 disabled:opacity-50`}>
           <Trash2 className="h-3.5 w-3.5" /> Delete
         </button>
       </div>

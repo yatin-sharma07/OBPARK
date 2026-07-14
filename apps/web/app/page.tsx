@@ -24,7 +24,7 @@ export default function HomePage() {
         <MintCta />
         <Reviews />
         <FeaturesAccordion />
-        <Footer />
+      
       </div>
     </main>
   )

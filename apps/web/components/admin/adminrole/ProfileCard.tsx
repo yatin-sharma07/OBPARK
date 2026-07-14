@@ -2,6 +2,7 @@
 
 import { Pencil, Share2, Plus } from 'lucide-react'
 import type { AdminProfile } from './types'
+import { microgrammaBold } from '@/lib/fonts'
 
 interface ProfileCardProps {
   profile?: AdminProfile
@@ -12,7 +13,7 @@ export function ProfileCard({ profile, isLoading }: ProfileCardProps) {
   return (
     <div className="bg-white border rounded-xl p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="font-semibold text-gray-800">Profile</h3>
+        <h3 className={`text-[16px] font-semibold text-gray-800 ${microgrammaBold.className}`}>Profile</h3>
         <div className="flex items-center gap-2 text-gray-400">
           <button aria-label="Edit profile"><Pencil className="h-4 w-4" /></button>
           <button aria-label="Share profile"><Share2 className="h-4 w-4" /></button>
@@ -46,7 +47,7 @@ export function ProfileCard({ profile, isLoading }: ProfileCardProps) {
           </div>
           <p className="text-[10px] text-amber-600 mt-2">Social linkage status not in backend yet — placeholder</p>
 
-          <button className="mt-4 flex items-center gap-1.5 px-4 py-2 rounded-lg border text-sm text-gray-600">
+          <button className={` ${microgrammaBold.className} mt-4 flex items-center gap-1.5 px-4 py-2 rounded-lg border text-sm text-gray-600`}>
             <Plus className="h-4 w-4" /> Social media
           </button>
         </div>

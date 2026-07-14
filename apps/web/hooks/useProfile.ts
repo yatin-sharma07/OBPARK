@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { api } from '@/lib/api'
-import type { AdminProfile } from '@/components/admin/settings/types'
+import type { AdminProfile } from '@/components/admin/adminrole/types'
 
 // Real — maps to your existing GET /me from Week 1 plan
 export function useProfile() {
