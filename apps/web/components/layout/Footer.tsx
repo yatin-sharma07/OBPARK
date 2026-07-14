@@ -5,14 +5,18 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { microgrammaBold } from '@/lib/fonts'
 
-const aboutLinks = ['Home', 'About', 'Shop']
+const aboutLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Shop', href: '/shop' },
+]
 
 const supportLinks = [
-  'FAQs',
-  'Shipping Policy',
-  'Refund Policy',
-  'My Account',
-  'Contact',
+  { label: 'FAQs', href: '/faq' },
+  { label: 'Shipping Policy', href: '/shipping-policy' },
+  { label: 'Refund Policy', href: '/refund-policy' },
+  { label: 'My Account', href: '/account' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 const socials = [
@@ -150,7 +154,7 @@ export function Footer() {
         <div className="mt-8 space-y-1 flex justify-between">
           <div className="flex gap-3">
             <Link
-              href="/"
+              href="/privacy-policy"
               className="block text-xs hover:opacity-70"
               style={{
                 color: '#074139',
@@ -161,7 +165,7 @@ export function Footer() {
             </Link>
 
             <Link
-              href="/"
+              href="/terms-and-conditions"
               className="block text-xs hover:opacity-70"
               style={{
                 color: '#074139',
@@ -193,7 +197,7 @@ function FooterLinks({
   links,
 }: {
   title: string
-  links: string[]
+  links: { label: string; href: string }[]
 }) {
   return (
     <div>
@@ -201,8 +205,8 @@ function FooterLinks({
 
       <div className="space-y-3">
         {links.map((link) => (
-          <FooterLink key={link} href="/">
-            {link}
+          <FooterLink key={link.label} href={link.href}>
+            {link.label}
           </FooterLink>
         ))}
       </div>
