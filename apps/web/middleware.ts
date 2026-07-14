@@ -14,15 +14,20 @@ export function middleware(request: NextRequest) {
     path === '/' ||
     path === '/about' ||
     path === '/coming-soon' ||
-    path === '/login' ||
-    path === '/services/ev-charging' ||
-    path === '/services/car-insurance' ||
-    path === '/services/car-services' ||
     path === '/e-challan' ||
-    path === '/services/ev-charging' ||
+    path === '/register' ||
+    path.startsWith('/cart') ||
+    path.startsWith('/checkout') ||
+    path.startsWith('/payment') ||
+    path.startsWith('/login') ||
+    path.startsWith('/account') ||
+    path.startsWith('/admin') ||
+    path.startsWith('/services') ||
+    path.startsWith('/category') ||
+    path.startsWith('/product')  ||
     path.startsWith('/_next') ||
     path.startsWith('/api') ||
-    path.startsWith('/Images') ||
+    path.startsWith('/Images') || 
     path === '/favicon.ico' ||
     path.match(/\.(.*)$/) // Skip all files with extensions to allow assets
   ) {

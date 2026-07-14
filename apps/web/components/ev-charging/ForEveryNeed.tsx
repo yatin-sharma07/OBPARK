@@ -71,7 +71,7 @@ export default function ForEveryNeed() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="grid grid-cols-2 gap-9 md:grid-cols-3 lg:grid-cols-6"
+                    className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-6 md:gap-8 lg:gap-9"
                 >
                     {needs.map((need, index) => (
                         <motion.div
@@ -91,7 +91,7 @@ export default function ForEveryNeed() {
                                 className="mb-4 h-[54px] w-[54px] object-contain"
                             />
 
-                            <h3 className={`${microgrammaBold.className} mb-3 text-sm font-bold text-[#0B402F] whitespace-nowrap`}>
+                            <h3 className={`${microgrammaBold.className} mb-3 text-[12px] font-bold text-[#0B402F] sm:text-sm`}>
                                 {need.title}
                             </h3>
 

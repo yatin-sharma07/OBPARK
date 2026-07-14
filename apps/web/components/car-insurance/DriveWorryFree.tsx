@@ -22,7 +22,12 @@ const points = [
 export default function DriveWorryFree() {
     return (
         <section className="w-full py-8">
-            <div className="relative mx-auto w-full max-w-none overflow-hidden aspect-[1728/708]">
+            {/*
+             * The aspect-ratio wrapper clips the background image.
+             * On mobile the aspect ratio would make the section too short,
+             * so we override to min-h on small screens.
+             */}
+            <div className="relative mx-auto w-full max-w-none overflow-hidden min-h-[520px] sm:min-h-0 sm:aspect-[1728/708]">
                 {/* Background Image */}
                 <Image
                     src="/Images/car-insurance/worry-free.png"
@@ -33,15 +38,15 @@ export default function DriveWorryFree() {
                 />
 
                 {/* Content */}
-                <div className="relative z-10 flex min-h-[420px] w-full flex-col justify-between gap-8 px-5 py-8 sm:px-8 md:px-10 lg:min-h-0 lg:h-full lg:flex-row lg:items-center lg:px-10 xl:px-12">
+                <div className="relative z-10 flex w-full flex-col justify-between gap-8 px-5 py-8 sm:px-8 md:px-10 lg:absolute lg:inset-0 lg:flex-row lg:items-center lg:px-10 xl:px-12">
                     {/* Left Content */}
-                    <div className="w-full max-w-[600px] text-white">
+                    <div className="w-full max-w-full lg:max-w-[600px] text-white">
                         <motion.h2
                             initial={{ opacity: 0, y: -18 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.55 }}
-                            className={`${microgrammaBold.className} mb-6 text-[28px] font-bold leading-tight sm:text-[34px] md:text-[40px] lg:text-[40px] xl:text-[40px]`}
+                            className={`${microgrammaBold.className} mb-6 text-[24px] font-bold leading-tight sm:text-[30px] md:text-[36px] lg:text-[40px] xl:text-[40px]`}
                         >
                             Drive worry-free with the
                             <br className="hidden sm:block" />
@@ -58,7 +63,7 @@ export default function DriveWorryFree() {
                                     transition={{ delay: index * 0.08 }}
                                     className="flex items-center gap-3"
                                 >
-                                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-xs font-black text-[#117265]">
+                                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white text-xs font-black text-[#117265]">
                                         ✓
                                     </span>
                                     {point}
@@ -71,9 +76,9 @@ export default function DriveWorryFree() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.35 }}
-                            className="flex h-[58px] w-full max-w-[280px] items-center justify-between rounded-lg bg-[#00574d] px-6 text-sm font-bold text-white shadow-[0_8px_22px_rgba(0,0,0,0.18)] transition hover:bg-[#06483f] sm:text-base"
+                            className="flex h-[52px] w-full max-w-[280px] items-center justify-between rounded-lg bg-[#00574d] px-6 text-sm font-bold text-white shadow-[0_8px_22px_rgba(0,0,0,0.18)] transition hover:bg-[#06483f] sm:h-[58px] sm:text-base"
                         >
-                            Compare & Buy Now
+                            Compare &amp; Buy Now
                             <span className="text-2xl leading-none">→</span>
                         </motion.button>
                     </div>
@@ -87,16 +92,16 @@ export default function DriveWorryFree() {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.08 }}
-                                className="flex min-h-[78px] flex-col justify-center rounded-xl bg-white/95 px-5 py-4 text-[#06483f] shadow-lg backdrop-blur-sm"
+                                className="flex min-h-[70px] flex-col justify-center rounded-xl bg-white/95 px-4 py-3 text-[#06483f] shadow-lg backdrop-blur-sm sm:min-h-[78px] sm:px-5 sm:py-4"
                             >
-                                <div className={`flex items-center gap-2 text-[24px] font-black leading-none sm:text-[22px] lg:text-[25px] ${stat.isStar ? "text-[#18a98f]" : ""}`}>
+                                <div className={`flex items-center gap-2 text-[20px] font-black leading-none sm:text-[22px] lg:text-[25px] ${stat.isStar ? "text-[#18a98f]" : ""}`}>
                                     {stat.isStar && (
-                                        <span className="text-[20px] text-[#18a98f]">★</span>
+                                        <span className="text-[18px] text-[#18a98f]">★</span>
                                     )}
                                     {stat.title}
                                 </div>
 
-                                <div className="mt-1 text-[11px] font-semibold text-[#355b55] sm:text-xs">
+                                <div className="mt-1 text-[10px] font-semibold text-[#355b55] sm:text-xs">
                                     {stat.desc}
                                 </div>
                             </motion.div>

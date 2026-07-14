@@ -56,7 +56,7 @@ export default function WhyChoose() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.55 }}
-                    className={`${microgrammaBold.className} mb-9 text-center text-[24px] font-bold leading-tight text-[#06483f] sm:text-[28px] md:text-[32px] lg:text-[36px]`}
+                    className={`${microgrammaBold.className} mb-9 text-center text-[22px] font-bold leading-tight text-[#06483f] sm:text-[26px] md:text-[30px] lg:text-[36px]`}
                 >
                     Why buy car insurance with OBPARK Insure?
                 </motion.h2>
@@ -72,23 +72,24 @@ export default function WhyChoose() {
                         <motion.div
                             key={idx}
                             variants={itemVariants}
-                            className="flex min-h-[220px] w-full flex-col items-center justify-center rounded-[20px] border border-[#dfe9e6] bg-white px-5 py-8 text-center shadow-[0_0_20px_rgba(0,0,0,0.025)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(0,0,0,0.07)] sm:min-h-[240px] lg:min-h-[260px]"
+                            className="flex min-h-[200px] w-full flex-col items-center justify-center rounded-[20px] border border-[#dfe9e6] bg-white px-5 py-8 text-center shadow-[0_0_20px_rgba(0,0,0,0.025)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(0,0,0,0.07)] sm:min-h-[220px] lg:min-h-[260px]"
                         >
-                            <div className="mb-6 flex h-[78px] w-[78px] items-center justify-center rounded-full bg-[#dff5f0] sm:h-[84px] sm:w-[84px]">
+                            <div className="mb-6 flex h-[72px] w-[72px] items-center justify-center rounded-full bg-[#dff5f0] sm:h-[80px] sm:w-[80px]">
                                 <Image
                                     src={feature.icon}
                                     alt={feature.title}
                                     width={46}
                                     height={46}
-                                    className="h-[46px] w-[46px] object-contain"
+                                    className="h-[44px] w-[44px] object-contain sm:h-[46px] sm:w-[46px]"
                                 />
                             </div>
 
-                            <h3 className={`mb-3 text-[18px] font-bold leading-tight text-[#06483f] sm:text-[19px] lg:text-[17px] whitespace-nowrap ${microgrammaBold.className}`}>
+                            {/* Removed whitespace-nowrap — was causing overflow on smaller screens */}
+                            <h3 className={`mb-3 text-[16px] font-bold leading-tight text-[#06483f] sm:text-[17px] lg:text-[16px] xl:text-[18px] ${microgrammaBold.className}`}>
                                 {feature.title}
                             </h3>
 
-                            <p className="max-w-[260px] text-[14px] font-medium leading-[1.7] text-[#4f6964] sm:text-[13px] ">
+                            <p className="max-w-[260px] text-[13px] font-medium leading-[1.7] text-[#4f6964] sm:text-[14px]">
                                 {feature.desc}
                             </p>
                         </motion.div>

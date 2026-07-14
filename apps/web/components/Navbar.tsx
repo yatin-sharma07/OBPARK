@@ -75,7 +75,7 @@ export function Navbar() {
 
           flex items-center justify-between
 
-          h-[58px]
+
           sm:h-[64px]
           md:h-[80px]
           lg:h-[90px]
@@ -92,7 +92,7 @@ export function Navbar() {
           border border-[#59D0B5]/70
           overflow-hidden
 
-          shadow-[0_8px_28px_rgba(7,65,57,0.16)]
+          
 
           transition-all
           duration-500
@@ -129,7 +129,7 @@ export function Navbar() {
                     }
         `}
                 style={{
-                    background: 'linear-gradient(to bottom, #59D0B5 0%, #CAEDE5 100%)',
+                    background: 'linear-gradient(to bottom, #59D0B5 0%, #F0FAF5 100%)',
                 }}
             >
                 {/* LEFT LINKS - DESKTOP */}
