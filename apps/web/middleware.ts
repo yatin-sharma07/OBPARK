@@ -14,6 +14,10 @@ export function middleware(request: NextRequest) {
     path === '/' ||
     path === '/about' ||
     path === '/coming-soon' ||
+    path === '/faq' ||
+    path === '/shipping-policy' ||
+    path === '/privacy-policy' ||
+    path === '/terms-and-conditions' ||
     path === '/e-challan' ||
     path === '/register' ||
     path.startsWith('/cart') ||
