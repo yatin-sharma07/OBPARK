@@ -1,6 +1,7 @@
 'use client'
 
 import { Search, Bell, Sun, Menu } from 'lucide-react'
+import { microgrammaBold } from '@/lib/fonts'
 
 interface HeaderProps {
   title: string
@@ -14,7 +15,7 @@ export function Header({ title, onMenuClick }: HeaderProps) {
         <Menu className="h-5 w-5" />
       </button>
 
-      <h1 className="text-xl font-bold text-gray-800 shrink-0">{title}</h1>
+      <h1 className={`${microgrammaBold.className} text-[24px] font-bold text-gray-800 shrink-0`}>{title}</h1>
 
       <div className="hidden md:flex items-center gap-4 flex-1 max-w-md mx-8">
         <div className="relative flex-1">

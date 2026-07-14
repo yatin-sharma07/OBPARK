@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/api'
 import { Plus, MoreVertical, Search, Filter, ArrowUpDown, MoreHorizontal, FileText, Trash2 } from 'lucide-react'
 import { microgrammaBold } from '@/lib/fonts'
+import { Header } from '@/components/admin/layout/Header'
 
 interface AdminOrder {
   id: string
@@ -29,6 +30,7 @@ const STATUS_STYLE: Record<string, string> = {
 
 export default function OrdersPage() {
   const [activeTab, setActiveTab] = useState('All order')
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const [page, setPage] = useState(1)
   const limit = 10
 
@@ -58,17 +60,10 @@ export default function OrdersPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-white border-b px-6 py-4 flex items-center justify-between sticky top-0 z-10">
-        <h1 className={`${microgrammaBold.className} text-[24px] font-bold text-gray-800`}>Order Management</h1>
-        <div className="hidden md:flex items-center gap-4 flex-1 max-w-md mx-8">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <input placeholder="Search data, users, or reports" className="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none" />
-          </div>
-        </div>
-        <div className="w-9 h-9 rounded-full bg-gray-300" />
-      </div>
-
+      <Header
+  title="Order Management"
+  onMenuClick={() => setDrawerOpen(true)}
+/>
       <div className="p-6 space-y-6">
         <div className="flex items-center justify-between flex-wrap gap-3">
           <h2 className={`${microgrammaBold.className} font-semibold text-[22px] text-gray-800`}>Order List</h2>

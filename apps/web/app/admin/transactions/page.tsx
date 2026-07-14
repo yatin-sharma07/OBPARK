@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { MoreVertical, Search, Filter, ArrowUpDown, MoreHorizontal, Plus } from 'lucide-react'
 import { microgrammaBold } from '@/lib/fonts'
+import { Header } from '@/components/admin/layout/Header'
 
 const TABS = ['All order', 'Completed', 'Pending', 'Canceled']
 
@@ -22,16 +23,11 @@ const STATUS_STYLE: Record<string, string> = {
 
 export default function TransactionsPage() {
   const [activeTab, setActiveTab] = useState('All order')
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-white border-b px-6 py-4 flex items-center justify-between sticky top-0 z-10">
-        <h1 className={`${microgrammaBold.className} text-[24px] font-bold text-gray-800`}>Transaction</h1>
-        <div className="hidden md:flex items-center gap-4 flex-1 max-w-md mx-8">
-          
-        </div>
-        <div className="w-9 h-9 rounded-full bg-gray-300" />
-      </div>
+      <Header title="Transactions" onMenuClick={() => setDrawerOpen(true)} />
 
       <div className="p-6 space-y-6">
         {/* KPI cards + Payment method */}

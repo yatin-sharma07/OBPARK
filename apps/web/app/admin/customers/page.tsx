@@ -8,6 +8,7 @@ import { microgrammaBold } from '@/lib/fonts'
 import { CustomerTable } from '@/components/admin/customers/CustomerTable'
 import { CustomerDetailPanel } from '@/components/admin/customers/CustomerDetailPanel'
 import { useCustomers } from '@/hooks/useCustomers'
+import { Header } from '@/components/admin/layout/Header'
 import type { Customer } from '@/components/admin/customers/types'
 
 const OVERVIEW_CHART = [
@@ -23,16 +24,10 @@ export default function CustomersPage() {
   return (
   <div className="min-h-screen bg-gray-50">
 
-    <div className="bg-white border-b px-6 py-4 flex items-center justify-between sticky top-0 z-10">
-      <h1 className={`${microgrammaBold.className} text-[24px] font-bold text-gray-800`}>
-        Customers
-      </h1>
-
-      <div className="hidden md:flex items-center gap-4 flex-1 max-w-md mx-8">
-      </div>
-
-      <div className="w-9 h-9 rounded-full bg-gray-300" />
-    </div>
+    <Header
+  title="Customers"
+  onMenuClick={() => setDrawerOpen(true)}
+/>
 
     <div className="p-6 space-y-6">
     
