@@ -16,6 +16,8 @@ export function middleware(request: NextRequest) {
     path === '/coming-soon' ||
     path === '/faq' ||
     path === '/shipping-policy' ||
+    path === '/refund-policy' ||
+    path === '/contact' ||
     path === '/privacy-policy' ||
     path === '/terms-and-conditions' ||
     path === '/e-challan' ||
