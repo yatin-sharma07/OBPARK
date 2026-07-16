@@ -28,6 +28,7 @@ export function middleware(request: NextRequest) {
     path === '/user-rights' ||
     path === '/merchant-services' ||
     path === '/governing-law' ||
+    path === '/cancellation-policy' ||
     path === '/terms-and-conditions' ||
     path === '/e-challan' ||
     path === '/register' ||

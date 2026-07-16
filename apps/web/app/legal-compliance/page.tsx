@@ -95,7 +95,7 @@ export default function LegalCompliancePage() {
               It also outlines refund eligibility, cancellations, failed transactions, GST invoicing, and payment disputes.
             </p>
             <div className="flex flex-wrap gap-2 text-sm font-semibold">
-              <Link href="/refund-policy" className="underline hover:opacity-80">Read Cancellation Policy</Link>
+              <Link href="/cancellation-policy" className="underline hover:opacity-80">Read Cancellation Policy</Link>
               <span className="opacity-50">|</span>
               <Link href="/refund-policy" className="underline hover:opacity-80">Read Re-fund Policy</Link>
               <span className="opacity-50">|</span>
