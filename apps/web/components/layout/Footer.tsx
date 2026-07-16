@@ -75,6 +75,7 @@ export function Footer() {
           background: 'linear-gradient(180deg, #CAEDE5 0%, #59D0B5 100%)',
         }}
       >
+        <div className="max-w-[1300px] mx-auto w-full">
         <div className="flex items-center justify-between gap-4 pb-8 mb-8 border-b border-black">
           <span
             className={`${microgrammaBold.className} text-3xl sm:text-4xl md:text-[56px] leading-none`}
@@ -208,6 +209,7 @@ export function Footer() {
             alt="Accepted payment methods"
             className="h-8 w-auto"
           />
+        </div>
         </div>
       </div>
     </motion.footer>

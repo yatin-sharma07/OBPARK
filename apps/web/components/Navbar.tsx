@@ -7,6 +7,10 @@ import { microgrammaBold } from '@/lib/fonts'
 
 const mobileLinks = [
     {
+        label: 'Home',
+        href: '/',
+    },
+    {
         label: 'About',
         href: '/about',
     },
@@ -15,12 +19,8 @@ const mobileLinks = [
         href: '/products',
     },
     {
-        label: 'App Download',
+        label: 'Get App',
         href: '#app',
-    },
-    {
-        label: 'Schedule Call',
-        href: '/register',
     },
 ]
 
@@ -150,6 +150,22 @@ export function Navbar() {
           "
                 >
                     <Link
+                        href="/"
+                        className="
+              text-[#074139]
+              text-[10px]
+              lg:text-xs
+              xl:text-sm
+              font-normal
+              whitespace-nowrap
+              transition-opacity
+              hover:opacity-70
+            "
+                    >
+                        Home
+                    </Link>
+
+                    <Link
                         href="/about"
                         className="
               text-[#074139]
@@ -179,22 +195,6 @@ export function Navbar() {
             "
                     >
                         Shop
-                    </Link>
-
-                    <Link
-                        href="#app"
-                        className="
-              text-[#074139]
-              text-[10px]
-              lg:text-xs
-              xl:text-sm
-              font-normal
-              whitespace-nowrap
-              transition-opacity
-              hover:opacity-70
-            "
-                    >
-                        App Download
                     </Link>
                 </div>
 
@@ -254,38 +254,60 @@ export function Navbar() {
             min-w-0
           "
                 >
+                    {/* GET APP PILL */}
                     <Link
-                        href="https://calendly.com/obrive-inc/talk-to-ob-experts?month=2026-06"
+                        href="#app"
                         className="
-              flex items-center justify-center gap-2
-
-              min-w-[132px]
-              lg:min-w-[150px]
-              xl:min-w-[166px]
-
-              px-4
-              lg:px-5
-              xl:px-6
-
-              py-2.5
-              lg:py-3
-
-              rounded-full
-              whitespace-nowrap
-
-              text-[10px]
-              lg:text-xs
-
-              font-normal
-
-              text-[#A2F1DF]
-              bg-[#074139]
-
-              transition-transform
-              hover:scale-[1.03]
-            "
+                          flex items-center justify-center gap-2
+                          px-5 py-2.5
+                          rounded-full
+                          whitespace-nowrap
+                          text-[11px] lg:text-xs xl:text-sm
+                          font-medium
+                          text-white
+                        "
+                        style={{
+                          background: 'linear-gradient(90deg, #074139 0%, #0d8376 100%)',
+                          fontFamily: 'var(--font-michroma)'
+                        }}
                     >
-                        SCHEDULE CALL   <img src="/Images/Navbar/Vector.png" alt="" className='ml-2' />
+                        <span className="w-2.5 h-2.5 rounded-full bg-white flex-shrink-0" />
+                        <span>GET APP</span>
+                    </Link>
+
+                    {/* PHONE CIRCLE */}
+                    <Link
+                        href="tel:+918884774300"
+                        className="
+                          w-10 h-10 lg:w-11 lg:h-11
+                          flex-shrink-0 transition-transform duration-300 hover:scale-110 rounded-full
+                        "
+                        aria-label="Call support"
+                    >
+                        <img
+                            src="/Images/Navbar/phone.svg"
+                            alt="Call support"
+                            className="w-full h-full object-contain"
+                        />
+                    </Link>
+
+                    {/* SHOP/BASKET CIRCLE */}
+                    <Link
+                        href="/products"
+                        className="
+                          w-10 h-10 lg:w-11 lg:h-11
+                          flex-shrink-0 transition-all duration-300 
+                          hover:scale-110 hover:-translate-y-0.5 
+                          hover:shadow-[0_4px_12px_rgba(26,129,127,0.2)] 
+                          rounded-full
+                        "
+                        aria-label="View shop basket"
+                    >
+                        <img
+                            src="/Images/Navbar/shop.svg"
+                            alt="View shop"
+                            className="w-full h-full object-contain"
+                        />
                     </Link>
                 </div>
 
