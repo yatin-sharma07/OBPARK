@@ -267,7 +267,7 @@ export function Navbar() {
                           text-white
                         "
                         style={{
-                          background: 'linear-gradient(90deg, #074139 0%, #0d8376 100%)',
+                          background: 'linear-gradient(90deg, #1A817F 0%, #59D0B5 100%)',
                           fontFamily: 'var(--font-michroma)'
                         }}
                     >
