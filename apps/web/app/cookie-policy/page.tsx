@@ -329,7 +329,7 @@ export default function CookiePolicyPage() {
               Product: OBPARK<br />
               Privacy Team: <a href="mailto:privacy@Obpark.in" className="underline font-bold hover:opacity-80">privacy@Obpark.in</a><br />
               Customer Support: <a href="mailto:support@Obpark.in" className="underline font-bold hover:opacity-80">support@Obpark.in</a><br />
-              Legal & Compliance: <a href="mailto:legal@obrive.com" className="underline font-bold hover:opacity-80">legal@obrive.com</a><br />
+              Legal & Compliance: <a href="mailto:legal@obrive.in" className="underline font-bold hover:opacity-80">legal@obrive.in</a><br />
               Website: <a href="https://www.Obpark.in" target="_blank" rel="noopener noreferrer" className="underline font-bold hover:opacity-80">https://www.Obpark.in</a><br />
               Business Hours: Monday to Saturday, 9:30 AM – 6:30 PM IST (excluding public holidays)
             </p>

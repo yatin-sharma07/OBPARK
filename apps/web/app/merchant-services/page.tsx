@@ -192,8 +192,8 @@ export default function MerchantServicesPage() {
               <p><span className="font-bold">Corporate Office:</span> 3rd Floor, Sree Gururaya Mansion, 759, 8th Main Rd, KSRTC Layout, 3rd Phase, J. P. Nagar, Bengaluru, Karnataka 560078</p>
               <br />
               <p>Customer Support Email: <a href="mailto:Support@obpark.in" className="underline font-bold hover:opacity-80">Support@obpark.in</a></p>
-              <p>Legal & Compliance Email: <a href="mailto:legal@obrive.com" className="underline font-bold hover:opacity-80">legal@obrive.com</a></p>
-              <p>Website: <a href="https://www.obpark.com" target="_blank" rel="noopener noreferrer" className="underline font-bold hover:opacity-80">https://www.obpark.com</a></p>
+              <p>Legal & Compliance Email: <a href="mailto:legal@obrive.in" className="underline font-bold hover:opacity-80">legal@obrive.in</a></p>
+              <p>Website: <a href="https://www.obpark.in" target="_blank" rel="noopener noreferrer" className="underline font-bold hover:opacity-80">https://www.obpark.in</a></p>
               <br />
               <p><span className="font-bold">Support Hours:</span> Monday–Saturday, 9:30 AM to 6:30 PM IST (excluding public holidays)</p>
             </div>

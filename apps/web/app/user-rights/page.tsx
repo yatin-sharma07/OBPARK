@@ -224,7 +224,7 @@ export default function UserRightsPage() {
               <p>Obrive Industries Private Limited</p>
               <p>Product: OBPARK</p>
               <p>Email: <a href="mailto:support@obpark.in" className="underline font-bold hover:opacity-80">support@obpark.in</a></p>
-              <p>Legal Email: <a href="mailto:legal@obrive.com" className="underline font-bold hover:opacity-80">legal@obrive.com</a></p>
+              <p>Legal Email: <a href="mailto:legal@obrive.in" className="underline font-bold hover:opacity-80">legal@obrive.in</a></p>
               <p>Registered Office: 3rd Floor, Sree Gururaya Mansion, 759, 8th Main Rd, KSRTC Layout, 3rd Phase, J. P. Nagar, Bengaluru, Karnataka 560078</p>
               <br />
               <p className="font-bold">Working Hours:</p>
@@ -241,9 +241,9 @@ export default function UserRightsPage() {
               <p>Obrive Industries Private Limited</p>
               <p>Product: OBPARK</p>
               <br />
-              <p>Customer Support Email: <a href="mailto:support@obpark.com" className="underline font-bold hover:opacity-80">support@obpark.com</a></p>
-              <p>Privacy Team: <a href="mailto:privacy@obpark.com" className="underline font-bold hover:opacity-80">privacy@obpark.com</a></p>
-              <p>Legal Team: <a href="mailto:legal@obrive.com" className="underline font-bold hover:opacity-80">legal@obrive.com</a></p>
+              <p>Customer Support Email: <a href="mailto:support@obpark.in" className="underline font-bold hover:opacity-80">support@obpark.in</a></p>
+              <p>Privacy Team: <a href="mailto:privacy@obpark.in" className="underline font-bold hover:opacity-80">privacy@obpark.in</a></p>
+              <p>Legal Team: <a href="mailto:legal@obrive.in" className="underline font-bold hover:opacity-80">legal@obrive.in</a></p>
               <p>Website: <a href="https://www.obpark.in/" target="_blank" rel="noopener noreferrer" className="underline font-bold hover:opacity-80">https://www.obpark.in/</a></p>
             </div>
           </div>

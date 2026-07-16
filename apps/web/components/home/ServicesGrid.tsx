@@ -31,10 +31,11 @@ const SERVICES = [
     alt: 'Vehicle owner details verification service',
   },
   {
-    image: '/Images/services/pic5.jpeg',
-    label: 'PERSONAL LOAN',
-    href: '/products',
-    alt: 'Personal loan service for vehicle users',
+    image: '/Images/services/fastag-icon.jpeg',
+    label: 'FASTAG',
+    href: '/services/fastag',
+    alt: 'FASTag recharge and balance check service',
+    imageClass: 'h-full w-full object-cover rounded-full',
   },
   {
     image: '/Images/services/pic6.jpeg',
@@ -56,9 +57,9 @@ const SERVICES = [
   },
   {
     image: '/Images/services/pic9.jpeg',
-    label: 'FASTAG',
-    href: '/services/fastag',
-    alt: 'FASTag recharge and balance check service',
+    label: 'CAR LOAN',
+    href: '/products',
+    alt: 'Car loan service for vehicle owners',
   },
 ]
 
@@ -311,7 +312,9 @@ export function ServicesGrid() {
                         height={70}
                         sizes="(max-width: 640px) 50px, (max-width: 768px) 60px, 70px"
                         loading="lazy"
-                        className="
+                        className={
+                          service.imageClass ??
+                          `
                           h-[36px]
                           w-[36px]
                           sm:h-[44px]
@@ -319,7 +322,8 @@ export function ServicesGrid() {
                           md:h-[48px]
                           md:w-[48px]
                           object-contain
-                        "
+                          `
+                        }
                       />
                     </div>
                   </div>

@@ -138,8 +138,8 @@ export default function ContactPage() {
             </h2>
           </motion.div>
 
-          {/* 5-Column Contact Cards */}
-          <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 mb-16">
+          {/* 3-Column Contact Cards */}
+          <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-16">
             
             {/* Call Us */}
             <div className="flex flex-col items-center text-center p-6 rounded-3xl border border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] bg-white hover:shadow-md transition-shadow">
@@ -147,7 +147,7 @@ export default function ContactPage() {
                 <Phone className="w-6 h-6 fill-current" />
               </div>
               <h3 className="text-lg font-bold text-[#094639] mb-3">Call Us</h3>
-              <p className="text-sm font-semibold text-gray-700">+91 98765 43210</p>
+              <p className="text-sm font-semibold text-gray-700">+91 88847-74300</p>
               <p className="text-xs text-gray-500 mt-1">(Mon - Sat, 9AM - 7PM)</p>
             </div>
 
@@ -157,18 +157,8 @@ export default function ContactPage() {
                 <Mail className="w-6 h-6 fill-current" />
               </div>
               <h3 className="text-lg font-bold text-[#094639] mb-3">Email Us</h3>
-              <p className="text-sm font-semibold text-gray-700">support@obpark.com</p>
+              <p className="text-sm font-semibold text-gray-700">support@obpark.in</p>
               <p className="text-xs text-gray-500 mt-1">We reply within 24 hrs</p>
-            </div>
-
-            {/* Live Chat */}
-            <div className="flex flex-col items-center text-center p-6 rounded-3xl border border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] bg-white hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 rounded-full bg-[#E5F5F0] text-[#094639] flex items-center justify-center mb-4">
-                <MessageSquare className="w-6 h-6 fill-current" />
-              </div>
-              <h3 className="text-lg font-bold text-[#094639] mb-3">Live Chat</h3>
-              <p className="text-sm font-semibold text-gray-700">Chat with our support team</p>
-              <p className="text-xs text-gray-500 mt-1">Available on website</p>
             </div>
 
             {/* Visit Us */}
@@ -179,16 +169,6 @@ export default function ContactPage() {
               <h3 className="text-lg font-bold text-[#094639] mb-3">Visit Us</h3>
               <p className="text-sm font-semibold text-gray-700">Bangalore, Karnataka, India</p>
               <p className="text-xs text-gray-500 mt-1">560001</p>
-            </div>
-
-            {/* WhatsApp */}
-            <div className="flex flex-col items-center text-center p-6 rounded-3xl border border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] bg-white hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 rounded-full bg-[#E5F5F0] text-[#094639] flex items-center justify-center mb-4">
-                <MessageCircle className="w-6 h-6 fill-current" />
-              </div>
-              <h3 className="text-lg font-bold text-[#094639] mb-3">WhatsApp</h3>
-              <p className="text-sm font-semibold text-gray-700">+91 98765 43210</p>
-              <p className="text-xs text-gray-500 mt-1">(Mon - Sat, 9AM - 7PM)</p>
             </div>
 
           </motion.div>
@@ -242,7 +222,7 @@ export default function ContactPage() {
             {/* Right: FAQ Card */}
             <motion.div variants={itemVariants} className="bg-[#F8F9F9] rounded-[2rem] p-8 md:p-12 flex flex-col justify-between">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-[#094639] mb-8">
+                <h2 className="text-[40px] font-bold text-[#094639] mb-8">
                   Frequently Asked Questions
                 </h2>
 

@@ -120,8 +120,8 @@ export default function LegalCompliancePage() {
             </p>
             <div className="mb-4 space-y-1 font-bold">
               <p>Legal & Compliance Team</p>
-              <p>Email: <a href="mailto:legal@obpark.com" className="underline hover:opacity-80 font-normal">legal@obpark.com</a></p>
-              <p>Enterprise Support: <a href="mailto:compliance@obpark.com" className="underline hover:opacity-80 font-normal">compliance@obpark.com</a></p>
+              <p>Email: <a href="mailto:legal@obpark.in" className="underline hover:opacity-80 font-normal">legal@obpark.in</a></p>
+              <p>Enterprise Support: <a href="mailto:compliance@obpark.in" className="underline hover:opacity-80 font-normal">compliance@obpark.in</a></p>
               <p>Company: <span className="font-normal">Obrive Industries Private Limited</span></p>
             </div>
             <p className="font-bold text-[#074139]/80">
