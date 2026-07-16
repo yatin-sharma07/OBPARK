@@ -15,15 +15,23 @@ export default function HomePage() {
     <main>
       <div className="px-1 sm:px-4 md:px-1">
         <HeroSection />
+        
         <MarqueeStrip />
-        <ServicesGrid />
-        <TrustBadges />
-        <ProblemSolution />
-        <CtaBanner />
-        <ProductCategories />
+        
+        <div className="w-full mx-auto xl:max-w-[1300px] px-4 sm:px-8 md:px-12 xl:px-0">
+          <ServicesGrid />
+          <TrustBadges />
+          <ProblemSolution />
+          <CtaBanner />
+          <ProductCategories />
+        </div>
+
         <MintCta />
-        <Reviews />
-        <FeaturesAccordion />
+
+        <div className="w-full mx-auto xl:max-w-[1300px] px-4 sm:px-8 md:px-12 xl:px-0">
+          <Reviews />
+          <FeaturesAccordion />
+        </div>
       </div>
     </main>
   )
