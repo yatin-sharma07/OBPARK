@@ -15,10 +15,19 @@ export function middleware(request: NextRequest) {
     path === '/about' ||
     path === '/coming-soon' ||
     path === '/faq' ||
+    path === '/our-story' ||
     path === '/shipping-policy' ||
     path === '/refund-policy' ||
     path === '/contact' ||
     path === '/privacy-policy' ||
+    path === '/platform-policy' ||
+    path === '/business-policy' ||
+    path === '/enterprise-regulatory' ||
+    path === '/cookie-policy' ||
+    path === '/legal-compliance' ||
+    path === '/user-rights' ||
+    path === '/merchant-services' ||
+    path === '/governing-law' ||
     path === '/terms-and-conditions' ||
     path === '/e-challan' ||
     path === '/register' ||

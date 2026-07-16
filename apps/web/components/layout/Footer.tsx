@@ -6,17 +6,18 @@ import { motion } from 'framer-motion'
 import { microgrammaBold } from '@/lib/fonts'
 
 const aboutLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Shop', href: '/shop' },
+  { label: 'Our Story', href: '/our-story' },
+  { label: 'My Account', href: '/account' },
+  { label: 'Shop Now', href: '/shop' },
+  { label: 'Obrive', href: '/obrive' },
 ]
 
 const supportLinks = [
-  { label: 'FAQs', href: '/faq' },
-  { label: 'Shipping Policy', href: '/shipping-policy' },
-  { label: 'Refund Policy', href: '/refund-policy' },
-  { label: 'My Account', href: '/account' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Faqs', href: '/faq' },
+  { label: 'Platform Policy', href: '/platform-policy' },
+  { label: 'Business & Partner Policy', href: '/business-policy' },
+  { label: 'Payment Gateway & Compliance', href: '/payment-compliance' },
+  { label: 'Enterprise & Regulatory', href: '/enterprise-regulatory' },
 ]
 
 const socials = [
@@ -165,14 +166,25 @@ export function Footer() {
             </Link>
 
             <Link
-              href="/terms-and-conditions"
+              href="/legal-compliance"
               className="block text-xs hover:opacity-70"
               style={{
                 color: '#074139',
                 fontFamily: 'var(--font-michroma)',
               }}
             >
-              Terms & Condition
+              Legal & Compliance
+            </Link>
+
+            <Link
+              href="/cookie-policy"
+              className="block text-xs hover:opacity-70"
+              style={{
+                color: '#074139',
+                fontFamily: 'var(--font-michroma)',
+              }}
+            >
+              Cookie Policy
             </Link>
           </div>
 
