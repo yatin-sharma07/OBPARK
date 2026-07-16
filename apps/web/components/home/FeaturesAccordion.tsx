@@ -37,7 +37,7 @@ export function FeaturesAccordion() {
         w-full
         max-w-[100vw]
         overflow-hidden
-        bg-[#EAF6F2]
+        bg-transparent
 
         px-4
         sm:px-5
