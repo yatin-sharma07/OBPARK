@@ -17,7 +17,7 @@ export function Header() {
 
   return (
     <>
-      <header className="border-b px-6 py-4 flex items-center justify-between bg-white sticky top-0 z-40">
+      <header className="border-b border-gray-200/50 px-6 py-4 flex items-center justify-between bg-white/40 backdrop-blur-md sticky top-0 z-40">
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/Images/layout/obrive-logo.svg"

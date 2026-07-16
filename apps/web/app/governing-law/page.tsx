@@ -262,9 +262,9 @@ export default function GoverningLawPage() {
               <p><span className="font-bold">Registered Office:</span> 3rd Floor, Sree Gururaya Mansion, 759, 8th Main Rd, KSRTC Layout, 3rd Phase, J. P. Nagar, Bengaluru, Karnataka 560078</p>
               <p><span className="font-bold">Corporate Office:</span> 3rd Floor, Sree Gururaya Mansion, 759, 8th Main Rd, KSRTC Layout, 3rd Phase, J. P. Nagar, Bengaluru, Karnataka 560078</p>
               <br />
-              <p>Email: <a href="mailto:legal@obrive.com" className="underline font-bold hover:opacity-80">legal@obrive.com</a></p>
+              <p>Email: <a href="mailto:legal@obrive.in" className="underline font-bold hover:opacity-80">legal@obrive.in</a></p>
               <p>Support Email: <a href="mailto:support@obpark.in" className="underline font-bold hover:opacity-80">support@obpark.in</a></p>
-              <p>Website: <a href="http://www.obrive.com" target="_blank" rel="noopener noreferrer" className="underline font-bold hover:opacity-80">www.obrive.com</a></p>
+              <p>Website: <a href="http://www.obrive.in" target="_blank" rel="noopener noreferrer" className="underline font-bold hover:opacity-80">www.obrive.in</a></p>
               <br />
               <p><span className="font-bold">Working Hours:</span> Monday to Saturday, 9:30 AM – 6:30 PM IST (excluding public holidays)</p>
             </div>

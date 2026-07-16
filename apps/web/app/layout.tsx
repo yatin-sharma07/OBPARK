@@ -15,11 +15,11 @@ export const metadata: Metadata = {
   keywords:
     'OBPark, vehicle commerce, smart parking, vehicle services, automotive marketplace, car services, bike services, vehicle products, parking app, mobility solutions, vehicle booking platform, automotive ecommerce, smart mobility India',
   alternates: {
-    canonical: 'https://obpark.com',
+    canonical: 'https://obpark.in',
   },
   openGraph: {
     type: 'website',
-    url: 'https://obpark.com',
+    url: 'https://obpark.in',
     title: 'OBPark | Smart Vehicle Commerce & Mobility Solutions',
     description:
       'Everything for your vehicle — OBPark brings vehicle commerce, parking, services, bookings, and smart mobility features into one easy platform.',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     images: [
       {
-        url: 'https://obpark.com/og-image.png',
+        url: 'https://obpark.in/og-image.png',
         width: 1200,
         height: 630,
         alt: 'OBPark smart vehicle commerce and mobility platform',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: 'OBPark | Smart Vehicle Commerce & Mobility Solutions',
     description:
       'Everything for your vehicle — vehicle commerce, parking, services, bookings, and app-based automotive convenience.',
-    images: ['https://obpark.com/og-image.png'],
+    images: ['https://obpark.in/og-image.png'],
   },
   icons: {
     icon: '/Images/layout/obrive-logo.svg',

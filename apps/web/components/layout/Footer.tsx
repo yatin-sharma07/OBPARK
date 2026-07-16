@@ -10,6 +10,7 @@ const aboutLinks = [
   { label: 'My Account', href: '/account' },
   { label: 'Shop Now', href: '/shop' },
   { label: 'Obrive', href: '/obrive' },
+  { label: 'Contact Us', href: '/contact' },
 ]
 
 const supportLinks = [
@@ -101,7 +102,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[180px_180px_1fr] gap-8 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[150px_min-content_1fr] gap-8 lg:gap-12">
           <FooterLinks title="About" links={aboutLinks} />
 
           <FooterLinks title="Support" links={supportLinks} />
@@ -247,7 +248,7 @@ function FooterLink({
   return (
     <Link
       href={href}
-      className="block hover:opacity-70 transition-opacity text-sm"
+      className="block hover:opacity-70 transition-opacity text-sm whitespace-nowrap"
       style={{
         color: '#074139',
         fontFamily: 'var(--font-michroma)',

@@ -103,21 +103,24 @@ export function Navbar() {
           ${isScrolled
                         ? `
                 top-3
-                left-3
-                right-3
+                left-8
+                right-8
 
                 sm:top-4
-                sm:left-4
-                sm:right-4
+                sm:left-12
+                sm:right-12
 
-                md:top-6
-                md:left-6
-                md:right-6
+                md:top-5
+                md:left-20
+                md:right-20
 
-                rounded-[22px]
-                sm:rounded-[26px]
-                md:rounded-[32px]
-                lg:rounded-[30px]
+                lg:left-32
+                lg:right-32
+
+                xl:left-48
+                xl:right-48
+
+                rounded-full
               `
                         : `
                 top-0
@@ -129,7 +132,9 @@ export function Navbar() {
                     }
         `}
                 style={{
-                    background: 'linear-gradient(to bottom, #59D0B5 0%, #F0FAF5 100%)',
+                    background: 'rgba(89, 208, 181, 0.25)',
+                    backdropFilter: 'blur(16px)',
+                    WebkitBackdropFilter: 'blur(16px)',
                 }}
             >
                 {/* LEFT LINKS - DESKTOP */}
