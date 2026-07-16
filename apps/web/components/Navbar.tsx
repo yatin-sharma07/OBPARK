@@ -103,22 +103,22 @@ export function Navbar() {
           ${isScrolled
                         ? `
                 top-3
-                left-8
-                right-8
+                left-4
+                right-4
 
                 sm:top-4
-                sm:left-12
-                sm:right-12
+                sm:left-8
+                sm:right-8
 
                 md:top-5
-                md:left-20
-                md:right-20
+                md:left-12
+                md:right-12
 
-                lg:left-32
-                lg:right-32
-
-                xl:left-48
-                xl:right-48
+                xl:left-0
+                xl:right-0
+                xl:mx-auto
+                xl:w-full
+                xl:max-w-[1300px]
 
                 rounded-full
               `

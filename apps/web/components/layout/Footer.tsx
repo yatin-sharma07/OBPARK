@@ -14,7 +14,7 @@ const aboutLinks = [
 ]
 
 const supportLinks = [
-  { label: 'Faqs', href: '/faq' },
+  { label: 'FAQ', href: '/faq' },
   { label: 'Platform Policy', href: '/platform-policy' },
   { label: 'Business & Partner Policy', href: '/business-policy' },
   { label: 'Payment Gateway & Compliance', href: '/payment-compliance' },
@@ -199,6 +199,15 @@ export function Footer() {
           >
             © OBRIVE All rights reserved.
           </p>
+        </div>
+
+        {/* Payment Icons */}
+        <div className="mt-6">
+          <img
+            src="/Images/Payment-icons-complete.svg"
+            alt="Accepted payment methods"
+            className="h-8 w-auto"
+          />
         </div>
       </div>
     </motion.footer>

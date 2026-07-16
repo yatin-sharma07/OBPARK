@@ -218,10 +218,10 @@ export function ServicesGrid() {
           variants={cardContainerVariants}
           className="
             w-full
-            max-w-[700px]
-            lg:max-w-[700px]
+            max-w-[600px]
+            lg:max-w-[600px]
             min-h-auto
-            lg:min-h-[680px]
+            lg:min-h-[560px]
             rounded-[30px]
             md:rounded-[40px]
             bg-white
@@ -257,11 +257,11 @@ export function ServicesGrid() {
                   aria-label={`Open ${service.label.toLowerCase()} service`}
                   className="
                     w-full
-                    max-w-[160px]
-                    min-w-[110px]
-                    h-[140px]
-                    sm:h-[160px]
-                    md:h-[175px]
+                    max-w-[145px]
+                    min-w-[100px]
+                    h-[125px]
+                    sm:h-[145px]
+                    md:h-[155px]
                     p-2
                     sm:p-3
                     flex
@@ -287,12 +287,12 @@ export function ServicesGrid() {
                     <div
                       className="
                         relative
-                        w-[72px]
-                        h-[72px]
-                        sm:w-[84px]
-                        sm:h-[84px]
-                        md:w-[96px]
-                        md:h-[96px]
+                        w-[64px]
+                        h-[64px]
+                        sm:w-[74px]
+                        sm:h-[74px]
+                        md:w-[84px]
+                        md:h-[84px]
                         rounded-full
                         bg-[#F8FAFA]
                         border-[4px]
@@ -315,12 +315,12 @@ export function ServicesGrid() {
                         className={
                           service.imageClass ??
                           `
-                          h-[36px]
-                          w-[36px]
-                          sm:h-[44px]
-                          sm:w-[44px]
-                          md:h-[48px]
-                          md:w-[48px]
+                          h-[32px]
+                          w-[32px]
+                          sm:h-[40px]
+                          sm:w-[40px]
+                          md:h-[44px]
+                          md:w-[44px]
                           object-contain
                           `
                         }
