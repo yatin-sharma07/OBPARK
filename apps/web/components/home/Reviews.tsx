@@ -49,7 +49,7 @@ export function Reviews() {
         w-full
         max-w-[100vw]
         overflow-hidden
-        bg-[#EEF9F5]
+        bg-white
         py-14
         sm:py-16
         md:py-20

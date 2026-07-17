@@ -19,14 +19,14 @@ export default function ExploreMenu() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full bg-white rounded-3xl p-6 sm:p-8 shadow-[0_12px_30px_rgba(7,76,67,0.06)] border border-gray-100 flex flex-col items-center mt-6"
+            className="w-full p-6 sm:p-8 flex flex-col items-center mt-6"
         >
             <h3 className={`${microgrammaBold.className} text-lg sm:text-xl md:text-[22px] text-[#074c43] mb-6 text-center`}>
                 Explore Everything About Your Vehicle
             </h3>
 
-            <div className="w-full overflow-x-auto pb-4 scrollbar-hide">
-                <div className="flex items-center gap-3 sm:gap-4 min-w-max px-2">
+            <div className="w-full pb-4">
+                <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 px-2">
                     {/* Explore Pills */}
                     <Link href="#" className="flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-2xl border border-gray-200 hover:border-[#3fc197] hover:shadow-md transition-all group bg-white">
                         <span className="font-extrabold text-[#ff8b49] text-xs sm:text-sm tracking-tighter">FAST<span className="text-[#3fc197]">ag</span></span>

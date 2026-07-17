@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { microgrammaBold } from '@/lib/fonts'
+import { usePathname } from 'next/navigation'
 
 const aboutLinks = [
   { label: 'Our Story', href: '/our-story' },
@@ -72,6 +73,9 @@ const socials = [
 ]
 
 export function Footer() {
+  const pathname = usePathname()
+  const isHome = pathname === '/'
+
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -88,7 +92,7 @@ export function Footer() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
       viewport={{ once: true, amount: 0.2 }}
-      className="w-full px-4 pb-4 sm:px-5 sm:pb-5"
+      className={`w-full px-4 pb-4 sm:px-5 sm:pb-5 ${isHome ? 'bg-white' : ''}`}
     >
       <div
         className="w-full rounded-[18px] py-6 sm:py-8 md:py-12 px-0 overflow-hidden"

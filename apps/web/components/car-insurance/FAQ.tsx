@@ -56,13 +56,13 @@ export default function FAQ() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.08 }}
-                            className="w-full overflow-hidden rounded-2xl border border-[#dfe9e6] bg-white shadow-[0_0_20px_rgba(0,0,0,0.025)]"
+                            className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
                         >
                             <button
                                 onClick={() => toggleFaq(idx)}
-                                className="flex w-full items-center justify-between gap-4 bg-white px-5 py-5 text-left transition-colors hover:bg-[#f8fbfa] sm:px-6 md:px-8"
+                                className="w-full flex items-center justify-between p-5 text-left focus:outline-none"
                             >
-                                <span className="text-[14px] font-bold leading-relaxed text-[#06483f] sm:text-[15px] md:text-[17px]">
+                                <span className="font-medium text-[#143B33]">
                                     {faq.question}
                                 </span>
 
@@ -83,7 +83,7 @@ export default function FAQ() {
                                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                                         className="overflow-hidden"
                                     >
-                                        <div className="border-t border-[#dfe9e6] bg-[#f8fbfa] px-5 py-5 text-[13px] font-medium leading-[1.8] text-[#4f6964] sm:px-6 sm:text-[14px] md:px-8 md:text-[15px]">
+                                        <div className="px-5 pb-5 pt-1 text-[#3F665D] leading-relaxed text-sm">
                                             {faq.answer}
                                         </div>
                                     </motion.div>

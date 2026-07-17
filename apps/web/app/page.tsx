@@ -12,7 +12,7 @@ import { Reviews } from '@/components/home/Reviews'
 
 export default function HomePage() {
   return (
-    <main>
+    <main className="bg-white">
       <div className="px-1 sm:px-4 md:px-1">
         <HeroSection />
         
