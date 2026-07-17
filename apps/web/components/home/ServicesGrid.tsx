@@ -146,7 +146,6 @@ export function ServicesGrid() {
           md:gap-12
           justify-between
           items-center
-          lg:items-start
         "
       >
         {/* LEFT TEXT */}
@@ -159,12 +158,9 @@ export function ServicesGrid() {
             max-w-[736px]
             lg:w-[736px]
             min-h-auto
-            lg:h-[583px]
             justify-center
             gap-5
             md:gap-6
-            mt-0
-            lg:mt-12
             text-center
             lg:text-left
           "

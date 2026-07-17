@@ -55,11 +55,7 @@ export default function FAQ() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.08 }}
-                                className="
-                                    overflow-hidden border border-[#E4EAEA] bg-white
-                                    shadow-[0_2px_10px_rgba(11,64,47,0.04)]
-                                    rounded-2xl
-                                "
+                                className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
                             >
                                 <button
                                     type="button"
@@ -70,7 +66,7 @@ export default function FAQ() {
                                         hover:bg-[#f8fbfa] sm:px-10
                                     "
                                 >
-                                    <span className="text-sm font-bold text-[#174B43] sm:text-base md:text-[17px]">
+                                    <span className="font-medium text-[#143B33]">
                                         {faq.question}
                                     </span>
 
@@ -90,11 +86,9 @@ export default function FAQ() {
                                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                                             className="overflow-hidden"
                                         >
-                                            <div className="border-t border-[#E4EAEA] bg-[#f8fbfa] px-6 pb-5 pt-4 sm:px-10">
-                                                <p className="max-w-5xl text-sm leading-relaxed text-[#3E7071] sm:text-base">
+                                            <div className="px-5 pb-5 pt-1 text-[#3F665D] leading-relaxed text-sm">
                                                     {faq.answer}
-                                                </p>
-                                            </div>
+                                                </div>
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
