@@ -66,29 +66,35 @@ export function FastagHero({ manualVrn, setManualVrn, onCheckFastag }: FastagHer
               </div>
 
               {/* Form Card */}
-              <div className="bg-white p-5 sm:p-6 rounded-b-xl rounded-tr-xl border border-gray-200 shadow-sm relative z-20">
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <div className="relative flex-1 flex items-stretch border border-gray-200 rounded overflow-hidden bg-white hover:border-[#0B402F] transition-colors focus-within:border-[#0B402F]">
-                    <div className="bg-black text-white px-3 flex flex-col items-center justify-center font-bold text-[10px] tracking-widest shrink-0 w-[50px] h-[50px]">
-                      <div className="w-4 h-4 border-[1.5px] border-white rounded-full mb-1 border-dashed opacity-80"></div>
-                      IND
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Enter Vehicle Number"
-                      value={manualVrn}
-                      onChange={(e) => setManualVrn(e.target.value.toUpperCase())}
-                      className="w-full px-4 py-4 outline-none bg-transparent font-medium text-gray-800 placeholder:text-gray-400 placeholder:font-normal uppercase text-sm"
-                    />
+              <div 
+                className="bg-white p-2 sm:p-2.5 rounded-b-2xl rounded-tr-2xl border border-gray-200/80 shadow-[0_4px_25px_rgba(7,65,57,0.05)] flex items-center justify-between gap-3 relative z-20"
+              >
+                <div className="flex items-center flex-1 gap-2 sm:gap-3 min-w-0">
+                  {/* IND Plate */}
+                  <div className="bg-[#1c2024] text-white w-12 h-10 sm:w-14 sm:h-12 rounded-xl flex flex-col items-center justify-center font-bold shrink-0 select-none">
+                    <span className="text-base sm:text-lg leading-none">🇮🇳</span>
+                    <span className="text-[8px] sm:text-[10px] tracking-widest mt-0.5 leading-none font-sans font-extrabold text-[#D1D5DB]">IND</span>
                   </div>
-                  <Button 
-                    onClick={onCheckFastag}
-                    disabled={!manualVrn.trim()}
-                    className="bg-[#0B402F] hover:bg-[#083023] text-white shrink-0 font-bold py-4 px-8 rounded text-sm h-auto"
-                  >
-                    Recharge Now
-                  </Button>
+                  {/* Input */}
+                  <input
+                    type="text"
+                    placeholder="VEHICLE NUMBER"
+                    value={manualVrn}
+                    onChange={(e) => setManualVrn(e.target.value.toUpperCase())}
+                    className="w-full bg-transparent outline-none border-0 text-[#074c43] placeholder:text-[#a0aaa7] font-semibold text-[10px] sm:text-xs md:text-sm uppercase tracking-wider"
+                    style={{ fontFamily: 'var(--font-michroma)' }}
+                  />
                 </div>
+                {/* Button */}
+                <button
+                  onClick={onCheckFastag}
+                  disabled={!manualVrn.trim()}
+                  className="bg-[#074139] hover:bg-[#052e28] text-white shrink-0 font-bold py-3 sm:py-3.5 px-4 sm:px-6 rounded-xl text-[10px] sm:text-xs md:text-sm h-auto flex items-center gap-1.5 sm:gap-2 transition-all hover:scale-[1.02] shadow-[0_4px_12px_rgba(7,65,57,0.15)] disabled:opacity-50 disabled:pointer-events-none"
+                  style={{ fontFamily: 'var(--font-michroma)' }}
+                >
+                  <span>Check Details</span>
+                  <span className="text-xs sm:text-sm md:text-base">→</span>
+                </button>
               </div>
             </motion.div>
           </motion.div>

@@ -76,13 +76,13 @@ export function Navbar() {
           flex items-center justify-between
 
 
-          sm:h-[64px]
-          md:h-[80px]
-          lg:h-[90px]
-          xl:h-[100px]
+          sm:h-[56px]
+          md:h-[70px]
+          lg:h-[80px]
+          xl:h-[88px]
 
-          min-h-[58px]
-          max-h-[100px]
+          min-h-[50px]
+          max-h-[88px]
 
           px-4
           sm:px-5
@@ -100,36 +100,25 @@ export function Navbar() {
 
           ${showNavbar ? 'pointer-events-auto' : 'pointer-events-none'}
 
-          ${isScrolled
-                        ? `
-                top-3
-                left-4
-                right-4
+          top-2
+          left-4
+          right-4
 
-                sm:top-4
-                sm:left-8
-                sm:right-8
+          sm:top-2
+          sm:left-8
+          sm:right-8
 
-                md:top-5
-                md:left-12
-                md:right-12
+          md:top-3
+          md:left-12
+          md:right-12
 
-                xl:left-0
-                xl:right-0
-                xl:mx-auto
-                xl:w-full
-                xl:max-w-[1300px]
+          xl:left-0
+          xl:right-0
+          xl:mx-auto
+          xl:w-full
+          xl:max-w-[1300px]
 
-                rounded-full
-              `
-                        : `
-                top-0
-                left-0
-                right-0
-
-                rounded-none
-              `
-                    }
+          rounded-full
         `}
                 style={{
                     background: 'rgba(89, 208, 181, 0.25)',
@@ -435,25 +424,14 @@ export function Navbar() {
               duration-500
               ease-[cubic-bezier(0.22,1,0.36,1)]
 
-              ${isScrolled
-                                ? `
-                    top-[76px]
+                    top-[64px]
                     left-3
                     right-3
 
-                    sm:top-[88px]
+                    sm:top-[72px]
                     sm:left-4
                     sm:right-4
-                  `
-                                : `
-                    top-[64px]
-                    left-0
-                    right-0
-
-                    sm:top-[70px]
-                  `
-                            }
-            `}
+                  `}
                         style={{
                             background: 'linear-gradient(to bottom, #CAEDE5 0%, #EAF8F4 100%)',
                         }}

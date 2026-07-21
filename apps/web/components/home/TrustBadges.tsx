@@ -110,9 +110,9 @@ export function TrustBadges() {
                   sm:h-[58px]
                   md:h-[78px]
 
-                  rounded-[6px]
-                  sm:rounded-[7px]
-                  md:rounded-[8px]
+                  rounded-[16px]
+                  sm:rounded-[20px]
+                  md:rounded-[24px]
 
                   px-3
                   sm:px-4
