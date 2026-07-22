@@ -9,8 +9,19 @@ import {
     CheckCircle2,
     ArrowRight
 } from 'lucide-react';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Hero() {
+    const [manualVrn, setManualVrn] = useState('');
+    const router = useRouter();
+
+    const handleCheck = () => {
+        if (manualVrn.trim()) {
+            router.push(`/payment?type=owner&amount=500&vrn=${manualVrn.trim()}`);
+        }
+    };
+
     return (
         <section className="relative w-full h-full overflow-hidden">
             {/* Background image fills the hero area */}
@@ -34,7 +45,7 @@ export default function Hero() {
                         className={`${microgrammaBold.className} text-[22px] sm:text-[34px] md:text-[46px] lg:text-[54px] xl:text-[60px] leading-[1.1] text-[#074c43]`}
                     >
                         Vehicle Owner Details by <br />
-                        <span className="text-[#3fc197]">Number Plate in India</span>
+                        <span className="bg-gradient-to-r from-[#1A817F] to-[#59D0B5] bg-clip-text text-transparent">Number Plate in India</span>
                     </motion.h1>
 
                     <motion.p
@@ -64,12 +75,19 @@ export default function Hero() {
                         {/* Input */}
                         <input
                             type="text"
-                            placeholder="Enter Vehicle Number"
-                            className="flex-1 px-3 sm:px-5 py-2 text-sm sm:text-base md:text-lg outline-none text-[#074c43] placeholder-[#8ca49d] uppercase font-bold tracking-wider bg-transparent"
+                            placeholder="VEHICLE NUMBER"
+                            value={manualVrn}
+                            onChange={(e) => setManualVrn(e.target.value.toUpperCase())}
+                            className="flex-1 px-2 sm:px-4 py-2 text-[10px] sm:text-xs md:text-sm outline-none text-[#074c43] placeholder-[#8ca49d] uppercase font-bold tracking-wider bg-transparent"
+                            style={{ fontFamily: 'var(--font-michroma)' }}
                         />
 
                         {/* Submit Button */}
-                        <button className="bg-[#074c43] hover:bg-[#0a5c52] transition-colors text-white px-4 sm:px-7 h-9 sm:h-[52px] rounded-lg font-bold flex items-center gap-1.5 sm:gap-2 whitespace-nowrap text-xs sm:text-sm md:text-base flex-shrink-0">
+                        <button 
+                            onClick={handleCheck}
+                            disabled={!manualVrn.trim()}
+                            className="bg-[#074c43] hover:bg-[#0a5c52] transition-colors text-white px-4 sm:px-7 h-9 sm:h-[52px] rounded-lg font-bold flex items-center gap-1.5 sm:gap-2 whitespace-nowrap text-xs sm:text-sm md:text-base flex-shrink-0 disabled:opacity-50 disabled:pointer-events-none"
+                        >
                             Check Details <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         </button>
                     </motion.div>

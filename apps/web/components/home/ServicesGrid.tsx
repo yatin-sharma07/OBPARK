@@ -26,7 +26,7 @@ const SERVICES = [
   },
   {
     image: '/Images/services/pic4.jpeg',
-    label: 'VEHICLE OWNER DETAILS',
+    label: 'VEHICLE DETAILS',
     href: '/services/vehicle-owner',
     alt: 'Vehicle owner details verification service',
   },
@@ -336,6 +336,7 @@ export function ServicesGrid() {
                       text-[#074139]
                       text-center
                       uppercase
+                      whitespace-nowrap
                     `}
                   >
                     {service.label}
