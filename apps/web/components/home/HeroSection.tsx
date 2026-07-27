@@ -11,29 +11,13 @@ export function HeroSection() {
 
       <section
         className="
-    relative font-michroma
-    mx-3 mt-3 mb-10
-    sm:mx-4 sm:mt-4
-    md:m-6
-    
-
-    rounded-[24px]
-    sm:rounded-[28px]
-    md:rounded-[30px]
-
-    overflow-hidden
-
-    min-h-[680px]
-    sm:min-h-[780px]
-    md:min-h-[calc(100vh-48px)]
-
-    h-auto
-    md:h-[calc(100vh-48px)]
-
-
-    max-h-none
-    md:max-h-[980px]
-  "
+          relative font-michroma
+          m-3 sm:m-4 md:m-6
+          rounded-[24px] sm:rounded-[28px] md:rounded-[30px]
+          overflow-hidden
+          flex-1
+          min-h-[400px]
+        "
       >
         {/* Background Video */}
         <video

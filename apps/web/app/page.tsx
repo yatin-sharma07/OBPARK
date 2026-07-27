@@ -3,34 +3,24 @@ import { MarqueeStrip } from '@/components/home/MarqueeStrip'
 import { ServicesGrid } from '@/components/home/ServicesGrid'
 import { TrustBadges } from '@/components/home/TrustBadges'
 import { ProblemSolution } from '@/components/home/ProblemSolution'
-import { CtaBanner } from '@/components/home/CtaBanner'
-import { ProductCategories } from '@/components/home/ProductCategories'
-import { FeaturesAccordion } from '@/components/home/FeaturesAccordion'
-import { MintCta } from '@/components/home/MintCta'
-import { Reviews } from '@/components/home/Reviews'
+import { WhyEnterprise } from '@/components/home/WhyEnterprise'
+
 
 
 export default function HomePage() {
   return (
     <main className="bg-white pt-[0.1px]">
       <div className="px-1 sm:px-4 md:px-1">
-        <HeroSection />
+        <div className="flex flex-col h-[100dvh]">
+          <HeroSection />
+          <MarqueeStrip />
+        </div>
         
-        <MarqueeStrip />
-        
-        <div className="w-full mx-auto xl:max-w-[1300px] px-4 sm:px-8 md:px-12 xl:px-0">
+        <div className="w-full mx-auto xl:max-w-[1300px] px-4 sm:px-8 md:px-12 xl:px-0 pt-8">
           <ServicesGrid />
           <TrustBadges />
           <ProblemSolution />
-          <CtaBanner />
-          <ProductCategories />
-        </div>
-
-        <MintCta />
-
-        <div className="w-full mx-auto xl:max-w-[1300px] px-4 sm:px-8 md:px-12 xl:px-0">
-          <Reviews />
-          <FeaturesAccordion />
+          <WhyEnterprise />
         </div>
       </div>
     </main>

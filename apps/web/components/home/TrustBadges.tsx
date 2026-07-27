@@ -1,12 +1,20 @@
 import { microgrammaBold } from '@/lib/fonts'
+import { MapPin, Settings, ShoppingBag, TrendingUp, LayoutGrid } from 'lucide-react'
+
+const ParkingIcon = ({ className, strokeWidth }: { className?: string, strokeWidth?: number | string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth || "2"} strokeLinecap="round" strokeLinejoin="round">
+    <rect width="18" height="18" x="3" y="3" rx="2" />
+    <path d="M9 17V7h4a3 3 0 0 1 0 6H9" />
+  </svg>
+)
 
 const BADGES = [
-  'Smart Parking, Real-time occupancy',
-  'AR Navigation Intuitive wayfinding',
-  'Vehicle Services',
-  'Vehicle products and accessories.',
-  'Customer journey analysis',
-  'Unified facility control.',
+  { text: 'GPS - Free Indoor Navigation', Icon: ParkingIcon },
+  { text: 'AI Parking Intelligence', Icon: MapPin },
+  { text: 'Vehicle Locator', Icon: Settings },
+  { text: 'Digital Twin Mapping', Icon: ShoppingBag },
+  { text: 'Smart Parking Navigation', Icon: TrendingUp },
+  { text: 'Real-Time Occupancy', Icon: LayoutGrid },
 ]
 
 const badgeStyles = [
@@ -97,26 +105,26 @@ export function TrustBadges() {
 
             return (
               <div
-                key={badge}
+                key={badge.text}
                 className="
                   relative
                   flex
                   items-center
-                  gap-2.5
-                  sm:gap-3
-                  md:gap-4
+                  gap-3
+                  sm:gap-4
+                  md:gap-5
 
-                  h-[46px]
-                  sm:h-[58px]
-                  md:h-[78px]
+                  h-[52px]
+                  sm:h-[64px]
+                  md:h-[84px]
 
                   rounded-[16px]
                   sm:rounded-[20px]
                   md:rounded-[24px]
 
-                  px-3
-                  sm:px-4
-                  md:px-5
+                  px-4
+                  sm:px-5
+                  md:px-7
 
                   shadow-none
                 "
@@ -133,12 +141,12 @@ export function TrustBadges() {
                 <div
                   className="
                     flex
-                    h-[34px]
-                    w-[34px]
-                    sm:h-[42px]
-                    sm:w-[42px]
-                    md:h-[50px]
-                    md:w-[50px]
+                    h-[38px]
+                    w-[38px]
+                    sm:h-[46px]
+                    sm:w-[46px]
+                    md:h-[56px]
+                    md:w-[56px]
                     shrink-0
                     items-center
                     justify-center
@@ -146,50 +154,36 @@ export function TrustBadges() {
                     bg-[#D8F4EC]
                   "
                 >
-                  <svg
-                    width="30"
-                    height="30"
-                    viewBox="0 0 24 24"
-                    fill="none"
+                  <badge.Icon
                     className="
-                      h-[21px]
-                      w-[21px]
-                      sm:h-[25px]
-                      sm:w-[25px]
-                      md:h-[29px]
-                      md:w-[29px]
+                      h-[20px]
+                      w-[20px]
+                      sm:h-[24px]
+                      sm:w-[24px]
+                      md:h-[28px]
+                      md:w-[28px]
+                      text-[#074139]
                     "
-                  >
-                    <path
-                      d="M12 2.7L20 7.3V16.7L12 21.3L4 16.7V7.3L12 2.7Z"
-                      stroke="#074139"
-                      strokeWidth="1.1"
-                    />
-                    <path d="M12 2.7V21.3" stroke="#074139" strokeWidth="1.1" />
-                    <path d="M4 7.3L20 16.7" stroke="#074139" strokeWidth="1.1" />
-                    <path d="M20 7.3L4 16.7" stroke="#074139" strokeWidth="1.1" />
-                  </svg>
+                    strokeWidth={1.5}
+                  />
                 </div>
 
                 <span
-                  className="
+                  className={`
+                    ${microgrammaBold.className}
                     block
                     min-w-0
                     truncate
-                    text-[11px]
-                    sm:text-[15px]
-                    md:text-[21px]
-                    lg:text-[22px]
+                    text-[13px]
+                    sm:text-[17px]
+                    md:text-[23px]
+                    lg:text-[25px]
                     leading-none
-                    tracking-[0.01em]
-                    text-[#074139]
-                  "
-                  style={{
-                    fontFamily: 'var(--font-michroma)',
-                    fontWeight: 400,
-                  }}
+                    tracking-wide
+                    text-white
+                  `}
                 >
-                  {badge}
+                  {badge.text}
                 </span>
               </div>
             )
@@ -210,7 +204,7 @@ export function TrustBadges() {
               color: '#4B545A',
             }}
           >
-            The Parking Problem Nobody Talks About
+            A Product By Obrive
           </p>
 
           <h2
@@ -226,8 +220,8 @@ export function TrustBadges() {
               color: '#074139',
             }}
           >
-            Transforms parking from a friction <br />
-            point into a seamless experience.
+            Why Enterprise Customers Choose OBPARK
+            
           </h2>
         </div>
       </div>
