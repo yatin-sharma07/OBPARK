@@ -54,7 +54,7 @@ export function WhyEnterprise() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section className="w-full max-w-[100vw] overflow-hidden py-16 md:py-24 bg-white">
+    <section className="w-full max-w-[100vw] overflow-hidden py-16 md:py-24 bg-[#F0F9F5]">
       <div className="mx-auto flex w-full max-w-[1240px] flex-col lg:flex-row px-4 sm:px-6 lg:px-8 gap-12 lg:gap-16">
         
         {/* LEFT COLUMN */}
@@ -99,7 +99,7 @@ export function WhyEnterprise() {
               return (
                 <div 
                   key={index} 
-                  className={`flex flex-col rounded-[16px] transition-all duration-300 px-6 cursor-pointer ${isOpen ? 'bg-transparent py-2' : 'bg-white py-5 shadow-sm hover:shadow-md'}`}
+                  className={`flex flex-col rounded-[16px] bg-white py-5 shadow-sm hover:shadow-md transition-all duration-300 px-6 cursor-pointer`}
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                 >
                   <div className="flex items-center justify-between gap-4">

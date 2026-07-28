@@ -95,7 +95,7 @@ export function Footer() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
       viewport={{ once: true, amount: 0.1 }}
-      className="w-full relative z-10 bg-white px-3 pb-3 pt-6 sm:px-5 sm:pb-5 sm:pt-10"
+      className="w-full relative z-10 bg-[#F0F9F5] px-3 pb-3 pt-6 sm:px-5 sm:pb-5 sm:pt-10"
     >
       <div 
         className="w-full rounded-[24px] overflow-hidden"
@@ -118,7 +118,7 @@ export function Footer() {
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5">
              {socials.map((s) => (
               <a
                 key={s.label}
@@ -157,11 +157,9 @@ export function Footer() {
             </h3>
 
             <div
-              className="w-full rounded-[20px] p-6 flex flex-col gap-5 border border-white/30"
+              className="w-full rounded-[32px] p-6 sm:p-8 flex flex-col gap-5 border-none shadow-lg"
               style={{ 
-                backgroundColor: 'rgba(255,255,255,0.15)',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)'
+                background: 'linear-gradient(135deg, #86C4B9 0%, #379490 100%)'
               }}
             >
               <div className="grid grid-cols-2 gap-4">
@@ -309,7 +307,7 @@ function InputField({
   return (
     <div className="flex flex-col gap-2">
       <label
-        className="text-[11px] text-white ml-2"
+        className="text-[12px] text-white ml-5 opacity-90"
         style={{ fontFamily: 'var(--font-michroma)' }}
       >
         {label}
@@ -319,7 +317,7 @@ function InputField({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-white/20 text-white placeholder:text-white/60 rounded-full px-5 py-3 text-[12px] outline-none border border-transparent focus:border-white/40 transition-colors"
+        className="w-full bg-white/20 text-white placeholder:text-white/70 rounded-full px-6 py-3.5 text-[13px] outline-none border border-white/10 focus:border-white/30 transition-colors"
         style={{ fontFamily: 'var(--font-michroma)' }}
       />
     </div>
