@@ -100,7 +100,7 @@ export function ServicesGrid() {
               md:text-[28px]
               leading-[1.2]
               md:leading-[34px]
-              text-[#074139]
+              text-[#0D4B4D]
               max-w-[440px]
               mx-auto
               lg:mx-0
@@ -170,7 +170,7 @@ export function ServicesGrid() {
                 sm:text-[24px]
                 md:text-[28px]
                 leading-tight
-                text-[#074139]
+                text-[#167D7F]
               `}
             >
               Trusted by the Future of<br/>
@@ -180,16 +180,16 @@ export function ServicesGrid() {
 
             <div 
               className={`
-                ${microgrammaBold.className}
                 flex flex-col
                 text-[16px]
                 sm:text-[20px]
                 md:text-[24px]
                 leading-[1.4]
                 md:leading-[36px]
-                font-medium
+                font-light
                 bg-gradient-to-r from-[#2A8B87] to-[#B5E2D1] bg-clip-text text-transparent
               `}
+              style={{ fontFamily: 'var(--font-michroma)' }}
             >
               <span>Shopping Malls, Airports</span>
               <span>Hospitals, Commercial Buildings,</span>
@@ -205,12 +205,12 @@ export function ServicesGrid() {
               className={`
                 ${microgrammaBold.className}
                 px-5 py-2.5
-                bg-[#3fc197] hover:bg-[#2fa880]
+                bg-gradient-to-r from-[#1A817F] to-[#59D0B5] hover:opacity-90
                 text-white
                 rounded-full
                 text-[10px] sm:text-xs
-                transition-colors
-                shadow-lg shadow-[#3fc197]/30
+                transition-opacity
+                shadow-lg shadow-[#1A817F]/30
               `}
             >
               BOOK DEMO
@@ -220,12 +220,12 @@ export function ServicesGrid() {
               className={`
                 ${microgrammaBold.className}
                 px-5 py-2.5
-                bg-[#3fc197] hover:bg-[#2fa880]
+                bg-gradient-to-r from-[#1A817F] to-[#59D0B5] hover:opacity-90
                 text-white
                 rounded-full
                 text-[10px] sm:text-xs
-                transition-colors
-                shadow-lg shadow-[#3fc197]/30
+                transition-opacity
+                shadow-lg shadow-[#1A817F]/30
               `}
             >
               INVEST NOW

@@ -100,7 +100,7 @@ export function Footer() {
       <div 
         className="w-full rounded-[24px] overflow-hidden"
         style={{
-          background: 'linear-gradient(135deg, #9ee3cc 0%, #3a8b79 100%)',
+          background: 'linear-gradient(135deg, #ACE3CA 0%, #1C8182 100%)',
         }}
       >
         <div className="max-w-[1400px] mx-auto w-full px-6 sm:px-8 md:px-16 pt-10 pb-10">
@@ -142,7 +142,7 @@ export function Footer() {
         <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 mt-10 mb-12">
           
           {/* LINKS GRID */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-16 lg:w-[60%]">
+          <div className="grid grid-cols-2 md:flex md:flex-row md:justify-between gap-8 lg:w-[65%]">
             <FooterLinks title="About" links={aboutLinks} />
             <FooterLinks title="Support" links={supportLinks} />
             <FooterLinks title="Resources" links={resourcesLinks} />
@@ -151,9 +151,9 @@ export function Footer() {
           {/* NEWSLETTER */}
           <div className="lg:w-[40%] flex flex-col gap-6">
             <h3 
-              className={`${microgrammaBold.className} text-white text-[17px] leading-[1.3] max-w-[320px]`}
+              className={`${microgrammaBold.className} text-white text-[17px] leading-[1.3] max-w-full`}
             >
-              Subscribe to our newsletter and claim your 15% discount today
+              Subscribe to our newsletter and claim<br />your 15% discount today
             </h3>
 
             <div
@@ -281,7 +281,7 @@ function FooterLinks({
           <Link
             key={link.label}
             href={link.href}
-            className="text-[13px] transition-opacity hover:opacity-100 opacity-85"
+            className="text-[13px] whitespace-nowrap transition-opacity hover:opacity-100 opacity-85"
             style={{
               color: '#FFFFFF',
               fontFamily: 'var(--font-michroma)',
