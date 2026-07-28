@@ -46,7 +46,7 @@ export function ProblemSolution() {
           initial={false}
           animate={{
             background: activeLeft
-              ? 'linear-gradient(135deg, #278C89 0%, #A2DEC3 100%)'
+              ? 'linear-gradient(135deg, #1C8182 0%, #AAE1C9 100%)'
               : 'linear-gradient(to right, #ffffff, #ffffff)',
             borderColor: activeLeft ? 'rgba(7,65,57,0.25)' : '#e5e7eb',
             scale: activeLeft ? 1 : 0.985,
@@ -120,7 +120,7 @@ export function ProblemSolution() {
                     rounded-full
                   "
                   style={{
-                    backgroundColor: activeLeft ? '#074139' : '#ffffff',
+                    backgroundColor: activeLeft ? '#2A9D8F' : '#ffffff',
                   }}
                 />
               </button>

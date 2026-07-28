@@ -7,21 +7,14 @@ import Image from 'next/image'
 import { Plus, Minus } from 'lucide-react'
 
 const ACCORDION_DATA = [
-  {
-    title: 'Lower Infrastructure Costs',
-    content: (
-      <div className="flex flex-col gap-3 text-[#484848] text-[12px] md:text-[13px] leading-relaxed tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
-        <p>Eliminate Expensive Hardware Investments.</p>
-        <p>Unlike traditional parking management systems that depend on thousands of IoT sensors, cameras, loops, or beacon installations, OBPARK uses AI-powered Spatial Computing to create a digital twin of your parking facility with a one-time mapping process.</p>
-        <p>Benefits : No parking sensor installation, No GPS infrastructure required, Minimal maintenance costs, Lower Total Cost of Ownership (TCO), Faster ROI, Software-first architecture</p>
-      </div>
-    )
-  },
+
   {
     title: 'Faster Deployment',
     content: (
       <div className="flex flex-col gap-3 text-[#484848] text-[12px] md:text-[13px] leading-relaxed tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
-        <p>Deploy our solution rapidly across multiple facilities without the need for complex hardware installation or disruptive construction work.</p>
+        <p>Go Live in Days, Not Months</p>
+        <p>Traditional parking systems often require complex civil work, sensor installations, network cabling, and lengthy commissioning processes. OBPARK simplifies deployment through intelligent spatial mapping, allowing facilities to be onboarded quickly with minimal disruption to daily operations. Our experienced mapping team digitizes your parking environment and creates a live digital twin that is immediately ready for navigation, occupancy management, and analytics.</p>
+        <p>Advantages : Rapid implementation, Minimal operational downtime, Easy expansion across multiple sites, Cloud-based updates, No major infrastructure modifications.</p>
       </div>
     )
   },
@@ -29,7 +22,9 @@ const ACCORDION_DATA = [
     title: 'Better Customer Experience',
     content: (
       <div className="flex flex-col gap-3 text-[#484848] text-[12px] md:text-[13px] leading-relaxed tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
-        <p>Provide a seamless, frustration-free parking experience that guides drivers directly to available spots and streamlines the payment process.</p>
+        <p>Make Parking Stress-Free</p>
+        <p>Parking should be the easiest part of a visitor's journey—not the most frustrating. OBPARK provides drivers with real-time parking availability, smart space allocation, AR-powered indoor navigation, and instant vehicle location, helping them reach their destination quickly and effortlessly. A seamless parking experience increases customer satisfaction, encourages repeat visits, and strengthens brand loyalty.</p>
+        <p>Customer Benefits : Find available parking faster, Reduce unnecessary driving inside parking lots, Navigate with Augmented Reality, Easily locate parked vehicles, Contactless booking and payment, Reduced waiting times.</p>
       </div>
     )
   },
@@ -37,22 +32,26 @@ const ACCORDION_DATA = [
     title: 'Higher Parking Revenue',
     content: (
       <div className="flex flex-col gap-3 text-[#484848] text-[12px] md:text-[13px] leading-relaxed tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
-        <p>Maximize occupancy, eliminate revenue leakage, and optimize pricing dynamically based on real-time demand and facility utilization.</p>
+        <p>Maximise Every Parking Space</p>
+        <p>Every unused parking space represents lost revenue. OBPARK intelligently manages parking inventory by continuously monitoring occupancy, optimising space allocation, and reducing idle parking capacity. Operators gain complete visibility into parking utilisation, enabling dynamic pricing, premium parking allocation, reservation management, and improved operational efficiency.</p>
+        <p>Revenue Opportunities : Increase occupancy rates, Enable premium parking services, Digital reservations, Reduce unauthorised parking, Improve turnover efficiency, Generate data-driven pricing strategies.</p>
       </div>
     )
   },
   {
     title: 'Scalable Cloud Platform',
     content: (
-      <div className="flex flex-col gap-4 text-[#484848] text-sm md:text-[15px] leading-relaxed tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
-        <p>Manage one or one thousand facilities from a single centralized dashboard, with a cloud-native architecture that scales with your enterprise.</p>
+      <div className="flex flex-col gap-3 text-[#484848] text-[12px] md:text-[13px] leading-relaxed tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
+        <p>Built for Single Locations to Smart Cities</p>
+        <p>Whether you operate one commercial building or manage thousands of parking facilities across multiple cities, OBPARK grows with your business. Our cloud-native SaaS platform centralises operations, analytics, occupancy monitoring, user management, and reporting through one unified dashboard. Every facility operates independently while remaining connected within a single enterprise ecosystem.</p>
+        <p>Enterprise Capabilities : Multi-location management, Centralised administration, Real-time monitoring, Enterprise reporting, API integrations, Automatic software updates, Highly scalable cloud infrastructure.</p>
       </div>
     )
   }
 ]
 
 export function WhyEnterprise() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
     <section className="w-full max-w-[100vw] overflow-hidden py-16 md:py-24 bg-white">
@@ -80,6 +79,17 @@ export function WhyEnterprise() {
             >
               Why Enterprise Customers<br/>Choose OBPARK
             </h2>
+            
+            <div className="mt-4">
+              <h3 className={`text-[#074139] text-[16px] md:text-[18px] mb-3 ${microgrammaBold.className}`}>
+                Lower Infrastructure Costs
+              </h3>
+              <div className="flex flex-col gap-3 text-[#484848] text-[12px] md:text-[13px] leading-relaxed tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
+                <p>Eliminate Expensive Hardware Investments.</p>
+                <p>Unlike traditional parking management systems that depend on thousands of IoT sensors, cameras, loops, or beacon installations, OBPARK uses AI-powered Spatial Computing to create a digital twin of your parking facility with a one-time mapping process.</p>
+                <p>Benefits : No parking sensor installation, No GPS infrastructure required, Minimal maintenance costs, Lower Total Cost of Ownership (TCO), Faster ROI, Software-first architecture</p>
+              </div>
+            </div>
           </div>
 
           <div className="flex flex-col gap-4">
@@ -89,7 +99,7 @@ export function WhyEnterprise() {
               return (
                 <div 
                   key={index} 
-                  className={`flex flex-col rounded-[16px] transition-all duration-300 ${isOpen ? 'bg-transparent py-2' : 'bg-white px-6 py-5 cursor-pointer shadow-sm hover:shadow-md'}`}
+                  className={`flex flex-col rounded-[16px] transition-all duration-300 px-6 cursor-pointer ${isOpen ? 'bg-transparent py-2' : 'bg-white py-5 shadow-sm hover:shadow-md'}`}
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                 >
                   <div className="flex items-center justify-between gap-4">
@@ -98,7 +108,9 @@ export function WhyEnterprise() {
                     >
                       {item.title}
                     </h3>
-                    {!isOpen && (
+                    {isOpen ? (
+                      <Minus className="h-4 w-4 md:h-5 md:w-5 text-[#2A7569] shrink-0" />
+                    ) : (
                       <Plus className="h-4 w-4 md:h-5 md:w-5 text-[#2A7569] shrink-0" />
                     )}
                   </div>

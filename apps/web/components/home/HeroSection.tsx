@@ -77,40 +77,7 @@ export function HeroSection() {
         </div>
 
 
-        {/* Bottom Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="
-            absolute z-20
-            bottom-5 sm:bottom-6 md:bottom-10
-            left-1/2 -translate-x-1/2
-          "
-        >
-          <Link
-            href="/products"
-            className="
-              flex items-center gap-2
-              px-4 sm:px-5 md:px-7
-              py-2 md:py-2.5
-              text-[10px] sm:text-[11px] md:text-sm
-              text-[#074139]
-              bg-[#CAEDE5]
-              border border-[rgba(7,65,57,0.35)]
-              backdrop-blur-sm whitespace-nowrap
-            "
-            style={{ fontFamily: 'var(--font-michroma)' }}
-          >
-            DOWNLOAD APP <span
-              className="inline-block h-4 w-4 bg-[#074139]"
-              style={{
-                WebkitMask: 'url("/Images/Navbar/Vector.png") center / contain no-repeat',
-                mask: 'url("/Images/Navbar/Vector.png") center / contain no-repeat',
-              }}
-            />
-          </Link>
-        </motion.div>
+        {/* Bottom Button Removed */}
       </section>
     </>
   )
