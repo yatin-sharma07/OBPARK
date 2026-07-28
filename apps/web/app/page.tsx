@@ -4,12 +4,12 @@ import { ServicesGrid } from '@/components/home/ServicesGrid'
 import { TrustBadges } from '@/components/home/TrustBadges'
 import { ProblemSolution } from '@/components/home/ProblemSolution'
 import { WhyEnterprise } from '@/components/home/WhyEnterprise'
-
-
-
+import { ObparkMarket } from '@/components/home/ObparkMarket'
+import { FeatureProduct } from '@/components/home/FeatureProduct'
+import { ResourceLibrary } from '@/components/home/ResourceLibrary'
 export default function HomePage() {
   return (
-    <main className="bg-white pt-[0.1px]">
+    <main className="bg-[#F0F9F5] pt-[0.1px]">
       <div className="px-1 sm:px-4 md:px-1">
         <div className="flex flex-col h-[100dvh]">
           <HeroSection />
@@ -21,6 +21,9 @@ export default function HomePage() {
           <TrustBadges />
           <ProblemSolution />
           <WhyEnterprise />
+          <ObparkMarket />
+          <FeatureProduct />
+          <ResourceLibrary />
         </div>
       </div>
     </main>

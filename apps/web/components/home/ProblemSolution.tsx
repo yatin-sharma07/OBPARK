@@ -37,6 +37,7 @@ export function ProblemSolution() {
           flex-col
           md:flex-row
           justify-center
+          items-stretch
           gap-4
           sm:gap-5
         "
@@ -48,8 +49,7 @@ export function ProblemSolution() {
             background: activeLeft
               ? 'linear-gradient(135deg, #1C8182 0%, #AAE1C9 100%)'
               : 'linear-gradient(to right, #ffffff, #ffffff)',
-            borderColor: activeLeft ? 'rgba(7,65,57,0.25)' : '#e5e7eb',
-            scale: activeLeft ? 1 : 0.985,
+            scale: 1,
           }}
           transition={{
             duration: 0.45,
@@ -67,7 +67,7 @@ export function ProblemSolution() {
             flex-col
 
             rounded-[16px]
-            border
+            border-none
 
             p-4
             sm:p-5
@@ -200,7 +200,7 @@ export function ProblemSolution() {
               ? 'linear-gradient(to right, #59D0B5, #CAEDE5)'
               : 'linear-gradient(to right, #ffffff, #ffffff)',
             borderColor: activeRight ? 'rgba(7,65,57,0.25)' : '#e5e7eb',
-            scale: activeRight ? 1 : 0.985,
+            scale: 1,
           }}
           transition={{
             duration: 0.45,
