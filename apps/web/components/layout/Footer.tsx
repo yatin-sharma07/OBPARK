@@ -95,7 +95,7 @@ export function Footer() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
       viewport={{ once: true, amount: 0.1 }}
-      className="w-full relative z-10 bg-[#F0F9F5] px-3 pb-3 pt-6 sm:px-5 sm:pb-5 sm:pt-10"
+      className="w-full relative z-10 bg-transparent px-3 pb-3 pt-6 sm:px-5 sm:pb-5 sm:pt-10"
     >
       <div 
         className="w-full rounded-[24px] overflow-hidden"

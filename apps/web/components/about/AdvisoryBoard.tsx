@@ -7,24 +7,21 @@ import { microgrammaBold } from '@/lib/fonts';
 const accordions = [
   {
     title: 'Our Mission',
-    image:
-      'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80',
+    image: '/Images/about/ourmision.jpg',
     content:
-      'To transform how people move through physical spaces by creating intelligent, connected environments that delight customers, optimize operations, and unlock new value for facility operators and cities.',
+      'At OBPARK, our mission is to transform the way people experience parking by making every journey smarter, faster, and more connected. Through the power of Artificial Intelligence, Spatial Computing, Augmented Reality, Digital Twin Technology, and Machine Learning, we simplify indoor navigation, optimize parking operations, and help businesses create seamless mobility experiences. We are committed to building intelligent parking ecosystems that reduce congestion, save time, improve operational efficiency, and contribute to smarter, more sustainable cities.',
   },
   {
     title: 'Our Vision',
-    image:
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
+    image: '/Images/about/ourvision.jpg',
     content:
-      'A world where every facility understands its spaces in real-time, every visitor enjoys frictionless navigation, and every operator makes decisions based on intelligence, not intuition.',
+      "Our vision is to become the world's leading AI-powered Smart Parking and Indoor Navigation Platform, redefining urban mobility through innovation. We envision a future where every parking facility is digitally connected, every driver is guided effortlessly, and every city benefits from intelligent infrastructure that enhances convenience, sustainability, and operational excellence. By continuously innovating in Spatial Computing and AI, we aim to shape the future of connected mobility for enterprises, governments, and communities worldwide.",
   },
   {
-    title: 'Our Trusted Partners',
-    image:
-      'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1200&q=80',
+    title: 'Our Trusted Partner',
+    image: '/Images/about/trustedprtner.jpg',
     content:
-      'We see a future where autonomous vehicles coordinate seamlessly with smart facilities. Where cities use parking data to optimize traffic and reduce emissions. Where parking becomes a platform for commerce, service, and engagement.',
+      "Building the Future Together\n\nInnovation thrives through collaboration. At OBPARK, we partner with visionary organisations, technology providers, enterprises, developers, and public institutions to create intelligent parking and mobility solutions that make a real impact. Our ecosystem is built on trusted partnerships that enable seamless integration, scalable deployment, and continuous innovation across industries.",
   },
 ];
 
@@ -32,7 +29,7 @@ export default function AdvisoryBoard() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   return (
-    <section className="w-full overflow-hidden bg-white px-4 py-3 sm:px-20 sm:py-5 md:py-6 lg:mb-20">
+    <section className="w-full overflow-hidden bg-white py-3 sm:py-5 md:py-6 lg:mb-20">
       <div className="grid w-full grid-cols-1 items-center gap-7 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10 xl:gap-12">
         {/* Left Content */}
         <motion.div
@@ -42,7 +39,7 @@ export default function AdvisoryBoard() {
           transition={{ duration: 0.6 }}
           className="w-full"
         >
-          <p className="mb-3 text-sm text-[#42D8BC] sm:text-base">
+          <p className="mb-3 text-sm text-[#59D0B5] sm:text-base" style={{ fontFamily: 'var(--font-michroma)' }}>
             About Obpark
           </p>
 
@@ -52,32 +49,27 @@ export default function AdvisoryBoard() {
             Our Story
           </h2>
 
-          <div className="mt-6 max-w-[660px] space-y-4 text-sm leading-[1.5] text-[#4A4A4A] sm:text-base md:text-[16px] leading-[1.7]">
+          <div 
+            className="mt-6 max-w-[660px] space-y-4 text-[18px] leading-[28px] font-normal tracking-normal align-middle text-black"
+            style={{ fontFamily: 'var(--font-michroma)' }}
+          >
             <p>
-              In a world that moves faster every day, parking infrastructure
-              hasn&apos;t evolved in decades. Drivers waste 15 minutes
-              searching for spaces. Facility operators lose millions in
-              unrealized revenue. Cities struggle with congestion and
-              emissions driven by parking search. This frustration was
-              everywhere we looked.
+              Every great innovation begins with a simple problem.
             </p>
-
             <p>
-              Obrive Industries was founded on a simple conviction: the problem
-              isn&apos;t parking itself. The problem is that parking
-              infrastructure isn&apos;t intelligent. It&apos;s disconnected from
-              the digital world. It doesn&apos;t understand demand. It
-              doesn&apos;t guide customers. It doesn&apos;t generate data that
-              drives better decisions.
+              One day, after spending hours at a busy shopping mall, our founder returned to the parking garage only to realise they couldn't remember where the car was parked. With GPS unavailable indoors and every parking level looking identical, a short walk became a frustrating search.
             </p>
-
             <p>
-              We asked ourselves: What if parking wasn&apos;t a friction point,
-              but a platform? What if every parking facility had a digital
-              nervous system that understood occupancy in real-time, guided
-              customers with precision, and created new revenue opportunities?
-              What if facilities could transform the parking experience from
-              frustrating to delightful?
+              That moment sparked a simple question:
+            </p>
+            <p>
+              Why is finding a parked car still so difficult in the age of smart technology?
+            </p>
+            <p>
+              Driven by this challenge, we set out to rethink parking from the ground up. By combining Artificial Intelligence, Spatial Computing, Augmented Reality, Digital Twin Technology, and Machine Learning, we created OBPARK - an intelligent platform that helps people find parking, navigate indoors, and rediscover their vehicles with ease. Today, OBPARK is transforming parking facilities into smart, connected ecosystems for businesses, cities, and drivers alike.
+            </p>
+            <p>
+              From one forgotten parking space came a smarter way to move.
             </p>
           </div>
         </motion.div>
@@ -88,7 +80,7 @@ export default function AdvisoryBoard() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex w-full flex-col gap-3 sm:gap-4"
+          className="flex w-full flex-col gap-5 sm:gap-6"
         >
           {accordions.map((item, index) => {
             const isActive = activeIndex === index;
@@ -99,29 +91,21 @@ export default function AdvisoryBoard() {
                 type="button"
                 onClick={() => setActiveIndex(isActive ? null : index)}
                 layout
-                animate={{
-                  height: isActive ? 165 : 115,
-                }}
-                transition={{
-                  height: {
-                    duration: 0.55,
-                    ease: [0.22, 1, 0.36, 1],
-                  },
-                  layout: {
-                    duration: 0.55,
-                    ease: [0.22, 1, 0.36, 1],
-                  },
-                }}
-                className="
+                className={`
                   group
                   relative
                   w-full
                   cursor-pointer
                   overflow-hidden
-                  rounded-[12px]
+                  rounded-[16px]
                   text-left
-                  will-change-transform
-                "
+                  shadow-md
+                  flex
+                  flex-col
+                  ${isActive ? 'justify-start p-4 sm:p-5 gap-4 min-h-[140px]' : 'justify-center p-4 sm:p-5'}
+                  transition-all
+                  duration-300
+                `}
               >
                 {/* Background Image */}
                 <motion.img
@@ -141,73 +125,32 @@ export default function AdvisoryBoard() {
                 />
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black/10" />
+                <div className="absolute inset-0 bg-black/25 z-0" />
 
-                {/* Centered Frosted Header */}
-                <motion.div
+                {/* Header Bar */}
+                <motion.div 
                   layout="position"
-                  transition={{
-                    duration: 0.45,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className={`
-                    absolute
-                    left-1/2
-                    top-1/2
-                    z-20
-                    flex
-                    min-h-[54px]
-                    w-[calc(100%-32px)]
-                    -translate-x-1/2
-                    -translate-y-1/2
-                    items-center
-                    justify-between
-                    rounded-[12px]
-                    bg-white/65
-                    px-4
-                    backdrop-blur-md
-                    sm:px-5
-                    ${isActive ? 'hidden' : 'block'}
-                  `}
+                  className="relative z-10 flex items-center justify-between w-full bg-white/20 backdrop-blur-md px-6 py-4 rounded-[12px]"
                 >
-                  <span className="text-sm text-[#0C403A] sm:text-base">
+                  <span className="text-[13px] sm:text-[15px] text-white tracking-wide font-light" style={{ fontFamily: 'var(--font-michroma)' }}>
                     {item.title}
                   </span>
-
-                  <span className="text-xl leading-none text-[#0C403A] sm:text-2xl">
+                  <span className="text-2xl font-light leading-none text-white">
                     {isActive ? '−' : '+'}
                   </span>
                 </motion.div>
 
-                {/* Expanded Content Inside Same Box */}
-                <AnimatePresence mode="wait">
+                {/* Expanded Content */}
+                <AnimatePresence initial={false}>
                   {isActive && (
                     <motion.div
-                      key={item.title}
-                      initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
-                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                      exit={{ opacity: 0, y: 12, filter: 'blur(6px)' }}
-                      transition={{
-                        duration: 0.35,
-                        delay: 0.16,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
-                      className="
-                        absolute
-                        bottom-4
-                        left-4
-                        right-4
-                        z-20
-                        rounded-[12px]
-                        bg-white/70
-                        px-4
-                        py-4
-                        backdrop-blur-md
-                        sm:px-5
-                        sm:py-4
-                      "
+                      initial={{ opacity: 0, height: 0, filter: 'blur(4px)' }}
+                      animate={{ opacity: 1, height: 'auto', filter: 'blur(0px)' }}
+                      exit={{ opacity: 0, height: 0, filter: 'blur(4px)' }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      className="relative z-10 w-full bg-white/20 backdrop-blur-md p-5 rounded-[12px] shadow-sm overflow-hidden"
                     >
-                      <p className="text-xs leading-[1.35] text-black sm:text-sm md:text-[15px]">
+                      <p className="text-[12px] sm:text-[13px] md:text-[14px] leading-[1.6] text-white/90 font-light whitespace-pre-line" style={{ fontFamily: 'var(--font-michroma)' }}>
                         {item.content}
                       </p>
                     </motion.div>
