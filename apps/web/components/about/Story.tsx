@@ -40,52 +40,7 @@ const infrastructureData = [
 export default function Story() {
   return (
     <>
-      {/* Who We Are */}
-      <section className="w-full bg-white py-12 sm:py-16 md:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <h2
-              className={`${microgrammaBold.className} text-3xl sm:text-[30px] md:text-[34px] lg:text-[36px] font-bold text-[#59D0B5]`}
-            >
-              Who We Are
-            </h2>
 
-            <p className="mt-6 text-base sm:text-[14px] md:text-[18px] text-[#3E7071] max-w-[1100px] mx-auto text-left">
-              Obrive Industries Private Limited is a Bangalore-based Spatial Computing and Immersive Technology company. We develop intelligent digital solutions that bridge the gap between physical and digital worlds.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center lg:mt-30 md:mt-20 sm:mt-10 mt-10"
-          >
-            <h2
-              className={`${microgrammaBold.className} text-3xl sm  :text-[30px] md:text-[34px] lg:text-[36px] font-bold text-[#59D0B5]`}
-            >
-              Innovation at Our Core
-            </h2>
-
-            <p className="mt-6 text-base sm:text-[14px] md:text-[18px] text-[#3E7071] max-w-[1100px] mx-auto text-left flex flex-col gap-5">
-              <span>
-                We're not just building software. We're architecting the infrastructure for intelligent spaces. Every product, every feature, every decision is guided by one principle: how do we help facilities understand their spaces, serve their customers, and unlock hidden value?
-              </span>
-
-              <span>
-                Our team combines expertise in spatial computing, augmented reality, artificial intelligence, computer vision, and enterprise software. We think in three dimensions. We design for both physical and digital experiences. We build systems that scale.
-              </span>
-            </p>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Future Infrastructure Section */}
       <section className="w-full bg-white py-6 sm:py-8 md:py-10">
@@ -104,7 +59,7 @@ export default function Story() {
             lg:px-16 lg:py-14
           "
         >
-          <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-14 xl:gap-20 items-stretch max-w-[1500px] mx-auto">
+          <div className="max-w-[900px] mx-auto w-full">
             {/* Left Content */}
             <div className="flex flex-col justify-center gap-5 sm:gap-6">
               {infrastructureData.map((item, index) => (
@@ -161,33 +116,6 @@ export default function Story() {
                 </motion.div>
               ))}
             </div>
-
-            {/* Right Video Box */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="
-                min-h-[320px]
-                sm:min-h-[420px]
-                md:min-h-[520px]
-                lg:min-h-[620px]
-                xl:min-h-[660px]
-                rounded-[12px]
-                bg-[#D9D9D9]
-                overflow-hidden
-              "
-            >
-              <video
-                src="/Images/about/about-3.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full max-h-[660px] object-cover"
-              />
-            </motion.div>
           </div>
         </motion.div>
       </section>

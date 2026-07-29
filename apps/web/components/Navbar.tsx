@@ -196,47 +196,6 @@ export function Navbar() {
                         >
                             Solutions
                         </Link>
-
-                        {/* Dropdown Card */}
-                        <div className="absolute top-full left-0 min-w-[280px] bg-[#0b3830] rounded-[20px] p-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-xl border border-white/10 mt-2 pointer-events-auto">
-                            <h3 className={`${microgrammaBold.className} text-white text-lg tracking-wider mb-2`}>SOLUTIONS</h3>
-                            <p className={`${microgrammaBold.className} text-white/80 text-[9px] mb-3 uppercase leading-relaxed tracking-wider`}>SERVICES TAILORED FOR INDUSTRIES.<br/>ENGINEERED FOR IMMERSION.</p>
-                            
-                            <div className="flex flex-col border-t border-white/20 pt-2">
-                                <Link href="/e-challan" className="flex items-center gap-3 text-white hover:text-[#59D0B5] transition-colors py-3 border-b border-white/10">
-                                    <ScanLine className="w-4 h-4 opacity-80" />
-                                    <span className={`${microgrammaBold.className} text-xs tracking-wider font-light`}>E - Challan</span>
-                                </Link>
-                                <Link href="/services/puc" className="flex items-center gap-3 text-white hover:text-[#59D0B5] transition-colors py-3 border-b border-white/10">
-                                    <Wind className="w-4 h-4 opacity-80" />
-                                    <span className={`${microgrammaBold.className} text-xs tracking-wider font-light`}>Pollution Under Control (PUC)</span>
-                                </Link>
-                                <Link href="/services/vehicle-owner" className="flex items-center gap-3 text-white hover:text-[#59D0B5] transition-colors py-3 border-b border-white/10">
-                                    <Box className="w-4 h-4 opacity-80" />
-                                    <span className={`${microgrammaBold.className} text-xs tracking-wider font-light`}>Vehicles Details</span>
-                                </Link>
-                                <Link href="/services/fastag" className="flex items-center gap-3 text-white hover:text-[#59D0B5] transition-colors py-3 border-b border-white/10">
-                                    <Zap className="w-4 h-4 opacity-80" />
-                                    <span className={`${microgrammaBold.className} text-xs tracking-wider font-light`}>Fastag</span>
-                                </Link>
-                                <Link href="/services/car-services" className="flex items-center gap-3 text-white hover:text-[#59D0B5] transition-colors py-3 border-b border-white/10">
-                                    <Wrench className="w-4 h-4 opacity-80" />
-                                    <span className={`${microgrammaBold.className} text-xs tracking-wider font-light`}>Car Services</span>
-                                </Link>
-                                <Link href="/services/ev-charging" className="flex items-center gap-3 text-white hover:text-[#59D0B5] transition-colors py-3 border-b border-white/10">
-                                    <PlugZap className="w-4 h-4 opacity-80" />
-                                    <span className={`${microgrammaBold.className} text-xs tracking-wider font-light`}>EV Stations</span>
-                                </Link>
-                                <Link href="/services/car-insurance" className="flex items-center gap-3 text-white hover:text-[#59D0B5] transition-colors py-3 border-b border-white/10">
-                                    <Shield className="w-4 h-4 opacity-80" />
-                                    <span className={`${microgrammaBold.className} text-xs tracking-wider font-light`}>Car Insurance</span>
-                                </Link>
-                                <Link href="/products" className="flex items-center gap-3 text-white hover:text-[#59D0B5] transition-colors py-3 border-b border-white/10">
-                                    <Banknote className="w-4 h-4 opacity-80" />
-                                    <span className={`${microgrammaBold.className} text-xs tracking-wider font-light`}>Car Loan</span>
-                                </Link>
-                            </div>
-                        </div>
                     </div>
 
                     {/* RESOURCES DROPDOWN */}
@@ -258,7 +217,7 @@ export function Navbar() {
                         </Link>
 
                         {/* Dropdown Card */}
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 min-w-[640px] bg-[#0b3830] rounded-[20px] p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-xl border border-white/10 mt-2 pointer-events-auto flex">
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 min-w-[640px] bg-[#0b3830] rounded-[20px] p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-xl mt-2 pointer-events-auto flex">
                             
                             {/* Left Column: Resource Library & E-Book */}
                             <div className="flex-1 pr-8 border-r border-white/20 flex flex-col">

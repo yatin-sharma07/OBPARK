@@ -1,171 +1,135 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
-import { microgrammaBold } from '@/lib/fonts';
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { microgrammaBold } from '@/lib/fonts'
+import { Plus, Minus } from 'lucide-react'
 
-const faqs = [
+const serviceCategories = [
   {
-    question: 'Real-Time Occupancy',
-    answer:
-      'Live space tracking with 99.2% accuracy, updated every 2 seconds via IoT sensors and computer vision.',
+    title: 'B2B (Industries)',
+    content:
+      'Helping enterprises modernise parking infrastructure while improving operational efficiency and customer satisfaction.\n\nIndustries : Shopping Malls, Airports, Hospitals, Hotels, Corporate Offices, IT Parks, Commercial Buildings, Residential Communities, Universities, Stadiums, Industrial Parks, Mixed-Use Developments',
   },
   {
-    question: 'AR Navigation',
-    answer:
-      'Indoor wayfinding that guides customers with spatial precision, reducing parking time from 15 minutes to 2 minutes.',
+    title: 'Enterprise Benefits',
+    content:
+      'Reduce infrastructure and maintenance costs, Increase parking occupancy and revenue, Real-time occupancy monitoring, AI-powered parking allocation, GPS-free indoor navigation, Centralised multi-location management, Digital Twin visualisation, Enterprise analytics and reporting, Cloud-based SaaS platform, Seamless integration with existing systems, Scalable across single or multiple facilities, Improved customer satisfaction and retention',
   },
   {
-    question: 'Digital Twins',
-    answer:
-      '3D virtual replicas of facilities synced in real-time, enabling predictive modeling and operational optimization.',
+    title: 'B2C (Business to Consumer)',
+    content:
+      'Creating a smarter, faster, and more convenient parking experience for everyday drivers.\n\nConsumer Benefits: Find available parking spaces instantly, Reserve parking before arrival, Navigate indoors using Augmented Reality, Locate parked vehicles with ease, Contactless parking entry and exit, Secure digital payments, Save time and fuel, Reduce driving stress, Access EV charging stations, Book car wash and detailing services, Purchase vehicle accessories, Receive exclusive offers and loyalty rewards, Manage all vehicle services from one platform',
   },
   {
-    question: 'AI Analytics',
-    answer:
-      'Predictive demand modeling, revenue optimization, and operational recommendations driven by machine learning.',
+    title: 'G2C (Government to Citizen)',
+    content:
+      'Supporting governments and municipalities in building smarter, safer, and more sustainable urban mobility infrastructure.\n\nGovernment Benefits : Smart City-ready parking management, Reduce urban traffic congestion, Improve public parking accessibility, Optimize municipal parking utilization, Support sustainable transportation initiatives, Real-time city-wide parking analytics, Digital parking permits, Event and public parking management, Improved citizen services, Lower operational costs, Data-driven urban planning, Better traffic flow and mobility insights',
   },
-  {
-    question: 'Services Marketplace',
-    answer:
-      'In-app vehicle services including car wash, fuel, EV charging, and insurance that generate $250K-400K annual commission.',
-  },
-  {
-    question: 'Facility Operations',
-    answer:
-      'Unified command center for pricing, enforcement, staff management, and security integration.',
-  },
-];
-
-const leftColumn = [0, 2, 4];
-const rightColumn = [1, 3, 5];
-
-function FAQColumn({
-  indices,
-  openItem,
-  onValueChange,
-}: {
-  indices: number[];
-  openItem: string;
-  onValueChange: (value: string) => void;
-}) {
-  return (
-    <Accordion
-      type="single"
-      collapsible
-      value={openItem}
-      onValueChange={onValueChange}
-      className="flex w-full flex-col gap-4"
-    >
-      {indices.map((index) => {
-        const itemValue = `item-${index}`;
-        const isOpen = openItem === itemValue;
-        const faq = faqs[index];
-
-        return (
-          <AccordionItem
-            key={itemValue}
-            value={itemValue}
-            className={`w-full overflow-hidden border-0 transition-[background-color,border-radius] duration-300 ${isOpen
-                ? 'rounded-[24px] bg-white'
-                : 'min-h-[64px] rounded-[10px] bg-[#266D74] sm:min-h-[64px]'
-              }`}
-          >
-            <AccordionTrigger
-              className="
-                flex
-                w-full
-                items-center
-                justify-between
-                gap-4
-                border-0
-                px-6
-                py-4
-                sm:px-8
-                sm:py-5
-                shadow-none
-                outline-none
-                hover:no-underline
-                focus-visible:ring-0
-                focus-visible:border-transparent
-                [&::after]:hidden
-                [&::before]:hidden
-                data-[state=open]:items-start
-                data-[state=open]:pb-3
-                [&>svg]:hidden
-              "
-            >
-              <span
-                className={`flex-1 text-left text-base font-medium leading-snug sm:text-lg ${isOpen ? 'text-[#143B38]' : 'text-white'
-                  }`}
-              >
-                {faq.question}
-              </span>
-
-              {!isOpen && (
-                <span
-                  className="shrink-0 text-2xl font-light leading-none text-white"
-                  aria-hidden="true"
-                >
-                  +
-                </span>
-              )}
-            </AccordionTrigger>
-
-            <AccordionContent className="border-0 px-6 pb-5 pt-0 text-sm leading-relaxed text-[#222222] sm:px-8 sm:pb-6 sm:text-base">
-              {faq.answer}
-            </AccordionContent>
-          </AccordionItem>
-        );
-      })}
-    </Accordion>
-  );
-}
+]
 
 export default function FAQ() {
-  const [openItem, setOpenItem] = useState('');
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  const renderCard = (item: typeof serviceCategories[0], index: number) => {
+    const isOpen = openIndex === index
+
+    return (
+      <div 
+        key={index} 
+        className={`flex flex-col rounded-[20px] transition-all duration-300 overflow-hidden ${
+          isOpen ? 'bg-white shadow-md' : 'shadow-sm'
+        }`}
+        style={isOpen ? {} : { background: 'linear-gradient(135deg, #59D0B5 0%, #1C8182 100%)' }}
+      >
+        <button
+          type="button"
+          onClick={() => setOpenIndex(isOpen ? null : index)}
+          className={`w-full text-left px-6 py-6 sm:px-8 sm:py-8 flex items-center justify-between transition-colors ${
+            isOpen ? 'text-[#0C403A]' : 'text-white'
+          }`}
+        >
+          <span
+            className="text-[14px] sm:text-[15px] font-semibold tracking-wide"
+            style={{ fontFamily: 'var(--font-michroma)' }}
+          >
+            {item.title}
+          </span>
+          {isOpen ? (
+            <Minus className="w-5 h-5 shrink-0 text-[#0C403A]" />
+          ) : (
+            <Plus className="w-5 h-5 shrink-0 text-white" />
+          )}
+        </button>
+
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.25, ease: 'easeInOut' }}
+              className="px-6 sm:px-8 pb-6 sm:pb-8"
+            >
+              <p
+                className="text-[#0C403A] text-[13px] sm:text-[14px] leading-[1.7] whitespace-pre-line font-medium"
+                style={{ fontFamily: 'var(--font-michroma)' }}
+              >
+                {item.content}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    )
+  }
 
   return (
-    <section className="w-full bg-white px-4 py-4 sm:px-6 sm:py-6 md:py-8">
-      <div className="w-full rounded-2xl bg-[#EAF3EE] p-5 sm:rounded-[24px] sm:p-8 md:rounded-[30px] md:p-10 lg:p-[50px]">
-        <p className="mb-5 text-sm text-[#0B4944] sm:text-base">
-          What We Build
+    <section className="w-full bg-white">
+      <div className="w-full rounded-[28px] bg-[#F0F9F5] pt-10 pb-16 sm:pt-14 sm:pb-20 md:pt-16 md:pb-28 px-6 sm:px-10 md:px-12 border border-[#E1EBE8]">
+        <div className="mx-auto w-full max-w-[1300px]">
+        {/* SUBTITLE & TITLE */}
+        <p
+          className="mb-3 text-[13px] sm:text-[14px] text-[#074139] tracking-wider uppercase font-semibold"
+          style={{ fontFamily: 'var(--font-michroma)' }}
+        >
+          Frequently Asked Questions (FAQ)
         </p>
 
         <h2
           className={`
             ${microgrammaBold.className}
-            mb-8
-            text-3xl
-            leading-[1.12]
-            text-[#0B4944]
-            sm:text-[30px]            md:text-[36px]
-            lg:text-[40px]
-            md:mb-10
+            mb-10
+            text-2xl
+            sm:text-3xl
+            md:text-[36px]
+            text-[#074139]
+            font-bold
           `}
         >
-          About OBPARK
+          Who we Serve
         </h2>
 
-        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-8 lg:gap-10">
-          <FAQColumn
-            indices={leftColumn}
-            openItem={openItem}
-            onValueChange={setOpenItem}
-          />
+        {/* 2X2 ACCORDION EXPLICIT COLUMNS */}
+        <div className="flex flex-col md:flex-row gap-5 sm:gap-6 w-full items-start">
+          {/* COLUMN 1 */}
+          <div className="flex flex-col gap-5 sm:gap-6 w-full md:w-1/2">
+            {serviceCategories.map((item, index) => {
+              if (index % 2 !== 0) return null
+              return renderCard(item, index)
+            })}
+          </div>
 
-          <FAQColumn
-            indices={rightColumn}
-            openItem={openItem}
-            onValueChange={setOpenItem}
-          />
+          {/* COLUMN 2 */}
+          <div className="flex flex-col gap-5 sm:gap-6 w-full md:w-1/2">
+            {serviceCategories.map((item, index) => {
+              if (index % 2 === 0) return null
+              return renderCard(item, index)
+            })}
+          </div>
         </div>
       </div>
+    </div>
     </section>
-  );
+  )
 }
