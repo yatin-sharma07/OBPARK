@@ -13,6 +13,7 @@ export function middleware(request: NextRequest) {
   if (
     path === '/' ||
     path === '/about' ||
+    path === '/solutions' ||
     path === '/coming-soon' ||
     path === '/faq' ||
     path === '/our-story' ||
