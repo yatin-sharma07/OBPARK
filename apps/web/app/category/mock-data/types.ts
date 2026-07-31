@@ -47,7 +47,7 @@ export interface AboutItemSection {
 
 export interface SingleProduct {
   id: string;
-  title: string;
+  title: string; 
   brand: string;
   price: number;
   currencySymbol: string;
@@ -58,6 +58,7 @@ export interface SingleProduct {
   attributes: ProductAttribute[];
   aboutSections: AboutItemSection[];
   shippingBadges: string[];
+  
 
   reviewsBreakdown: {
     starBars: StarPercentageBar[];

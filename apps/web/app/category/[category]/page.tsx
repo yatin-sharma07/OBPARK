@@ -20,8 +20,9 @@ export default async function CategoryPage({ params }: PageProps) {
   );
 
   const products = categoryData ? categoryData.items : [];
-
+   //console.log("products =", products);
   return (
+  
     <div className="rounded-xl overflow-hidden">
       {products.length === 0 ? (
         <div className="p-12 text-center text-slate-400 text-sm">
