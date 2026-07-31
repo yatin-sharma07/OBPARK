@@ -60,10 +60,19 @@ export default function Header({ categoryName }: HeaderProps) {
     >
       
       {/* Main Navbar Capsule */}
-      <div className="w-full h-20 bg-gradient-to-b from-[#59D0B5]  to-[#CAEDE5] rounded-4xl px-8 py-11 flex items-center justify-between shadow-md">
+      <div
+        className="w-full rounded-full px-8 py-3 flex items-center justify-between border"
+        style={{
+          background: 'rgba(89, 208, 181, 0.18)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          borderColor: 'rgba(255,255,255,0.15)',
+          boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+        }}
+      >
         
         {/* LEFT SECTION: Flat Navigation Links */}
-        <nav className="flex items-center gap-8 text-sm font-medium text-slate-800 tracking-tight">
+        <nav className="flex items-center gap-8 text-sm font-medium text-[#022c22] tracking-tight">
           <Link href="/about" className="hover:opacity-80 transition-opacity">About</Link>
           <Link href="/shop" className="hover:opacity-80 transition-opacity">Shop</Link>
           <Link href="/download" className="hover:opacity-80 transition-opacity">App Download</Link>
@@ -81,7 +90,7 @@ export default function Header({ categoryName }: HeaderProps) {
                             height={60}
                         />
             
-            <span className="text-[8px] font-medium font-sans align-top relative -top-[7px]  text-[#022c22]">©</span>
+            <span className="text-[8px] font-medium font-sans align-top relative -top-[7px] text-[#022c22]">©</span>
           </div>
 
         {/* RIGHT SECTION: CTA Button */}

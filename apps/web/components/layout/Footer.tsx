@@ -5,21 +5,44 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { microgrammaBold } from '@/lib/fonts'
 
-const aboutLinks = ['Home', 'About', 'Shop']
+const aboutLinks = [
+  { label: 'Our Story', href: '/our-story' },
+  { label: 'My Account', href: '/account' },
+  { label: 'Shop Now', href: '/shop' },
+  { label: 'Obrive', href: '/obrive' },
+]
 
 const supportLinks = [
-  'FAQs',
-  'Shipping Policy',
-  'Refund Policy',
-  'My Account',
-  'Contact',
+  { label: 'Faqs', href: '/faq' },
+  { label: 'Platform Policy', href: '/platform-policy' },
+  { label: 'Business & Partner Policy', href: '/business-policy' },
+  { label: 'Payment Gateway & Compliance', href: '/payment-compliance' },
+  { label: 'Enterprise & Regulatory', href: '/enterprise-regulatory' },
+]
+
+const resourcesLinks = [
+  { label: 'OB Help Center', href: '/help' },
+  { label: 'OB Products FAQ', href: '/products-faq' },
+  { label: 'OB Services FAQ', href: '/services-faq' },
+  { label: 'Community Forum', href: '/community' },
+  { label: 'Change Log', href: '/changelog' },
 ]
 
 const socials = [
   {
-    label: 'Instagram',
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/obrive-industries',
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.27 19.5h-2.73v-9h2.73v9zm-1.37-10.27a1.6 1.6 0 1 1 0-3.2 1.6 1.6 0 0 1 0 3.2zm12.64 10.27h-2.73v-4.72c0-1.13-.02-2.58-1.57-2.58-1.57 0-1.81 1.23-1.81 2.5v4.8h-2.73v-9h2.62v1.23h.04c.36-.69 1.25-1.42 2.59-1.42 2.77 0 3.28 1.82 3.28 4.19v5z" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/obrive.inc',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="2" width="20" height="20" rx="5" />
         <circle cx="12" cy="12" r="4" />
         <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
@@ -28,17 +51,28 @@ const socials = [
   },
   {
     label: 'Facebook',
+    href: 'https://www.facebook.com/obriveindustries/',
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M14 13.5h2.5l1-3.5H14V7.8c0-.9.3-1.5 1.5-1.5H17V3.2c-.3-.04-1.2-.1-2.2-.1-2.2 0-3.8 1.3-3.8 3.9V10H8.5v3.5H11V22h3v-8.5z" />
       </svg>
     ),
   },
   {
-    label: 'WhatsApp',
+    label: 'X',
+    href: 'https://x.com/obriveinc',
     icon: (
-      <svg width="28" height="28" viewBox="0 0 32 32" fill="currentColor">
-        <path d="M16 0C7.163 0 0 7.163 0 16c0 2.833.737 5.49 2.027 7.8L0 32l8.43-2.01A15.93 15.93 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 0 1-6.771-1.854l-.486-.29-5.007 1.194 1.151-4.872-.317-.5A13.226 13.226 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.878c-.398-.199-2.35-1.159-2.714-1.292-.363-.132-.627-.198-.891.199-.264.397-1.023 1.292-1.254 1.556-.23.265-.462.298-.86.1-.397-.2-1.677-.618-3.193-1.97-1.18-1.053-1.977-2.352-2.208-2.75-.23-.397-.024-.612.173-.81.178-.177.397-.464.596-.695.198-.232.264-.398.397-.663.132-.265.066-.497-.033-.696-.1-.199-.892-2.149-1.222-2.944-.322-.773-.648-.668-.891-.68-.23-.012-.497-.015-.762-.015-.265 0-.695.1-1.059.497-.364.397-1.39 1.358-1.39 3.313 0 1.955 1.423 3.843 1.621 4.108.199.265 2.8 4.274 6.785 5.995.948.409 1.688.653 2.264.835.951.302 1.816.26 2.5.158.762-.114 2.35-.96 2.682-1.888.33-.928.33-1.723.23-1.888-.099-.165-.363-.265-.761-.464z" />
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Medium',
+    href: 'https://medium.com/@obrive.inc',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42zM24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75c.66 0 1.19 2.58 1.19 5.75z" />
       </svg>
     ),
   },
@@ -57,58 +91,78 @@ export function Footer() {
 
   return (
     <motion.footer
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
-      viewport={{ once: true, amount: 0.2 }}
-      className="w-full px-4 pb-4 sm:px-5 sm:pb-5"
+      viewport={{ once: true, amount: 0.1 }}
+      className="w-full relative z-10 bg-transparent px-3 pb-3 pt-6 sm:px-5 sm:pb-5 sm:pt-10"
     >
-      <div
-        className="w-full rounded-[18px] p-6 sm:p-8 md:p-12 overflow-hidden"
+      <div 
+        className="w-full rounded-[24px] overflow-hidden"
         style={{
-          background: 'linear-gradient(180deg, #CAEDE5 0%, #59D0B5 100%)',
+          background: 'linear-gradient(135deg, #ACE3CA 0%, #1C8182 100%)',
         }}
       >
-        <div className="flex items-center justify-between gap-4 pb-8 mb-8 border-b border-black">
-          <span
-            className={`${microgrammaBold.className} text-3xl sm:text-4xl md:text-[56px] leading-none`}
-            style={{ color: '#074139' }}
-          >
-            OBPARK
-            <sup className="ml-[2px] align-super font-sans text-[0.45em]">
-              ©
-            </sup>
-          </span>
+        <div className="max-w-[1400px] mx-auto w-full px-6 sm:px-8 md:px-16 pt-10 pb-10">
+        {/* TOP ROW: LOGO & SOCIALS */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/20">
+          <div className="flex items-center">
+            <span
+              className={`${microgrammaBold.className} text-4xl sm:text-5xl md:text-[56px] leading-none`}
+              style={{ color: '#074139' }}
+            >
+              OBPARK
+              <sup className="ml-[2px] align-super font-sans text-[0.45em]">
+                ©
+              </sup>
+            </span>
+          </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            {socials.map((s) => (
-              <button
+          <div className="flex items-center gap-1.5">
+             {socials.map((s) => (
+              <a
                 key={s.label}
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all hover:scale-110"
                 style={{
-                  backgroundColor: 'rgba(7,65,57,0.12)',
+                  backgroundColor: 'rgba(255,255,255,0.4)',
                   color: '#074139',
                 }}
+                aria-label={`Visit our ${s.label} page`}
               >
                 {s.icon}
-              </button>
+              </a>
             ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[180px_180px_1fr] gap-8 lg:gap-6">
-          <FooterLinks title="About" links={aboutLinks} />
+        {/* MIDDLE SECTION: LINKS & NEWSLETTER */}
+        <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 mt-10 mb-12">
+          
+          {/* LINKS GRID */}
+          <div className="grid grid-cols-2 md:flex md:flex-row md:justify-between gap-8 lg:w-[65%]">
+            <FooterLinks title="About" links={aboutLinks} />
+            <FooterLinks title="Support" links={supportLinks} />
+            <FooterLinks title="Resources" links={resourcesLinks} />
+          </div>
 
-          <FooterLinks title="Support" links={supportLinks} />
-
-          <div className="sm:col-span-2 lg:col-span-1 lg:justify-self-end">
-            <FooterTitle>Subscribe to our newsletter</FooterTitle>
+          {/* NEWSLETTER */}
+          <div className="lg:w-[40%] flex flex-col gap-6">
+            <h3 
+              className={`${microgrammaBold.className} text-white text-[17px] leading-[1.3] max-w-full`}
+            >
+              Subscribe to our newsletter and claim<br />your 15% discount today
+            </h3>
 
             <div
-              className="w-full lg:w-[460px] rounded-xl p-4 sm:p-6 flex flex-col gap-4 sm:gap-6"
-              style={{ backgroundColor: 'rgba(255,255,255,0.8)' }}
+              className="w-full rounded-[32px] p-6 sm:p-8 flex flex-col gap-5 border-none shadow-lg"
+              style={{ 
+                background: 'linear-gradient(135deg, #86C4B9 0%, #379490 100%)'
+              }}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-4">
                 <InputField
                   label="First Name"
                   placeholder="First Name"
@@ -134,11 +188,11 @@ export function Footer() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`${microgrammaBold.className} w-full py-3 rounded-full text-sm transition-opacity hover:opacity-90`}
+                className={`${microgrammaBold.className} w-full py-3.5 mt-2 rounded-full transition-opacity hover:opacity-90`}
                 style={{
-                  backgroundColor: '#074139',
-                  color: '#FFFFFF',
-                  fontSize: '14px',
+                  backgroundColor: '#FFFFFF',
+                  color: '#074139',
+                  fontSize: '15px',
                 }}
               >
                 Submit
@@ -147,42 +201,59 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 space-y-1 flex justify-between">
-          <div className="flex gap-3">
+        {/* BOTTOM SECTION */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="flex flex-col gap-2">
             <Link
-              href="/"
-              className="block text-xs hover:opacity-70"
-              style={{
-                color: '#074139',
-                fontFamily: 'var(--font-michroma)',
-              }}
+              href="/privacy-policy"
+              className="text-[13px] text-white/80 hover:text-white transition-colors w-max"
+              style={{ fontFamily: 'var(--font-michroma)' }}
             >
               Privacy Policy
             </Link>
-
             <Link
-              href="/"
-              className="block text-xs hover:opacity-70"
-              style={{
-                color: '#074139',
-                fontFamily: 'var(--font-michroma)',
-              }}
+              href="/legal-compliance"
+              className="text-[13px] text-white/80 hover:text-white transition-colors w-max"
+              style={{ fontFamily: 'var(--font-michroma)' }}
             >
-              Terms & Condition
+              Legal & Compliance
             </Link>
-          </div>
+            <Link
+              href="/cookie-policy"
+              className="text-[13px] text-white/80 hover:text-white transition-colors w-max mb-3"
+              style={{ fontFamily: 'var(--font-michroma)' }}
+            >
+              Cookie Policy
+            </Link>
 
-          <p
-            className="text-xs mt-2"
-            style={{
-              color: '#074139',
-              fontFamily: 'var(--font-michroma)',
-              fontSize: '16px',
-            }}
-          >
-            © OBRIVE All rights reserved.
-          </p>
+            <p
+              className="text-[14px] text-white mt-1"
+              style={{ fontFamily: 'var(--font-michroma)' }}
+            >
+              © OBRIVE ™ All rights reserved.
+            </p>
+            
+            {/* Payment Icons */}
+            <div className="mt-4">
+              <img
+                src="/Images/Payment-icons-complete.svg"
+                alt="Accepted payment methods"
+                className="h-7 w-auto"
+              />
+            </div>
+          </div>
         </div>
+      </div>
+      </div>
+      
+      {/* DISCLAIMER TEXT */}
+      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 pt-6 pb-2">
+        <p 
+          className="text-[10px] md:text-[11px] leading-[1.6] text-[#484848]"
+          style={{ fontFamily: 'var(--font-michroma)' }}
+        >
+          Payments made through OBPARK are processed securely using trusted payment gateways. Parking fees, reservations, subscriptions, and other services must be paid before confirmation. Prices may vary depending on the facility, parking duration, and applicable taxes. All payments are subject to successful authorization and confirmation.
+        </p>
       </div>
     </motion.footer>
   )
@@ -193,52 +264,32 @@ function FooterLinks({
   links,
 }: {
   title: string
-  links: string[]
+  links: { label: string; href: string }[]
 }) {
   return (
-    <div>
-      <FooterTitle>{title}</FooterTitle>
-
-      <div className="space-y-3">
+    <div className="flex flex-col gap-5">
+      <h4
+        className={`${microgrammaBold.className} text-[18px]`}
+        style={{ color: '#FFFFFF' }}
+      >
+        {title}
+      </h4>
+      <div className="flex flex-col gap-3">
         {links.map((link) => (
-          <FooterLink key={link} href="/">
-            {link}
-          </FooterLink>
+          <Link
+            key={link.label}
+            href={link.href}
+            className="text-[13px] whitespace-nowrap transition-opacity hover:opacity-100 opacity-85"
+            style={{
+              color: '#FFFFFF',
+              fontFamily: 'var(--font-michroma)',
+            }}
+          >
+            {link.label}
+          </Link>
         ))}
       </div>
     </div>
-  )
-}
-
-function FooterTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <p
-      className={`${microgrammaBold.className} mb-4 md:mb-6 text-lg md:text-2xl leading-none`}
-      style={{ color: '#074139' }}
-    >
-      {children}
-    </p>
-  )
-}
-
-function FooterLink({
-  href,
-  children,
-}: {
-  href: string
-  children: React.ReactNode
-}) {
-  return (
-    <Link
-      href={href}
-      className="block hover:opacity-70 transition-opacity text-sm"
-      style={{
-        color: '#074139',
-        fontFamily: 'var(--font-michroma)',
-      }}
-    >
-      {children}
-    </Link>
   )
 }
 
@@ -251,26 +302,23 @@ function InputField({
   label: string
   placeholder: string
   value: string
-  onChange: (value: string) => void
+  onChange: (val: string) => void
 }) {
   return (
-    <div className="min-w-0">
+    <div className="flex flex-col gap-2">
       <label
-        className="block text-xs mb-1"
-        style={{
-          color: '#074139',
-          fontFamily: 'var(--font-michroma)',
-        }}
+        className="text-[12px] text-white ml-5 opacity-90"
+        style={{ fontFamily: 'var(--font-michroma)' }}
       >
         {label}
       </label>
-
       <input
+        type="text"
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full min-w-0 px-3 py-2 rounded-lg text-xs border-0 focus:outline-none focus:ring-1 focus:ring-[#074139]"
-        style={{ backgroundColor: 'rgba(255,255,255,0.7)' }}
+        className="w-full bg-white/20 text-white placeholder:text-white/70 rounded-full px-6 py-3.5 text-[13px] outline-none border border-white/10 focus:border-white/30 transition-colors"
+        style={{ fontFamily: 'var(--font-michroma)' }}
       />
     </div>
   )

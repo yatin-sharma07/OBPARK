@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { microgrammaBold } from '@/lib/fonts';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
     Zap,
     ShieldCheck,
@@ -21,6 +23,15 @@ const fadeUpVariants = {
 };
 
 export default function Hero() {
+    const [manualVrn, setManualVrn] = useState('');
+    const router = useRouter();
+
+    const handleCheck = () => {
+        if (manualVrn.trim()) {
+            router.push(`/payment?type=puc&amount=500&vrn=${manualVrn.trim()}`);
+        }
+    };
+
     return (
         <section className="relative w-full h-full min-h-[calc(100vh-32px)] lg:min-h-0 flex flex-col justify-center overflow-hidden px-4 py-8 sm:px-6 md:px-10 lg:px-12 xl:px-14">
             {/* Background Image - Desktop */}
@@ -65,27 +76,32 @@ export default function Hero() {
                     </p>
 
                     {/* Search Input Box */}
-                    <div className="mb-8 flex w-full max-w-[540px] items-center rounded-xl border border-[#e4ece9] bg-white p-1.5 shadow-[0_8px_28px_rgba(0,0,0,0.06)]">
-                        {/* IND Badge */}
-                        <div className="flex items-center justify-center bg-[#1e2329] rounded-lg px-3 py-2 sm:px-4 sm:py-3 h-12 w-14 sm:w-16">
-                            <div className="flex flex-col items-center justify-center">
-                                <div className="text-[14px] sm:text-[16px] leading-none tracking-tighter">🇮🇳</div>
-                                <span className="text-white text-[8px] sm:text-[9px] font-bold mt-1">IND</span>
+                    <div className="mb-8 bg-white p-2 sm:p-2.5 rounded-2xl border border-gray-200/80 shadow-[0_4px_25px_rgba(7,65,57,0.05)] flex items-center justify-between gap-3 w-full max-w-[540px]">
+                        <div className="flex items-center flex-1 gap-2 sm:gap-3 min-w-0">
+                            {/* IND Plate */}
+                            <div className="bg-[#1c2024] text-white w-12 h-10 sm:w-14 sm:h-12 rounded-xl flex flex-col items-center justify-center font-bold shrink-0 select-none">
+                                <span className="text-base sm:text-lg leading-none">🇮🇳</span>
+                                <span className="text-[8px] sm:text-[10px] tracking-widest mt-0.5 leading-none font-sans font-extrabold text-[#D1D5DB]">IND</span>
                             </div>
-                        </div>
-
-                        {/* Input */}
-                        <div className="relative flex-1">
+                            {/* Input */}
                             <input
                                 type="text"
-                                placeholder="Enter Vehicle Number"
-                                className="h-[52px] w-full bg-transparent pl-4 pr-3 text-sm sm:text-base font-bold text-[#0b4038] outline-none placeholder:text-[#7f918c] uppercase tracking-wider"
+                                placeholder="VEHICLE NUMBER"
+                                value={manualVrn}
+                                onChange={(e) => setManualVrn(e.target.value.toUpperCase())}
+                                className="w-full bg-transparent outline-none border-0 text-[#074c43] placeholder:text-[#a0aaa7] font-semibold text-[10px] sm:text-xs md:text-sm uppercase tracking-wider"
+                                style={{ fontFamily: 'var(--font-michroma)' }}
                             />
                         </div>
-
-                        {/* Submit Button */}
-                        <button className="h-[46px] shrink-0 rounded-lg bg-[#074c43] hover:bg-[#0a5c52] transition-colors px-4 sm:px-6 text-xs sm:text-sm font-bold text-white shadow-[0_8px_18px_rgba(0,87,77,0.22)] flex items-center justify-center gap-1.5">
-                            Check PUC Status <ArrowRight className="w-4 h-4" />
+                        {/* Button */}
+                        <button
+                            onClick={handleCheck}
+                            disabled={!manualVrn.trim()}
+                            className="bg-[#074139] hover:bg-[#052e28] text-white shrink-0 font-bold py-3 sm:py-3.5 px-4 sm:px-6 rounded-xl text-[10px] sm:text-xs md:text-sm h-auto flex items-center gap-1.5 sm:gap-2 transition-all hover:scale-[1.02] shadow-[0_4px_12px_rgba(7,65,57,0.15)] disabled:opacity-50 disabled:pointer-events-none"
+                            style={{ fontFamily: 'var(--font-michroma)' }}
+                        >
+                            <span>Check Details</span>
+                            <span className="text-xs sm:text-sm md:text-base">→</span>
                         </button>
                     </div>
 

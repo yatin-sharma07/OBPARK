@@ -4,8 +4,7 @@ import { notFound } from "next/navigation";
 //DATA SOURCE
 import { MockData } from "@/app/category/mock-data/mock-data";
 import { ProductInfo } from "./productDetails";
-import { SimilarProducts } from "./similarProducts";
-import { CustomerReviews } from "./customerReviews";
+import { ObparkMarket } from "@/components/home/ObparkMarket";
 
 interface ProductPageProps {
   params: Promise<{ productId: string }>;
@@ -33,23 +32,22 @@ export default async function ProductPage({
     }
   }
 
-  // If product not found → 404 page
+  // If product not found → fallback to default item
   if (!productData) {
-    notFound();
+    productData = MockData[0].items[0];
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16 mt-25">
-      
-      {/* Product Main Details Section */}
-      <ProductInfo product={productData} />
+    <>
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16 mt-25">
+        
+        {/* Product Main Details Section */}
+        <ProductInfo product={productData} />
 
-      {/* Similar Products Slider */}
-      <SimilarProducts currentProduct={productData} />
+      </div>
 
-      {/* Customer Reviews Section */}
-      <CustomerReviews product={productData} />
-
-    </div>
+      {/* Everything Your Car Needs Section */}
+      <ObparkMarket />
+    </>
   );
 }
