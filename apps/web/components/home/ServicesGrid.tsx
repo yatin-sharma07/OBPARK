@@ -216,7 +216,7 @@ export function ServicesGrid() {
               BOOK DEMO
             </Link>
             <Link
-              href="#invest"
+              href="/invest"
               className={`
                 ${microgrammaBold.className}
                 px-5 py-2.5

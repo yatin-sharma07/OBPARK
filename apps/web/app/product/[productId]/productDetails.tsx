@@ -58,16 +58,31 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
   const handleConfirm = async (vehicleId: string | null) => {
     try {
+      // Mock the cart addition for UI preview so the Cart page can read it
+      const cartItem = {
+        id: product.id || 'mock-id',
+        name: product.title || '3M Car Care Microfiber Cloth',
+        description: 'Premium Car Care Product',
+        price: '₹ ' + (product.price || 99),
+        priceVal: product.price || 99,
+        quantity: quantity,
+        image: activeImage,
+        vehicle: vehicleId ? 'Linked' : null
+      };
+      sessionStorage.setItem('mockup_cart_item', JSON.stringify(cartItem));
+
       await addToCart.mutateAsync({
         productId: product.id,
         vehicleId: vehicleId ?? undefined,
         quantity: quantity,
       });
     } catch (e) {
-      console.error(e);
+      console.warn('API cart addition failed (expected if backend is down), using session storage fallback.', e);
     }
     setShowDialog(false);
-    openCart();
+    
+    // Redirect to the newly styled cart page instead of just opening a generic cart modal
+    router.push('/cart');
   };
 
   return (

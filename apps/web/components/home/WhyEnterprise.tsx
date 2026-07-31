@@ -55,7 +55,7 @@ export function WhyEnterprise() {
 
   return (
     <section className="w-full max-w-[100vw] overflow-hidden py-16 md:py-24 bg-[#F0F9F5]">
-      <div className="mx-auto flex w-full max-w-[1240px] flex-col lg:flex-row px-4 sm:px-6 lg:px-8 gap-12 lg:gap-16">
+      <div className="mx-auto flex w-full max-w-[1240px] flex-col lg:flex-row items-start px-4 sm:px-6 lg:px-8 gap-12 lg:gap-16">
         
         {/* LEFT COLUMN */}
         <div className="flex w-full lg:w-1/2 flex-col gap-8 lg:gap-10">
@@ -135,20 +135,14 @@ export function WhyEnterprise() {
         </div>
 
         {/* RIGHT COLUMN */}
-        <div className="flex w-full lg:w-1/2 items-center justify-center lg:justify-end">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="relative w-full max-w-[460px] lg:max-w-[500px] rounded-[24px] overflow-hidden shadow-2xl"
-          >
+        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end self-start">
+          <div className="relative w-full max-w-[460px] lg:max-w-[500px] rounded-[24px] overflow-hidden shadow-2xl">
             <img
               src="/Images/whyObpark.jpg"
               alt="Why Enterprise Customers Choose OBPARK"
               className="w-full h-auto block"
             />
-          </motion.div>
+          </div>
         </div>
 
       </div>

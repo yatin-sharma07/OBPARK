@@ -138,15 +138,8 @@ export function Navbar() {
                     WebkitBackdropFilter: 'blur(16px)',
                 }}
             >
-                {/* LOGO - LEFT */}
-                <div className="flex items-center flex-1 min-w-0">
-                    <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center">
-                        <img src="/Images/Navbar/app_icon.svg" alt="OBPARK" className="h-[28px] sm:h-[36px] md:h-[44px] lg:h-[48px] object-contain" />
-                    </Link>
-                </div>
-
-                {/* CENTER LINKS - DESKTOP */}
-                <div className="hidden md:flex items-center justify-center gap-4 lg:gap-5 xl:gap-7 shrink-0">
+                {/* LEFT LINKS - DESKTOP */}
+                <div className="hidden md:flex items-center justify-start gap-4 lg:gap-5 xl:gap-7 flex-1 min-w-0">
                     <Link
                         href="/"
                         className="
@@ -217,7 +210,7 @@ export function Navbar() {
                         </Link>
 
                         {/* Dropdown Card */}
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 min-w-[640px] bg-[#0b3830] rounded-[20px] p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-xl mt-2 pointer-events-auto flex">
+                        <div className="absolute top-full left-1/2 -translate-x-1/2 min-w-[640px] bg-[#3C9792] rounded-[20px] p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-xl mt-2 pointer-events-auto flex">
                             
                             {/* Left Column: Resource Library & E-Book */}
                             <div className="flex-1 pr-8 border-r border-white/20 flex flex-col">
@@ -228,7 +221,7 @@ export function Navbar() {
                                 
                                 <div className="flex gap-5 mt-auto">
                                     {/* E-Book Mockup */}
-                                    <div className="w-[130px] shrink-0 bg-[#c2f2e5] rounded-lg p-3 flex flex-col overflow-hidden relative min-h-[160px]">
+                                    <div className="w-[130px] shrink-0 bg-[#CAEDE5] rounded-lg p-3 flex flex-col overflow-hidden relative min-h-[160px]">
                                         <div className="flex justify-between items-start mb-4">
                                             <div className="w-2 h-4 bg-[#0b3830] rounded-full shadow-inner"></div>
                                             <span className="text-[7px] font-semibold text-[#0b3830]">E-Book</span>
@@ -273,6 +266,13 @@ export function Navbar() {
 
                         </div>
                     </div>
+                </div>
+
+                {/* LOGO - CENTER (Desktop) / LEFT (Mobile) */}
+                <div className="flex items-center md:justify-center flex-1 md:flex-none shrink-0 min-w-0">
+                    <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center">
+                        <img src="/Images/Navbar/app_icon_new.svg" alt="OBPARK" className="h-[28px] sm:h-[36px] md:h-[44px] lg:h-[48px] object-contain" />
+                    </Link>
                 </div>
 
 

@@ -10,6 +10,7 @@ const aboutLinks = [
   { label: 'My Account', href: '/account' },
   { label: 'Shop Now', href: '/shop' },
   { label: 'Obrive', href: '/obrive' },
+  { label: 'Our Partners', href: '/partners' },
 ]
 
 const supportLinks = [
@@ -107,15 +108,13 @@ export function Footer() {
         {/* TOP ROW: LOGO & SOCIALS */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/20">
           <div className="flex items-center">
-            <span
-              className={`${microgrammaBold.className} text-4xl sm:text-5xl md:text-[56px] leading-none`}
-              style={{ color: '#074139' }}
-            >
-              OBPARK
-              <sup className="ml-[2px] align-super font-sans text-[0.45em]">
-                ©
-              </sup>
-            </span>
+            <Link href="/" className="flex items-center">
+              <img
+                src="/Images/footer_app_icon.svg"
+                alt="OBPARK"
+                className="h-[48px] sm:h-[64px] md:h-[76px] lg:h-[84px] object-contain"
+              />
+            </Link>
           </div>
 
           <div className="flex items-center gap-1.5">
