@@ -40,6 +40,7 @@ const mobileLinks = [
 export function Navbar() {
     const [showNavbar, setShowNavbar] = useState(true)
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
     const lastScrollY = useRef(0)
 
@@ -537,30 +538,74 @@ export function Navbar() {
                                         ease: [0.22, 1, 0.36, 1],
                                     }}
                                 >
-                                    <Link
-                                        href={item.href}
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className="
-                      flex
-                      items-center
-                      justify-between
-                      rounded-[16px]
+                                    {item.label === 'Resources' ? (
+                                        <div className="flex flex-col">
+                                            <button
+                                                onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
+                                                className="
+                                                  flex
+                                                  items-center
+                                                  justify-between
+                                                  rounded-[16px]
+                                                  px-4
+                                                  py-3.5
+                                                  text-[11px]
+                                                  sm:text-xs
+                                                  tracking-[0.04em]
+                                                  text-[#074139]
+                                                  transition-colors
+                                                  hover:bg-[#59D0B5]/25
+                                                  w-full
+                                                "
+                                            >
+                                                <span>{item.label}</span>
+                                                <span className={`transition-transform duration-300 ${mobileResourcesOpen ? 'rotate-180' : ''}`}>↓</span>
+                                            </button>
+                                            
+                                            <AnimatePresence>
+                                                {mobileResourcesOpen && (
+                                                    <motion.div
+                                                        initial={{ opacity: 0, height: 0 }}
+                                                        animate={{ opacity: 1, height: 'auto' }}
+                                                        exit={{ opacity: 0, height: 0 }}
+                                                        className="flex flex-col overflow-hidden"
+                                                    >
+                                                        <a href="https://obrive.com/support/help-center" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="py-2.5 px-6 text-[10px] sm:text-[11px] text-[#074139] hover:bg-[#59D0B5]/15 rounded-xl transition-colors">OB Help Center</a>
+                                                        <a href="https://obrive.com/faq/ob-product-faq" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="py-2.5 px-6 text-[10px] sm:text-[11px] text-[#074139] hover:bg-[#59D0B5]/15 rounded-xl transition-colors">OB Products FAQ</a>
+                                                        <a href="https://obrive.com/faq/ob-services-faq" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="py-2.5 px-6 text-[10px] sm:text-[11px] text-[#074139] hover:bg-[#59D0B5]/15 rounded-xl transition-colors">OB Services FAQ</a>
+                                                        <a href="https://obrive.com/faq/obpark-faq" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="py-2.5 px-6 text-[10px] sm:text-[11px] text-[#074139] hover:bg-[#59D0B5]/15 rounded-xl transition-colors">OBPark FAQ</a>
+                                                        <a href="https://obrive.com/support/change-log" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="py-2.5 px-6 text-[10px] sm:text-[11px] text-[#074139] hover:bg-[#59D0B5]/15 rounded-xl transition-colors">Change Log</a>
+                                                        <a href="https://obrive.com/legal" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="py-2.5 px-6 text-[10px] sm:text-[11px] text-[#074139] hover:bg-[#59D0B5]/15 rounded-xl transition-colors">Legal</a>
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </div>
+                                    ) : (
+                                        <Link
+                                            href={item.href}
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            className="
+                                              flex
+                                              items-center
+                                              justify-between
+                                              rounded-[16px]
 
-                      px-4
-                      py-3.5
+                                              px-4
+                                              py-3.5
 
-                      text-[11px]
-                      sm:text-xs
-                      tracking-[0.04em]
-                      text-[#074139]
+                                              text-[11px]
+                                              sm:text-xs
+                                              tracking-[0.04em]
+                                              text-[#074139]
 
-                      transition-colors
-                      hover:bg-[#59D0B5]/25
-                    "
-                                    >
-                                        <span>{item.label}</span>
-                                        <span>↗</span>
-                                    </Link>
+                                              transition-colors
+                                              hover:bg-[#59D0B5]/25
+                                            "
+                                        >
+                                            <span>{item.label}</span>
+                                            <span>↗</span>
+                                        </Link>
+                                    )}
                                 </motion.div>
                             ))}
                         </motion.div>
