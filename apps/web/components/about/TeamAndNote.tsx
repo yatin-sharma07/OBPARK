@@ -22,19 +22,19 @@ const teamMembers = [
     image: '/Images/about/Matthieu Sam.jpg',
   },
   {
-    name: 'Johannes Davidsson (Copy)',
-    role: 'Director of Spatial Computing',
-    image: '/Images/about/Johannes Davidsson.jpg',
+    name: 'Nikhil Pathak',
+    role: 'Creative Director',
+    image: '/Images/about/Nikhil Pathak.jpg',
   },
   {
-    name: 'Cherlin Chow (Copy)',
-    role: 'Senior Computer Vision Engineer',
-    image: '/Images/about/Cherlin Chow.jpg',
+    name: 'Shivansh Pataku',
+    role: 'Senior Backend developer',
+    image: '/Images/about/Shivansh Pataku.jpg',
   },
   {
-    name: 'Matthieu Sam (Copy)',
-    role: 'Principal Unity Engineer',
-    image: '/Images/about/Matthieu Sam.jpg',
+    name: 'Vivek Sharma',
+    role: 'Senior Full stack Developer',
+    image: '/Images/about/Vivek Sharma.jpg',
   },
 ]
 

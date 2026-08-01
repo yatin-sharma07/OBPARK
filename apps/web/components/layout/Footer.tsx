@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { microgrammaBold } from '@/lib/fonts'
@@ -80,11 +81,14 @@ const socials = [
 ]
 
 export function Footer() {
+  const pathname = usePathname()
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
     email: '',
   })
+
+  if (pathname === '/login') return null
 
   const updateForm = (field: keyof typeof form, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }))

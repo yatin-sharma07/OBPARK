@@ -200,8 +200,10 @@ export function ServicesGrid() {
           </div>
 
           <div className="flex flex-wrap gap-4 mt-12">
-            <Link
-              href="#demo"
+            <a
+              href="https://calendly.com/obrive-inc/talk-to-ob-experts"
+              target="_blank"
+              rel="noopener noreferrer"
               className={`
                 ${microgrammaBold.className}
                 px-5 py-2.5
@@ -213,8 +215,8 @@ export function ServicesGrid() {
                 shadow-lg shadow-[#1A817F]/30
               `}
             >
-              BOOK DEMO
-            </Link>
+              BOOK NOW
+            </a>
             <Link
               href="/invest"
               className={`

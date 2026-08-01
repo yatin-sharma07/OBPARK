@@ -12,7 +12,8 @@ import {
     Wrench,
     PlugZap,
     Shield,
-    Banknote
+    Banknote,
+    ChevronDown
 } from 'lucide-react'
 const mobileLinks = [
     {
@@ -220,7 +221,7 @@ export function Navbar() {
                                     <h3 className={`${microgrammaBold.className} text-white text-xl tracking-wider mb-4`}>OBRIVE RESOURCE LIBRARY</h3>
                                     <p className={`${microgrammaBold.className} text-white/90 text-[11px] uppercase leading-[1.6] tracking-wider mb-6`}>A COLLECTION OF BLOGS, INDUSTRY INSIGHTS, AND RESOURCES SHAPING THE FUTURE OF IMMERSIVE TECHNOLOGY.</p>
                                     
-                                    <Link href="/resources" className={`${microgrammaBold.className} text-white text-[13px] tracking-widest uppercase hover:text-[#59D0B5] transition-colors pb-6 block border-b border-white/20 mb-6`}>READ MORE</Link>
+                                    <a href="https://obrive.com/resources" target="_blank" rel="noopener noreferrer" className={`${microgrammaBold.className} text-white text-[13px] tracking-widest uppercase hover:text-[#59D0B5] transition-colors pb-6 block border-b border-white/20 mb-6`}>READ MORE</a>
                                     
                                     <div className="flex gap-5 mt-auto">
                                         {/* E-Book Mockup */}
@@ -559,7 +560,7 @@ export function Navbar() {
                                                 "
                                             >
                                                 <span>{item.label}</span>
-                                                <span className={`transition-transform duration-300 ${mobileResourcesOpen ? 'rotate-180' : ''}`}>↓</span>
+                                                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileResourcesOpen ? 'rotate-180' : ''}`} />
                                             </button>
                                             
                                             <AnimatePresence>
@@ -603,7 +604,6 @@ export function Navbar() {
                                             "
                                         >
                                             <span>{item.label}</span>
-                                            <span>↗</span>
                                         </Link>
                                     )}
                                 </motion.div>
