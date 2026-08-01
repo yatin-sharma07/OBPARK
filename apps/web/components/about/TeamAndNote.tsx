@@ -28,7 +28,7 @@ const teamMembers = [
   },
   {
     name: 'Shivansh Pataku',
-    role: 'Senior Backend developer',
+    role: 'Senior Full stack Developer',
     image: '/Images/about/Shivansh Pataku.jpg',
   },
   {
