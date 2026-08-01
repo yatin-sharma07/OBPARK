@@ -280,7 +280,7 @@ function FooterLinks({
             href={link.href}
             target={link.href.startsWith('http') ? '_blank' : undefined}
             rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            className="text-[13px] whitespace-nowrap transition-opacity hover:opacity-100 opacity-85"
+            className="text-[9.5px] min-[380px]:text-[10px] sm:text-[11px] md:text-[13px] whitespace-nowrap transition-opacity hover:opacity-100 opacity-85"
             style={{
               color: '#FFFFFF',
               fontFamily: 'var(--font-michroma)',
