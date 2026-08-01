@@ -220,7 +220,7 @@ export default function SolutionsPage() {
 
                 {/* PUC */}
                 <Link 
-                  href="/e-challan" 
+                  href="/services/puc" 
                   className="bg-[#3C9792] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
                 >
                   <Wind className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
@@ -231,7 +231,7 @@ export default function SolutionsPage() {
 
                 {/* Vehicle Details */}
                 <Link 
-                  href="/services" 
+                  href="/services/vehicle-owner" 
                   className="bg-[#63B1A5] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
                 >
                   <FileText className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
@@ -242,10 +242,10 @@ export default function SolutionsPage() {
 
                 {/* Fastag */}
                 <Link 
-                  href="/services" 
-                  className="bg-[#89CBB9] hover:brightness-95 text-[#074139] rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
+                  href="/services/fastag" 
+                  className="bg-[#89CBB9] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
                 >
-                  <CreditCard className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110 text-[#074139]" />
+                  <CreditCard className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
                   <span className="text-xs sm:text-sm font-bold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
                     Fastag
                   </span>
@@ -253,7 +253,7 @@ export default function SolutionsPage() {
 
                 {/* Car Services */}
                 <Link 
-                  href="/services" 
+                  href="/services/car-services" 
                   className="bg-[#167D7F] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
                 >
                   <Wrench className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
@@ -264,7 +264,7 @@ export default function SolutionsPage() {
 
                 {/* EV - Stations */}
                 <Link 
-                  href="/services" 
+                  href="/services/ev-charging" 
                   className="bg-[#3C9792] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
                 >
                   <Zap className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
@@ -275,7 +275,7 @@ export default function SolutionsPage() {
 
                 {/* Car Insurance */}
                 <Link 
-                  href="/services" 
+                  href="/services/car-insurance" 
                   className="bg-[#63B1A5] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
                 >
                   <ShieldCheck className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
@@ -286,10 +286,10 @@ export default function SolutionsPage() {
 
                 {/* Car Loan */}
                 <Link 
-                  href="/services" 
-                  className="bg-[#89CBB9] hover:brightness-95 text-[#074139] rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
+                  href="/services/car-loan" 
+                  className="bg-[#89CBB9] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
                 >
-                  <Car className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110 text-[#074139]" />
+                  <Car className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
                   <span className="text-xs sm:text-sm font-bold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
                     Car Loan
                   </span>
@@ -325,7 +325,7 @@ export default function SolutionsPage() {
                 <span className="text-xs font-medium text-white" style={{ fontFamily: 'var(--font-michroma)' }}>Enterprise</span>
               </div>
 
-              <h3 className={`${microgrammaBold.className} text-xl sm:text-[24px] lg:text-[26px] tracking-wide whitespace-nowrap`}>
+              <h3 className={`${microgrammaBold.className} text-[14px] sm:text-[18px] lg:text-[22px] xl:text-[24px] tracking-wide text-center whitespace-nowrap`}>
                 Indoor AR Parking Navigation
               </h3>
 
@@ -563,10 +563,10 @@ export default function SolutionsPage() {
       ========================================== */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-start max-w-5xl mx-auto w-full">
         <div className="space-y-2 text-center pt-2 sm:pt-4">
-          <p className="text-[#1C8182] text-xs sm:text-sm font-semibold" style={{ fontFamily: 'var(--font-michroma)' }}>
+          <p className="text-[#1C8182] text-xs sm:text-sm uppercase tracking-wider font-semibold" style={{ fontFamily: 'var(--font-michroma)' }}>
             Our quality & testing
           </p>
-          <h2 className={`${microgrammaBold.className} text-xl sm:text-2xl lg:text-3xl text-[#074139] leading-tight`}>
+          <h2 className={`${microgrammaBold.className} text-2xl sm:text-3xl text-[#074139]`}>
             Precision in Every Capsule
           </h2>
         </div>

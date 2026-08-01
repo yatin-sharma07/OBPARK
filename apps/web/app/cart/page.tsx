@@ -101,7 +101,7 @@ export default function CartPage() {
           <div className="border border-white/30 rounded-[32px] p-4 sm:p-8 flex-1 flex flex-col justify-center">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
               {/* Left Column: Cart Items (Scrollable on desktop) */}
-              <div className="lg:col-span-8 bg-white rounded-3xl p-5 sm:p-8 shadow-sm flex flex-col">
+              <div className="lg:col-span-8 bg-white rounded-[16px] p-5 sm:p-8 shadow-sm flex flex-col">
               {cartItems.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-16 text-center space-y-4 flex-1">
                   <h3 className="text-lg font-bold">Your cart is empty</h3>
@@ -219,7 +219,7 @@ export default function CartPage() {
 
             {/* Right Column: Checkout Summary (Stretches to match left column on desktop) */}
             <div className="lg:col-span-4 flex flex-col justify-between gap-6 shrink-0 h-full">
-              <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between flex-1">
+              <div className="bg-white rounded-[16px] p-6 sm:p-8 shadow-sm flex flex-col justify-between flex-1">
                 <h3 className="text-base sm:text-lg font-bold text-[#074139] tracking-wide pb-4 shrink-0"
                     style={{ fontFamily: 'var(--font-michroma)' }}>
                   Cart Total

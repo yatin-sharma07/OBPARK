@@ -95,8 +95,8 @@ export function ObparkMarket() {
   }, [isPaused])
 
   return (
-    <section className="w-full overflow-hidden py-16 md:py-24 bg-[#F0F9F5]">
-      <div className="mx-auto flex w-full max-w-[1240px] flex-col px-4 sm:px-6 lg:px-8 gap-10 sm:gap-12">
+    <section className="w-full overflow-hidden py-4 md:py-6 bg-[#F0F9F5]">
+      <div className="mx-auto flex w-full max-w-[1240px] flex-col px-4 sm:px-6 lg:px-8 gap-4 sm:gap-6">
         
         {/* HEADER */}
         <div className="text-center flex flex-col gap-2 items-center">

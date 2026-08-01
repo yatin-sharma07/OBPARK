@@ -1,8 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { microgrammaBold } from '@/lib/fonts'
-import { Plus } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const teamMembers = [
   {
@@ -20,76 +21,148 @@ const teamMembers = [
     role: 'Principal Unity Engineer',
     image: '/Images/about/Matthieu Sam.jpg',
   },
+  {
+    name: 'Johannes Davidsson (Copy)',
+    role: 'Director of Spatial Computing',
+    image: '/Images/about/Johannes Davidsson.jpg',
+  },
+  {
+    name: 'Cherlin Chow (Copy)',
+    role: 'Senior Computer Vision Engineer',
+    image: '/Images/about/Cherlin Chow.jpg',
+  },
+  {
+    name: 'Matthieu Sam (Copy)',
+    role: 'Principal Unity Engineer',
+    image: '/Images/about/Matthieu Sam.jpg',
+  },
 ]
 
 export default function TeamAndNote() {
+  const [page, setPage] = useState(0)
+  const totalPages = Math.ceil(teamMembers.length / 3)
+  const visibleMembers = teamMembers.slice(page * 3, page * 3 + 3)
+
   return (
     <section className="w-full py-12 flex flex-col gap-16 md:gap-24">
       {/* TECHNICAL TEAM SECTION */}
       <div className="flex flex-col gap-10">
-        <div className="text-left">
-          <h2
-            className={`
-              ${microgrammaBold.className}
-              text-[22px]
-              sm:text-[28px]
-              md:text-[34px]
-              text-[#074139]
-              tracking-wide
-            `}
-          >
-            Technical Team & Advisory Board
-          </h2>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="text-left">
+            <h2
+              className={`
+                ${microgrammaBold.className}
+                text-[22px]
+                sm:text-[28px]
+                md:text-[34px]
+                text-[#074139]
+                tracking-wide
+              `}
+            >
+              Technical Team & Advisory Board
+            </h2>
+          </div>
         </div>
 
         {/* TEAM GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {teamMembers.map((member, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-[#F0F9F5] rounded-[24px] overflow-hidden border border-[#E1EBE8] flex flex-col group transition-transform duration-300 hover:scale-[1.01]"
-            >
-              {/* MEMBER PHOTO */}
-              <div className="relative aspect-square w-full overflow-hidden">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  onError={(e) => {
-                    ;(e.target as HTMLImageElement).src =
-                      'https://placehold.co/400x400/EAE6F0/2A8B87?text=Team+Member'
-                  }}
-                />
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 min-h-[400px]">
+          <AnimatePresence mode="wait">
+            {visibleMembers.map((member, idx) => (
+              <motion.div
+                key={member.name + idx}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3, delay: idx * 0.1 }}
+                className="bg-[#F0F9F5] rounded-[24px] overflow-hidden border border-[#E1EBE8] flex flex-col group transition-transform duration-300 hover:scale-[1.01]"
+              >
+                {/* MEMBER PHOTO */}
+                <div className="relative aspect-square w-full overflow-hidden">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    onError={(e) => {
+                      ;(e.target as HTMLImageElement).src =
+                        'https://placehold.co/400x400/EAE6F0/2A8B87?text=Team+Member'
+                    }}
+                  />
 
-              {/* DETAILS CARD FOOTER */}
-              <div className="p-5 flex items-center justify-between gap-4 bg-[#F0F9F5]">
-                <div className="flex flex-col gap-1">
-                  <h3
-                    className={`${microgrammaBold.className} text-[#074139] text-[13px] sm:text-[15px] font-bold`}
-                  >
-                    {member.name}
-                  </h3>
-                  <p
-                    className="text-[#3E7071] text-[10px] sm:text-[11px] font-medium"
-                    style={{ fontFamily: 'var(--font-michroma)' }}
-                  >
-                    {member.role}
-                  </p>
+                  {/* PREV BUTTON ON FIRST CARD */}
+                  {idx === 0 && (
+                    <button
+                      onClick={() => setPage(p => p > 0 ? p - 1 : totalPages - 1)}
+                      className="hidden md:flex absolute left-2 md:left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow-md backdrop-blur-sm rounded-full items-center justify-center text-[#074139] hover:bg-[#074139] hover:text-white transition-colors z-10"
+                      aria-label="Previous members"
+                    >
+                      <ChevronLeft className="w-5 h-5 -ml-0.5" />
+                    </button>
+                  )}
+
+                  {/* NEXT BUTTON ON THIRD CARD */}
+                  {idx === 2 && (
+                    <button
+                      onClick={() => setPage(p => p < totalPages - 1 ? p + 1 : 0)}
+                      className="hidden md:flex absolute right-2 md:right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 shadow-md backdrop-blur-sm rounded-full items-center justify-center text-[#074139] hover:bg-[#074139] hover:text-white transition-colors z-10"
+                      aria-label="Next members"
+                    >
+                      <ChevronRight className="w-5 h-5 ml-0.5" />
+                    </button>
+                  )}
                 </div>
-                <button
-                  type="button"
-                  className="w-8 h-8 rounded-full bg-[#59D0B5]/20 hover:bg-[#59D0B5]/35 flex items-center justify-center shrink-0 transition-colors"
-                >
-                  <Plus className="w-4 h-4 text-[#074139]" />
-                </button>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* DETAILS CARD FOOTER */}
+                <div className="p-5 flex items-center justify-start gap-4 bg-[#F0F9F5]">
+                  <div className="flex flex-col gap-1 w-full text-left">
+                    <h3
+                      className={`${microgrammaBold.className} text-[#074139] text-[13px] sm:text-[15px] font-bold`}
+                    >
+                      {member.name.replace(' (Copy)', '')}
+                    </h3>
+                    <p
+                      className="text-[#3E7071] text-[10px] sm:text-[11px] font-medium"
+                      style={{ fontFamily: 'var(--font-michroma)' }}
+                    >
+                      {member.role}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+
+        {/* Pagination Dots & Mobile Navigation */}
+        <div className="flex flex-col items-center gap-4 mt-2">
+          {/* Dots (visible on all screens) */}
+          <div className="flex items-center gap-2">
+            {Array.from({ length: totalPages }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setPage(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  page === i ? 'w-6 bg-[#074139]' : 'w-2 bg-[#074139]/20 hover:bg-[#074139]/40'
+                }`}
+                aria-label={`Go to page ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Mobile Arrows (hidden on desktop) */}
+          <div className="flex md:hidden justify-center gap-4">
+            <button
+              onClick={() => setPage(p => p > 0 ? p - 1 : totalPages - 1)}
+              className="w-12 h-12 rounded-full border border-[#074139] flex items-center justify-center text-[#074139] hover:bg-[#074139] hover:text-white transition-colors"
+            >
+              <ChevronLeft className="w-6 h-6 -ml-0.5" />
+            </button>
+            <button
+              onClick={() => setPage(p => p < totalPages - 1 ? p + 1 : 0)}
+              className="w-12 h-12 rounded-full border border-[#074139] flex items-center justify-center text-[#074139] hover:bg-[#074139] hover:text-white transition-colors"
+            >
+              <ChevronRight className="w-6 h-6 ml-0.5" />
+            </button>
+          </div>
         </div>
       </div>
 

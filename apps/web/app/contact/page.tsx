@@ -67,10 +67,13 @@ export default function ContactPage() {
       {/* 1. Hero Banner with Contact Form */}
       <div className="px-3 sm:px-4 md:px-6 pt-24 pb-4">
         <div className="mx-auto max-w-[2000px]">
-          <section className="w-full h-[calc(100vh-120px)] bg-[#094639] rounded-[28px] flex flex-col lg:flex-row items-center justify-between p-8 md:p-12 lg:p-20 overflow-hidden relative shadow-[0_12px_30px_rgba(7,76,67,0.08)]">
+          <section className="w-full h-[calc(100vh-120px)] bg-[#094639] rounded-[28px] p-8 md:p-12 lg:p-20 overflow-hidden relative shadow-[0_12px_30px_rgba(7,76,67,0.08)] flex flex-col items-center justify-center">
           
-          {/* Left: Text Content */}
-          <div className="w-full lg:w-1/2 text-white z-10 mb-12 lg:mb-0">
+          {/* Inner Content Wrapper */}
+          <div className="w-full max-w-[1300px] mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10">
+
+            {/* Left: Text Content */}
+            <div className="w-full lg:w-1/2 text-white mb-12 lg:mb-0">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -116,9 +119,11 @@ export default function ContactPage() {
             </form>
           </motion.div>
 
+          </div>
+
           {/* Background Decorative Elements */}
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#59D0B5]/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 z-0 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#59D0B5]/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 z-0 pointer-events-none"></div>
           </section>
         </div>
       </div>

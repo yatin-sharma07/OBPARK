@@ -24,15 +24,16 @@ export default function Hero() {
 
           overflow-hidden
 
-          min-h-[680px]
-          sm:min-h-[780px]
-          md:min-h-[calc(100vh-48px)]
+          min-h-[360px]
+          sm:min-h-[460px]
+          md:min-h-[560px]
 
-          h-auto
-          md:h-[calc(100vh-48px)]
+          h-[50vh]
+          md:h-[60vh]
+          lg:h-[65vh]
 
-          max-h-none
-          md:max-h-[980px]
+          max-h-[480px]
+          md:max-h-[660px]
         "
       >
         {/* Background Video */}

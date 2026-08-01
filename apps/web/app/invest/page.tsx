@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { microgrammaBold } from '@/lib/fonts'
+import { RequestDeckModal } from '@/components/invest/RequestDeckModal'
 
 export const metadata = {
   title: 'Invest in OBPARK | Smart Parking Technology Platform',
@@ -195,7 +196,7 @@ export default function InvestPage() {
         {/* 4 COLUMNS / CARDS GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Card 1: SaaS Subscriptions */}
-          <div className="bg-[#DDDDDD] rounded-[24px] p-6 sm:p-7 shadow-sm border border-[#DDDDDD] flex flex-col space-y-4">
+          <div className="bg-[#FAFAFA] rounded-[24px] p-6 sm:p-7 shadow-sm border border-[#DDDDDD] flex flex-col space-y-4">
             <h3
               className={`${microgrammaBold.className} text-lg sm:text-xl text-[#074139]`}
             >
@@ -212,7 +213,7 @@ export default function InvestPage() {
           </div>
 
           {/* Card 2: Enterprise Licensing */}
-          <div className="bg-[#DDDDDD] rounded-[24px] p-6 sm:p-7 shadow-sm border border-[#DDDDDD] flex flex-col space-y-4">
+          <div className="bg-[#FAFAFA] rounded-[24px] p-6 sm:p-7 shadow-sm border border-[#DDDDDD] flex flex-col space-y-4">
             <h3
               className={`${microgrammaBold.className} text-lg sm:text-xl text-[#074139]`}
             >
@@ -231,7 +232,7 @@ export default function InvestPage() {
           </div>
 
           {/* Card 3: Marketplace Revenue */}
-          <div className="bg-[#DDDDDD] rounded-[24px] p-6 sm:p-7 shadow-sm border border-[#DDDDDD] flex flex-col space-y-4">
+          <div className="bg-[#FAFAFA] rounded-[24px] p-6 sm:p-7 shadow-sm border border-[#DDDDDD] flex flex-col space-y-4">
             <h3
               className={`${microgrammaBold.className} text-lg sm:text-xl text-[#074139]`}
             >
@@ -251,7 +252,7 @@ export default function InvestPage() {
           </div>
 
           {/* Card 4: Professional Services */}
-          <div className="bg-[#DDDDDD] rounded-[24px] p-6 sm:p-7 shadow-sm border border-[#DDDDDD] flex flex-col space-y-4">
+          <div className="bg-[#FAFAFA] rounded-[24px] p-6 sm:p-7 shadow-sm border border-[#DDDDDD] flex flex-col space-y-4">
             <h3
               className={`${microgrammaBold.className} text-lg sm:text-xl text-[#074139]`}
             >
@@ -290,13 +291,7 @@ export default function InvestPage() {
           Ready to invest in the next generation of intelligent parking technology?
         </p>
 
-        <a
-          href="mailto:invest@obpark.com"
-          className="inline-block bg-gradient-to-r from-[#1A817F] to-[#59D0B5] hover:opacity-90 text-white text-xs sm:text-sm px-8 py-3.5 rounded-full shadow-md transition-opacity"
-          style={{ fontFamily: 'var(--font-michroma)' }}
-        >
-          Request Investor Deck
-        </a>
+        <RequestDeckModal />
       </section>
       </div>
     </main>

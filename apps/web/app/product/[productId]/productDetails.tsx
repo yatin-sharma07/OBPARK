@@ -139,14 +139,6 @@ export function ProductInfo({ product }: ProductInfoProps) {
             <h1 className="text-[#074139] text-2xl sm:text-3xl font-bold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
               Microfiber Cloth
             </h1>
-            <button 
-              onClick={handleAddToCart}
-              className="bg-[#1C8182] hover:bg-[#156465] text-white text-sm sm:text-base px-6 py-2.5 sm:px-8 sm:py-3 rounded-[24px] flex items-center justify-center gap-2 shadow-sm transition-colors"
-              style={{ fontFamily: 'var(--font-michroma)' }}
-            >
-              <Image src="/Images/product-common/Add.svg" alt="Add" width={20} height={20} />
-              <span>Add</span>
-            </button>
           </div>
 
           {/* FULL SUBTITLE */}

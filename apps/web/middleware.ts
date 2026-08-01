@@ -15,6 +15,7 @@ export function middleware(request: NextRequest) {
     path === '/about' ||
     path === '/solutions' ||
     path === '/invest' ||
+    path === '/partners' ||
     path === '/coming-soon' ||
     path === '/faq' ||
     path === '/our-story' ||

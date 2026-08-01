@@ -22,11 +22,11 @@ const supportLinks = [
 ]
 
 const resourcesLinks = [
-  { label: 'OB Help Center', href: '/help' },
-  { label: 'OB Products FAQ', href: '/products-faq' },
-  { label: 'OB Services FAQ', href: '/services-faq' },
-  { label: 'Community Forum', href: '/community' },
-  { label: 'Change Log', href: '/changelog' },
+  { label: 'OB Help Center', href: 'https://obrive.com/support/help-center' },
+  { label: 'OB Products FAQ', href: 'https://obrive.com/faq/ob-product-faq' },
+  { label: 'OB Services FAQ', href: 'https://obrive.com/faq/ob-services-faq' },
+  { label: 'OBPark FAQ', href: 'https://obrive.com/faq/obpark-faq' },
+  { label: 'Change Log', href: 'https://obrive.com/support/change-log' },
 ]
 
 const socials = [
@@ -127,7 +127,7 @@ export function Footer() {
                 className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all hover:scale-110"
                 style={{
                   backgroundColor: 'rgba(255,255,255,0.4)',
-                  color: '#074139',
+                  color: '#FFFFFF',
                 }}
                 aria-label={`Visit our ${s.label} page`}
               >
@@ -278,6 +278,8 @@ function FooterLinks({
           <Link
             key={link.label}
             href={link.href}
+            target={link.href.startsWith('http') ? '_blank' : undefined}
+            rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
             className="text-[13px] whitespace-nowrap transition-opacity hover:opacity-100 opacity-85"
             style={{
               color: '#FFFFFF',
