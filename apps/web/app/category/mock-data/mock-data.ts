@@ -6827,11 +6827,1174 @@ items: [
   },
 },
 
-//Product-5
 
+]
+},
+
+
+{
+id: "cat-6",
+categoryName: "Car Wash",
+slug: "car-wash",
+
+items: [
+  //Product-1
+  {
+  id: "wash-prod-1",
+
+  title: "ShineXPro Premium Chenille Microfiber Car Wash Mitt",
+
+  brand: "ShineXPro",
+
+  price: 299,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carWash/micro-fiber-wash-main.png",
+
+  galleryImages: [
+    "/products/car-wash/shinexpro-wash-mitt-main.png",
+    "/products/car-wash/shinexpro-wash-mitt-1.png",
+    "/products/car-wash/shinexpro-wash-mitt-2.png",
+    "/products/car-wash/shinexpro-wash-mitt-3.png",
+  ],
+
+  discountText: "-25%",
+
+  ratingData: {
+    averageRating: 4.5,
+    totalReviewsCount: 2500,
+    boughtPastMonthText: "2K+ bought in past month",
+    soldLastWeekText: "Sold over 350 times last week",
+  },
+
+  attributes: [
+    { label: "Material", value: "Premium Chenille Microfiber" },
+    { label: "Usage", value: "Car Exterior Washing" },
+    { label: "Washable", value: "Machine Washable & Reusable" },
+    { label: "Scratch Safe", value: "Yes" },
+    { label: "Color", value: "Blue" },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Scratch-Free Cleaning",
+      content:
+        "Ultra-soft chenille microfiber lifts dirt safely without scratching your car's paint.",
+    },
+    {
+      heading: "Highly Absorbent",
+      content:
+        "Absorbs plenty of water and soap for faster, more effective vehicle washing.",
+    },
+    {
+      heading: "Reusable & Durable",
+      content:
+        "Machine washable microfiber mitt designed for repeated use and long-lasting performance.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Delivery",
+    "Reusable",
+    "Machine Washable",
+    "Scratch Safe",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 76 },
+      { stars: 4, percentage: 16 },
+      { stars: 3, percentage: 4 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "wash-review-1",
+        reviewerName: "Rahul",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Very soft microfiber mitt. Cleans the car well without leaving scratches.",
+        postedDateAgo: "2 months ago",
+      },
+      {
+        id: "wash-review-2",
+        reviewerName: "Amit",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Good quality, absorbs water nicely and is easy to wash after use.",
+        postedDateAgo: "5 months ago",
+      },
+    ],
+  },
+},
+//Product-2
+{
+  id: "wash-prod-2",
+
+  title: "3M Auto Specialty Car Wash Shampoo",
+
+  brand: "3M",
+
+  price: 399,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carWash/3M-Shampoo-main.png",
+
+  galleryImages: [
+    "/products/car-wash/3m-car-shampoo-main.png",
+    "/products/car-wash/3m-car-shampoo-1.png",
+    "/products/car-wash/3m-car-shampoo-2.png",
+    "/products/car-wash/3m-car-shampoo-3.png",
+  ],
+
+  discountText: "-20%",
+
+  ratingData: {
+    averageRating: 4.6,
+    totalReviewsCount: 6800,
+    boughtPastMonthText: "5K+ bought in past month",
+    soldLastWeekText: "Sold over 900 times last week",
+  },
+
+  attributes: [
+    { label: "Brand", value: "3M" },
+    { label: "Item Form", value: "Liquid" },
+    { label: "Scent", value: "Fresh" },
+    { label: "Volume", value: "500 ml" },
+    { label: "Suitable For", value: "Cars, SUVs & Bikes" },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Rich Foam Formula",
+      content:
+        "Produces thick foam that effectively loosens dirt, dust, mud, and road grime for easy cleaning.",
+    },
+    {
+      heading: "Paint Safe",
+      content:
+        "pH-balanced shampoo cleans without damaging wax coatings or vehicle paint finishes.",
+    },
+    {
+      heading: "Streak-Free Finish",
+      content:
+        "Leaves the vehicle with a glossy, clean surface while helping prevent water spots after rinsing.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Delivery",
+    "3M Quality",
+    "Paint Safe",
+    "Rich Foam",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 79 },
+      { stars: 4, percentage: 15 },
+      { stars: 3, percentage: 3 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 1 },
+    ],
+
+    userFeed: [
+      {
+        id: "wash-review-3",
+        reviewerName: "Arjun",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Excellent shampoo. Generates rich foam and removes dirt easily without affecting the paint.",
+        postedDateAgo: "1 month ago",
+      },
+      {
+        id: "wash-review-4",
+        reviewerName: "Karthik",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Good value for money. Cleans well and leaves a glossy finish after every wash.",
+        postedDateAgo: "4 months ago",
+      },
+    ],
+  },
+},
+//Product-3
+{
+  id: "wash-prod-3",
+
+  title: "ShineXPro Foam Sprayer for Car & Bike Washing",
+
+  brand: "ShineXPro",
+
+  price: 799,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carWash/ShinePro-Foam-main.png",
+
+  galleryImages: [
+    "/products/car-wash/shinexpro-foam-sprayer-main.png",
+    "/products/car-wash/shinexpro-foam-sprayer-1.png",
+    "/products/car-wash/shinexpro-foam-sprayer-2.png",
+    "/products/car-wash/shinexpro-foam-sprayer-3.png",
+  ],
+
+  discountText: "-27%",
+
+  ratingData: {
+    averageRating: 4.5,
+    totalReviewsCount: 1800,
+    boughtPastMonthText: "2K+ bought in past month",
+    soldLastWeekText: "Sold over 280 times last week",
+  },
+
+  attributes: [
+    { label: "Brand", value: "ShineXPro" },
+    { label: "Capacity", value: "2 Litres" },
+    { label: "Material", value: "Heavy-Duty Plastic" },
+    { label: "Compatible With", value: "Cars, Bikes & SUVs" },
+    { label: "Operation", value: "Manual Pump Pressure" },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Thick Foam Generation",
+      content:
+        "Creates dense foam that loosens dirt and road grime for an efficient and scratch-free wash.",
+    },
+    {
+      heading: "Easy Pressure Pump",
+      content:
+        "Manual pump-action sprayer builds pressure quickly, making vehicle cleaning faster and more convenient.",
+    },
+    {
+      heading: "Durable Construction",
+      content:
+        "Made from sturdy, leak-resistant materials for long-lasting use with car wash shampoos.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Delivery",
+    "Heavy Duty",
+    "Foam Sprayer",
+    "Reusable",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 75 },
+      { stars: 4, percentage: 17 },
+      { stars: 3, percentage: 5 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 1 },
+    ],
+
+    userFeed: [
+      {
+        id: "wash-review-5",
+        reviewerName: "Vikram",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Excellent foam sprayer. Produces thick foam and makes washing the car much easier.",
+        postedDateAgo: "3 weeks ago",
+      },
+      {
+        id: "wash-review-6",
+        reviewerName: "Sandeep",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Good quality pump sprayer. Easy to use and works well with car shampoo.",
+        postedDateAgo: "2 months ago",
+      },
+    ],
+  },
+},
+//Product-4
+{
+  id: "wash-prod-4",
+
+  title: "DYLECT High Pressure Car Washer with Cleaning Accessories",
+
+  brand: "DYLECT",
+
+  price: 4999,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carWash/High-pressure-washer-main.png",
+
+  galleryImages: [
+    "/products/car-wash/dylect-pressure-washer-main.png",
+    "/products/car-wash/dylect-pressure-washer-1.png",
+    "/products/car-wash/dylect-pressure-washer-2.png",
+    "/products/car-wash/dylect-pressure-washer-3.png",
+  ],
+
+  discountText: "-22%",
+
+  ratingData: {
+    averageRating: 4.4,
+    totalReviewsCount: 1200,
+    boughtPastMonthText: "1K+ bought in past month",
+    soldLastWeekText: "Sold over 180 times last week",
+  },
+
+  attributes: [
+    { label: "Brand", value: "DYLECT" },
+    { label: "Power Source", value: "Electric" },
+    { label: "Pressure", value: "High Pressure Water Jet" },
+    { label: "Suitable For", value: "Cars, Bikes, Patio & Home Cleaning" },
+    { label: "Included", value: "Pressure Gun & Cleaning Accessories" },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Powerful High Pressure Cleaning",
+      content:
+        "Delivers a strong water jet to remove mud, dust, grease, and stubborn dirt from vehicles with ease.",
+    },
+    {
+      heading: "Complete Cleaning Kit",
+      content:
+        "Comes with essential accessories including spray gun and cleaning attachments for versatile washing.",
+    },
+    {
+      heading: "Multipurpose Usage",
+      content:
+        "Ideal for washing cars, bikes, driveways, patios, garden furniture, and outdoor surfaces.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Delivery",
+    "High Pressure",
+    "Electric Washer",
+    "Cleaning Kit",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 73 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 5 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "wash-review-7",
+        reviewerName: "Rohit",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Powerful pressure washer that cleans the car quickly. Accessories are useful and easy to assemble.",
+        postedDateAgo: "1 month ago",
+      },
+      {
+        id: "wash-review-8",
+        reviewerName: "Nitin",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Very good for home car washing. Strong water pressure and good overall build quality.",
+        postedDateAgo: "3 months ago",
+      },
+    ],
+  },
+},
 
 
 ]
 },
+
+{
+id: "cat-7",
+categoryName: "Car Cleaning",
+slug: "car-cleaning",
+
+items: [
+  //product-1
+  {
+  id: "clean-prod-1",
+
+  title: "3M Auto Specialty Interior Cleaner",
+
+  brand: "3M",
+
+  price: 349,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carClean/Micro-fiber-cloth-main.png",
+
+  galleryImages: [
+    "/products/car-cleaning/3m-interior-cleaner-main.png",
+    "/products/car-cleaning/3m-interior-cleaner-1.png",
+    "/products/car-cleaning/3m-interior-cleaner-2.png",
+    "/products/car-cleaning/3m-interior-cleaner-3.png",
+  ],
+
+  discountText: "-18%",
+
+  ratingData: {
+    averageRating: 4.5,
+    totalReviewsCount: 4200,
+    boughtPastMonthText: "3K+ bought in past month",
+    soldLastWeekText: "Sold over 450 times last week",
+  },
+
+  attributes: [
+    { label: "Brand", value: "3M" },
+    { label: "Item Form", value: "Liquid Spray" },
+    { label: "Surface Type", value: "Dashboard, Vinyl, Plastic & Leather" },
+    { label: "Volume", value: "500 ml" },
+    { label: "Fragrance", value: "Fresh" },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Deep Interior Cleaning",
+      content:
+        "Removes dust, fingerprints, stains, and everyday dirt from dashboards, door panels, and interior trim.",
+    },
+    {
+      heading: "Restores Original Shine",
+      content:
+        "Enhances the appearance of plastic, vinyl, and leather surfaces while leaving a clean, non-greasy finish.",
+    },
+    {
+      heading: "Easy Spray Application",
+      content:
+        "Simply spray and wipe with a microfiber cloth for quick and effective interior maintenance.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Delivery",
+    "Interior Cleaner",
+    "Fresh Fragrance",
+    "Easy Spray",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 77 },
+      { stars: 4, percentage: 15 },
+      { stars: 3, percentage: 5 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 1 },
+    ],
+
+    userFeed: [
+      {
+        id: "clean-review-1",
+        reviewerName: "Akash",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Excellent interior cleaner. Dashboard looks brand new and leaves a pleasant fragrance.",
+        postedDateAgo: "1 month ago",
+      },
+      {
+        id: "clean-review-2",
+        reviewerName: "Praveen",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Works well on plastic and vinyl surfaces. Easy to use and doesn't leave sticky residue.",
+        postedDateAgo: "3 months ago",
+      },
+    ],
+  },
+},
+
+//product-2
+{
+  id: "clean-prod-2",
+
+  title: "3M Car Dashboard Dresser (250 ml)",
+
+  brand: "3M",
+
+  price: 299,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carClean/3M-Dresser-main.png",
+
+  galleryImages: [
+    "/products/cleaning/3m-dashboard-dresser-1.png",
+    "/products/cleaning/3m-dashboard-dresser-2.png",
+    "/products/cleaning/3m-dashboard-dresser-3.png",
+    "/products/cleaning/3m-dashboard-dresser-4.png",
+  ],
+
+  discountText: "-14%",
+
+  ratingData: {
+    averageRating: 4.4,
+    totalReviewsCount: 6200,
+    boughtPastMonthText: "2K+ bought in past month",
+    soldLastWeekText: "Sold over 300 times last week",
+  },
+
+  attributes: [
+    { label: "Product Type", value: "Dashboard Polish" },
+    { label: "Quantity", value: "250 ml" },
+    { label: "Finish", value: "Non-Greasy Shine" },
+    { label: "Suitable For", value: "Car Dashboard & Vinyl Trim" },
+    { label: "Brand", value: "3M" },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Restores Dashboard Shine",
+      content:
+        "Enhances faded dashboards and restores a rich, clean finish without leaving an oily residue.",
+    },
+    {
+      heading: "UV Protection",
+      content:
+        "Helps protect dashboard and plastic trim from sunlight damage, fading and cracking.",
+    },
+    {
+      heading: "Easy Spray Application",
+      content:
+        "Simply spray and wipe with a microfiber cloth for a smooth, dust-resistant finish.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Delivery",
+    "Easy Returns",
+    "Cash on Delivery",
+    "Secure Payment",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 72 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 6 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "clean-review-3",
+        reviewerName: "Rohit",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Excellent dashboard shine without making the surface greasy. Smells pleasant too.",
+        postedDateAgo: "2 months ago",
+      },
+      {
+        id: "clean-review-4",
+        reviewerName: "Karthik",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Easy to apply and gives a factory-finish look. Worth buying.",
+        postedDateAgo: "5 months ago",
+      },
+    ],
+  },
+},
+//product-3
+{
+  id: "clean-prod-3",
+
+  title: "Robustt 7-in-1 Car Interior Cleaning Kit",
+
+  brand: "Robustt",
+
+  price: 399,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carClean/mini-cleaning-brush-main.png",
+
+  galleryImages: [
+    "/products/cleaning/robustt-cleaning-kit-1.png",
+    "/products/cleaning/robustt-cleaning-kit-2.png",
+    "/products/cleaning/robustt-cleaning-kit-3.png",
+    "/products/cleaning/robustt-cleaning-kit-4.png",
+  ],
+
+  discountText: "-33%",
+
+  ratingData: {
+    averageRating: 4.3,
+    totalReviewsCount: 1600,
+    boughtPastMonthText: "1K+ bought in past month",
+    soldLastWeekText: "Sold over 150 times last week",
+  },
+
+  attributes: [
+    { label: "Product Type", value: "7-in-1 Cleaning Kit" },
+    { label: "Material", value: "Microfiber, Nylon & Plastic" },
+    { label: "Suitable For", value: "Car Interior & Electronics" },
+    { label: "Reusable", value: "Yes" },
+    { label: "Included Items", value: "Brushes, Duster, Air Vent Cleaner & Cloth" },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Complete Cleaning Kit",
+      content:
+        "Includes multiple brushes and cleaning tools for dashboard, vents, screens, cup holders and hard-to-reach areas.",
+    },
+    {
+      heading: "Soft & Scratch-Free",
+      content:
+        "Microfiber and soft nylon bristles safely remove dust without damaging delicate interior surfaces.",
+    },
+    {
+      heading: "Compact & Portable",
+      content:
+        "Lightweight design makes it easy to store in your glove box or car organizer for regular cleaning.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Delivery",
+    "Easy Returns",
+    "Cash on Delivery",
+    "Secure Payment",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 71 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 6 },
+      { stars: 2, percentage: 3 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "clean-review-5",
+        reviewerName: "Rahul",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Very useful cleaning kit. The vent brush and microfiber brush clean difficult areas easily.",
+        postedDateAgo: "2 months ago",
+      },
+      {
+        id: "clean-review-6",
+        reviewerName: "Sanjay",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Good value for money. Compact kit with all the basic tools needed for interior detailing.",
+        postedDateAgo: "4 months ago",
+      },
+    ],
+  },
+},
+//product-4
+{
+  id: "clean-prod-4",
+
+  title: "3-in-1 Microfiber Car Interior Cleaning Duster Kit",
+
+  brand: "Generic",
+
+  price: 499,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carClean/Cleaning-kit-main.png",
+
+  galleryImages: [
+    "/products/cleaning/3in1-microfiber-duster-main.png",
+    "/products/cleaning/3in1-microfiber-duster-1.png",
+    "/products/cleaning/3in1-microfiber-duster-2.png",
+    "/products/cleaning/3in1-microfiber-duster-3.png",
+  ],
+
+  discountText: "-29%",
+
+  ratingData: {
+    averageRating: 4.4,
+    totalReviewsCount: 950,
+    boughtPastMonthText: "800+ bought in past month",
+    soldLastWeekText: "Sold over 120 times last week",
+  },
+
+  attributes: [
+    { label: "Product Type", value: "3-in-1 Microfiber Cleaning Kit" },
+    { label: "Material", value: "Microfiber & Plastic" },
+    { label: "Handle", value: "Extendable" },
+    { label: "Suitable For", value: "Dashboard, AC Vents & Interior" },
+    { label: "Reusable", value: "Yes" },
+  ],
+
+  aboutSections: [
+    {
+      heading: "3-in-1 Cleaning Tool",
+      content:
+        "Designed to clean dashboards, air vents, instrument panels and other hard-to-reach interior areas with ease.",
+    },
+    {
+      heading: "Soft Microfiber Heads",
+      content:
+        "Premium microfiber removes dust and dirt effectively without scratching delicate interior surfaces.",
+    },
+    {
+      heading: "Extendable Handle",
+      content:
+        "Adjustable handle provides better reach for cleaning windshields, corners and deep dashboard sections.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Delivery",
+    "Reusable",
+    "Microfiber",
+    "Extendable Handle",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 74 },
+      { stars: 4, percentage: 17 },
+      { stars: 3, percentage: 5 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "clean-review-7",
+        reviewerName: "Manoj",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Very handy for cleaning the dashboard and windshield corners. The microfiber cloth is soft and washable.",
+        postedDateAgo: "1 month ago",
+      },
+      {
+        id: "clean-review-8",
+        reviewerName: "Deepak",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Good quality cleaning kit. The extendable handle makes it easy to reach difficult spots.",
+        postedDateAgo: "3 months ago",
+      },
+    ],
+  },
+},
+]
+},
+
+
+{
+id: "cat-8",
+categoryName: "Car Lifting",
+slug: "car-lifting",
+
+items: [
+  // product-1
+  {
+  id: "lift-prod-1",
+
+  title: "Achyut Scissor Lift Jack for Car",
+
+  brand: "Achyut",
+
+  price: 1599,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carLift/lift-jack-main.png",
+
+  galleryImages: [
+    "/products/lifting/scissor-jack-main.png",
+    "/products/lifting/scissor-jack-1.png",
+    "/products/lifting/scissor-jack-2.png",
+    "/products/lifting/scissor-jack-3.png",
+  ],
+
+  discountText: "-20%",
+
+  ratingData: {
+    averageRating: 4.4,
+    totalReviewsCount: 950,
+    boughtPastMonthText: "700+ bought in past month",
+    soldLastWeekText: "Sold over 120 times last week",
+  },
+
+  attributes: [
+    { label: "Product Type", value: "Scissor Lift Jack" },
+    { label: "Material", value: "Heavy Duty Steel" },
+    { label: "Lifting Capacity", value: "2 Ton" },
+    { label: "Suitable For", value: "Cars & Hatchbacks" },
+    { label: "Operation", value: "Manual Screw Jack" },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Heavy-Duty Construction",
+      content:
+        "Built from durable steel to provide stable lifting support during tyre replacement and emergency roadside repairs.",
+    },
+    {
+      heading: "Easy to Operate",
+      content:
+        "Manual screw mechanism allows smooth lifting with minimal effort using the included handle.",
+    },
+    {
+      heading: "Portable & Reliable",
+      content:
+        "Compact design fits easily inside the vehicle boot, making it an essential emergency tool for every car owner.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Delivery",
+    "Heavy Duty",
+    "Emergency Tool",
+    "Easy Returns",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 73 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 5 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "lift-review-1",
+        reviewerName: "Vikram",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Strong and sturdy jack. Lifted my sedan easily during a tyre puncture.",
+        postedDateAgo: "2 months ago",
+      },
+      {
+        id: "lift-review-2",
+        reviewerName: "Arun",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Good build quality and easy to store in the boot. Worth the price.",
+        postedDateAgo: "4 months ago",
+      },
+    ],
+  },
+},
+// product-2
+{
+  id: "lift-prod-2",
+
+  title: "Granite Heavy Duty Furniture & Car Lifting Tool Kit",
+
+  brand: "Granite",
+
+  price: 899,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carLift/Dent-puller-main.png",
+
+  galleryImages: [
+    "/products/lifting/granite-lifting-tool-main.png",
+    "/products/lifting/granite-lifting-tool-1.png",
+    "/products/lifting/granite-lifting-tool-2.png",
+    "/products/lifting/granite-lifting-tool-3.png",
+  ],
+
+  discountText: "-28%",
+
+  ratingData: {
+    averageRating: 4.3,
+    totalReviewsCount: 780,
+    boughtPastMonthText: "500+ bought in past month",
+    soldLastWeekText: "Sold over 90 times last week",
+  },
+
+  attributes: [
+    { label: "Product Type", value: "Lifting Tool Kit" },
+    { label: "Material", value: "Carbon Steel & ABS" },
+    { label: "Capacity", value: "Heavy Duty" },
+    { label: "Suitable For", value: "Cars, Furniture & Heavy Objects" },
+    { label: "Included", value: "Lever & Roller Wheels" },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Heavy-Duty Lifting",
+      content:
+        "Designed to lift and move heavy objects safely with minimum effort using a sturdy lever mechanism.",
+    },
+    {
+      heading: "Easy Object Movement",
+      content:
+        "Comes with smooth-rolling wheels that make repositioning heavy equipment and vehicles easier.",
+    },
+    {
+      heading: "Durable Construction",
+      content:
+        "Manufactured from strong steel and high-quality materials for long-lasting everyday use.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Delivery",
+    "Heavy Duty",
+    "Easy Returns",
+    "Portable Kit",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 71 },
+      { stars: 4, percentage: 19 },
+      { stars: 3, percentage: 6 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "lift-review-3",
+        reviewerName: "Sandeep",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Strong lifting tool and very useful for moving heavy objects around the garage.",
+        postedDateAgo: "1 month ago",
+      },
+      {
+        id: "lift-review-4",
+        reviewerName: "Rahul",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Build quality is good and the rollers move smoothly. Handy tool to keep at home.",
+        postedDateAgo: "3 months ago",
+      },
+    ],
+  },
+},
+
+// product-3
+{
+  id: "lift-prod-3",
+
+  title: "SHANKSON Hydraulic Bottle Jack",
+
+  brand: "SHANKSON",
+
+  price: 1499,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carLift/Hydrallic-jack-main.png",
+
+  galleryImages: [
+    "/products/lifting/hydraulic-bottle-jack-main.png",
+    "/products/lifting/hydraulic-bottle-jack-1.png",
+    "/products/lifting/hydraulic-bottle-jack-2.png",
+    "/products/lifting/hydraulic-bottle-jack-3.png",
+  ],
+
+  discountText: "-25%",
+
+  ratingData: {
+    averageRating: 4.5,
+    totalReviewsCount: 620,
+    boughtPastMonthText: "400+ bought in past month",
+    soldLastWeekText: "Sold over 80 times last week",
+  },
+
+  attributes: [
+    { label: "Product Type", value: "Hydraulic Bottle Jack" },
+    { label: "Material", value: "Heavy Duty Alloy Steel" },
+    { label: "Capacity", value: "5 Ton" },
+    { label: "Suitable For", value: "Cars, SUVs & Light Commercial Vehicles" },
+    { label: "Operation", value: "Hydraulic Manual Lift" },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Powerful Hydraulic Lift",
+      content:
+        "Hydraulic mechanism provides effortless lifting for tyre replacement, maintenance and roadside emergencies.",
+    },
+    {
+      heading: "Heavy-Duty Steel Body",
+      content:
+        "Made from high-strength alloy steel for excellent durability, stability and long service life.",
+    },
+    {
+      heading: "Compact & Portable",
+      content:
+        "Small footprint makes it easy to store inside the vehicle while offering reliable lifting performance whenever needed.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Delivery",
+    "5 Ton Capacity",
+    "Heavy Duty",
+    "Easy Returns",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 75 },
+      { stars: 4, percentage: 16 },
+      { stars: 3, percentage: 5 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "lift-review-5",
+        reviewerName: "Amit",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Excellent hydraulic jack. Lifts my SUV smoothly and feels very sturdy.",
+        postedDateAgo: "1 month ago",
+      },
+      {
+        id: "lift-review-6",
+        reviewerName: "Karthik",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Strong build quality and easy to operate. Good emergency tool for long trips.",
+        postedDateAgo: "3 months ago",
+      },
+    ],
+  },
+},
+
+// product-4
+{
+  id: "lift-prod-4",
+
+  title: "HANUMANT ENTERPRISE Universal Labor Saving Wrench",
+
+  brand: "HANUMANT ENTERPRISE",
+
+  price: 799,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carLift/Universal-car-jack-main.png",
+
+  galleryImages: [
+    "/products/lifting/labor-saving-wrench-main.png",
+    "/products/lifting/labor-saving-wrench-1.png",
+    "/products/lifting/labor-saving-wrench-2.png",
+    "/products/lifting/labor-saving-wrench-3.png",
+  ],
+
+  discountText: "-33%",
+
+  ratingData: {
+    averageRating: 4.3,
+    totalReviewsCount: 340,
+    boughtPastMonthText: "200+ bought in past month",
+    soldLastWeekText: "Sold over 45 times last week",
+  },
+
+  attributes: [
+    { label: "Product Type", value: "Labor Saving Lug Wrench" },
+    { label: "Material", value: "Hardened Steel" },
+    { label: "Compatibility", value: "Universal Car Wheel Nuts" },
+    { label: "Operation", value: "Manual Gear Mechanism" },
+    { label: "Ideal For", value: "Cars, SUVs & Emergency Tyre Changes" },
+  ],
+
+  aboutSections: [
+    {
+      heading: "High Torque Design",
+      content:
+        "Gear-assisted mechanism multiplies torque, making stubborn wheel nuts easier to loosen with less effort.",
+    },
+    {
+      heading: "Durable Steel Construction",
+      content:
+        "Manufactured from heavy-duty hardened steel for long-lasting performance and reliability.",
+    },
+    {
+      heading: "Roadside Essential",
+      content:
+        "Compact and portable tool that's ideal for emergency tyre replacement and regular vehicle maintenance.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Delivery",
+    "Universal Fit",
+    "Heavy Duty",
+    "Easy Returns",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 71 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 6 },
+      { stars: 2, percentage: 3 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "lift-review-7",
+        reviewerName: "Rahul",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Very useful for loosening tight wheel nuts. Strong and easy to use.",
+        postedDateAgo: "2 months ago",
+      },
+      {
+        id: "lift-review-8",
+        reviewerName: "Sandeep",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Good quality tool for emergency tyre changes. Worth keeping in every car.",
+        postedDateAgo: "4 months ago",
+      },
+    ],
+  },
+},
+]
+},
+
+
+
+
 
 ];

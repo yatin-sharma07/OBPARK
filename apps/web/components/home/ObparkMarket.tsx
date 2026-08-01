@@ -56,12 +56,14 @@ const marketSlides: MarketSlideItem[][] = [
       image: '/Images/obpark-market/CAr Cleaning.jpg',
       icon: Sparkles,
       text: 'Keep Your car spotless',
+      link: '/product/clean-prod-1',
     },
     {
       badge: 'Car Wash',
       image: '/Images/obpark-market/Car Wash.jpg',
       icon: Droplets,
       text: 'Professional car wash services',
+      link: '/product/wash-prod-1',
     },
     {
       badge: 'Car Repairs',
@@ -89,6 +91,7 @@ const marketSlides: MarketSlideItem[][] = [
       image: '/Images/obpark-market/Car Lifting.jpg',
       icon: ArrowUpCircle,
       text: 'Safe lifting for better service',
+      link: '/product/lift-prod-1',
     },
   ],
 ]

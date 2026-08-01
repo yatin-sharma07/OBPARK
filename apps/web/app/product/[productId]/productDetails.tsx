@@ -78,6 +78,9 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
   "exterior-accessories": ["ext-prod-2", "ext-prod-3", "ext-prod-4", "ext-prod-5", "ext-prod-6","ext-prod-7"],
   "car-interiors": ["int-prod-2", "int-prod-3", "int-prod-4", "int-prod-5", "int-prod-6","int-prod-7"],
   "car-essentials": [ "ess-prod-2", "ess-prod-3", "ess-prod-4"],
+  "car-wash": ["wash-prod-2", "wash-prod-3", "wash-prod-4"],
+  "car-cleaning": ["clean-prod-2", "clean-prod-3", "clean-prod-4"],
+  "car-lifting": ["lift-prod-2", "lift-prod-3", "lift-prod-4"],
 };
 
 const defaultPartnerImages = [
