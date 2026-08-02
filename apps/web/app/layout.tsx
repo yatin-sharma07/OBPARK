@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     images: ['https://obpark.in/og-image.png'],
   },
   icons: {
-    icon: '/Images/layout/obrive-logo.svg',
+    icon: '/favicon.svg',
   },
 }
 

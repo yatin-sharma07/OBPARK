@@ -49,46 +49,7 @@ export default function Hero() {
         {/* Optional dark/green overlay */}
         <div className="absolute inset-0 bg-[#074139]/20" />
 
-        {/* Diagonal Light Effects */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-          <motion.div
-            initial={{ opacity: 0, x: -120 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
-            className="
-              absolute
-              w-[160%] sm:w-[150%] lg:w-[140%]
-              h-[60px] sm:h-[80px] md:h-[100px]
-              -left-[30%] sm:-left-[25%] lg:-left-[20%]
-              top-[43%] md:top-[44%]
-              -rotate-[22deg] sm:-rotate-[20deg] md:-rotate-[18deg]
-              origin-left
-            "
-            style={{
-              background:
-                'linear-gradient(180deg, rgba(180,180,180,0.1) 0%, rgba(220,220,220,0.22) 40%, rgba(180,180,180,0.1) 100%)',
-            }}
-          />
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 1 }}
-            className="
-              absolute
-              w-[160%] sm:w-[150%] lg:w-[140%]
-              h-[2px]
-              -left-[30%] sm:-left-[25%] lg:-left-[20%]
-              top-[51%] md:top-[52%]
-              -rotate-[22deg] sm:-rotate-[20deg] md:-rotate-[18deg]
-              origin-left
-            "
-            style={{
-              background:
-                'linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)',
-            }}
-          />
-        </div>
       </motion.div>
 
       {/* Text Content */}
