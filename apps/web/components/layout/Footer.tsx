@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { microgrammaBold } from '@/lib/fonts'
@@ -10,6 +11,7 @@ const aboutLinks = [
   { label: 'My Account', href: '/account' },
   { label: 'Shop Now', href: '/shop' },
   { label: 'Obrive', href: '/obrive' },
+  { label: 'Our Partners', href: '/partners' },
 ]
 
 const supportLinks = [
@@ -21,11 +23,11 @@ const supportLinks = [
 ]
 
 const resourcesLinks = [
-  { label: 'OB Help Center', href: '/help' },
-  { label: 'OB Products FAQ', href: '/products-faq' },
-  { label: 'OB Services FAQ', href: '/services-faq' },
-  { label: 'Community Forum', href: '/community' },
-  { label: 'Change Log', href: '/changelog' },
+  { label: 'OB Help Center', href: 'https://obrive.com/support/help-center' },
+  { label: 'OB Products FAQ', href: 'https://obrive.com/faq/ob-product-faq' },
+  { label: 'OB Services FAQ', href: 'https://obrive.com/faq/ob-services-faq' },
+  { label: 'OBPark FAQ', href: 'https://obrive.com/faq/obpark-faq' },
+  { label: 'Change Log', href: 'https://obrive.com/support/change-log' },
 ]
 
 const socials = [
@@ -79,11 +81,14 @@ const socials = [
 ]
 
 export function Footer() {
+  const pathname = usePathname()
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
     email: '',
   })
+
+  if (pathname === '/login') return null
 
   const updateForm = (field: keyof typeof form, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }))
@@ -107,15 +112,13 @@ export function Footer() {
         {/* TOP ROW: LOGO & SOCIALS */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/20">
           <div className="flex items-center">
-            <span
-              className={`${microgrammaBold.className} text-4xl sm:text-5xl md:text-[56px] leading-none`}
-              style={{ color: '#074139' }}
-            >
-              OBPARK
-              <sup className="ml-[2px] align-super font-sans text-[0.45em]">
-                ©
-              </sup>
-            </span>
+            <Link href="/" className="flex items-center">
+              <img
+                src="/Images/footer_app_icon.svg"
+                alt="OBPARK"
+                className="h-[48px] sm:h-[64px] md:h-[76px] lg:h-[84px] object-contain"
+              />
+            </Link>
           </div>
 
           <div className="flex items-center gap-1.5">
@@ -128,7 +131,7 @@ export function Footer() {
                 className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all hover:scale-110"
                 style={{
                   backgroundColor: 'rgba(255,255,255,0.4)',
-                  color: '#074139',
+                  color: '#FFFFFF',
                 }}
                 aria-label={`Visit our ${s.label} page`}
               >
@@ -279,7 +282,9 @@ function FooterLinks({
           <Link
             key={link.label}
             href={link.href}
-            className="text-[13px] whitespace-nowrap transition-opacity hover:opacity-100 opacity-85"
+            target={link.href.startsWith('http') ? '_blank' : undefined}
+            rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            className="text-[9.5px] min-[380px]:text-[10px] sm:text-[11px] md:text-[13px] whitespace-nowrap transition-opacity hover:opacity-100 opacity-85"
             style={{
               color: '#FFFFFF',
               fontFamily: 'var(--font-michroma)',

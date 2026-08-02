@@ -7,7 +7,6 @@ import { WhyEnterprise } from '@/components/home/WhyEnterprise'
 import { ObparkMarket } from '@/components/home/ObparkMarket'
 import { FeatureProduct } from '@/components/home/FeatureProduct'
 import { ResourceLibrary } from '@/components/home/ResourceLibrary'
-
 export default function HomePage() {
   return (
     <main className="bg-[#F0F9F5] pt-[0.1px]">
@@ -16,7 +15,7 @@ export default function HomePage() {
           <HeroSection />
           <MarqueeStrip />
         </div>
-
+        
         <div className="w-full mx-auto xl:max-w-[1300px] px-4 sm:px-8 md:px-12 xl:px-0 pt-8">
           <ServicesGrid />
           <TrustBadges />

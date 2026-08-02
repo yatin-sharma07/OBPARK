@@ -6,7 +6,6 @@ import { Providers } from '@/components/Providers'
 import Script from 'next/script'
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from '@/components/Navbar'
-import { ConditionalLayout } from '@/components/layout/ConditionalLayout'
 import  Header  from '@/components/Header'
 
 export const metadata: Metadata = {
@@ -43,7 +42,7 @@ export const metadata: Metadata = {
     images: ['https://obpark.in/og-image.png'],
   },
   icons: {
-    icon: '/Images/layout/obrive-logo.svg',
+    icon: '/favicon.svg',
   },
 }
 
@@ -60,15 +59,13 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
 
-       <Providers>
-  <ConditionalHeader />
-  {/* <Header /> */}
-
-  <ConditionalLayout>
-    {children}
-  </ConditionalLayout>
-
-</Providers>
+        <Providers>
+          <ConditionalHeader />
+        {/* <Header /> */}
+          <Navbar />
+          <main className="min-h-screen w-full max-w-[100vw] ">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   )

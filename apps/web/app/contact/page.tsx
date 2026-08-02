@@ -65,17 +65,20 @@ export default function ContactPage() {
     <main className="min-h-screen bg-white">
       
       {/* 1. Hero Banner with Contact Form */}
-      <div className="px-3 sm:px-4 md:px-6 pt-24 pb-4">
+      <div className="px-3 sm:px-4 md:px-6 pt-20 sm:pt-24 md:pt-28 pb-4">
         <div className="mx-auto max-w-[2000px]">
-          <section className="w-full h-[calc(100vh-120px)] bg-[#094639] rounded-[28px] flex flex-col lg:flex-row items-center justify-between p-8 md:p-12 lg:p-20 overflow-hidden relative shadow-[0_12px_30px_rgba(7,76,67,0.08)]">
+          <section className="w-full min-h-fit lg:h-[calc(100vh-120px)] bg-[#094639] rounded-[24px] sm:rounded-[28px] py-10 px-5 md:p-12 lg:p-20 relative shadow-[0_12px_30px_rgba(7,76,67,0.08)] flex flex-col items-center justify-center overflow-hidden">
           
-          {/* Left: Text Content */}
-          <div className="w-full lg:w-1/2 text-white z-10 mb-12 lg:mb-0">
+          {/* Inner Content Wrapper */}
+          <div className="w-full max-w-[1300px] mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10">
+
+            {/* Left: Text Content */}
+            <div className="w-full lg:w-1/2 text-white mb-8 lg:mb-0 text-center lg:text-left">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6"
             >
               Get in Touch
             </motion.h1>
@@ -83,7 +86,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-[#A2C7BC] text-lg md:text-xl max-w-lg mb-8"
+              className="text-[#A2C7BC] text-sm sm:text-base md:text-xl max-w-lg mx-auto lg:mx-0 mb-6 sm:mb-8"
             >
               Have a question, feedback, or need assistance? Fill out the form and our team will get back to you within 24 hours.
             </motion.p>
@@ -116,9 +119,11 @@ export default function ContactPage() {
             </form>
           </motion.div>
 
+          </div>
+
           {/* Background Decorative Elements */}
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#59D0B5]/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 z-0 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#59D0B5]/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 z-0 pointer-events-none"></div>
           </section>
         </div>
       </div>

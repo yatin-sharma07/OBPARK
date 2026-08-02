@@ -13,6 +13,9 @@ export function middleware(request: NextRequest) {
   if (
     path === '/' ||
     path === '/about' ||
+    path === '/solutions' ||
+    path === '/invest' ||
+    path === '/partners' ||
     path === '/coming-soon' ||
     path === '/faq' ||
     path === '/our-story' ||
@@ -51,8 +54,7 @@ export function middleware(request: NextRequest) {
   }
 
   // Redirect all other paths to /coming-soon
- // return NextResponse.redirect(new URL('/coming-soon', request.url));
- return NextResponse.next();
+  return NextResponse.redirect(new URL('/coming-soon', request.url));
 }
 
 export const config = {

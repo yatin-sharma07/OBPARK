@@ -8,19 +8,22 @@ const resources = [
     image: '/Images/resources/resources1.jpg',
     tag: 'BLOG',
     date: '30.07.25',
-    title: 'Augmented Reality vs. Virtual Reality vs. Mixed Reality: Key Differences.'
+    title: 'Augmented Reality vs. Virtual Reality vs. Mixed Reality: Key Differences.',
+    link: 'https://obrive.com/resources/ar-vr-mr-differences-business-use-cases-2025'
   },
   {
     image: '/Images/resources/resources2.jpg',
     tag: 'BLOG',
     date: '30.07.25',
-    title: 'How Spatial Computing is Redefining Business Operation.'
+    title: 'How Spatial Computing is Redefining Business Operation.',
+    link: 'https://obrive.com/resources/spatial-computing-business-operations-2025'
   },
   {
     image: '/Images/resources/resources3.jpg',
     tag: 'BLOG',
     date: '30.07.25',
-    title: 'How AR-Powered Car Parking Systems are Solving Urban Mobility.'
+    title: 'How AR-Powered Car Parking Systems are Solving Urban Mobility.',
+    link: 'https://obrive.com/resources/ar-powered-car-parking-systems-urban-mobility-challenges'
   }
 ]
 
@@ -51,8 +54,11 @@ export function ResourceLibrary() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {resources.map((item, i) => (
-            <motion.div 
+            <motion.a 
               key={i}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1, ease: 'easeOut' }}
@@ -83,7 +89,7 @@ export function ResourceLibrary() {
                   {item.title}
                 </h3>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 
