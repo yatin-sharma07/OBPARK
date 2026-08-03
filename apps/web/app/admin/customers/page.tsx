@@ -75,7 +75,7 @@ export default function CustomersPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <CustomerTable
-            customers={customers}
+            customers={customers || []}
             isLoading={isLoading}
             selectedId={selectedCustomer ? selectedCustomer.id + selectedCustomer.name : null}
             onSelect={setSelectedCustomer}
