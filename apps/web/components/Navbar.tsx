@@ -241,7 +241,7 @@ export function Navbar() {
                                             <div className="absolute -bottom-8 -right-4 w-32 h-32 opacity-40">
                                                 <svg viewBox="0 0 100 100" className="w-full h-full stroke-[#0b3830]" fill="none" strokeWidth="0.5">
                                                     {Array.from({length: 15}).map((_, i) => (
-                                                        <ellipse key={i} cx="50" cy="50" rx="40 - i*2" ry="20" transform={`rotate(${i * 12} 50 50)`} />
+                                                        <ellipse key={i} cx="50" cy="50" rx={40 - i * 2} ry="20" transform={`rotate(${i * 12} 50 50)`} />
                                                     ))}
                                                 </svg>
                                             </div>

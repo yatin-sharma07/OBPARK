@@ -1,15 +1,14 @@
 // ====================================================================================
-// 1. DATABASE CONNECTION BLOCK
+// DATABASE CONNECTION BLOCK
 // ====================================================================================
 
-datasource db {
+    datasource db {
 
-  provider = "postgresql"        // database management system being used (e.g., postgresql, mysql, sqlite, mongodb)
-  url      = env("DATABASE_URL") // database's secure password waala connection path being pulled from env
-}
+      provider = "postgresql"     //    database management system being used (e.g., postgresql, mysql, sqlite, mongodb)
+    }
 
 // ====================================================================================
-// 2. PRISMA CLIENT GENERATOR BLOCK
+// PRISMA CLIENT GENERATOR BLOCK
 // ====================================================================================
 
 generator client {
@@ -19,3 +18,14 @@ generator client {
 // ========================================================
 // Database tables from here
 // ========================================================
+
+
+model User {
+  id               String   @id @default(uuid())
+  firstName        String
+  lastName         String
+  email            String   @unique
+  isNewsletterSub  Boolean  @default(true)  
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt       
+}

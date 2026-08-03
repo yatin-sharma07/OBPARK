@@ -1,10 +1,12 @@
 'use client'
 
+import type { FormEvent } from 'react'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { microgrammaBold } from '@/lib/fonts'
+import { api } from '@/lib/api'
 
 const aboutLinks = [
   { label: 'Our Story', href: '/our-story' },
@@ -87,11 +89,45 @@ export function Footer() {
     lastName: '',
     email: '',
   })
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [message, setMessage] = useState('')
 
   if (pathname === '/login') return null
 
   const updateForm = (field: keyof typeof form, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }))
+  }
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    if (!form.firstName.trim() || !form.lastName.trim() || !form.email.trim()) {
+      setStatus('error')
+      setMessage('Please fill in first name, last name, and email.')
+      return
+    }
+
+    setStatus('loading')
+    setMessage('')
+
+    try {
+      const response = await api.post<{ success: boolean; message: string }>(
+        '/newsletter/subscribe',
+        {
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          source: 'footer-newsletter',
+        },
+      )
+
+      setStatus('success')
+      setMessage(response.message)
+      setForm({ firstName: '', lastName: '', email: '' })
+    } catch (error) {
+      setStatus('error')
+      setMessage(error instanceof Error ? error.message : 'Failed to subscribe.')
+    }
   }
 
   return (
@@ -103,12 +139,12 @@ export function Footer() {
       className="w-full relative z-10 bg-transparent px-3 pb-3 pt-6 sm:px-5 sm:pb-5 sm:pt-10"
     >
       <div 
-        className="w-full rounded-[24px] overflow-hidden"
+        className="w-full rounded-3xl overflow-hidden"
         style={{
           background: 'linear-gradient(135deg, #ACE3CA 0%, #1C8182 100%)',
         }}
       >
-        <div className="max-w-[1400px] mx-auto w-full px-6 sm:px-8 md:px-16 pt-10 pb-10">
+        <div className="max-w-350 mx-auto w-full px-6 sm:px-8 md:px-16 pt-10 pb-10">
         {/* TOP ROW: LOGO & SOCIALS */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/20">
           <div className="flex items-center">
@@ -116,7 +152,7 @@ export function Footer() {
               <img
                 src="/Images/footer_app_icon.svg"
                 alt="OBPARK"
-                className="h-[48px] sm:h-[64px] md:h-[76px] lg:h-[84px] object-contain"
+                className="h-12 sm:h-16 md:h-19 lg:h-21 object-contain"
               />
             </Link>
           </div>
@@ -159,11 +195,12 @@ export function Footer() {
               Subscribe to our newsletter and claim<br />your 15% discount today
             </h3>
 
-            <div
-              className="w-full rounded-[32px] p-6 sm:p-8 flex flex-col gap-5 border-none shadow-lg"
+            <form
+              className="w-full rounded-4xl p-6 sm:p-8 flex flex-col gap-5 border-none shadow-lg"
               style={{ 
                 background: 'linear-gradient(135deg, #86C4B9 0%, #379490 100%)'
               }}
+              onSubmit={handleSubmit}
             >
               <div className="grid grid-cols-2 gap-4">
                 <InputField
@@ -189,8 +226,10 @@ export function Footer() {
               />
 
               <motion.button
+                type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                disabled={status === 'loading'}
                 className={`${microgrammaBold.className} w-full py-3.5 mt-2 rounded-full transition-opacity hover:opacity-90`}
                 style={{
                   backgroundColor: '#FFFFFF',
@@ -198,9 +237,17 @@ export function Footer() {
                   fontSize: '15px',
                 }}
               >
-                Submit
+                {status === 'loading' ? 'Submitting...' : 'Submit'}
               </motion.button>
-            </div>
+              {message ? (
+                <p
+                  className={`text-sm ${status === 'success' ? 'text-white' : 'text-red-100'}`}
+                  style={{ fontFamily: 'var(--font-michroma)' }}
+                >
+                  {message}
+                </p>
+              ) : null}
+            </form>
           </div>
         </div>
 
@@ -250,7 +297,7 @@ export function Footer() {
       </div>
       
       {/* DISCLAIMER TEXT */}
-      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 pt-6 pb-2">
+      <div className="w-full max-w-350 mx-auto px-4 sm:px-8 md:px-16 pt-6 pb-2">
         <p 
           className="text-[10px] md:text-[11px] leading-[1.6] text-[#484848]"
           style={{ fontFamily: 'var(--font-michroma)' }}

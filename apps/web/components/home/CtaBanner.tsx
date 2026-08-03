@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { microgrammaBold } from '@/lib/fonts'
+import { api } from '@/lib/api'
 
 export function CtaBanner() {
   const [form, setForm] = useState({
@@ -10,6 +11,40 @@ export function CtaBanner() {
     email: '',
     phone: '',
   })
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [message, setMessage] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    if (!form.firstName.trim() || !form.lastName.trim() || !form.email.trim()) {
+      setStatus('error')
+      setMessage('Please fill in first name, last name, and email.')
+      return
+    }
+
+    setStatus('loading')
+    setMessage('')
+
+    try {
+      const response = await api.post<{ success: boolean; message: string }>(
+        '/newsletter/subscribe',
+        {
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          source: 'cta-banner',
+        },
+      )
+
+      setStatus('success')
+      setMessage(response.message)
+      setForm({ firstName: '', lastName: '', email: '', phone: '' })
+    } catch (error) {
+      setStatus('error')
+      setMessage(error instanceof Error ? error.message : 'Failed to subscribe.')
+    }
+  }
 
   return (
     <section className="py-4 px-4 sm:px-6 md:px-8">
@@ -56,7 +91,7 @@ export function CtaBanner() {
           </div>
 
           <div className="w-full max-w-[370px] bg-[#F0F9F5] rounded-[22px] p-4 md:p-7 shrink-0">
-            <div className="flex flex-col gap-5 w-full">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5 w-full">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label
@@ -128,6 +163,8 @@ export function CtaBanner() {
               </div>
 
               <button
+                type="submit"
+                disabled={status === 'loading'}
                 className={`
                   ${microgrammaBold.className}
                   w-full
@@ -136,11 +173,22 @@ export function CtaBanner() {
                   text-white
                   rounded-full
                   text-[12px]
+                  disabled:opacity-50
                 `}
               >
-                Submit
+                {status === 'loading' ? 'Submitting...' : 'Submit'}
               </button>
-            </div>
+              {message && (
+                <p
+                  className={`text-xs text-center mt-1 ${
+                    status === 'success' ? 'text-green-700' : 'text-red-600'
+                  }`}
+                  style={{ fontFamily: 'var(--font-michroma)' }}
+                >
+                  {message}
+                </p>
+              )}
+            </form>
           </div>
         </div>
       </div>
