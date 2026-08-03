@@ -407,12 +407,11 @@ const partnerSlides = relatedProducts
             </AnimatePresence>
           </div>
 
-          {/* OUR TRUSTED PARTNERS CARD (SCREENSHOT 2) */}
-          {/* OUR TRUSTED PARTNERS CARD (SCREENSHOT 2) */}
-<div className="bg-gradient-to-b from-[#167D7F] to-[#B0E5CC] rounded-[24px] p-6 sm:p-8 text-white text-center shadow-md space-y-6">
-  <h3 className="text-lg sm:text-xl tracking-wide font-normal" style={{ fontFamily: 'var(--font-michroma)' }}>
-    Our Trusted Partners
-  </h3>
+          {/* OUR PRODUCTS CARD */}
+          <div className="bg-gradient-to-b from-[#167D7F] to-[#B0E5CC] rounded-[24px] p-6 sm:p-8 text-white text-center shadow-md space-y-6">
+            <h3 className="text-lg sm:text-xl tracking-wide font-normal" style={{ fontFamily: 'var(--font-michroma)' }}>
+              Our Products
+            </h3>
 
   {partnerSlides ? (
     <>
