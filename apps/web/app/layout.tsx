@@ -7,6 +7,7 @@ import Script from 'next/script'
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from '@/components/Navbar'
 import  Header  from '@/components/Header'
+import { CartDrawer } from '@/components/cart/CartDrawer'
 
 export const metadata: Metadata = {
   title: 'OBPark | Smart Vehicle Commerce, Parking & Mobility Solutions',
@@ -65,6 +66,7 @@ export default function RootLayout({
           <Navbar />
           <main className="min-h-screen w-full max-w-[100vw] ">{children}</main>
           <Footer />
+          <CartDrawer />
         </Providers>
       </body>
     </html>

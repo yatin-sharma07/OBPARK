@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { microgrammaBold } from '@/lib/fonts'
+import { useCartStore } from '@/store/cart.store'
 import {
     ScanLine,
     Wind,
@@ -39,6 +40,7 @@ const mobileLinks = [
 ]
 
 export function Navbar() {
+    const { openCart } = useCartStore()
     const [showNavbar, setShowNavbar] = useState(true)
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false)
@@ -319,23 +321,24 @@ export function Navbar() {
                         </Link>
 
                         {/* SHOP/BASKET CIRCLE */}
-                        <Link
-                            href="/products"
+                        <button
+                            type="button"
+                            onClick={openCart}
                             className="
                               w-10 h-10 lg:w-11 lg:h-11
                               flex-shrink-0 transition-all duration-300 
                               hover:scale-110 hover:-translate-y-0.5 
                               hover:shadow-[0_4px_12px_rgba(26,129,127,0.2)] 
-                              rounded-full
+                              rounded-full cursor-pointer
                             "
-                            aria-label="View shop basket"
+                            aria-label="View cart"
                         >
                             <img
                                 src="/Images/Navbar/shop.svg"
-                                alt="View shop"
+                                alt="View cart"
                                 className="w-full h-full object-contain"
                             />
-                        </Link>
+                        </button>
                     </div>
                 </div>
 
@@ -423,8 +426,24 @@ export function Navbar() {
                         </Link>
                     </div>
 
-                    {/* Right: Phone Icon */}
-                    <div className="flex-1 flex items-center justify-end">
+                    {/* Right: Phone & Cart Icons */}
+                    <div className="flex-1 flex items-center justify-end gap-2">
+                        <button
+                            type="button"
+                            onClick={openCart}
+                            className="
+                              w-[36px] h-[36px]
+                              flex-shrink-0 transition-transform duration-300 hover:scale-110 rounded-full cursor-pointer
+                            "
+                            aria-label="View cart"
+                        >
+                            <img
+                                src="/Images/Navbar/shop.svg"
+                                alt="View cart"
+                                className="w-full h-full object-contain"
+                            />
+                        </button>
+
                         <Link
                             href="/contact"
                             className="

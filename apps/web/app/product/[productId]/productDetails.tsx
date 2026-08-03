@@ -162,19 +162,11 @@ const partnerSlides = relatedProducts
         {/* RIGHT COLUMN: PRODUCT DETAILS */}
         <div className="lg:col-span-6 space-y-4">
           
-          {/* HEADER ROW (TITLE + ADD BUTTON) */}
+          {/* HEADER ROW (TITLE) */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <h1 className="text-[#074139] text-2xl sm:text-3xl font-bold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
               {product.title}
             </h1>
-            <button 
-              onClick={handleAddToCart}
-              className="bg-[#1C8182] hover:bg-[#156465] text-white text-sm sm:text-base px-6 py-2.5 sm:px-8 sm:py-3 rounded-[24px] flex items-center justify-center gap-2 shadow-sm transition-colors"
-              style={{ fontFamily: 'var(--font-michroma)' }}
-            >
-              <Image src="/Images/product-common/Add.svg" alt="Add" width={20} height={20} />
-              <span>Add</span>
-            </button>
           </div>
 
           {/* FULL SUBTITLE */}
