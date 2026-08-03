@@ -24,17 +24,17 @@ const teamMembers = [
   {
     name: 'Nikhil Pathak',
     role: 'Creative Director',
-    image: '/Images/about/Nikhil Pathak.jpg',
+    image: '/Images/about/Nikhil_Pathak.jpg',
   },
   {
     name: 'Shivansh Pataku',
     role: 'Senior Full stack Developer',
-    image: '/Images/about/Shivansh Pataku.jpg',
+    image: '/Images/about/Shivansh.jpg',
   },
   {
     name: 'Vivek Sharma',
     role: 'Senior Full stack Developer',
-    image: '/Images/about/Vivek Sharma.jpg',
+    image: '/Images/about/Vivek_Sharma.jpg',
   },
 ]
 

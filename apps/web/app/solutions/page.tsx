@@ -208,92 +208,84 @@ export default function SolutionsPage() {
             {[...Array(2)].map((_, arrayIndex) => (
               <React.Fragment key={arrayIndex}>
                 {/* E-Challan */}
-                <Link 
-                  href="/e-challan" 
-                  className="bg-[#167D7F] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
+                <div 
+                  className="bg-[#167D7F] text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md min-w-[180px] sm:min-w-[240px] group cursor-pointer"
                 >
                   <ShieldAlert className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
                   <span className="text-xs sm:text-sm font-semibold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
                     E - Challan
                   </span>
-                </Link>
+                </div>
 
                 {/* PUC */}
-                <Link 
-                  href="/services/puc" 
-                  className="bg-[#3C9792] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
+                <div 
+                  className="bg-[#3C9792] text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md min-w-[180px] sm:min-w-[240px] group cursor-pointer"
                 >
                   <Wind className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
                   <span className="text-xs sm:text-sm font-semibold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
                     PUC
                   </span>
-                </Link>
+                </div>
 
                 {/* Vehicle Details */}
-                <Link 
-                  href="/services/vehicle-owner" 
-                  className="bg-[#63B1A5] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
+                <div 
+                  className="bg-[#63B1A5] text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md min-w-[180px] sm:min-w-[240px] group cursor-pointer"
                 >
                   <FileText className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
                   <span className="text-xs sm:text-sm font-bold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
                     Vehicle Details
                   </span>
-                </Link>
+                </div>
 
                 {/* Fastag */}
-                <Link 
-                  href="/services/fastag" 
-                  className="bg-[#89CBB9] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
+                <div 
+                  className="bg-[#89CBB9] text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md min-w-[180px] sm:min-w-[240px] group cursor-pointer"
                 >
                   <CreditCard className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
                   <span className="text-xs sm:text-sm font-bold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
                     Fastag
                   </span>
-                </Link>
+                </div>
 
                 {/* Car Services */}
-                <Link 
-                  href="/services/car-services" 
-                  className="bg-[#167D7F] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
+                <div 
+                  className="bg-[#167D7F] text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md min-w-[180px] sm:min-w-[240px] group cursor-pointer"
                 >
                   <Wrench className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
                   <span className="text-xs sm:text-sm font-semibold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
                     Car Services
                   </span>
-                </Link>
+                </div>
 
                 {/* EV - Stations */}
-                <Link 
-                  href="/services/ev-charging" 
-                  className="bg-[#3C9792] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
+                <div 
+                  className="bg-[#3C9792] text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md min-w-[180px] sm:min-w-[240px] group cursor-pointer"
                 >
                   <Zap className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
                   <span className="text-xs sm:text-sm font-semibold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
                     EV - Stations
                   </span>
-                </Link>
+                </div>
 
                 {/* Car Insurance */}
-                <Link 
-                  href="/services/car-insurance" 
-                  className="bg-[#63B1A5] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
+                <div 
+                  className="bg-[#63B1A5] text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md min-w-[180px] sm:min-w-[240px] group cursor-pointer"
                 >
                   <ShieldCheck className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
                   <span className="text-xs sm:text-sm font-bold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
                     Car Insurance
                   </span>
-                </Link>
+                </div>
 
                 {/* Car Loan */}
-                <Link 
-                  href="/services/car-loan" 
-                  className="bg-[#89CBB9] hover:brightness-95 text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md transition-all active:scale-95 min-w-[180px] sm:min-w-[240px] group"
+                <div 
+                  className="bg-[#89CBB9] text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md min-w-[180px] sm:min-w-[240px] group cursor-pointer"
                 >
                   <Car className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
                   <span className="text-xs sm:text-sm font-bold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
                     Car Loan
                   </span>
-                </Link>
+                </div>
               </React.Fragment>
             ))}
           </div>

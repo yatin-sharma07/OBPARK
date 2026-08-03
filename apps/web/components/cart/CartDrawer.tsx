@@ -88,7 +88,7 @@ export function CartDrawer() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-            className="fixed right-0 top-0 h-full w-full max-w-[420px] sm:max-w-[460px] text-white z-[999] flex flex-col shadow-[-12px_0_40px_rgba(0,0,0,0.3)] overflow-hidden border-l border-white/10"
+            className="fixed right-0 top-0 h-full w-full max-w-[420px] sm:max-w-[460px] text-white z-[999] flex flex-col shadow-[-12px_0_40px_rgba(0,0,0,0.3)] overflow-hidden"
             style={{
               background: 'linear-gradient(135deg, rgba(7, 65, 57, 0.94) 0%, rgba(24, 115, 110, 0.97) 100%)',
               backdropFilter: 'blur(16px)',
@@ -125,7 +125,7 @@ export function CartDrawer() {
               /* Non-Empty Cart View */
               <div className="flex flex-col h-full">
                 {/* Header */}
-                <div className="px-6 pt-7 pb-4 border-b border-white/15">
+                <div className="px-6 pt-7 pb-4">
                   <h2
                     className={`${microgrammaBold.className} text-xl sm:text-2xl text-white font-bold tracking-wider`}
                   >
@@ -139,7 +139,7 @@ export function CartDrawer() {
                     ? apiCart?.items.map((item) => (
                         <div
                           key={item.id}
-                          className="flex gap-4 p-4 rounded-2xl bg-white/10 border border-white/10 backdrop-blur-md"
+                          className="flex gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-md"
                         >
                           <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center shrink-0 overflow-hidden">
                             {item.product.images?.[0] ? (
@@ -162,7 +162,7 @@ export function CartDrawer() {
                             </p>
 
                             <div className="flex items-center justify-between mt-3">
-                              <div className="flex items-center gap-2 bg-white/10 rounded-full px-2 py-1 border border-white/20">
+                              <div className="flex items-center gap-2 bg-white/10 rounded-full px-2 py-1">
                                 <button
                                   onClick={() =>
                                     updateItem.mutate({
@@ -203,7 +203,7 @@ export function CartDrawer() {
                     : localCart.map((item) => (
                         <div
                           key={item.id}
-                          className="flex gap-4 p-4 rounded-2xl bg-white/10 border border-white/10 backdrop-blur-md"
+                          className="flex gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-md"
                         >
                           <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center shrink-0 overflow-hidden">
                             {item.image ? (
@@ -226,7 +226,7 @@ export function CartDrawer() {
                             </p>
 
                             <div className="flex items-center justify-between mt-3">
-                              <div className="flex items-center gap-2 bg-white/10 rounded-full px-2 py-1 border border-white/20">
+                              <div className="flex items-center gap-2 bg-white/10 rounded-full px-2 py-1">
                                 <button
                                   onClick={() =>
                                     handleLocalQtyChange(item.id, item.quantity - 1)
@@ -261,7 +261,7 @@ export function CartDrawer() {
                 </div>
 
                 {/* Footer Subtotal & Checkout */}
-                <div className="p-6 border-t border-white/15 bg-black/10 space-y-4">
+                <div className="p-6 bg-black/10 space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-white/80">Subtotal</span>
                     <span className="text-lg font-bold text-white">
