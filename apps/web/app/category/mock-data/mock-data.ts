@@ -3423,7 +3423,7 @@ items: [
       { stars: 4, percentage: 18 },
       { stars: 3, percentage: 7 },
       { stars: 2, percentage: 3 },
-      { stars: 1, percentage: 2 },
+      { stars: 1, percentage: 2 },  
     ],
 
     userFeed: [
