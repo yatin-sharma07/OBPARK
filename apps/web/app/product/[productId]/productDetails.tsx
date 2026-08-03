@@ -22,13 +22,15 @@ import { useAuthStore } from "@/store/auth.store";
 import { useAddToCart } from "@/hooks/useCart";
 import { useCartStore } from "@/store/cart.store";
 import { VehicleSelectDialog } from "@/components/cart/VehicleSelectDialog";
+import { MockData } from "@/app/category/mock-data/mock-data";
 import { microgrammaBold } from "@/lib/fonts";
 
 interface ProductInfoProps {
   product: SingleProduct;
+  categorySlug: string; // Optional category slug for the product
 }
 
-export function ProductInfo({ product }: ProductInfoProps) {
+export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
   const router = useRouter();
   const { isAuthenticated } = useAuthStore();
   const addToCart = useAddToCart();
@@ -38,6 +40,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
   const [selectedUnit, setSelectedUnit] = useState(1); // 1, 3, or 6 units
   const [quantity, setQuantity] = useState(1);
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
+  const [currentPartnerSlide, setCurrentPartnerSlide] = useState(0);
 
   // Gallery Images
   const allImages = [
@@ -58,32 +61,57 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
   const handleConfirm = async (vehicleId: string | null) => {
     try {
-      // Mock the cart addition for UI preview so the Cart page can read it
-      const cartItem = {
-        id: product.id || 'mock-id',
-        name: product.title || '3M Car Care Microfiber Cloth',
-        description: 'Premium Car Care Product',
-        price: '₹ ' + (product.price || 99),
-        priceVal: product.price || 99,
-        quantity: quantity,
-        image: activeImage,
-        vehicle: vehicleId ? 'Linked' : null
-      };
-      sessionStorage.setItem('mockup_cart_item', JSON.stringify(cartItem));
-
       await addToCart.mutateAsync({
         productId: product.id,
         vehicleId: vehicleId ?? undefined,
         quantity: quantity,
       });
     } catch (e) {
-      console.warn('API cart addition failed (expected if backend is down), using session storage fallback.', e);
+      console.error(e);
     }
     setShowDialog(false);
-    
-    // Redirect to the newly styled cart page instead of just opening a generic cart modal
-    router.push('/cart');
+    openCart();
   };
+   
+
+  const relatedProductIdsByCategory: Record<string, string[]> = {
+  "exterior-accessories": ["ext-prod-2", "ext-prod-3", "ext-prod-4", "ext-prod-5", "ext-prod-6","ext-prod-7"],
+  "car-interiors": ["int-prod-2", "int-prod-3", "int-prod-4", "int-prod-5", "int-prod-6","int-prod-7"],
+  "car-essentials": [ "ess-prod-2", "ess-prod-3", "ess-prod-4"],
+  "car-wash": ["wash-prod-2", "wash-prod-3", "wash-prod-4"],
+  "car-cleaning": ["clean-prod-2", "clean-prod-3", "clean-prod-4"],
+  "car-lifting": ["lift-prod-2", "lift-prod-3", "lift-prod-4"],
+};
+
+const defaultPartnerImages = [
+  "/Images/Trusted-Partners/Partner1.png",
+  "/Images/Trusted-Partners/Partner2.png",
+  "/Images/Trusted-Partners/Partner3.png",
+];
+
+//  Resolve product IDs into actual product objects — THIS FIRST
+const relatedProductIds = relatedProductIdsByCategory[categorySlug];
+
+const relatedProducts = relatedProductIds
+  ? relatedProductIds
+      .map((id) => {
+        for (const category of MockData) {
+          const found = category.items.find((item) => item.id === id);
+          if (found) return found;
+        }
+        return null;
+      })
+      .filter((p): p is SingleProduct => p !== null)
+  : null;
+
+//  THEN chunk it into slides — this depends on relatedProducts, so it must come after
+const partnerSlides = relatedProducts
+  ? Array.from({ length: Math.ceil(relatedProducts.length / 3) }, (_, i) =>
+      relatedProducts.slice(i * 3, i * 3 + 3)
+    )
+  : null;
+
+
 
   return (
     <div className="space-y-12 animate-fadeIn bg-[#F0F9F5] -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 pt-4 pb-8 rounded-[32px]">
@@ -137,19 +165,27 @@ export function ProductInfo({ product }: ProductInfoProps) {
           {/* HEADER ROW (TITLE + ADD BUTTON) */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <h1 className="text-[#074139] text-2xl sm:text-3xl font-bold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
-              Microfiber Cloth
+              {product.title}
             </h1>
+            <button 
+              onClick={handleAddToCart}
+              className="bg-[#1C8182] hover:bg-[#156465] text-white text-sm sm:text-base px-6 py-2.5 sm:px-8 sm:py-3 rounded-[24px] flex items-center justify-center gap-2 shadow-sm transition-colors"
+              style={{ fontFamily: 'var(--font-michroma)' }}
+            >
+              <Image src="/Images/product-common/Add.svg" alt="Add" width={20} height={20} />
+              <span>Add</span>
+            </button>
           </div>
 
           {/* FULL SUBTITLE */}
           <h2 className="text-[#074139] text-base sm:text-lg sm:leading-[1.7] font-medium" style={{ fontFamily: 'var(--font-michroma)' }}>
-            3M Car Care Microfiber Cloth (3 Pieces) | Non-Scratching Cloth for Exterior, Interior and Glass | Absorbent Microfiber Technology, 200 GSM, Multicolor
+           {product.brand}
           </h2>
 
-          {/* TAGLINE */}
+          {/* TAGLINE 
           <p className="text-[#1C8182] text-base sm:text-[17px] font-medium" style={{ fontFamily: 'var(--font-michroma)' }}>
             Natural shield against sweet temptations
-          </p>
+          </p> */}
 
           {/* RATING & SOCIAL PROOF */}
           <div className="flex flex-col gap-2 pt-0.5">
@@ -159,8 +195,11 @@ export function ProductInfo({ product }: ProductInfoProps) {
                   <Star key={i} className={`h-5 w-5 ${i === 4 ? 'text-[#81BDB5] fill-[#81BDB5]' : 'text-[#1C8182] fill-[#1C8182]'}`} />
                 ))}
               </div>
-              <span className="text-[#074139] text-[15px] whitespace-nowrap" style={{ fontFamily: 'var(--font-michroma)' }}>102 reviews</span>
-            </div>
+              <span className="text-[#074139] text-[15px] whitespace-nowrap" style={{ fontFamily: 'var(--font-michroma)' }}>
+      {product.ratingData.totalReviewsCount} reviews
+    </span>
+  </div>
+            
 
             {/* AVATAR STACK SOCIAL PROOF */}
             <div className="flex items-center gap-3">
@@ -288,7 +327,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
           <div className="grid grid-cols-3 gap-3 pt-2">
             <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2 text-[10px] sm:text-[11px] text-[#074139] shadow-sm">
               <Image src="/Images/product-common/Free shipping.svg" alt="Free shipping" width={20} height={20} className="shrink-0" />
-              <span style={{ fontFamily: 'var(--font-michroma)' }}>Free shipping over500/$</span>
+              <span style={{ fontFamily: 'var(--font-michroma)' }}>Free shipping over500/</span>
             </div>
             <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2 text-[10px] sm:text-[11px] text-[#074139] shadow-sm">
               <Image src="/Images/product-common/Fast global shipping.svg" alt="Fast global shipping" width={20} height={20} className="shrink-0" />
@@ -367,39 +406,88 @@ export function ProductInfo({ product }: ProductInfoProps) {
                   className="overflow-hidden"
                 >
                   <div className="px-6 pb-6 sm:px-8 sm:pb-8 text-[11px] sm:text-[13px] text-slate-700 leading-[1.8]" style={{ fontFamily: 'var(--font-michroma)' }}>
-                    <ul className="list-disc pl-4 space-y-4 marker:text-slate-700">
-                      <li>LINT FREE CLEANING - 3M Microfiber cloth that incorporates unique absorbent microfiber technology for lint car free cleaning.</li>
-                      <li>MULTI SURFACE CLEANING - Use on surfaces like paint, chrome, glass, metal, rubber, and plastic to for faster and streak free cleaning.</li>
-                      <li>EFFECTIVE DUST REMOVAL - It is an easy way to remove dust and debris from various surfaces because it is a soft, non-scratching cloth which removes filmy residues of wax or polish easily</li>
-                      <li>SUPERABSORBENT - The Cleaning cloth is lint-free and Ultra-absorbent it can swiftly and effectively absorb liquids. The fiber, which is soft yet sturdy and made of high-quality microfiber, won't scratch or leave lint on any of your car Surfaces.</li>
-                      <li>LINT-FREE CLEANING-3M Microfiber cloth that incorporates unique absorbent microfiber technology for car lint-free cleaning</li>
-                      <li>MULTI-SURFACE CLEANING-Use on surfaces like paint, chrome, glass, metal, rubber, vinyl, leather surfaces, and plastic to for faster and streak-free cleaning. Removes wax or polish residue and fingerprints easily for spotless cleaning of glass</li>
-                      <li>EFFECTIVE DUST REMOVAL-Easy to remove dust, grime, and debris from various surfaces because it is a soft, non-scratching cloth</li>
-                      <li>SUPERABSORBENT-The cleaning cloth is lint-free and ultra-absorbent, meaning it can swiftly and effectively absorb water and other liquids. The fiber, which is soft yet sturdy and made of high-quality microfiber, won't scratch or leave lint on any of your car surfaces.</li>
-                      <li>ULTRASOFT-Professional-grade microfiber cloth with supersoft texture will not scratch or streak the delicate surface of your car or bike</li>
-                    </ul>
-                  </div>
+  <ul className="list-disc pl-4 space-y-4 marker:text-slate-700">
+    {product.aboutSections.map((section, i) => (
+      <li key={i}>
+        <span className="font-bold">{section.heading}</span>{section.content ? ` - ${section.content}` : ''}
+      </li>
+    ))}
+  </ul>
+</div>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
 
           {/* OUR TRUSTED PARTNERS CARD (SCREENSHOT 2) */}
-          <div className="bg-gradient-to-b from-[#167D7F] to-[#B0E5CC] rounded-[24px] p-6 sm:p-8 text-white text-center shadow-md space-y-6">
-            <h3 className="text-lg sm:text-xl tracking-wide font-normal" style={{ fontFamily: 'var(--font-michroma)' }}>
-              Our Trusted Partners
-            </h3>
-            <div className="grid grid-cols-3 gap-3 sm:gap-4">
-              <div className="bg-[#D9D9D9] rounded-2xl h-40 sm:h-52"></div>
-              <div className="bg-[#D9D9D9] rounded-2xl h-40 sm:h-52"></div>
-              <div className="bg-[#D9D9D9] rounded-2xl h-40 sm:h-52"></div>
-            </div>
-            <div className="flex justify-center gap-2 pt-1">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#074139]" />
-              <span className="w-2.5 h-2.5 rounded-full border border-[#074139] bg-transparent" />
-              <span className="w-2.5 h-2.5 rounded-full border border-[#074139] bg-transparent" />
-            </div>
-          </div>
+          {/* OUR TRUSTED PARTNERS CARD (SCREENSHOT 2) */}
+<div className="bg-gradient-to-b from-[#167D7F] to-[#B0E5CC] rounded-[24px] p-6 sm:p-8 text-white text-center shadow-md space-y-6">
+  <h3 className="text-lg sm:text-xl tracking-wide font-normal" style={{ fontFamily: 'var(--font-michroma)' }}>
+    Our Trusted Partners
+  </h3>
+
+  {partnerSlides ? (
+    <>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentPartnerSlide}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="grid grid-cols-3 gap-3 sm:gap-4"
+        >
+          {partnerSlides[currentPartnerSlide].map((relatedProduct) => (
+            <Link
+              key={relatedProduct.id}
+              href={`/product/${relatedProduct.id}`}
+              className="relative bg-[#D9D9D9] rounded-2xl h-40 sm:h-52 overflow-hidden block"
+            >
+              <Image
+                src={relatedProduct.imagePath}
+                alt={relatedProduct.title}
+                fill
+                sizes="(max-width: 640px) 33vw, 200px"
+                className="object-cover"
+              />
+            </Link>
+          ))}
+        </motion.div>
+      </AnimatePresence>
+
+      {partnerSlides.length > 1 && (
+        <div className="flex justify-center gap-2 pt-1">
+          {partnerSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPartnerSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                currentPartnerSlide === index
+                  ? "w-7 bg-[#074139]"
+                  : "w-2.5 bg-white/50 hover:bg-white/80"
+              }`}
+            />
+          ))}
+        </div>
+      )}
+    </>
+  ) : (
+    <div className="grid grid-cols-3 gap-3 sm:gap-4">
+      {defaultPartnerImages.map((img, i) => (
+        <div key={i} className="relative bg-[#D9D9D9] rounded-2xl h-40 sm:h-52 overflow-hidden">
+          <Image
+            src={img}
+            alt={`Partner ${i + 1}`}
+            fill
+            sizes="(max-width: 640px) 33vw, 200px"
+            className="object-cover"
+          />
+        </div>
+      ))}
+    </div>
+  )}
+</div>
 
         </div>
 
