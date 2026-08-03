@@ -43,12 +43,8 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
   const [currentPartnerSlide, setCurrentPartnerSlide] = useState(0);
 
   // Gallery Images
-  const allImages = [
-    product.imagePath || "/Images/Feature-Product/Microfiber-Cloth.jpg",
-    "/Images/Feature-Product/Cleaning-Combo.jpg",
-    "/Images/Feature-Product/Interior-Exterior-Combo.jpg",
-    "/Images/Feature-Product/Microfiber-Cloth.jpg"
-  ];
+  const mainImg = product.imagePath || "/Images/Feature-Product/Microfiber-Cloth.jpg";
+  const allImages = [mainImg, mainImg];
 
   const [activeImage, setActiveImage] = useState(allImages[0]);
 
@@ -138,12 +134,12 @@ const partnerSlides = relatedProducts
           </div>
 
           {/* THUMBNAILS ROW */}
-          <div className="grid grid-cols-4 gap-3">
-            {allImages.map((img, i) => (
+          <div className="flex gap-3">
+            {allImages.slice(0, 1).map((img, i) => (
               <button
                 key={i}
                 onClick={() => setActiveImage(img)}
-                className={`aspect-square rounded-[18px] bg-white border overflow-hidden p-2 flex items-center justify-center transition-all ${
+                className={`w-20 h-20 sm:w-24 sm:h-24 rounded-[18px] bg-white border overflow-hidden p-2 flex items-center justify-center transition-all ${
                   activeImage === img
                     ? "border-[#1C8182] ring-2 ring-[#1C8182]/20 scale-95"
                     : "border-slate-200 opacity-80 hover:opacity-100"
