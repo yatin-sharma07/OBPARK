@@ -32,21 +32,21 @@ const marketSlides: MarketSlideItem[][] = [
       image: '/Images/obpark-market/Car Essentials.jpg',
       icon: Droplets,
       text: 'Must have car care essentials',
-      link: '/product/ess-prod-1',
+      link: '/product/premium-car-air-freshener',
     },
     {
       badge: 'Car Interiors',
       image: '/Images/obpark-market/Car Interior.jpg',
       icon: Armchair,
       text: 'Comfort, Style & Protection',
-      link: '/product/int-prod-1',
+      link: '/product/car-dashboard-dresser',
     },
     {
       badge: 'Car Exterior',
       image: '/Images/obpark-market/Car Exterior.jpg',
       icon: Car,
       text: 'Shine, Protect & Impress',
-      link: '/product/ext-prod-1',
+      link: '/product/cover-tata-safari',
     },
   ],
   // SLIDE 2
@@ -56,7 +56,7 @@ const marketSlides: MarketSlideItem[][] = [
       image: '/Images/obpark-market/CAr Cleaning.jpg',
       icon: Sparkles,
       text: 'Keep Your car spotless',
-      link: '/product/clean-prod-1',
+      link: '/product/car-wash-shampoo',
     },
     {
       badge: 'Car Wash',
