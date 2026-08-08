@@ -63,7 +63,7 @@ const marketSlides: MarketSlideItem[][] = [
       image: '/Images/obpark-market/Car Wash.jpg',
       icon: Droplets,
       text: 'Professional car wash services',
-      link: '/product/wash-prod-1',
+      link: '/product/wavex-car-shampoo-wash',
     },
     {
       badge: 'Car Repairs',
@@ -85,13 +85,14 @@ const marketSlides: MarketSlideItem[][] = [
       image: '/Images/obpark-market/Car polishing.jpg',
       icon: Disc,
       text: 'Restore shine, like new',
+      link: '/product/car-dashboard-polish',
     },
     {
       badge: 'Car Lifting',
       image: '/Images/obpark-market/Car Lifting.jpg',
       icon: ArrowUpCircle,
       text: 'Safe lifting for better service',
-      link: '/product/lift-prod-1',
+      link: '/product/car-jack-for-all-car-for-vehicle',
     },
   ],
 ]

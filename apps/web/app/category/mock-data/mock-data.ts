@@ -40,7 +40,7 @@ export const extraImages: OtherProductImages =
 
 export const MockData: Category[] = [
 
-  //category 1
+  //category 1 Electronics
 {
 //category 1
 id: "cat-1",
@@ -1287,7 +1287,7 @@ items: [
 ],
 },
 
-// Category 2
+// Category 2  Accessories
 {
 id: "cat-2",
 categoryName: "EV Accessories",
@@ -3107,7 +3107,7 @@ items: [
 ]
 },
 
-// Category 4
+// Category 4 emergency
 {
 id: "cat-4",
 categoryName: "Emergency & Utility  Products",
@@ -5572,362 +5572,340 @@ items: [
 ]
 },
 
-
+// car-wash category completed
 {
 id: "cat-6",
 categoryName: "Car Wash",
 slug: "car-wash",
 
 items: [
-  //Product-1
-  {
-  id: "wash-prod-1",
+  // Product-1
+{
+  id: "wavex-car-shampoo-wash",
 
-  title: "ShineXPro Premium Chenille Microfiber Car Wash Mitt",
+  productHeading: "Wavex Car Shampoo Wash",
 
-  brand: "ShineXPro",
+  title:
+    "Wavex Car Shampoo Wash and Wax 1L pH Neutral Gives Wet Look Shine, Buttery Smooth Feel - Leaves No Water Spots",
 
-  price: 299,
+  brand:
+    "pH-neutral car shampoo with wax for glossy shine and smooth finish.",
+
+  price: 584,
 
   currencySymbol: "₹",
 
-  imagePath: "/products/carWash/micro-fiber-wash-main.png",
+  imagePath: "/products/carWash/wavex-car-shampoo-wash-main.jpg",
 
   galleryImages: [
-    "/products/car-wash/shinexpro-wash-mitt-main.png",
-    "/products/car-wash/shinexpro-wash-mitt-1.png",
-    "/products/car-wash/shinexpro-wash-mitt-2.png",
-    "/products/car-wash/shinexpro-wash-mitt-3.png",
+    "/Images/car-washing/wavex-car-shampoo-wash/wavex-car-shampoo-wash-1.jpg",
+    "/Images/car-washing/wavex-car-shampoo-wash/wavex-car-shampoo-wash-2.jpg",
+    "/Images/car-washing/wavex-car-shampoo-wash/wavex-car-shampoo-wash-3.jpg",
+    "/Images/car-washing/wavex-car-shampoo-wash/wavex-car-shampoo-wash-4.jpg",
   ],
 
-  discountText: "-25%",
+  discountText: "₹80 OFF",
 
   ratingData: {
-    averageRating: 4.5,
-    totalReviewsCount: 2500,
-    boughtPastMonthText: "2K+ bought in past month",
-    soldLastWeekText: "Sold over 350 times last week",
+    averageRating: 4.3,
+    totalReviewsCount: 6447,
+    boughtPastMonthText: "6.4k reviews",
+    soldLastWeekText: "Sold over 6447 times",
   },
 
   attributes: [
-    { label: "Material", value: "Premium Chenille Microfiber" },
-    { label: "Usage", value: "Car Exterior Washing" },
-    { label: "Washable", value: "Machine Washable & Reusable" },
-    { label: "Scratch Safe", value: "Yes" },
-    { label: "Color", value: "Blue" },
+    {
+      label: "Feature",
+      value: "pH Neutral Formula",
+    },
+    {
+      label: "Feature",
+      value: "Wash & Wax Technology",
+    },
+    {
+      label: "Feature",
+      value: "Spot-Free Cleaning",
+    },
+    {
+      label: "Feature",
+      value: "Premium Car Care",
+    },
   ],
 
   aboutSections: [
     {
-      heading: "Scratch-Free Cleaning",
+      heading: "pH-Balanced Formula",
       content:
-        "Ultra-soft chenille microfiber lifts dirt safely without scratching your car's paint.",
+        "pH-Balanced Formula: Safe for all paint types, ensures thorough cleaning without harming your car's paint or wax layer.",
     },
     {
-      heading: "Highly Absorbent",
+      heading: "Brazilian Wax & Advanced Protection",
       content:
-        "Absorbs plenty of water and soap for faster, more effective vehicle washing.",
+        "Infused with Brazilian Wax: Contains pure Brazilian wax that provides a high-gloss, wet look finish, mimicking a just-waxed shine. Advanced Polymer Technology: Includes polymers that enhance the protection and durability of the vehicle's surface.",
     },
     {
-      heading: "Reusable & Durable",
+      heading: "Smooth Application & Economical Use",
       content:
-        "Machine washable microfiber mitt designed for repeated use and long-lasting performance.",
+        "Butter Smooth Texture: Easy to apply and spread, allowing for a swift and efficient washing experience. Economical Use: Highly Concentrated, Requires only 20ml per 3-4 liters of water for bucket washing, and 100ml per 900ml for foam washing.",
+    },
+    {
+      heading: "Versatile Washing & Long-Lasting Shine",
+      content:
+        "Versatile Washing Options: Suitable for both traditional bucket washing and modern foam washing techniques. Enhanced Protection: Leaves a protective layer that repels dust and makes the surface smooth, keeping your car cleaner for longer.",
     },
   ],
 
   shippingBadges: [
-    "Free Delivery",
-    "Reusable",
-    "Machine Washable",
-    "Scratch Safe",
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
   ],
 
   reviewsBreakdown: {
     starBars: [
-      { stars: 5, percentage: 76 },
-      { stars: 4, percentage: 16 },
-      { stars: 3, percentage: 4 },
+      { stars: 5, percentage: 72 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 6 },
       { stars: 2, percentage: 2 },
       { stars: 1, percentage: 2 },
     ],
 
     userFeed: [
       {
-        id: "wash-review-1",
+        id: "car-wash-review-1",
+
         reviewerName: "Rahul",
+
         rating: 5,
+
         isVerifiedBuyer: true,
+
         commentText:
-          "Very soft microfiber mitt. Cleans the car well without leaving scratches.",
-        postedDateAgo: "2 months ago",
+          "Excellent shampoo with thick foam. Leaves a glossy finish and doesn't damage the paint.",
+
+        postedDateAgo: "2 weeks ago",
       },
       {
-        id: "wash-review-2",
-        reviewerName: "Amit",
+        id: "car-wash-review-2",
+
+        reviewerName: "Arjun",
+
         rating: 4,
+
         isVerifiedBuyer: true,
+
         commentText:
-          "Good quality, absorbs water nicely and is easy to wash after use.",
-        postedDateAgo: "5 months ago",
+          "Easy to use, economical and gives a smooth wax finish. Great value for regular car washing.",
+
+        postedDateAgo: "1 month ago",
       },
     ],
   },
 },
-//Product-2
+// Product-2
 {
-  id: "wash-prod-2",
+  id: "shinexpro-car-wash-shampoo",
 
-  title: "3M Auto Specialty Car Wash Shampoo",
+  productHeading: "ShineXPro Car Wash Shampoo",
 
-  brand: "3M",
+  title:
+    "ShineXPro 300mL Car Wash Shampoo Concentrate - pH Neutral, Thick Suds With Shine Enhancing Formula - Bubblewash Car Foam Shampoo That Works With Both Bucket Wash And Foam Cannon",
 
-  price: 399,
+  brand:
+    "pH-neutral concentrated car shampoo with thick foam for scratch-free, glossy vehicle cleaning.",
+
+  price: 599,
 
   currencySymbol: "₹",
 
-  imagePath: "/products/carWash/3M-Shampoo-main.png",
+  imagePath: "/products/carWash/shinexpro-car-wash-shampoo-main.jpg",
 
   galleryImages: [
-    "/products/car-wash/3m-car-shampoo-main.png",
-    "/products/car-wash/3m-car-shampoo-1.png",
-    "/products/car-wash/3m-car-shampoo-2.png",
-    "/products/car-wash/3m-car-shampoo-3.png",
+    "/Images/car-washing/shinexpro-car-wash-shampoo/shinexpro-car-wash-shampoo-1.jpg",
+    "/Images/car-washing/shinexpro-car-wash-shampoo/shinexpro-car-wash-shampoo-2.jpg",
+    "/Images/car-washing/shinexpro-car-wash-shampoo/shinexpro-car-wash-shampoo-3.jpg",
+    "/Images/car-washing/shinexpro-car-wash-shampoo/shinexpro-car-wash-shampoo-4.jpg",
   ],
 
-  discountText: "-20%",
+  discountText: "₹99 OFF",
 
   ratingData: {
-    averageRating: 4.6,
-    totalReviewsCount: 6800,
-    boughtPastMonthText: "5K+ bought in past month",
-    soldLastWeekText: "Sold over 900 times last week",
+    averageRating: 4.3,
+    totalReviewsCount: 2000,
+    boughtPastMonthText: "2k reviews",
+    soldLastWeekText: "Sold over 2k times",
   },
 
   attributes: [
-    { label: "Brand", value: "3M" },
-    { label: "Item Form", value: "Liquid" },
-    { label: "Scent", value: "Fresh" },
-    { label: "Volume", value: "500 ml" },
-    { label: "Suitable For", value: "Cars, SUVs & Bikes" },
+    {
+      label: "Feature",
+      value: "pH Neutral Formula",
+    },
+    {
+      label: "Feature",
+      value: "Thick Foam Action",
+    },
+    {
+      label: "Feature",
+      value: "Shine Enhancing Finish",
+    },
+    {
+      label: "Feature",
+      value: "Versatile Use",
+    },
   ],
 
   aboutSections: [
     {
-      heading: "Rich Foam Formula",
+      heading: "Eco-Friendly pH Neutral Formula",
       content:
-        "Produces thick foam that effectively loosens dirt, dust, mud, and road grime for easy cleaning.",
+        "Eco-Friendly pH Neutral Car Shampoo Which Is Safe For All Vehicle Surfaces Including Wax, Sealant And Ceramic Coated Cars. Our Foam Car Washing Shampoo Is Compatible For Both Bucket Wash And With Foam Cannon.",
     },
     {
-      heading: "Paint Safe",
+      heading: "Powerful Cleaning Performance",
       content:
-        "pH-balanced shampoo cleans without damaging wax coatings or vehicle paint finishes.",
+        "Powerful Hyper Surfactants In Our Car Foam Shampoo Make It Effective At Cleaning Dirt And Grime And Leaves A Brilliant Shine Afterwards.",
     },
     {
-      heading: "Streak-Free Finish",
+      heading: "Highly Concentrated Formula",
       content:
-        "Leaves the vehicle with a glossy, clean surface while helping prevent water spots after rinsing.",
+        "ShineXPro Foam Shampoo For Car Wash Is A Concentrated Formula Where 20 mL Is Enough To Prepare 1 Ltr Car Wash Liquid.",
+    },
+    {
+      heading: "Thick Suds & Spot-Free Finish",
+      content:
+        "The Advanced Car Shampoo Technology Used Ensures Thick, Luxurious Suds That Rinses Away Easily Without Leaving Any Water Spots.",
     },
   ],
 
   shippingBadges: [
-    "Free Delivery",
-    "3M Quality",
-    "Paint Safe",
-    "Rich Foam",
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
   ],
 
   reviewsBreakdown: {
     starBars: [
-      { stars: 5, percentage: 79 },
-      { stars: 4, percentage: 15 },
-      { stars: 3, percentage: 3 },
+      { stars: 5, percentage: 71 },
+      { stars: 4, percentage: 19 },
+      { stars: 3, percentage: 6 },
       { stars: 2, percentage: 2 },
-      { stars: 1, percentage: 1 },
+      { stars: 1, percentage: 2 },
     ],
 
     userFeed: [
       {
-        id: "wash-review-3",
-        reviewerName: "Arjun",
+        id: "car-wash-review-3",
+
+        reviewerName: "Kiran",
+
         rating: 5,
+
         isVerifiedBuyer: true,
+
         commentText:
-          "Excellent shampoo. Generates rich foam and removes dirt easily without affecting the paint.",
-        postedDateAgo: "1 month ago",
+          "Produces thick foam and cleans the car really well. Leaves a glossy finish without water spots.",
+
+        postedDateAgo: "3 weeks ago",
       },
       {
-        id: "wash-review-4",
-        reviewerName: "Karthik",
+        id: "car-wash-review-4",
+
+        reviewerName: "Amit",
+
         rating: 4,
+
         isVerifiedBuyer: true,
+
         commentText:
-          "Good value for money. Cleans well and leaves a glossy finish after every wash.",
-        postedDateAgo: "4 months ago",
+          "Very concentrated shampoo. A small quantity is enough for a complete wash and works perfectly with my foam cannon.",
+
+        postedDateAgo: "1 month ago",
       },
     ],
   },
 },
-//Product-3
+// Product-3
 {
-  id: "wash-prod-3",
+  id: "foam-car-wash-shampoo",
 
-  title: "ShineXPro Foam Sprayer for Car & Bike Washing",
+  productHeading: "Foam Car Wash Shampoo",
 
-  brand: "ShineXPro",
+  title:
+    "ShineXPro Foam Car Wash Shampoo With 2Pcs 500GSM Microfiber Cloth & Wash Mitt - Thick Foam With Shine Enhancing Formula",
+
+  brand:
+    "Car wash kit with foam shampoo, microfiber cloths, and wash mitt.",
 
   price: 799,
 
   currencySymbol: "₹",
 
-  imagePath: "/products/carWash/ShinePro-Foam-main.png",
+  imagePath: "/products/carWash/foam-car-wash-shampoo-main.jpg",
 
   galleryImages: [
-    "/products/car-wash/shinexpro-foam-sprayer-main.png",
-    "/products/car-wash/shinexpro-foam-sprayer-1.png",
-    "/products/car-wash/shinexpro-foam-sprayer-2.png",
-    "/products/car-wash/shinexpro-foam-sprayer-3.png",
+    "/Images/car-washing/foam-car-wash-shampoo/foam-car-wash-shampoo-1.jpg",
+    "/Images/car-washing/foam-car-wash-shampoo/foam-car-wash-shampoo-2.jpg",
+    "/Images/car-washing/foam-car-wash-shampoo/foam-car-wash-shampoo-3.jpg",
+    "/Images/car-washing/foam-car-wash-shampoo/foam-car-wash-shampoo-4.jpg",
   ],
 
-  discountText: "-27%",
-
-  ratingData: {
-    averageRating: 4.5,
-    totalReviewsCount: 1800,
-    boughtPastMonthText: "2K+ bought in past month",
-    soldLastWeekText: "Sold over 280 times last week",
-  },
-
-  attributes: [
-    { label: "Brand", value: "ShineXPro" },
-    { label: "Capacity", value: "2 Litres" },
-    { label: "Material", value: "Heavy-Duty Plastic" },
-    { label: "Compatible With", value: "Cars, Bikes & SUVs" },
-    { label: "Operation", value: "Manual Pump Pressure" },
-  ],
-
-  aboutSections: [
-    {
-      heading: "Thick Foam Generation",
-      content:
-        "Creates dense foam that loosens dirt and road grime for an efficient and scratch-free wash.",
-    },
-    {
-      heading: "Easy Pressure Pump",
-      content:
-        "Manual pump-action sprayer builds pressure quickly, making vehicle cleaning faster and more convenient.",
-    },
-    {
-      heading: "Durable Construction",
-      content:
-        "Made from sturdy, leak-resistant materials for long-lasting use with car wash shampoos.",
-    },
-  ],
-
-  shippingBadges: [
-    "Free Delivery",
-    "Heavy Duty",
-    "Foam Sprayer",
-    "Reusable",
-  ],
-
-  reviewsBreakdown: {
-    starBars: [
-      { stars: 5, percentage: 75 },
-      { stars: 4, percentage: 17 },
-      { stars: 3, percentage: 5 },
-      { stars: 2, percentage: 2 },
-      { stars: 1, percentage: 1 },
-    ],
-
-    userFeed: [
-      {
-        id: "wash-review-5",
-        reviewerName: "Vikram",
-        rating: 5,
-        isVerifiedBuyer: true,
-        commentText:
-          "Excellent foam sprayer. Produces thick foam and makes washing the car much easier.",
-        postedDateAgo: "3 weeks ago",
-      },
-      {
-        id: "wash-review-6",
-        reviewerName: "Sandeep",
-        rating: 4,
-        isVerifiedBuyer: true,
-        commentText:
-          "Good quality pump sprayer. Easy to use and works well with car shampoo.",
-        postedDateAgo: "2 months ago",
-      },
-    ],
-  },
-},
-//Product-4
-{
-  id: "wash-prod-4",
-
-  title: "DYLECT High Pressure Car Washer with Cleaning Accessories",
-
-  brand: "DYLECT",
-
-  price: 4999,
-
-  currencySymbol: "₹",
-
-  imagePath: "/products/carWash/High-pressure-washer-main.png",
-
-  galleryImages: [
-    "/products/car-wash/dylect-pressure-washer-main.png",
-    "/products/car-wash/dylect-pressure-washer-1.png",
-    "/products/car-wash/dylect-pressure-washer-2.png",
-    "/products/car-wash/dylect-pressure-washer-3.png",
-  ],
-
-  discountText: "-22%",
+  discountText: "₹99 OFF",
 
   ratingData: {
     averageRating: 4.4,
-    totalReviewsCount: 1200,
-    boughtPastMonthText: "1K+ bought in past month",
-    soldLastWeekText: "Sold over 180 times last week",
+    totalReviewsCount: 200,
+    boughtPastMonthText: "200+ reviews",
+    soldLastWeekText: "Sold over 200+ times",
   },
 
   attributes: [
-    { label: "Brand", value: "DYLECT" },
-    { label: "Power Source", value: "Electric" },
-    { label: "Pressure", value: "High Pressure Water Jet" },
-    { label: "Suitable For", value: "Cars, Bikes, Patio & Home Cleaning" },
-    { label: "Included", value: "Pressure Gun & Cleaning Accessories" },
+    {
+      label: "Feature",
+      value: "Complete Cleaning Kit",
+    },
+    {
+      label: "Feature",
+      value: "Rich Foam Formula",
+    },
+    {
+      label: "Feature",
+      value: "Shine Enhancing Finish",
+    },
+    {
+      label: "Feature",
+      value: "Scratch-Free Cleaning",
+    },
   ],
 
   aboutSections: [
     {
-      heading: "Powerful High Pressure Cleaning",
+      heading: "Eco-Friendly Thick Foam Formula",
       content:
-        "Delivers a strong water jet to remove mud, dust, grease, and stubborn dirt from vehicles with ease.",
+        "Eco-friendly pH Neutral Thick&Slick Car Shampoo Is Safe For All Vehicle Surfaces Including Wax, Sealant And Ceramic Coated Cars & Bikes Our Foam Car Washing Shampoo Is Compatible For Both Bucket Wash And With Foam Cannon Powerful Hyper Surfactants In Our Car Wash Shampoo Make It Effective At Cleaning Dirt And Grime And Leaves A Brilliant Shine Afterwards ShineXPro Foam Shampoo For Car Wash Is A Concentrated Formula Where 20 mL Is Enough To Prepare 1 Ltr Car Wash Liquid The Advanced Bike & Car Shampoo Technology Used In Our Thick&Slick Shampoo Ensures Thick, Luxurious Suds That Rinses Away Easily Without Leaving Any Water Spots.",
     },
     {
-      heading: "Complete Cleaning Kit",
+      heading: "Premium Wash Mitt",
       content:
-        "Comes with essential accessories including spray gun and cleaning attachments for versatile washing.",
+        "This Car Wash Mitt Holds Tons Of Your Favorite Car Wash Shampoo And Clean Water To Drench Any Car In Thick Foaming Suds For An Ultimate Scratch And Swirl-Free Washing Experience. Car Wash Glove With Double Stitched Elastic Wrist Cuff For A Secure Fit, 80% Polyester And 20% Polyamide Blend Makes This Car Wash Microfiber Glove Exceptionally Soft And Gentle On Your Vehicle's Paint. Made From 100% AA-Grade Microfiber, Each Worm Like Chenille Acts Like A Velcro Trapping Dirt And Contaminants Deep Inside This Microfiber Car Wash Mitt. Reusable, Machine Washable And Lint Free Microfibre Gloves Which Is Suitable For Dry Or Wet Use.",
     },
     {
-      heading: "Multipurpose Usage",
+      heading: "Professional Microfiber Cloth",
       content:
-        "Ideal for washing cars, bikes, driveways, patios, garden furniture, and outdoor surfaces.",
+        "Professional Grade, 500 GSM Microfiber Cloth For Car And Bike, For Scratchless Washing And Detailing. Workhorse Terry Microfiber Cloth With It's 80% Polyester And 20% Polyamide Blend Ensures Its Safe For All Bike And Car Surfaces. Super Durable Car Cleaning Cloth With The Ability To Withstand Hundreds Of Washings With Proper Care. ShineXPro Is An Established Name You Can Trust And A Perfect Choice Of Microfiber Cloth For Kitchen, Bike And Car, 100% AA-Grade Microfiber Making It A Super Observant Towel For Car.",
     },
   ],
 
   shippingBadges: [
-    "Free Delivery",
-    "High Pressure",
-    "Electric Washer",
-    "Cleaning Kit",
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
   ],
 
   reviewsBreakdown: {
     starBars: [
-      { stars: 5, percentage: 73 },
-      { stars: 4, percentage: 18 },
+      { stars: 5, percentage: 74 },
+      { stars: 4, percentage: 17 },
       { stars: 3, percentage: 5 },
       { stars: 2, percentage: 2 },
       { stars: 1, percentage: 2 },
@@ -5935,31 +5913,281 @@ items: [
 
     userFeed: [
       {
-        id: "wash-review-7",
-        reviewerName: "Rohit",
+        id: "car-wash-review-5",
+
+        reviewerName: "Rahul",
+
         rating: 5,
+
         isVerifiedBuyer: true,
+
         commentText:
-          "Powerful pressure washer that cleans the car quickly. Accessories are useful and easy to assemble.",
-        postedDateAgo: "1 month ago",
+          "Complete cleaning kit with excellent foam and premium microfiber cloths. Leaves a glossy finish every time.",
+
+        postedDateAgo: "2 weeks ago",
       },
       {
-        id: "wash-review-8",
-        reviewerName: "Nitin",
+        id: "car-wash-review-6",
+
+        reviewerName: "Arjun",
+
         rating: 4,
+
         isVerifiedBuyer: true,
+
         commentText:
-          "Very good for home car washing. Strong water pressure and good overall build quality.",
-        postedDateAgo: "3 months ago",
+          "The wash mitt is soft and scratch-free. Shampoo creates thick foam and cleans dirt very effectively.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+// Product-4
+{
+  id: "bubblewash-snow-car-foam-shampoo",
+
+  productHeading: "Bubblewash Snow Car Foam Shampoo",
+
+  title:
+    "ShineXPro 5 Ltr Car Wash Shampoo Concentrate - pH Neutral, Thick Suds With Shine Enhancing Formula - Bubblewash Snow Car Foam Shampoo That Works With Both Bucket Wash And Foam Cannon",
+
+  brand:
+    "5L pH-neutral snow foam shampoo for deep cleaning and brilliant glossy vehicle finish.",
+
+  price: 1799,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carWash/bubblewash-car-main.jpg",
+
+  galleryImages: [
+    "/Images/car-washing/bubblewash-car/bubblewash-car-1.jpg",
+    "/Images/car-washing/bubblewash-car/bubblewash-car-2.jpg",
+    "/Images/car-washing/bubblewash-car/bubblewash-car-3.jpg",
+    "/Images/car-washing/bubblewash-car/bubblewash-car-4.jpg",
+  ],
+
+  discountText: "₹99 OFF",
+
+  ratingData: {
+    averageRating: 4.3,
+    totalReviewsCount: 400,
+    boughtPastMonthText: "400+ reviews",
+    soldLastWeekText: "Sold over 400+ times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "pH Neutral Formula",
+    },
+    {
+      label: "Feature",
+      value: "Rich Snow Foam",
+    },
+    {
+      label: "Feature",
+      value: "Glossy Finish",
+    },
+    {
+      label: "Feature",
+      value: "Professional Use",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Eco-Friendly pH Neutral Formula",
+      content:
+        "Eco-Friendly pH Neutral Car Shampoo Which Is Safe For All Vehicle Surfaces Including Wax, Sealant And Ceramic Coated Cars. Our Foam Car Washing Shampoo Is Compatible For Both Bucket Wash And With Foam Cannon.",
+    },
+    {
+      heading: "Powerful Cleaning Performance",
+      content:
+        "Powerful Hyper Surfactants In Our Car Foam Shampoo Make It Effective At Cleaning Dirt And Grime And Leaves A Brilliant Shine Afterwards.",
+    },
+    {
+      heading: "Highly Concentrated Formula",
+      content:
+        "ShineXPro Car Shampoo 5 Litre Is A Concentrated Formula Where 20 mL Is Enough To Prepare 1 Ltr Car Wash Liquid.",
+    },
+    {
+      heading: "Thick Snow Foam & Spot-Free Finish",
+      content:
+        "The Advanced Car Shampoo Technology Used Ensures Thick, Luxurious Suds That Rinses Away Easily Without Leaving Any Water Spots.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 72 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 6 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "car-wash-review-7",
+
+        reviewerName: "Sandeep",
+
+        rating: 5,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Excellent snow foam shampoo. Cleans perfectly and leaves a glossy finish without water spots.",
+
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "car-wash-review-8",
+
+        reviewerName: "Kiran",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Very economical 5L pack. Works great with both foam cannon and bucket wash.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+// Product-5
+{
+  id: "pressure-washer-gun",
+
+  productHeading: "Pressure Washer Gun",
+
+  title:
+    "DYLECT® AirWash Go Cordless Pressure Washer Gun, Battery-Operated High Pressure Car Washer with Adjustable Nozzle, Foam Spray, 5m Hose | Reliable Power for Car, Bike & Home Cleaning (Light Grey)",
+
+  brand:
+    "Cordless battery-powered pressure washer with foam spray for effortless car and home cleaning.",
+
+  price: 3799,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carWash/pressure-washer-gun-main.jpg",
+
+  galleryImages: [
+    "/Images/car-washing/pressure-washer-gun/pressure-washer-gun-1.jpg",
+    "/Images/car-washing/pressure-washer-gun/pressure-washer-gun-2.jpg",
+    "/Images/car-washing/pressure-washer-gun/pressure-washer-gun-3.jpg",
+    "/Images/car-washing/pressure-washer-gun/pressure-washer-gun-4.jpg",
+  ],
+
+  discountText: "₹100 OFF",
+
+  ratingData: {
+    averageRating: 4.2,
+    totalReviewsCount: 300,
+    boughtPastMonthText: "300+ reviews",
+    soldLastWeekText: "Sold over 300+ times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "Cordless Convenience",
+    },
+    {
+      label: "Feature",
+      value: "Adjustable Nozzle",
+    },
+    {
+      label: "Feature",
+      value: "Foam Spray Function",
+    },
+    {
+      label: "Feature",
+      value: "Versatile Cleaning",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Reliable Performance & Powerful Cleaning",
+      content:
+        "Engineered for Real Performance, Not Just Big Numbers. Unlike low-cost variants with inflated claims, DYLECT AirWash Go is designed for consistent pressure and stable water flow you can actually use for daily cleaning. Strong Cleaning for Everyday Needs Delivers effective pressure & flow ideal for car washing, bike cleaning, balconies, garden furniture, windows, and dusty surfaces—without damaging paint or fittings.",
+    },
+    {
+      heading: "Cordless Battery & Adjustable Nozzle",
+      content:
+        "Cordless Convenience with High-Quality Battery Pack Powered by 5 premium Li-ion cells (6500mAh total) for reliable runtime, safer charging, and longer battery life compared to generic high-voltage claims. Adjustable Nozzle + Foam Spray Included Switch easily between focused jet and wide spray. Foam bottle helps loosen dirt before washing, giving better cleaning with less water.",
+    },
+    {
+      heading: "Portable & Easy to Use",
+      content:
+        "Portable, Lightweight & Easy to Use No wiring, no external power. Just insert battery, connect hose, and start cleaning in seconds—perfect for homes, apartments, and travel use. Designed for use with clean water only; adding pesticides, chemicals, paints, thinners, or flammable/corrosive liquids may cause damage, safety hazards, and is not covered under warranty.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 73 },
+      { stars: 4, percentage: 17 },
+      { stars: 3, percentage: 6 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "car-wash-review-9",
+
+        reviewerName: "Rahul",
+
+        rating: 5,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Very convenient cordless pressure washer. The foam spray works really well and cleaning the car is much faster now.",
+
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "car-wash-review-10",
+
+        reviewerName: "Vikas",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Lightweight, easy to carry and the adjustable nozzle is very useful. Great for washing cars, bikes and balconies.",
+
+        postedDateAgo: "1 month ago",
       },
     ],
   },
 },
 
-
 ]
 },
-//Car-Cleaning category
+//Car-Cleaning category completed
 {
 id: "cat-7",
 categoryName: "Car Cleaning",
@@ -6191,7 +6419,330 @@ items: [
     ],
   },
 },
-//product-3
+// Product-3 
+{
+  id: "perfect-car-cleaning-wipes",
+
+  productHeading: "Perfect Car Cleaning Wipes",
+
+  title:
+    "SOFTSPUN Microfiber Single Side 1 Piece Chenille Glove,1700 GSM Grey+20X30cm Cleaning Wipe 2Pcs | Multi-Purpose Super Absorbent and Perfect Wash Cleaning for Bike Auto, Cars Both Interior and Exterior",
+
+  brand:
+    "Ultra-soft 1700 GSM microfiber glove and cleaning wipes designed for scratch-free cleaning of car interiors and exteriors.",
+
+  price: 699,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carCleaning/perfect-car-cleaning-wipes-main.jpg",
+
+  galleryImages: [
+    "/Images/car-cleaning/perfect-car-cleaning-wipes/perfect-car-cleaning-wipes-1.jpg",
+    "/Images/car-cleaning/perfect-car-cleaning-wipes/perfect-car-cleaning-wipes-2.jpg",
+    "/Images/car-cleaning/perfect-car-cleaning-wipes/perfect-car-cleaning-wipes-3.jpg",
+    "/Images/car-cleaning/perfect-car-cleaning-wipes/perfect-car-cleaning-wipes-4.jpg",
+  ],
+
+  discountText: "₹100 OFF",
+
+  ratingData: {
+    averageRating: 4.1,
+    totalReviewsCount: 1000,
+    boughtPastMonthText: "1k reviews",
+    soldLastWeekText: "Sold over 1k times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "1700 GSM Premium Microfiber",
+    },
+    {
+      label: "Feature",
+      value: "Scratch-Free Cleaning",
+    },
+    {
+      label: "Feature",
+      value: "Multi-Purpose Use",
+    },
+    {
+      label: "Feature",
+      value: "Complete Combo Pack",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "High Density Microfiber",
+      content:
+        "Made from premium 1700 GSM chenille microfiber that absorbs water and soap efficiently for quick and effective cleaning.",
+    },
+    {
+      heading: "Scratch-Free Finish",
+      content:
+        "Lint-free microfiber safely removes dust, dirt and grime without leaving scratches or swirl marks on painted surfaces.",
+    },
+    {
+      heading: "Reusable & Multi-Purpose",
+      content:
+        "Machine washable and suitable for cleaning car interiors, exteriors, glass, bikes and other vehicle surfaces.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 72 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 6 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "clean-review-5",
+        reviewerName: "Rahul",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Very soft microfiber and absorbs water quickly. Perfect for cleaning both interior and exterior.",
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "clean-review-6",
+        reviewerName: "Arjun",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Good quality wipes with a premium glove. Doesn't leave scratches and is easy to wash.",
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+// Product-4
+{
+  id: "car-high-pressure-washer",
+
+  productHeading: "Car High Pressure Washer",
+
+  title:
+    "AGARO Supreme High Pressure Washer | 1800W Motor | 120 Bar Pressure | 6.5L/Min Flow Rate | 8m Hose | Portable Car, Bike & Home Cleaning",
+
+  brand:
+    "High-pressure 1800W car washer with 120 Bar power for deep cleaning cars, bikes, and home surfaces.",
+
+  price: 5399,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carCleaning/car-high-pressure-washer-main.jpg",
+
+  galleryImages: [
+    "/Images/car-cleaning/car-high-pressure-washer/car-high-pressure-washer-1.jpg",
+    "/Images/car-cleaning/car-high-pressure-washer/car-high-pressure-washer-2.jpg",
+    "/Images/car-cleaning/car-high-pressure-washer/car-high-pressure-washer-3.jpg",
+    "/Images/car-cleaning/car-high-pressure-washer/car-high-pressure-washer-4.jpg",
+  ],
+
+  discountText: "₹1200 OFF",
+
+  ratingData: {
+    averageRating: 3.9,
+    totalReviewsCount: 10000,
+    boughtPastMonthText: "10k reviews",
+    soldLastWeekText: "Sold over 10k times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "Powerful 1800W Motor",
+    },
+    {
+      label: "Feature",
+      value: "High Flow Rate",
+    },
+    {
+      label: "Feature",
+      value: "Long Reach Design",
+    },
+    {
+      label: "Feature",
+      value: "Multi-Purpose Use",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Powerful High Pressure Cleaning",
+      content:
+        "1800W motor with 120 Bar pressure removes stubborn dirt, grease, oil and dust from cars, bikes and outdoor surfaces.",
+    },
+    {
+      heading: "Fast & Efficient Washing",
+      content:
+        "Delivers a 6.5L/min water flow with an adjustable spray nozzle for quick and effective cleaning across large areas.",
+    },
+    {
+      heading: "Portable & Easy To Use",
+      content:
+        "Comes with an 8-meter outlet hose, foam bottle and auto shut-off function for convenient and energy-efficient cleaning.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 65 },
+      { stars: 4, percentage: 20 },
+      { stars: 3, percentage: 9 },
+      { stars: 2, percentage: 3 },
+      { stars: 1, percentage: 3 },
+    ],
+
+    userFeed: [
+      {
+        id: "clean-review-7",
+        reviewerName: "Rahul",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Very powerful washer. Cleans mud and dirt effortlessly from my car and bike.",
+        postedDateAgo: "3 weeks ago",
+      },
+      {
+        id: "clean-review-8",
+        reviewerName: "Sandeep",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Easy to use with good pressure. Foam bottle works really well.",
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+// Product-5
+{
+  id: "car-vacuum-cleaner",
+
+  productHeading: "Car Vacuum Cleaner",
+
+  title:
+    "SEZNIK 4-in-1 Cordless Vacuum Cleaner & Blower | 6000mAh Rechargeable | 3-Speed Suction up to 15000PA | BLDC Motor | For Home & Car",
+
+  brand:
+    "Powerful cordless 4-in-1 vacuum cleaner with blower for home and car cleaning.",
+
+  price: 3399,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carCleaning/car-vacuum-cleaner-main.jpg",
+
+  galleryImages: [
+    "/Images/car-cleaning/car-vacuum-cleaner/car-vacuum-cleaner-1.jpg",
+    "/Images/car-cleaning/car-vacuum-cleaner/car-vacuum-cleaner-2.jpg",
+    "/Images/car-cleaning/car-vacuum-cleaner/car-vacuum-cleaner-3.jpg",
+    "/Images/car-cleaning/car-vacuum-cleaner/car-vacuum-cleaner-4.jpg",
+  ],
+
+  discountText: "₹900 OFF",
+
+  ratingData: {
+    averageRating: 4.1,
+    totalReviewsCount: 2125,
+    boughtPastMonthText: "2.1k reviews",
+    soldLastWeekText: "Sold over 2125 times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "Powerful Suction Performance",
+    },
+    {
+      label: "Feature",
+      value: "4-in-1 Cleaning Function",
+    },
+    {
+      label: "Feature",
+      value: "Long Battery Life",
+    },
+    {
+      label: "Feature",
+      value: "Multi-Surface Cleaning",
+    },
+  ],
+
+  aboutSections: [
+  {
+    heading: "Long-Lasting Rechargeable Battery",
+    content:
+      "Powered by a high-capacity 6000mAh lithium-ion battery, this cordless vacuum cleaner delivers up to 25 minutes of runtime on low mode. The Type-C fast charging support fully charges the device in around 2 hours, making it convenient for regular home and car cleaning.",
+  },
+  {
+    heading: "Powerful 4-in-1 Cleaning Performance",
+    content:
+      "Equipped with a 100W BLDC motor and three adjustable suction levels ranging from 6KPA to 15000PA, the vacuum easily removes dust, crumbs and debris. It also functions as a blower and includes multiple nozzles and accessories for cleaning dashboards, seats, keyboards, sofas and tight corners.",
+  },
+  {
+    heading: "Washable HEPA Filter & Easy Maintenance",
+    content:
+      "Features a durable washable metal HEPA filter that captures fine dust and allergens, along with a 200ml transparent dust container for quick emptying. Its lightweight ergonomic design, 1-year warranty, free PAN India pickup & drop service and 24×7 customer support make it a reliable cleaning solution for everyday use.",
+  },
+],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 71 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 7 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "clean-review-9",
+        reviewerName: "Amit",
+        rating: 5,
+        isVerifiedBuyer: true,
+        commentText:
+          "Excellent suction power and battery backup. Perfect for cleaning car interiors.",
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "clean-review-10",
+        reviewerName: "Vikas",
+        rating: 4,
+        isVerifiedBuyer: true,
+        commentText:
+          "Very handy and lightweight. The blower function is a great addition.",
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
 
 
 ]
@@ -6204,12 +6755,1562 @@ categoryName: "Car Lifting",
 slug: "car-lifting",
 
 items: [
- 
+  // Product-1
+{
+  id: "car-jack-for-all-car-for-vehicle",
+
+  productHeading: "Car Jack for All Car for Vehicle",
+
+  title:
+    "JAGGER JAG177 Heavy Duty Manual Scissor Car Jack for All Car for Vehicle Lift (3 TON with Ratchet & 19MM Spanner [ Black ])",
+
+  brand:
+    "Heavy-duty 3-ton manual car jack for safe and convenient vehicle lifting.",
+
+  price: 1310,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carLift/car-jack-main.jpg",
+
+  galleryImages: [
+    "/Images/car-lifting/car-jack/car-jack-1.jpg",
+    "/Images/car-lifting/car-jack/car-jack-2.jpg",
+    "/Images/car-lifting/car-jack/car-jack-3.jpg",
+    "/Images/car-lifting/car-jack/car-jack-4.jpg",
+  ],
+
+  discountText: "₹100 OFF",
+
+  ratingData: {
+    averageRating: 3.2,
+    totalReviewsCount: 50,
+    boughtPastMonthText: "50+ reviews",
+    soldLastWeekText: "Sold 50+ times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "3 Ton Heavy Capacity",
+    },
+    {
+      label: "Feature",
+      value: "Heavy-Duty Construction",
+    },
+    {
+      label: "Feature",
+      value: "Complete Lifting Solution",
+    },
+    {
+      label: "Feature",
+      value: "Easy Operation",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Lifting Range",
+      content:
+        "DIAMENSION : JAGGER Scissor Jack connects right into your car and lifts your car easily. Minimum Height - 80 mm and Maximum Height - 340 mm.",
+    },
+    {
+      heading: "Complete Kit & Durable Material",
+      content:
+        "CONTAIN - 1 Scissor jack, 1 spanner 19mm. MATERIAL : Most commonly used in the automobile industry, Made up of High Quality Steel and rust free. DURABILITY : Durable, Tough Simple Rugged, Easy To Install.",
+    },
+    {
+      heading: "Portable Design",
+      content:
+        "PORTABILITY : Extension rod is portable which enhances ease of use and storage spaces.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 56 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 12 },
+      { stars: 2, percentage: 7 },
+      { stars: 1, percentage: 7 },
+    ],
+
+    userFeed: [
+      {
+        id: "lifting-review-1",
+
+        reviewerName: "Rahul",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Strong and sturdy jack. Easy to use for emergency tyre changes.",
+
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "lifting-review-2",
+
+        reviewerName: "Amit",
+
+        rating: 3,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Good build quality and compact enough to keep inside the car.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+// Product-2
+{
+  id: "auto-addict-car-jack",
+
+  productHeading: "Auto Addict Car Jack",
+
+  title:
+    "Auto Addict Car Jack 5 ton Hydraulic Bottle Jack for All Cars",
+
+  brand:
+    "5-ton hydraulic bottle jack for safe, powerful, and effortless vehicle lifting.",
+
+  price: 925,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carLift/auto-addict-car-jack-main.jpg",
+
+  galleryImages: [
+    "/Images/car-lifting/auto-addict-car-jack/auto-addict-car-jack-1.jpg",
+    "/Images/car-lifting/auto-addict-car-jack/auto-addict-car-jack-2.jpg",
+    "/Images/car-lifting/auto-addict-car-jack/auto-addict-car-jack-3.jpg",
+    "/Images/car-lifting/auto-addict-car-jack/auto-addict-car-jack-4.jpg",
+  ],
+
+  discountText: "₹50 OFF",
+
+  ratingData: {
+    averageRating: 3.8,
+    totalReviewsCount: 300,
+    boughtPastMonthText: "300+ reviews",
+    soldLastWeekText: "Sold 300+ times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "5 Ton Heavy Capacity",
+    },
+    {
+      label: "Feature",
+      value: "Hydraulic Lifting System",
+    },
+    {
+      label: "Feature",
+      value: "Durable Construction",
+    },
+    {
+      label: "Feature",
+      value: "Compact & Portable",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Easy & Efficient Lifting",
+      content:
+        "Easy to use and durable. Reduces effort and makes tyre change quick and easy.",
+    },
+    {
+      heading: "Heavy-Duty Construction",
+      content:
+        "Heavy duty metal construction ensures strength, stability and long-lasting performance for everyday vehicle lifting tasks.",
+    },
+    {
+      heading: "Reliable Car Jack",
+      content:
+        "Designed for all cars, this 5 ton hydraulic bottle jack provides safe, powerful and convenient lifting whenever required.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 63 },
+      { stars: 4, percentage: 20 },
+      { stars: 3, percentage: 9 },
+      { stars: 2, percentage: 4 },
+      { stars: 1, percentage: 4 },
+    ],
+
+    userFeed: [
+      {
+        id: "lifting-review-3",
+
+        reviewerName: "Vikram",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Strong hydraulic jack that lifts my car with very little effort.",
+
+        postedDateAgo: "3 weeks ago",
+      },
+      {
+        id: "lifting-review-4",
+
+        reviewerName: "Karthik",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Compact, durable and easy to store in the boot. Good value for money.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+// Product-3
+{
+  id: "jack-for-passengers-cars",
+
+  productHeading: "Trolley Jack for Passenger Cars",
+
+  title:
+    "Scissor Jack 1500 kg Trolley Jack for Passenger Cars SUV MPV Max 1.5 Tonnes Jack with Ratchet/Crank (Black 1.5T)",
+
+  brand:
+    "1.5-ton scissor jack for safe vehicle lifting, ideal for cars and SUVs.",
+
+  price: 1199,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carLift/jack-for-passengers-cars-main.jpg",
+
+  galleryImages: [
+    "/Images/car-lifting/jack-for-passengers-cars/jack-for-passengers-cars-1.jpg",
+    "/Images/car-lifting/jack-for-passengers-cars/jack-for-passengers-cars-2.jpg",
+    "/Images/car-lifting/jack-for-passengers-cars/jack-for-passengers-cars-3.jpg",
+    "/Images/car-lifting/jack-for-passengers-cars/jack-for-passengers-cars-4.jpg",
+  ],
+
+  discountText: "₹100 OFF",
+
+  ratingData: {
+    averageRating: 4.0,
+    totalReviewsCount: 10,
+    boughtPastMonthText: "10 reviews",
+    soldLastWeekText: "Sold 10 times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "1.5 Ton Lifting Capacity",
+    },
+    {
+      label: "Feature",
+      value: "Strong & Durable Design",
+    },
+    {
+      label: "Feature",
+      value: "Easy Operation",
+    },
+    {
+      label: "Feature",
+      value: "Portable & Compact",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Portable & Convenient",
+      content:
+        "Convenient: The scissor jack is easy to carry and space-saving. You can easily take it in the car if you need it. And he's solid enough.",
+    },
+    {
+      heading: "Efficient Lifting Performance",
+      content:
+        "Advantages: it is very labor-saving and can easily lift the vehicle off the ground with the supplied wrench for work such as changing tires. Product details: maximum load 1.5 tonnes; minimum lifting height: approx. 105 mm, maximum lifting height: approx. 385 mm. Dimensions: 425 x 90 x 105 mm. Net weight: 3 kg.",
+    },
+    {
+      heading: "Strong Construction & Wide Compatibility",
+      content:
+        "High quality: the solid base plate also ensures a secure stand, the product can be used very comfortably and easily. Uses: combi, vans, SUVs, large vans, small buses.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 69 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 7 },
+      { stars: 2, percentage: 3 },
+      { stars: 1, percentage: 3 },
+    ],
+
+    userFeed: [
+      {
+        id: "lifting-review-5",
+
+        reviewerName: "Rahul",
+
+        rating: 5,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Very sturdy jack and easy to operate. Perfect for emergency tyre replacement.",
+
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "lifting-review-6",
+
+        reviewerName: "Manoj",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Compact, lightweight and fits easily in the car. Good quality for the price.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+]
+
+},
+
+//car-repair completed
+{
+id: "cat-9",
+categoryName: "Car Repair",
+slug: "car-repair",
+
+items: [
+// Product-1
+{
+  id: "universal-tubeless-tyre-puncture-kit",
+
+  productHeading: "Universal Tubeless Tyre Puncture Kit",
+
+  title:
+    "GRAND PITSTOP Universal Tubeless Tyre Puncture Kit | Strip-Based (Pack of 10 pcs) | Flat Tyre Repair Tool for Cars, Bikes, Trucks, Autos | Easy to Use | Emergency Tire Kit for On-The-Go Repairs",
+
+  brand:
+    "Universal tubeless tyre puncture repair kit for quick, reliable emergency roadside tyre repairs.",
+
+  price: 299,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carRepair/tubeless-tyre-kit-main.jpg",
+
+  galleryImages: [
+    "/Images/car-repair/tubeless-tyre-kit/tubeless-tyre-kit-1.jpg",
+    "/Images/car-repair/tubeless-tyre-kit/tubeless-tyre-kit-2.jpg",
+    "/Images/car-repair/tubeless-tyre-kit/tubeless-tyre-kit-3.jpg",
+    "/Images/car-repair/tubeless-tyre-kit/tubeless-tyre-kit-4.jpg",
+  ],
+
+  discountText: "₹50 OFF",
+
+  ratingData: {
+    averageRating: 4.0,
+    totalReviewsCount: 700,
+    boughtPastMonthText: "700+ reviews",
+    soldLastWeekText: "Sold over 700+ times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "Quick Puncture Repair",
+    },
+    {
+      label: "Feature",
+      value: "Universal Compatibility",
+    },
+    {
+      label: "Feature",
+      value: "Easy to Use",
+    },
+    {
+      label: "Feature",
+      value: "Complete Repair Pack",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Complete Emergency Repair Kit",
+      content:
+        "GRAND PITSTOP Universal Tire Puncture Repair Kit includes T Handle for insertion X 1, Tire Reamer Tool X 1, 4 ways valve stem tool X 1, Valves X 4, Knife X 1, Repair Plugs X 15 Meet all your needs on tire repairing work totally.",
+    },
+    {
+      heading: "Premium Quality & Easy Repairs",
+      content:
+        "Our Universal Tire Puncture Repair Kit is made of the high strength rustless zinc alloy, can easily pierce the plugs and quickly finished the repair work. Tire repair strips of best natural rubber are equipped with airtight bag, excellent ageing resistant performance. Repair punctures for all tubeless tire without remove tire from rim, detailed instruction are given in the user manual, professional repair without professional skill required.",
+    },
+    {
+      heading: "Universal Compatibility & Portable Storage",
+      content:
+        "Perfect fit for Autos, Cars, Motorcycles, Trucks, RVs and other vehicles with tubeless tire, please note this is not for tube tires. GRAND PITSTOP Universal tire puncture repair tools can be organised in a compact carry bag, Airtight packaging for Puncture plugs which increases the Service life of the strips. Which is perfect car emergency accessory.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 69 },
+      { stars: 4, percentage: 19 },
+      { stars: 3, percentage: 7 },
+      { stars: 2, percentage: 3 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "repair-review-1",
+
+        reviewerName: "Rohit",
+
+        rating: 5,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Very useful emergency puncture repair kit. Fixed my tyre within minutes during a road trip.",
+
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "repair-review-2",
+
+        reviewerName: "Amit",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Good quality tools and repair strips. Compact kit that's easy to keep in the car.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+// Product-2
+{
+  id: "tubeless-tyre-puncture-repair",
+
+  productHeading: "Tubeless Tyre Puncture Repair",
+
+  title:
+    "WILLIBEE 11-in-1 (Pack of 10 Strips) Tubeless Tyre Puncture Repair Kit for Car & Bike | Heavy-Duty Puncher Kit (Includes Storage Bag)",
+
+  brand:
+    "11-in-1 tubeless tyre repair kit for quick, durable roadside puncture repairs anywhere.",
+
+  price: 399,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carRepair/tubeless-tyre-repair-main.jpg",
+
+  galleryImages: [
+    "/Images/car-repair/tubeless-tyre-repair/tubeless-tyre-repair-1.jpg",
+    "/Images/car-repair/tubeless-tyre-repair/tubeless-tyre-repair-2.jpg",
+    "/Images/car-repair/tubeless-tyre-repair/tubeless-tyre-repair-3.jpg",
+    "/Images/car-repair/tubeless-tyre-repair/tubeless-tyre-repair-4.jpg",
+  ],
+
+  discountText: "₹99 OFF",
+
+  ratingData: {
+    averageRating: 4.1,
+    totalReviewsCount: 2000,
+    boughtPastMonthText: "2k reviews",
+    soldLastWeekText: "Sold over 2k times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "11-in-1 Repair Kit",
+    },
+    {
+      label: "Feature",
+      value: "Universal Compatibility",
+    },
+    {
+      label: "Feature",
+      value: "Quick & Reliable Repairs",
+    },
+    {
+      label: "Feature",
+      value: "Portable Storage Bag",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Quick Emergency Repairs",
+      content:
+        "KEEP ROLLING, WORRY-FREE – Compact 11-in-1 tubeless tyre repair kit designed to fix punctures anytime without waiting for a mechanic. 10 PREMIUM STRIPS – High-grip rubber strips designed for tight sealing, heat resistance and long-lasting durability.",
+    },
+    {
+      heading: "Heavy-Duty Construction",
+      content:
+        "HEAVY-DUTY BUILD – Tools made from premium materials for strength and long-lasting use.",
+    },
+    {
+      heading: "Portable & Made in India",
+      content:
+        "STORAGE BAG – Sturdy storage pouch keeps tools organised, portable and easy to carry in your car or bike. MADE IN INDIA – Proudly manufactured in India with trusted quality and durability.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 71 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 6 },
+      { stars: 2, percentage: 3 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "repair-review-3",
+
+        reviewerName: "Vikram",
+
+        rating: 5,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Compact and reliable repair kit. Helped me fix a puncture quickly during my journey.",
+
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "repair-review-4",
+
+        reviewerName: "Karthik",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Strong tools with good quality repair strips. Storage pouch keeps everything organized.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+// Product-3
+{
+  id: "car-windshield-crack-repair",
+
+  productHeading: "Car Windshield Crack Repair",
+
+  title:
+    "Latest Car Windshield Crack Repair Kit, Glass Repair Liquid for Cracks for Fix Auto Windshield Glass Cracks, Car Window Glass Repair Tool Set for Quick and Easy Auto Scratch Fix",
+
+  brand:
+    "Windshield crack repair kit for quick, easy restoration of damaged automotive glass surfaces.",
+
+  price: 599,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carRepair/car-windshield-main.jpg",
+
+  galleryImages: [
+    "/Images/car-repair/car-windshield/car-windshield-1.jpg",
+    "/Images/car-repair/car-windshield/car-windshield-2.jpg",
+    "/Images/car-repair/car-windshield/car-windshield-3.jpg",
+    "/Images/car-repair/car-windshield/car-windshield-4.jpg",
+  ],
+
+  discountText: "₹99 OFF",
+
+  ratingData: {
+    averageRating: 4.5,
+    totalReviewsCount: 60,
+    boughtPastMonthText: "60 reviews",
+    soldLastWeekText: "Sold 60 times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "Quick Crack Repair",
+    },
+    {
+      label: "Feature",
+      value: "High-Strength Repair Resin",
+    },
+    {
+      label: "Feature",
+      value: "Easy DIY Application",
+    },
+    {
+      label: "Feature",
+      value: "Universal Compatibility",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Affordable DIY Windshield Repair",
+      content:
+        "[ Save on Expensive Repairs ] – Avoid costly garage visits and windshield replacements by fixing minor chips and cracks yourself at home with this affordable and reliable DIY solution. [ Quick & Hassle-Free Application ] – Designed for simple, step-by-step use, allowing you to complete repairs in minutes without professional tools or technical skills. Perfect for busy car owners.",
+    },
+    {
+      heading: "Crystal-Clear & Durable Finish",
+      content:
+        "[ Crystal-Clear Finish ] – Restores transparency and improves visibility by reducing the appearance of cracks and scratches, ensuring safer driving in both day and night conditions. [ Strengthens Windshield Durability ] – Creates a strong, long-lasting bond that reinforces the glass surface and protects it from further damage caused by vibrations, bumps, or weather changes. [ Reliable in All Weather Conditions ] – Performs effectively in hot summers, cold winters, and rainy environments, maintaining repair strength even under extreme temperature variations.",
+    },
+    {
+      heading: "Universal & Travel Ready",
+      content:
+        "[ Universal Vehicle Compatibility ] – Suitable for most types of vehicles including cars, SUVs, vans, and small trucks, making it a versatile maintenance tool for every vehicle owner. [ Compact & Travel-Ready Design ] – Lightweight and easy to store in your glove box, tool kit, or car trunk, ensuring you’re always prepared for unexpected windshield damage on the road. [ Complete DIY Repair Kit Included ] – Comes with all essential tools and accessories required for effective windshield repair, eliminating the need to purchase additional equipment. [ Long-Lasting & Preventive Solution ] – Not only repairs existing damage but also helps prevent small chips from turning into large cracks, saving you time, money, and stress in the long run.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 78 },
+      { stars: 4, percentage: 14 },
+      { stars: 3, percentage: 5 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 1 },
+    ],
+
+    userFeed: [
+      {
+        id: "repair-review-5",
+
+        reviewerName: "Suresh",
+
+        rating: 5,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Easy to apply and it reduced the crack visibility significantly. Great DIY repair kit.",
+
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "repair-review-6",
+
+        reviewerName: "Anil",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Good value for money. Helped stop a small crack from spreading further.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+// Product-4
+{
+  id: "tool-kit-socket-ratchet-wrench-set-socket-wrench",
+
+  productHeading: "Tool Kit Socket Ratchet Wrench Set Socket Wrench",
+
+  title:
+    "CLAPONE Tool Kit Socket Ratchet Wrench Set Socket Wrench/Screwdriver Set/Bike Tool Set/Socket Wrenches/Auto Repairs/Car/Motorcycle/Bike Repair Goti Set/Socket Screwdriver (BLACK, 46 Pcs)",
+
+  brand:
+    "46-piece socket ratchet tool kit for versatile automotive, motorcycle, and household repairs.",
+
+  price: 769,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carRepair/tool-kit-main.jpg",
+
+  galleryImages: [
+    "/Images/car-repair/tool-kit/tool-kit-1.jpg",
+    "/Images/car-repair/tool-kit/tool-kit-2.jpg",
+    "/Images/car-repair/tool-kit/tool-kit-3.jpg",
+    "/Images/car-repair/tool-kit/tool-kit-4.jpg",
+  ],
+
+  discountText: "₹100 OFF",
+
+  ratingData: {
+    averageRating: 3.6,
+    totalReviewsCount: 100,
+    boughtPastMonthText: "100+ reviews",
+    soldLastWeekText: "Sold 100+ times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "46-Piece Tool Set",
+    },
+    {
+      label: "Feature",
+      value: "Multi-Purpose Use",
+    },
+    {
+      label: "Feature",
+      value: "Durable Construction",
+    },
+    {
+      label: "Feature",
+      value: "Portable Storage Case",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Complete Multi-Purpose Tool Kit",
+      content:
+        "Complete 46-piece tool kit for multiple repair needs – This tool kit includes 46 essential pieces such as socket wrenches, screwdriver bits, ratchet handle, extension bar and different socket sizes. It is designed to help with a wide variety of repair and maintenance tasks, making it a practical addition to any home, garage or workshop where regular fixing and assembling work is required. Suitable for car, motorcycle and bike repair work – The tool set is ideal for performing basic vehicle maintenance such as tightening bolts, loosening nuts and assembling parts on cars, motorcycles and bicycles. It can also be used for small household repairs, furniture assembly and other general mechanical tasks, making it a versatile tool kit for everyday use.",
+    },
+    {
+      heading: "Durable Chrome Vanadium Construction",
+      content:
+        "Durable and strong metal construction – The tools are made from high quality chrome vanadium steel that provides excellent strength and durability. This material is resistant to wear and corrosion, ensuring the tools maintain their performance even after repeated use. The sturdy build helps handle regular repair work while offering long lasting reliability. Smooth ratchet mechanism for easy operation – The ratchet handle features a smooth and efficient mechanism that allows quick tightening and loosening of fasteners without removing the tool repeatedly. This design helps save time and effort during repairs and provides better control while working on different types of bolts and nuts.",
+    },
+    {
+      heading: "Portable Storage & Flexible Use",
+      content:
+        "Compact storage case for easy organization – All tools are neatly arranged inside a compact and durable storage case that keeps every piece organized and easy to find. The case helps protect the tools from damage and makes it convenient to carry the set anywhere, whether for home repairs, vehicle maintenance or professional work. Multi purpose screwdriver bit selection – The kit includes a variety of screwdriver bits designed to handle different types of screws such as flat head, star and hex. This allows the user to work on multiple repair tasks without needing separate tools. The interchangeable bits add flexibility and convenience to the overall tool set.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 60 },
+      { stars: 4, percentage: 21 },
+      { stars: 3, percentage: 10 },
+      { stars: 2, percentage: 5 },
+      { stars: 1, percentage: 4 },
+    ],
+
+    userFeed: [
+      {
+        id: "repair-review-7",
+
+        reviewerName: "Rahul",
+
+        rating: 5,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Excellent tool kit for bike and car repairs. All the essential tools are included in one compact box.",
+
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "repair-review-8",
+
+        reviewerName: "Vikram",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Good quality sockets and ratchet. Very handy for home maintenance and emergency vehicle repairs.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+// Product-5
+{
+  id: "metal-car-dent-remover",
+
+  productHeading: "Metal Car Dent Remover",
+
+  title:
+    "Metal Car Dent Remover Suction Cup Puller with Handle – Heavy Duty Dent Lifter for Vehicle Body Repair, Glass, Tiles (Green)",
+
+  brand:
+    "Heavy-duty suction dent puller for quick vehicle dent and surface repairs effortlessly.",
+
+  price: 749,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carRepair/metal-car-dent-remover-main.jpg",
+
+  galleryImages: [
+    "/Images/car-repair/car-dent-remover/metal-car-dent-remover-1.jpg",
+    "/Images/car-repair/car-dent-remover/metal-car-dent-remover-2.jpg",
+    "/Images/car-repair/car-dent-remover/metal-car-dent-remover-3.jpg",
+    "/Images/car-repair/car-dent-remover/metal-car-dent-remover-4.jpg",
+  ],
+
+  discountText: "₹49 OFF",
+
+  ratingData: {
+    averageRating: 2.6,
+    totalReviewsCount: 20,
+    boughtPastMonthText: "20 reviews",
+    soldLastWeekText: "Sold 20 times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "Powerful Suction Grip",
+    },
+    {
+      label: "Feature",
+      value: "Multi-Surface Use",
+    },
+    {
+      label: "Feature",
+      value: "Heavy-Duty Construction",
+    },
+    {
+      label: "Feature",
+      value: "Easy to Use",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Ergonomic & Heavy-Duty Design",
+      content:
+        "UNIQUE ERGONOMIC DESIGN: Single-stroke pump design provides easy and secure one-hand operation. HEAVY DUTY CONSTRUCTION: Built with strong aluminum alloy housing for long-term durability.",
+    },
+    {
+      heading: "Multi-Purpose Repair Tool",
+      content:
+        "MULTIPURPOSE TOOL: Ideal for car dent removal and lifting smooth materials like glass, tiles, mirrors, and granite. WEAR-RESISTANT BUILD: Impact-resistant shell withstands tough working environments.",
+    },
+    {
+      heading: "Simple & Reliable Operation",
+      content:
+        "EASY TO USE: Simple suction process ensures instant usability for professionals and DIY users.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 42 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 14 },
+      { stars: 2, percentage: 12 },
+      { stars: 1, percentage: 14 },
+    ],
+
+    userFeed: [
+      {
+        id: "repair-review-9",
+
+        reviewerName: "Karthik",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Works well on small dents and the suction grip is quite strong. Easy to use at home.",
+
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "repair-review-10",
+
+        reviewerName: "Ramesh",
+
+        rating: 3,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Useful for minor dents on smooth surfaces. Takes a little practice but gets the job done.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+
 ]
 },
 
+//Car Polishing
+{
+id: "cat-10",
+categoryName: "Car Polishing",
+slug: "car-polishing",
 
+items: [
+// Product-1
+{
+  id: "car-dashboard-polish",
 
+  productHeading: "Car Dashboard Polish",
 
+  title:
+    "Wavex Dashboard Polish and Leather Conditioner + Protectant (1L) Car Dashboard Polish | Car Polish for Interior Plastic, Leather, Vinyl & Rubber | Dashboard Polish that Protects, Shines & Conditions",
 
+  brand:
+    "Dashboard polish and leather conditioner for lasting shine, protection, and interior care.",
+
+  price: 820,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carPolish/car-dashboard-polish-main.jpg",
+
+  galleryImages: [
+    "/Images/car-polish/car-dashboard-polish/car-dashboard-polish-1.jpg",
+    "/Images/car-polish/car-dashboard-polish/car-dashboard-polish-2.jpg",
+    "/Images/car-polish/car-dashboard-polish/car-dashboard-polish-3.jpg",
+    "/Images/car-polish/car-dashboard-polish/car-dashboard-polish-4.jpg",
+  ],
+
+  discountText: "₹99 OFF",
+
+  ratingData: {
+    averageRating: 4.3,
+    totalReviewsCount: 600,
+    boughtPastMonthText: "600 reviews",
+    soldLastWeekText: "Sold 600 times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "Multi-Surface Formula",
+    },
+    {
+      label: "Feature",
+      value: "Restores Shine",
+    },
+    {
+      label: "Feature",
+      value: "Conditions & Protects",
+    },
+    {
+      label: "Feature",
+      value: "Easy Application",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Advanced Interior Protection",
+      content:
+        "Advanced Car Polish for Interiors- Wavex Dashboard and Leather Conditioner + Protectant Car Dashboard Polish has a zero dust attraction, non-greasy formulation that provides interior plastic, leather, vinyl and rubber components with a natural, showroom-like shine. Car Dashboard Polish that Conditions & Protects- Wavex Dashboard and Leather Conditioner + Protectant Dashboard Polish goes deep down into the components to provide a much needed nourishment. This Car Polish for interiors protects against UV rays, cracking, fading and discolouration.",
+    },
+    {
+      heading: "Fresh Fragrance & OEM Finish",
+      content:
+        "Car Dashboard Polish with Pleasant Fragrance- Wavex Dashboard and Leather Conditioner + Protectant Car Polish for dashboards is infused with an extremely pleasant, peach-fruit fragrance. Not only would your car’s interiors look great, they will also have a refreshing fragrance. Great Dashboard Polish for OEM Finish- Regular use of the Wavex Dashboard and Leather Conditioner + Protectant Car Polish will ensure that your car’s interiors remain in a 'Factory-Fresh Finish' for a really long time.",
+    },
+    {
+      heading: "Convenient Multi-Purpose Formula",
+      content:
+        "Most Convenient Car Dashboard Polish- Its partial cleaning properties followed by ease of use make this car polish for interior the most convenient dashboard polish in the auto care industry. One Car Polish, Many Purposes- On the lookout for a dashboard polish, car dashboard polish, plastic refreshing polish for car, car interior polish, leather polish or a leather conditioner? Choose Wavex Dashboard and Leather Conditioner + Protectant Dashboard Polish for it.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 71 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 7 },
+      { stars: 2, percentage: 2 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "polish-review-1",
+
+        reviewerName: "Rahul",
+
+        rating: 5,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Excellent dashboard polish with a natural finish. Keeps the interior looking fresh without feeling greasy.",
+
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "polish-review-2",
+
+        reviewerName: "Sandeep",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Easy to apply and the peach fragrance is pleasant. Restores faded dashboard surfaces nicely.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+// Product-2
+{
+  id: "dashboard-polish-for-car-interior",
+
+  productHeading: "Dashboard Polish for Car Interior",
+
+  title:
+    "ShineXPro Dashboard Polish for Car Interior - Car Dashboard Polish & Protectant Restores Original Finish, UV Blockers Prevent Fading - Car Dashboard Cleaner with Non-Greasy, Less Reflective Formula",
+
+  brand:
+    "Non-greasy dashboard polish restores shine and protects interiors from UV fading.",
+
+  price: 1399,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carPolish/dashboard-polish-interior-main.jpg",
+
+  galleryImages: [
+    "/Images/car-polish/dashboard-polish-interior/dashboard-polish-interior-1.jpg",
+    "/Images/car-polish/dashboard-polish-interior/dashboard-polish-interior-2.jpg",
+    "/Images/car-polish/dashboard-polish-interior/dashboard-polish-interior-3.jpg",
+    "/Images/car-polish/dashboard-polish-interior/dashboard-polish-interior-4.jpg",
+  ],
+
+  discountText: "₹200 OFF",
+
+  ratingData: {
+    averageRating: 4.1,
+    totalReviewsCount: 50,
+    boughtPastMonthText: "50 reviews",
+    soldLastWeekText: "Sold 50 times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "Restores Original Finish",
+    },
+    {
+      label: "Feature",
+      value: "UV Protection Formula",
+    },
+    {
+      label: "Feature",
+      value: "Non-Greasy Finish",
+    },
+    {
+      label: "Feature",
+      value: "Interior Surface Care",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Restores Original Shine & UV Protection",
+      content:
+        "RESTORES ORIGINAL SHINE & FINISH: ShineXPro Car Dashboard Polish & Protectant restores the original finish of faded plastics and most interior surfaces. Safe to use on dashboards, door trims, and other plastic or fiber parts of your car. UV PROTECTION & LONG-LASTING CARE: ShineXPro Car Dashboard Cleaner is infused with powerful UV blockers that prevent fading, cracking, and discoloration, keeping your car’s interior looking new.",
+    },
+    {
+      heading: "Non-Greasy & Safe Finish",
+      content:
+        "NON-GREASY & DUST-RESISTANT FORMULA: ShineXPro Dashboard Polish for Car Interior is designed with a non-greasy finish and infused with less antistatic additives that help repel dirt and dust, keeping your dashboard cleaner for longer. SAFE, LOW-GLARE FINISH: ShineXPro Dashboard Cleaner is specially formulated to be less reflective, ensuring dashboard visibility is not compromised while driving, for enhanced road safety.",
+    },
+    {
+      heading: "Easy Application & Fresh Fragrance",
+      content:
+        "EASY APPLICATION & FRESH FRAGRANCE: ShineXPro Dashboard Polish comes with a convenient applicator sponge which allows you to evenly spread the polish across your car’s dashboard and interior surfaces. After use, it leaves a pleasant, fresh fragrance, keeping your car interior smelling clean and refreshed.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 69 },
+      { stars: 4, percentage: 19 },
+      { stars: 3, percentage: 7 },
+      { stars: 2, percentage: 3 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "polish-review-3",
+
+        reviewerName: "Amit",
+
+        rating: 5,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Brings back the original dashboard finish without leaving any greasy residue. The UV protection is an added bonus.",
+
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "polish-review-4",
+
+        reviewerName: "Vikas",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Easy to apply with the included sponge. Leaves a clean matte finish and a pleasant fragrance inside the car.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+// Product-3
+{
+  id: "wavex-car-polish-kit-12-pcs",
+
+  productHeading: "Wavex Car Polish Kit 12 Pcs",
+
+  title:
+    "Wavex Car Polish Kit 12 Pcs | Includes Car Dashboard Polish, Car Wax, Tyre Polish, Car Shampoo, Windshield Washer & Car Freshener, Scratch Remover, 2 Cloths, 3 Applicators - Car Washing Kit",
+
+  brand:
+    "Complete 12-piece car care kit for cleaning, polishing, protection, and detailing.",
+
+  price: 1689,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carPolish/wavex-car-polish-kit-main.jpg",
+
+  galleryImages: [
+    "/Images/car-polish/wavex-car-polish-kit/wavex-car-polish-kit-1.jpg",
+    "/Images/car-polish/wavex-car-polish-kit/wavex-car-polish-kit-2.jpg",
+    "/Images/car-polish/wavex-car-polish-kit/wavex-car-polish-kit-3.jpg",
+    "/Images/car-polish/wavex-car-polish-kit/wavex-car-polish-kit-4.jpg",
+  ],
+
+  discountText: "₹300 OFF",
+
+  ratingData: {
+    averageRating: 4.1,
+    totalReviewsCount: 300,
+    boughtPastMonthText: "300 reviews",
+    soldLastWeekText: "Sold 300 times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "Complete Car Care Kit",
+    },
+    {
+      label: "Feature",
+      value: "All-in-One Detailing Solution",
+    },
+    {
+      label: "Feature",
+      value: "Scratch & Surface Care",
+    },
+    {
+      label: "Feature",
+      value: "Premium Cleaning Accessories",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Complete Cleaning & Protection",
+      content:
+        "Restore Brilliance: Our Carnauba Wax Polish is formulated with the finest ingredients to deliver a deep, lustrous shine that will turn heads wherever you go. Say goodbye to dull paint and hello to a showroom-worthy finish. Protect with Confidence: The Dashboard and Leather Conditioner Protectant ensures your interior surfaces stay clean, nourished, and protected from the sun's harmful rays. Experience the joy of a rejuvenated interior that exudes elegance. Showroom-Worthy Tyres: Turn heads with our Tyre Guard solution, providing a glossy black finish that lasts. Not only does it enhance the appearance of your tyres, but it also minimizes dust attraction and stickiness, keeping your tyres cleaner for longer.",
+    },
+    {
+      heading: "Superior Cleaning Performance",
+      content:
+        "Superior Cleaning Power: Our Wonder Wash Car and Bike Shampoo offers a powerful yet gentle cleansing experience. It effortlessly removes dirt, grime, and road residue, leaving your car spotless and ready to shine. Say Goodbye to Scratches: Our Scratch Remover helps diminish the appearance of minor scratches, restoring your car's paintwork to its former glory. Crystal-Clear Vision: Maintain optimal visibility on the road with our Windshield Washer Fluid Concentrate. It cuts through stubborn dirt and bugs, ensuring a clear view and safer driving.",
+    },
+    {
+      heading: "Professional Grade Accessories",
+      content:
+        "Professional-Grade Care: The kit includes premium microfiber cloths and foam applicators for a gentle and precise application. Achieve professional results with ease.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 70 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 7 },
+      { stars: 2, percentage: 3 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "polish-review-5",
+
+        reviewerName: "Rahul",
+
+        rating: 5,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Everything needed for complete car detailing comes in one kit. Excellent quality and value for money.",
+
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "polish-review-6",
+
+        reviewerName: "Kiran",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "The shampoo, wax and dashboard polish work really well. The microfiber cloths are also of premium quality.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+// Product-4
+{
+  id: "high-gloss-car-polish",
+
+  productHeading: "High-gloss Car Polish",
+
+  title:
+    "Meguiar's Ultimate Polish – High-Gloss Polish for a Show Car Shine – Permanently Removes Light Swirls to Produce a Deep, Wet Reflection with a High Gloss Shine - Easy to Use, 473ml",
+
+  brand:
+    "High-gloss car polish removes light swirls and delivers deep wet-look shine.",
+
+  price: 884,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carPolish/high-gloss-car-polish-main.jpg",
+
+  galleryImages: [
+    "/Images/car-polish/high-gloss-car-polish/high-gloss-car-polish-1.jpg",
+    "/Images/car-polish/high-gloss-car-polish/high-gloss-car-polish-2.jpg",
+    "/Images/car-polish/high-gloss-car-polish/high-gloss-car-polish-3.jpg",
+    "/Images/car-polish/high-gloss-car-polish/high-gloss-car-polish-4.jpg",
+  ],
+
+  discountText: "₹80 OFF",
+
+  ratingData: {
+    averageRating: 4.1,
+    totalReviewsCount: 400,
+    boughtPastMonthText: "400 reviews",
+    soldLastWeekText: "Sold 400 times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "High-Gloss Finish",
+    },
+    {
+      label: "Feature",
+      value: "Removes Light Swirls",
+    },
+    {
+      label: "Feature",
+      value: "Premium Polishing Formula",
+    },
+    {
+      label: "Feature",
+      value: "Easy Application",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Prepares Surface & Enhances Gloss",
+      content:
+        "PREPS SURFACE: Pre-waxing glaze that prepares the surface for wax while offering deep reflections and high gloss. BEST CAR GLOSS: Conditioning oils add depth of color and maximum gloss prior to waxing, especially on dark colored cars.",
+    },
+    {
+      heading: "Removes Swirls Safely",
+      content:
+        "REMOVE SWIRLS: Quickly and gently removes fine swirls and towel marks for mirror-like reflections. SAFE FOR CLEAR COATS: Safe and on all glossy paints, including clear coats.",
+    },
+    {
+      heading: "Flexible Application",
+      content:
+        "FLEXIBLE APPLICATION: Safe and effective by hand or dual action polisher like Meguiar's MT300 Dual Action Polisher.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 71 },
+      { stars: 4, percentage: 18 },
+      { stars: 3, percentage: 6 },
+      { stars: 2, percentage: 3 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "polish-review-7",
+
+        reviewerName: "Rahul",
+
+        rating: 5,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Excellent polish. Removed light swirl marks and gave my car a deep glossy showroom finish.",
+
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "polish-review-8",
+
+        reviewerName: "Sandeep",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Easy to apply and works well before waxing. The shine on dark paint is impressive.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+// Product-5
+{
+  id: "3m-liquid-wax",
+
+  productHeading: "3M Liquid Wax",
+
+  title:
+    "3M Auto Specialty Liquid Wax 200ml (Pack of 2)",
+
+  brand:
+    "3M liquid wax pack provides lasting paint protection with brilliant shine finish.",
+
+  price: 623,
+
+  currencySymbol: "₹",
+
+  imagePath: "/products/carPolish/3m-liquid-wax-main.jpg",
+
+  galleryImages: [
+    "/Images/car-polish/3m-liquid-wax/3m-liquid-wax-1.jpg",
+    "/Images/car-polish/3m-liquid-wax/3m-liquid-wax-2.jpg",
+    "/Images/car-polish/3m-liquid-wax/3m-liquid-wax-3.jpg",
+    "/Images/car-polish/3m-liquid-wax/3m-liquid-wax-4.jpg",
+  ],
+
+  discountText: "₹10 OFF",
+
+  ratingData: {
+    averageRating: 4.1,
+    totalReviewsCount: 200,
+    boughtPastMonthText: "200 reviews",
+    soldLastWeekText: "Sold 200 times",
+  },
+
+  attributes: [
+    {
+      label: "Feature",
+      value: "Long-Lasting Protection",
+    },
+    {
+      label: "Feature",
+      value: "Brilliant Shine Finish",
+    },
+    {
+      label: "Feature",
+      value: "Easy Application",
+    },
+    {
+      label: "Feature",
+      value: "Premium 3M Quality",
+    },
+  ],
+
+  aboutSections: [
+    {
+      heading: "Restores Gloss & UV Protection",
+      content:
+        "Restores Gloss to Paint Surfaces & Protects from UV Rays.",
+    },
+    {
+      heading: "Cleans, Polishes & Protects",
+      content:
+        "The Premium Liquid Wax removes Oxidation and cleans, polishes and protects all painted surfaces.",
+    },
+    {
+      heading: "Long-Lasting Protective Barrier",
+      content:
+        "Forms a super-slick, protective barrier between the car's paint and the environment, reducing the sticking and build-up of mud, tar, insects and road grime.",
+    },
+  ],
+
+  shippingBadges: [
+    "Free Shipping over 1000",
+    "Pan India Shipping",
+    "No Cash on Delivery",
+  ],
+
+  reviewsBreakdown: {
+    starBars: [
+      { stars: 5, percentage: 70 },
+      { stars: 4, percentage: 19 },
+      { stars: 3, percentage: 6 },
+      { stars: 2, percentage: 3 },
+      { stars: 1, percentage: 2 },
+    ],
+
+    userFeed: [
+      {
+        id: "polish-review-9",
+
+        reviewerName: "Amit",
+
+        rating: 5,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Excellent liquid wax. Easy to apply and leaves a brilliant shine with lasting protection.",
+
+        postedDateAgo: "2 weeks ago",
+      },
+      {
+        id: "polish-review-10",
+
+        reviewerName: "Vikas",
+
+        rating: 4,
+
+        isVerifiedBuyer: true,
+
+        commentText:
+          "Good quality wax. Restores gloss and protects the paint from dust and UV exposure.",
+
+        postedDateAgo: "1 month ago",
+      },
+    ],
+  },
+},
+]
+}
 ];
