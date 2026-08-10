@@ -81,6 +81,7 @@ const similarProductSlides = [
     image: "/Images/similar-products/car-essentials.png",
     text: "Must have car care essentials",
     icon: Droplets,
+    link: "/product/premium-car-air-freshener",
     
   },
   {
@@ -88,12 +89,14 @@ const similarProductSlides = [
     image: "/Images/similar-products/car-polishing.png",
     text: "Restore shine, like new",
     icon: Disc,
+    link: "/product/car-polishing-kit",
   },
   {
     badge: "Car Repairs",
     image: "/Images/similar-products/car-repairs.png",
     text: "Expert care for every issue",
     icon: Wrench,
+    link: "/product/car-repairs",
   },
 ];
 
