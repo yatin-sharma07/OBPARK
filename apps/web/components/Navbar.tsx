@@ -258,7 +258,7 @@ export function Navbar() {
                                 {/* Right Column: Support */}
                                 <div className="flex-1 pl-8">
                                     <h3 className={`${microgrammaBold.className} text-white text-xl tracking-wider mb-4`}>SUPPORT</h3>
-                                    <p className={`${microgrammaBold.className} text-white/90 text-[11px] uppercase leading-[1.6] tracking-wider mb-8`}>EXPERT INSIGHTS, GUIDES, AND TOOLS TO POWER IMMERSIVE INNOVATION</p>
+                                    <p className={`${microgrammaBold.className} text-white/90 text-[11px] uppercase leading-[1.6] tracking-wider mb-8 whitespace-nowrap`}>EXPERT INSIGHTS, GUIDES, AND TOOLS<br />TO POWER IMMERSIVE INNOVATION</p>
                                     
                                     <div className="flex flex-col">
                                         <a href="https://obrive.com/support/help-center" target="_blank" rel="noopener noreferrer" className={`${microgrammaBold.className} font-light text-white hover:text-[#59D0B5] transition-colors py-4 border-t border-white/20 tracking-wider text-[13px]`}>OB Help Center</a>
@@ -266,7 +266,8 @@ export function Navbar() {
                                         <a href="https://obrive.com/faq/ob-services-faq" target="_blank" rel="noopener noreferrer" className={`${microgrammaBold.className} font-light text-white hover:text-[#59D0B5] transition-colors py-4 border-t border-white/20 tracking-wider text-[13px]`}>OB Services FAQ</a>
                                         <a href="https://obrive.com/faq/obpark-faq" target="_blank" rel="noopener noreferrer" className={`${microgrammaBold.className} font-light text-white hover:text-[#59D0B5] transition-colors py-4 border-t border-white/20 tracking-wider text-[13px]`}>OBPark FAQ</a>
                                         <a href="https://obrive.com/support/change-log" target="_blank" rel="noopener noreferrer" className={`${microgrammaBold.className} font-light text-white hover:text-[#59D0B5] transition-colors py-4 border-t border-white/20 tracking-wider text-[13px]`}>Change Log</a>
-                                        <a href="https://obrive.com/legal" target="_blank" rel="noopener noreferrer" className={`${microgrammaBold.className} font-light text-white hover:text-[#59D0B5] transition-colors py-4 border-y border-white/20 tracking-wider text-[13px]`}>Legal</a>
+                                        <a href="https://obrive.com/legal" target="_blank" rel="noopener noreferrer" className={`${microgrammaBold.className} font-light text-white hover:text-[#59D0B5] transition-colors py-4 border-t border-white/20 tracking-wider text-[13px]`}>Legal</a>
+                                        <a href="https://obrive.com/certifications" target="_blank" rel="noopener noreferrer" className={`${microgrammaBold.className} font-light text-white hover:text-[#59D0B5] transition-colors py-4 border-y border-white/20 tracking-wider text-[13px]`}>Certifications</a>
                                     </div>
                                 </div>
 
@@ -596,6 +597,7 @@ export function Navbar() {
                                                         <a href="https://obrive.com/faq/obpark-faq" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="py-2.5 px-6 text-[10px] sm:text-[11px] text-[#074139] hover:bg-[#59D0B5]/15 rounded-xl transition-colors">OBPark FAQ</a>
                                                         <a href="https://obrive.com/support/change-log" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="py-2.5 px-6 text-[10px] sm:text-[11px] text-[#074139] hover:bg-[#59D0B5]/15 rounded-xl transition-colors">Change Log</a>
                                                         <a href="https://obrive.com/legal" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="py-2.5 px-6 text-[10px] sm:text-[11px] text-[#074139] hover:bg-[#59D0B5]/15 rounded-xl transition-colors">Legal</a>
+                                                        <a href="https://obrive.com/certifications" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="py-2.5 px-6 text-[10px] sm:text-[11px] text-[#074139] hover:bg-[#59D0B5]/15 rounded-xl transition-colors">Certifications</a>
                                                     </motion.div>
                                                 )}
                                             </AnimatePresence>

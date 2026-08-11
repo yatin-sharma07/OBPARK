@@ -47,7 +47,7 @@ export interface AboutItemSection {
 
 export interface SingleProduct {
   id: string;
-  productHeading: string;
+  productHeading?: string;
   title: string; 
   brand: string;
   price: number;
