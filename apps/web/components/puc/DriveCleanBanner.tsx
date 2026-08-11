@@ -5,13 +5,13 @@ import { Leaf, Zap, ShieldCheck, Activity } from 'lucide-react';
 
 export default function DriveCleanBanner() {
     return (
-        <section className="w-full py-8">
+        <section className="w-full py-8 px-4 sm:px-8 md:px-12 xl:px-0">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="w-full bg-[#074c43] overflow-hidden shadow-[0_8px_30px_rgba(7,76,67,0.12)] border border-gray-100"
+                className="w-full max-w-[1300px] mx-auto bg-[#074c43] overflow-hidden rounded-[28px] shadow-[0_8px_30px_rgba(7,76,67,0.12)] border border-gray-100"
             >
                 {/* Mobile: text stacked above image */}
                 <div className="block lg:hidden w-full px-6 py-8 sm:px-10 sm:py-10 text-white">

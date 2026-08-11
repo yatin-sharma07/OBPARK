@@ -48,8 +48,8 @@ export default function PowerUp() {
     ];
 
     return (
-        <section className="w-full py-12 sm:py-14 md:py-16">
-            <div className="relative w-full overflow-hidden sm:aspect-[1728/708]">
+        <section className="w-full py-12 sm:py-14 md:py-16 px-4 sm:px-8 md:px-12 xl:px-0">
+            <div className="relative w-full max-w-[1300px] mx-auto overflow-hidden rounded-[28px] sm:aspect-[1728/708]">
                 {/* Background Image */}
                 <Image
                     src="/Images/ev-charging/power-up-bg.png"

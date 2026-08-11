@@ -191,9 +191,7 @@ function FastagPageContent() {
         <FastagDocumentsSection />
       </div>
       <FastagBannerSection />
-      <div className="w-full mx-auto xl:max-w-[1300px] px-4 sm:px-8 md:px-12 xl:px-0">
-        <FastagFaqs />
-      </div>
+      <FastagFaqs />
 
     </div>
   )

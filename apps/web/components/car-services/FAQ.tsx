@@ -1,96 +1,128 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
 import { microgrammaBold } from '@/lib/fonts';
+import { Plus, Minus } from 'lucide-react';
 
 const faqs = [
     {
-        question: 'What is car service and why is it important?',
+        question: 'How often should I service my car?',
         answer:
-            'Car service is a contract between you and the service company that protects you against financial loss in the event of an accident or theft. It is also mandatory by law in India.',
+            'It is recommended to service your car every 10,000 km or 12 months, whichever comes first. Regular servicing ensures optimal performance and prevents costly repairs.',
     },
     {
-        question: 'What is the difference between comprehensive and third-party service?',
+        question: 'What is included in a full car service?',
         answer:
-            'Third-party service only covers damages to other people or property caused by your car. Comprehensive service covers third-party liabilities as well as damages to your own car.',
+            'A full car service includes engine oil replacement, oil filter change, air filter cleaning/replacement, brake inspection, suspension check, fluid top-ups, and a 50+ point diagnostic check.',
     },
     {
-        question: 'Can I renew my car service online?',
+        question: 'Are genuine spare parts used for repairs?',
         answer:
-            'Yes, you can easily renew your car service online through our platform in just a few minutes without any paperwork.',
+            'Yes, we use 100% genuine and OEM-certified spare parts to guarantee quality, safety, and performance for your vehicle.',
     },
     {
-        question: 'How do I file a claim?',
+        question: 'Do you offer doorstep pick-up and drop service?',
         answer:
-            'You can file a claim online through our portal or app, or contact our 24x7 support team. We will guide you through the process and help you at our cashless network garages.',
+            'Yes, free doorstep pick-up and drop service is available for all major car servicing packages for your convenience.',
     },
 ];
 
 export default function FAQ() {
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
+    const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-    const toggleFaq = (index: number) => {
-        setOpenIndex(openIndex === index ? null : index);
+    const renderCard = (faq: typeof faqs[0], index: number) => {
+        const isOpen = openIndex === index;
+
+        return (
+            <div
+                key={index}
+                className={`flex flex-col rounded-[20px] transition-all duration-300 overflow-hidden ${
+                    isOpen ? 'bg-white shadow-md' : 'shadow-sm'
+                }`}
+                style={isOpen ? {} : { background: 'linear-gradient(135deg, #59D0B5 0%, #1C8182 100%)' }}
+            >
+                <button
+                    type="button"
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    className={`w-full text-left px-6 py-6 sm:px-8 sm:py-8 flex items-center justify-between transition-colors ${
+                        isOpen ? 'text-[#0C403A]' : 'text-white'
+                    }`}
+                >
+                    <span
+                        className="text-[14px] sm:text-[15px] font-semibold tracking-wide"
+                        style={{ fontFamily: 'var(--font-michroma)' }}
+                    >
+                        {faq.question}
+                    </span>
+                    {isOpen ? (
+                        <Minus className="w-5 h-5 shrink-0 text-[#0C403A]" />
+                    ) : (
+                        <Plus className="w-5 h-5 shrink-0 text-white" />
+                    )}
+                </button>
+
+                <AnimatePresence initial={false}>
+                    {isOpen && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: 'easeInOut' }}
+                            className="px-6 sm:px-8 pb-6 sm:pb-8"
+                        >
+                            <p
+                                className="text-[#0C403A] text-[13px] sm:text-[14px] leading-[1.7] whitespace-pre-line font-medium"
+                                style={{ fontFamily: 'var(--font-michroma)' }}
+                            >
+                                {faq.answer}
+                            </p>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+        );
     };
 
     return (
-        <section className="w-full px-4 py-14 sm:px-5 md:px-8 lg:px-10 xl:px-12">
-            <div className="mx-auto w-full max-w-none">
-                <motion.h2
-                    initial={{ opacity: 0, y: -18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.55 }}
-                    className={`${microgrammaBold.className} mb-9 text-center text-[24px] font-bold leading-tight text-[#06483f] sm:text-[28px] md:text-[32px] lg:text-[36px]`}
-                >
-                    FAQs on Car Services
-                </motion.h2>
+        <section className="w-full py-6 px-3 sm:px-5">
+            <div className="w-full rounded-[28px] bg-white pt-10 pb-16 sm:pt-14 sm:pb-20 md:pt-16 md:pb-28 px-6 sm:px-10 md:px-12 border border-[#E1EBE8] shadow-sm">
+                <div className="mx-auto w-full max-w-[1300px]">
+                    <p
+                        className="mb-3 text-[13px] sm:text-[14px] text-[#074139] tracking-wider uppercase font-semibold"
+                        style={{ fontFamily: 'var(--font-michroma)' }}
+                    >
+                        Frequently Asked Questions (FAQ)
+                    </p>
 
-                <div className="w-full space-y-4">
-                    {faqs.map((faq, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 14 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.08 }}
-                            className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
-                        >
-                            <button
-                                onClick={() => toggleFaq(idx)}
-                                className="w-full flex items-center justify-between p-5 text-left focus:outline-none"
-                            >
-                                <span className="text-[15px] font-bold leading-relaxed text-[#06483f] sm:text-[16px] md:text-[18px]">
-                                    {faq.question}
-                                </span>
+                    <h2
+                        className={`
+                            ${microgrammaBold.className}
+                            mb-10
+                            text-2xl
+                            sm:text-3xl
+                            md:text-[36px]
+                            text-[#074139]
+                            font-bold
+                        `}
+                    >
+                        Car Services FAQs
+                    </h2>
 
-                                <ChevronDown
-                                    size={24}
-                                    strokeWidth={2.4}
-                                    className={`shrink-0 text-[#06483f] transition-transform duration-300 ${openIndex === idx ? 'rotate-180' : ''
-                                        }`}
-                                />
-                            </button>
-
-                            <AnimatePresence initial={false}>
-                                {openIndex === idx && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: 'auto', opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                        className="overflow-hidden"
-                                    >
-                                        <div className="border-t border-[#dfe9e6] bg-[#f8fbfa] px-5 py-5 text-[14px] font-medium leading-[1.8] text-[#4f6964] sm:px-6 sm:text-[15px] md:px-8">
-                                            {faq.answer}
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </motion.div>
-                    ))}
+                    <div className="flex flex-col md:flex-row gap-5 sm:gap-6 w-full items-start">
+                        <div className="flex flex-col gap-5 sm:gap-6 w-full md:w-1/2">
+                            {faqs.map((faq, index) => {
+                                if (index % 2 !== 0) return null;
+                                return renderCard(faq, index);
+                            })}
+                        </div>
+                        <div className="flex flex-col gap-5 sm:gap-6 w-full md:w-1/2">
+                            {faqs.map((faq, index) => {
+                                if (index % 2 === 0) return null;
+                                return renderCard(faq, index);
+                            })}
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

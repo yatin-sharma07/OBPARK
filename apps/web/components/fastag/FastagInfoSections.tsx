@@ -252,7 +252,8 @@ export function FastagDocumentsSection() {
 
 export function FastagBannerSection() {
   return (
-    <section className="w-full relative overflow-hidden min-h-[600px] sm:min-h-0 sm:aspect-[1728/708] bg-[#f4fcf9] flex items-center">
+    <section className="w-full py-8 px-4 sm:px-8 md:px-12 xl:px-0 bg-[#f4fcf9]">
+      <div className="w-full max-w-[1300px] mx-auto relative overflow-hidden rounded-[28px] min-h-[600px] sm:min-h-0 sm:aspect-[1728/708] bg-[#f4fcf9] flex items-center">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image 
@@ -336,6 +337,7 @@ export function FastagBannerSection() {
           </motion.div>
 
         </motion.div>
+      </div>
       </div>
     </section>
   )

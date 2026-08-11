@@ -29,11 +29,9 @@ export default function PucPage() {
                 <div className="py-4">
                     <EverythingNeed />
                 </div>
-
-                <div className="py-10">
-                    <FAQ />
-                </div>
             </div>
+
+            <FAQ />
         </main>
     );
 }

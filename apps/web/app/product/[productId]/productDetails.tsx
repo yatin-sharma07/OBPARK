@@ -71,8 +71,19 @@ const allImages =
     } catch (e) {
       console.error(e);
     }
+    const cartItem = {
+      id: product.id,
+      name: product.title,
+      description: product.productHeading || 'Premium Product',
+      price: `${product.currencySymbol || '₹'} ${product.price}`,
+      priceVal: product.price,
+      quantity: quantity,
+      image: product.imagePath || product.galleryImages?.[0] || '',
+      vehicle: vehicleId ? 'Linked' : null
+    };
+    sessionStorage.setItem('mockup_cart_item', JSON.stringify(cartItem));
     setShowDialog(false);
-    openCart();
+    router.push('/cart');
   };
    
 const similarProductSlides = [
@@ -338,15 +349,15 @@ const similarProductSlides = [
           {/* SHIPPING BADGES ROW (3 SEPARATE PILLS) */}
           <div className="grid grid-cols-3 gap-3 pt-2">
             <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2 text-[9px] sm:text-[9px] text-[#074139] shadow-sm">
-              <Image src="/Images/product-common/Free shipping.svg" alt="Free shipping" width={20} height={20} className="shrink-0" />
+              <Image src="/Images/product-common/Free shipping.svg" alt="Free shipping" width={20} height={20} className="shrink-0 w-auto h-auto" />
               <span className="whitespace-nowrap" style={{ fontFamily: 'var(--font-michroma)' }}>Free shipping over1000</span>
             </div>
             <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2 text-[9px] sm:text-[11px] text-[#074139] shadow-sm">
-              <Image src="/Images/product-common/Fast global shipping.svg" alt="Fast global shipping" width={20} height={20} className="shrink-0" />
+              <Image src="/Images/product-common/Fast global shipping.svg" alt="Fast global shipping" width={20} height={20} className="shrink-0 w-auto h-auto" />
               <span style={{ fontFamily: 'var(--font-michroma)' }}>Pan India shipping</span>
             </div>
             <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2 text-[9px] sm:text-[11px] text-[#074139] shadow-sm">
-              <Image src="/Images/product-common/Buy more, save more.svg" alt="Buy more, save more" width={20} height={20} className="shrink-0" />
+              <Image src="/Images/product-common/Buy more, save more.svg" alt="Buy more, save more" width={20} height={20} className="shrink-0 w-auto h-auto" />
               <span className="whitespace-nowrap" style={{ fontFamily: 'var(--font-michroma)' }}>No Cash on Delivery</span>
             </div>
           </div>
@@ -451,6 +462,7 @@ const similarProductSlides = [
       src={similarProductSlides[currentPartnerSlide].image}
       alt={similarProductSlides[currentPartnerSlide].badge}
       fill
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
       className="object-cover"
     />
 

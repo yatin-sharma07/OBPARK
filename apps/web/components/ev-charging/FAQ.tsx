@@ -1,104 +1,128 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { microgrammaBold } from '@/lib/fonts';
 import { motion, AnimatePresence } from 'framer-motion';
+import { microgrammaBold } from '@/lib/fonts';
+import { Plus, Minus } from 'lucide-react';
+
+const faqs = [
+    {
+        question: 'How do I locate an EV charging station near me?',
+        answer:
+            'You can locate EV charging stations using our interactive map. Filter by charger type, availability, charging speed, and location to find the right station.',
+    },
+    {
+        question: 'What types of EV chargers are supported?',
+        answer:
+            'Our network supports all standard EV chargers including AC Type-2, DC Fast Chargers (CCS2 & CHAdeMO), and standard 15A wall sockets.',
+    },
+    {
+        question: 'Can I reserve a charging slot in advance?',
+        answer:
+            'Yes, you can reserve a charging slot at select stations in advance through the OBPARK platform to avoid waiting times.',
+    },
+    {
+        question: 'How do I pay for EV charging?',
+        answer:
+            'Payments can be made seamlessly via digital wallets, UPI, credit/debit cards, or pre-funded OBPARK credits directly through the app.',
+    },
+];
 
 export default function FAQ() {
-    const faqs = [
-        {
-            question: 'How do I find EV charging stations near me?',
-            answer:
-                'You can find charging stations by using the search bar at the top of the page. Simply enter your location or allow location access to see the nearest stations.',
-        },
-        {
-            question: 'What types of chargers are available?',
-            answer:
-                'We support a variety of chargers including fast chargers (DC) and standard chargers (AC). You can filter stations by connector type in the app.',
-        },
-        {
-            question: 'Can I see real-time availability of stations?',
-            answer:
-                'Yes, our platform provides live availability status for most stations on our network, so you know if a charger is free before you arrive.',
-        },
-        {
-            question: 'Is there a cost to use the OBPARK EV platform?',
-            answer:
-                'The platform is free to use for finding and navigating to stations. Charging costs vary by station and provider.',
-        },
-    ];
+    const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
+    const renderCard = (faq: typeof faqs[0], index: number) => {
+        const isOpen = openIndex === index;
 
-    const toggleFaq = (index: number) => {
-        setOpenIndex(openIndex === index ? null : index);
+        return (
+            <div
+                key={index}
+                className={`flex flex-col rounded-[20px] transition-all duration-300 overflow-hidden ${
+                    isOpen ? 'bg-white shadow-md' : 'shadow-sm'
+                }`}
+                style={isOpen ? {} : { background: 'linear-gradient(135deg, #59D0B5 0%, #1C8182 100%)' }}
+            >
+                <button
+                    type="button"
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    className={`w-full text-left px-6 py-6 sm:px-8 sm:py-8 flex items-center justify-between transition-colors ${
+                        isOpen ? 'text-[#0C403A]' : 'text-white'
+                    }`}
+                >
+                    <span
+                        className="text-[14px] sm:text-[15px] font-semibold tracking-wide"
+                        style={{ fontFamily: 'var(--font-michroma)' }}
+                    >
+                        {faq.question}
+                    </span>
+                    {isOpen ? (
+                        <Minus className="w-5 h-5 shrink-0 text-[#0C403A]" />
+                    ) : (
+                        <Plus className="w-5 h-5 shrink-0 text-white" />
+                    )}
+                </button>
+
+                <AnimatePresence initial={false}>
+                    {isOpen && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: 'easeInOut' }}
+                            className="px-6 sm:px-8 pb-6 sm:pb-8"
+                        >
+                            <p
+                                className="text-[#0C403A] text-[13px] sm:text-[14px] leading-[1.7] whitespace-pre-line font-medium"
+                                style={{ fontFamily: 'var(--font-michroma)' }}
+                            >
+                                {faq.answer}
+                            </p>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+        );
     };
 
     return (
-        <section className="w-full px-4 py-12 sm:py-14 md:py-16">
-            <div className="mx-auto max-w-full">
-                <motion.h2
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className={`${microgrammaBold.className} mb-8 text-center text-2xl font-bold text-[#0B402F] sm:text-[28px] md:text-[34px] lg:text-[36px]`}
-                >
-                    FAQs on EV Charging Stations
-                </motion.h2>
+        <section className="w-full py-6 px-3 sm:px-5">
+            <div className="w-full rounded-[28px] bg-white pt-10 pb-16 sm:pt-14 sm:pb-20 md:pt-16 md:pb-28 px-6 sm:px-10 md:px-12 border border-[#E1EBE8] shadow-sm">
+                <div className="mx-auto w-full max-w-[1300px]">
+                    <p
+                        className="mb-3 text-[13px] sm:text-[14px] text-[#074139] tracking-wider uppercase font-semibold"
+                        style={{ fontFamily: 'var(--font-michroma)' }}
+                    >
+                        Frequently Asked Questions (FAQ)
+                    </p>
 
-                <div className="w-full space-y-4">
-                    {faqs.map((faq, index) => {
-                        const isOpen = openIndex === index;
+                    <h2
+                        className={`
+                            ${microgrammaBold.className}
+                            mb-10
+                            text-2xl
+                            sm:text-3xl
+                            md:text-[36px]
+                            text-[#074139]
+                            font-bold
+                        `}
+                    >
+                        EV Charging FAQs
+                    </h2>
 
-                        return (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 14 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.08 }}
-                                className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
-                            >
-                                <button
-                                    type="button"
-                                    onClick={() => toggleFaq(index)}
-                                    className="
-                                        flex w-full items-center justify-between
-                                        px-6 py-4 text-left outline-none transition-colors
-                                        hover:bg-[#f8fbfa] sm:px-10
-                                    "
-                                >
-                                    <span className="font-medium text-[#143B33]">
-                                        {faq.question}
-                                    </span>
-
-                                    <ChevronDown
-                                        className={`h-5 w-5 flex-shrink-0 text-[#174B43] transition-transform duration-300 ${
-                                            isOpen ? 'rotate-180' : ''
-                                        }`}
-                                    />
-                                </button>
-
-                                <AnimatePresence initial={false}>
-                                    {isOpen && (
-                                        <motion.div
-                                            initial={{ height: 0, opacity: 0 }}
-                                            animate={{ height: 'auto', opacity: 1 }}
-                                            exit={{ height: 0, opacity: 0 }}
-                                            transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                            className="overflow-hidden"
-                                        >
-                                            <div className="px-5 pb-5 pt-1 text-[#3F665D] leading-relaxed text-sm">
-                                                    {faq.answer}
-                                                </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </motion.div>
-                        );
-                    })}
+                    <div className="flex flex-col md:flex-row gap-5 sm:gap-6 w-full items-start">
+                        <div className="flex flex-col gap-5 sm:gap-6 w-full md:w-1/2">
+                            {faqs.map((faq, index) => {
+                                if (index % 2 !== 0) return null;
+                                return renderCard(faq, index);
+                            })}
+                        </div>
+                        <div className="flex flex-col gap-5 sm:gap-6 w-full md:w-1/2">
+                            {faqs.map((faq, index) => {
+                                if (index % 2 === 0) return null;
+                                return renderCard(faq, index);
+                            })}
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

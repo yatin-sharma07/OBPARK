@@ -29,7 +29,7 @@ const serviceCategories = [
 ]
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   const renderCard = (item: typeof serviceCategories[0], index: number) => {
     const isOpen = openIndex === index
