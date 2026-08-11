@@ -18,6 +18,8 @@ import {
   ShieldAlert,
   UserCheck,
   Briefcase,
+  MapPin,
+  BadgeCheck,
 } from 'lucide-react'
 import { section } from 'framer-motion/m'
 
@@ -46,25 +48,91 @@ const whyRideRows = [
 ]
 
 const offerings = [
-  { icon: ClipboardCheck, title: 'Book a driver now or in advance' },
-  { icon: MousePointerClick, title: 'Book a driver now or in advance' },
-  { icon: HeartHandshake, title: 'Book a driver now or in advance' },
+  {
+    icon: ClipboardCheck,
+    title: 'Book a driver now or in advance',
+    body: 'Get a driver now or schedule a driver in advance for airport transfers, important meetings, doctor visits, shopping sprees, after-party drops, or any occasion.',
+  },
+  {
+    icon: MousePointerClick,
+    title: 'Book a driver now or in advance',
+    body: 'Get a driver now or schedule a driver in advance for airport transfers, important meetings, doctor visits, shopping sprees, after-party drops, or any occasion.',
+  },
+  {
+    icon: HeartHandshake,
+    title: 'Book a driver now or in advance',
+    body: 'Get a driver now or schedule a driver in advance for airport transfers, important meetings, doctor visits, shopping sprees, after-party drops, or any occasion.',
+  },
+  {
+    icon: MapPin,
+    title: 'Best-in-class drivers',
+    body: 'Plus drivers for premium rides as well as classic drivers for budget-friendly trips.',
+  },
 ]
 
 const safetyPoints = [
-  { icon: ShieldAlert, title: 'Book a driver now or in advance' },
-  { icon: UserCheck, title: 'Book a driver now or in advance' },
-  { icon: Briefcase, title: 'Book a driver now or in advance' },
+  {
+    icon: ShieldAlert,
+    title: 'Book a driver now or in advance',
+    body: 'Get a driver now or schedule a driver in advance for airport transfers, important meetings, doctor visits, shopping sprees, after-party drops, or any occasion.',
+  },
+  {
+    icon: UserCheck,
+    title: 'Book a driver now or in advance',
+    body: 'Get a driver now or schedule a driver in advance for airport transfers, important meetings, doctor visits, shopping sprees, after-party drops, or any occasion.',
+  },
+  {
+    icon: Briefcase,
+    title: 'Book a driver now or in advance',
+    body: 'Get a driver now or schedule a driver in advance for airport transfers, important meetings, doctor visits, shopping sprees, after-party drops, or any occasion.',
+  },
+  {
+    icon: BadgeCheck,
+    title: 'Safety Starts with Verification',
+    body: 'All OBDrive drivers undergo ID verification and third-party background checks before they can serve customers.',
+  },
 ]
 
 const cardBody =
   'Get a driver now or schedule a driver in advance for airport transfers, important meetings, doctor visits, shopping sprees, after-party drops, or any occasion.'
 
 const faqs = [
-  { q: 'How does it work?', a: 'Book a driver instantly or schedule one in advance through the app. We match you with a background-verified driver near you.' },
-  { q: 'Can we trust your drivers?', a: 'All drivers go through background verification, document checks, and ratings from previous rides before they can accept trips.' },
-  { q: 'How do I contact my driver?', a: 'Once a driver accepts your booking, their contact details and live location are shared in the app.' },
-  { q: 'What is the difference between Round Trip and One Way?', a: 'One Way bookings end once you reach your destination. Round Trip keeps the driver with you for the return leg too.' },
+  {
+    q: 'How Does OBDrive Work?',
+    a: "Request a driver through the OBDrive app, and we'll assign a verified driver to your booking. Your driver will head to your selected pickup location, while you can track their journey in real time through the app.",
+  },
+  {
+    q: 'Can We Trust OBDrive Drivers?',
+    a: 'Your safety is our top priority, and we never compromise on it. Every OBDrive driver undergoes a thorough background verification and screening process before joining our platform. Drivers also receive proper training to ensure they meet our safety and service standards.',
+  },
+  {
+    q: 'How Do I Contact My Driver?',
+    a: 'Once a driver is assigned to your booking, you can contact them directly through the Obpark app. Call or message your driver conveniently from the app without needing to share your personal number.',
+  },
+  {
+    q: "What's the Difference Between a Round Trip and a One-Way Trip?",
+    a: 'Round Trip: Your driver picks you up and brings you back to the same location where your trip started. One-Way Trip: Your driver picks you up at your selected location and drops you off at a different destination.',
+  },
+  {
+    q: 'How Much in Advance Should I Book a Driver?',
+    a: 'If a driver is available nearby, you can book an OBDrive driver instantly through the app. If no driver is currently available, or you\'d like to schedule a ride in advance, we recommend booking at least 1 hour ahead. This gives us enough time to arrange a verified driver for you.',
+  },
+  {
+    q: 'Can I Extend My Booking Duration?',
+    a: "Yes. You can extend your booking if you need your driver for longer. Simply inform your driver, and they'll accommodate the additional time whenever possible. Additional charges may apply based on the extra duration or distance, as per OBDrive's pricing policy.",
+  },
+  {
+    q: 'How Can I Pay for My Driver?',
+    a: 'You can pay your OBDrive driver directly at the end of your trip using Cash or UPI. You can also choose your preferred payment method while placing your booking through the Obpark app.',
+  },
+  {
+    q: 'What Is OBDrive Secure?',
+    a: 'OBDrive Secure is designed to provide added peace of mind during your journey. It covers eligible damages that may occur to your car due to the fault of an OBDrive driver while driving your vehicle, subject to the applicable terms and conditions.',
+  },
+  {
+    q: 'Do You Provide Invoices?',
+    a: 'Yes. Once your payment is completed, you can access or request your invoice directly from the OBDrive app. Go to My Account → Orders → Past Orders & Bookings to view your completed booking and invoice details.',
+  },
 ]
 
 export function ObDriverPage() {
@@ -133,7 +201,7 @@ export function ObDriverPage() {
       </p>
       <Button
         onClick={handleFindDriver}
-        className={`${microgrammaBold.className} mt-6 bg-[#CAEDE5] hover:bg-[#b8e3d8] text-[#0D4B4D] font-bold text-base rounded-full px-8 py-6`}
+        className={`${microgrammaBold.className} mt-6 bg-[#CAEDE5] hover:bg-[#b8e3d8] text-[#0D4B4D] font-bold text-base rounded-full px-12 py-6`}
       >
         Find Driver
       </Button>
@@ -154,7 +222,7 @@ export function ObDriverPage() {
     </h2>
   </div>
 
-  <div className="flex flex-col gap-10 sm:gap-16 max-w-[1278px] mx-auto px-4 sm:px-8">
+  <div className="flex flex-col gap-10 sm:gap-16 max-w-[1278px] mt-16 mx-auto px-4 sm:px-8">
     {whyRideRows.map((r, i) => (
       <div
         key={i}
@@ -207,8 +275,8 @@ export function ObDriverPage() {
           {o.title}
         </h3>
         <p className={`${michroma.className} text-[#3E3E3E] text-[14px] leading-[28px]`}>
-          {cardBody}
-        </p>
+  {o.body}
+</p>
       </div>
     ))}
   </div>
@@ -239,8 +307,8 @@ export function ObDriverPage() {
           {s.title}
         </h3>
         <p className={`${michroma.className} text-[#3E3E3E] text-[14px] leading-[28px]`}>
-          {cardBody}
-        </p>
+  {s.body}
+</p>
       </div>
     ))}
   </div>
