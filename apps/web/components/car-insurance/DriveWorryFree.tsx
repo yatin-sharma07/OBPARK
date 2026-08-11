@@ -21,13 +21,13 @@ const points = [
 
 export default function DriveWorryFree() {
     return (
-        <section className="w-full py-8">
+        <section className="w-full py-8 px-4 sm:px-8 md:px-12 xl:px-0">
             {/*
              * The aspect-ratio wrapper clips the background image.
              * On mobile the aspect ratio would make the section too short,
              * so we override to min-h on small screens.
              */}
-            <div className="relative mx-auto w-full max-w-none overflow-hidden min-h-[520px] sm:min-h-0 sm:aspect-[1728/708]">
+            <div className="relative mx-auto w-full max-w-[1300px] overflow-hidden rounded-[28px] min-h-[520px] sm:min-h-0 sm:aspect-[1728/708]">
                 {/* Background Image */}
                 <Image
                     src="/Images/car-insurance/worry-free.png"

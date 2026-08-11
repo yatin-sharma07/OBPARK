@@ -16,8 +16,8 @@ const points = [
 
 export default function CompleteCarCare() {
     return (
-        <section className="w-full py-8">
-            <div className="relative mx-auto w-full max-w-none overflow-hidden sm:aspect-[1728/708]">
+        <section className="w-full py-8 px-4 sm:px-8 md:px-12 xl:px-0">
+            <div className="relative mx-auto w-full max-w-[1300px] overflow-hidden rounded-[28px] sm:aspect-[1728/708]">
                 {/* Background Image */}
                 <Image
                     src="/Images/car-service/care-bg.png"

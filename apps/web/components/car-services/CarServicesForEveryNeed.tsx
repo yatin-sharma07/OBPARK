@@ -9,32 +9,32 @@ const needs = [
     {
         title: 'Routine Maintenance',
         desc: 'Keep your car in top condition.',
-        image: '/Images/car-services/routine-maintenance.png',
+        image: '/Images/car-services/routine-maintenance.jpg',
     },
     {
         title: 'Repairs & Diagnostics',
         desc: 'Fix issues with expert solutions.',
-        image: '/Images/car-services/repairs-diagnostics.png',
+        image: '/Images/car-services/repairs-diagnostics.jpg',
     },
     {
         title: 'AC Service & Cooling',
         desc: 'Stay cool with efficient AC performance.',
-        image: '/Images/car-services/ac-service.png',
+        image: '/Images/car-services/ac-service.jpg',
     },
     {
         title: 'Washing & Detailing',
         desc: 'Shine bright like new.',
-        image: '/Images/car-services/washing-detailing.png',
+        image: '/Images/car-services/washing-detailing.jpg',
     },
     {
         title: 'Tyres & Alignment',
         desc: 'Safe drive starts with the right grip.',
-        image: '/Images/car-services/tyres-alignment.png',
+        image: '/Images/car-services/tyres-alignment.jpg',
     },
     {
         title: 'Battery & Electricals',
         desc: 'Power up with reliable performance.',
-        image: '/Images/car-services/battery-electricals.png',
+        image: '/Images/car-services/battery-electricals.jpg',
     },
 ];
 

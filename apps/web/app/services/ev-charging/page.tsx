@@ -29,12 +29,9 @@ export default function EvChargingPage() {
                 <div className="py-4">
                     <ForEveryNeed />
                 </div>
-
-                <div className="py-10">
-                    <FAQ />
-                </div>
             </div>
+
+            <FAQ />
         </main>
     );
 }
-

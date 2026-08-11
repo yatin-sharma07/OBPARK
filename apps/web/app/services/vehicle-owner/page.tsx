@@ -24,11 +24,7 @@ export default function VehicleOwnerPage() {
 
             <CheckAndVerify />
 
-            <div className="w-full mx-auto xl:max-w-[1300px] px-4 sm:px-8 md:px-12 xl:px-0">
-                <div className="py-10">
-                    <FAQ />
-                </div>
-            </div>
+            <FAQ />
         </main>
     );
 }

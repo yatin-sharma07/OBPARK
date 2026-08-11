@@ -23,7 +23,7 @@ const teamMembers = [
   },
   {
     name: 'Nikhil Pathak',
-    role: 'Creative Director',
+    role: 'Chief Operating Officer',
     image: '/Images/about/Nikhil_Pathak.jpg',
   },
   {
@@ -193,7 +193,7 @@ export default function TeamAndNote() {
               className="text-[#3E7071] text-[10px] sm:text-[11px] tracking-wider uppercase font-semibold"
               style={{ fontFamily: 'var(--font-michroma)' }}
             >
-              Lead Obpark Technical Advisor
+              Chief Executive Officer
             </span>
             <h3
               className={`${microgrammaBold.className} text-[#074139] text-[16px] sm:text-[19px] font-bold mt-1`}

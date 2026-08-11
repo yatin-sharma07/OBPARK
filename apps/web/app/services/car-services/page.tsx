@@ -29,11 +29,9 @@ export default function CarServicesPage() {
                 <div className="py-4">
                     <CarServicesForEveryNeed />
                 </div>
-
-                <div className="py-10">
-                    <FAQ />
-                </div>
             </div>
+
+            <FAQ />
         </main>
     );
 }
