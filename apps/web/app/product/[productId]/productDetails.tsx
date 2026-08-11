@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Droplets, Disc, Wrench } from "lucide-react";
 import {
   Star,
   Plus,
@@ -43,8 +44,13 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
   const [currentPartnerSlide, setCurrentPartnerSlide] = useState(0);
 
   // Gallery Images
-  const mainImg = product.imagePath || "/Images/Feature-Product/Microfiber-Cloth.jpg";
-  const allImages = [mainImg, mainImg];
+  const mainImg =
+  product.imagePath || "/Images/Feature-Product/Microfiber-Cloth.jpg";
+
+const allImages =
+  product.galleryImages && product.galleryImages.length > 0
+    ? [mainImg, ...product.galleryImages]
+    : [mainImg];
 
   const [activeImage, setActiveImage] = useState(allImages[0]);
 
@@ -69,43 +75,33 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
     openCart();
   };
    
-
-  const relatedProductIdsByCategory: Record<string, string[]> = {
-  "exterior-accessories": ["ext-prod-2", "ext-prod-3", "ext-prod-4", "ext-prod-5", "ext-prod-6","ext-prod-7"],
-  "car-interiors": ["int-prod-2", "int-prod-3", "int-prod-4", "int-prod-5", "int-prod-6","int-prod-7"],
-  "car-essentials": [ "ess-prod-2", "ess-prod-3", "ess-prod-4"],
-  "car-wash": ["wash-prod-2", "wash-prod-3", "wash-prod-4"],
-  "car-cleaning": ["clean-prod-2", "clean-prod-3", "clean-prod-4"],
-  "car-lifting": ["lift-prod-2", "lift-prod-3", "lift-prod-4"],
-};
-
-const defaultPartnerImages = [
-  "/Images/Trusted-Partners/Partner1.png",
-  "/Images/Trusted-Partners/Partner2.png",
-  "/Images/Trusted-Partners/Partner3.png",
+const similarProductSlides = [
+  {
+    badge: "Car Essentials",
+    image: "/Images/similar-products/car-essentials.png",
+    text: "Must have car care essentials",
+    icon: Droplets,
+    link: "/product/premium-car-air-freshener",
+    
+  },
+  {
+    badge: "Car Polishing",
+    image: "/Images/similar-products/car-polishing.png",
+    text: "Restore shine, like new",
+    icon: Disc,
+    link: "/product/car-polishing-kit",
+  },
+  {
+    badge: "Car Repairs",
+    image: "/Images/similar-products/car-repairs.png",
+    text: "Expert care for every issue",
+    icon: Wrench,
+    link: "/product/car-repairs",
+  },
 ];
 
-//  Resolve product IDs into actual product objects — THIS FIRST
-const relatedProductIds = relatedProductIdsByCategory[categorySlug];
+  const IconComponent = similarProductSlides[currentPartnerSlide].icon;
 
-const relatedProducts = relatedProductIds
-  ? relatedProductIds
-      .map((id) => {
-        for (const category of MockData) {
-          const found = category.items.find((item) => item.id === id);
-          if (found) return found;
-        }
-        return null;
-      })
-      .filter((p): p is SingleProduct => p !== null)
-  : null;
-
-//  THEN chunk it into slides — this depends on relatedProducts, so it must come after
-const partnerSlides = relatedProducts
-  ? Array.from({ length: Math.ceil(relatedProducts.length / 3) }, (_, i) =>
-      relatedProducts.slice(i * 3, i * 3 + 3)
-    )
-  : null;
 
 
 
@@ -135,7 +131,7 @@ const partnerSlides = relatedProducts
 
           {/* THUMBNAILS ROW */}
           <div className="flex gap-3">
-            {allImages.slice(0, 1).map((img, i) => (
+            {allImages.map((img, i) => (
               <button
                 key={i}
                 onClick={() => setActiveImage(img)}
@@ -158,12 +154,23 @@ const partnerSlides = relatedProducts
         {/* RIGHT COLUMN: PRODUCT DETAILS */}
         <div className="lg:col-span-6 space-y-4">
           
-          {/* HEADER ROW (TITLE) */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <h1 className="text-[#074139] text-2xl sm:text-3xl font-bold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
-              {product.title}
-            </h1>
-          </div>
+         {/* HEADER */}
+<div className="space-y-5">
+
+  <h2
+    className={`${microgrammaBold.className} text-[24px] font-bold tracking-[2px] text-[#0D4B4D]`}
+  >
+    {product.productHeading}
+  </h2>
+
+  <h1
+    className="text-[#074139] text-2xl sm:text-3xl leading-relaxed"
+    style={{ fontFamily: "var(--font-michroma)" }}
+  >
+    {product.title}
+  </h1>
+
+</div>
 
           {/* FULL SUBTITLE */}
           <h2 className="text-[#074139] text-base sm:text-lg sm:leading-[1.7] font-medium" style={{ fontFamily: 'var(--font-michroma)' }}>
@@ -200,26 +207,20 @@ const partnerSlides = relatedProducts
               <CheckCircle2 className="w-5 h-5 text-white fill-[#1d4ed8]" />
             </div>
           </div>
-
+          
           {/* 4 FEATURE PILLS GRID (2x2) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-            <div className="bg-white rounded-[16px] px-3 py-2.5 flex items-center gap-3 text-[12px] sm:text-[13px] text-[#1C8182] shadow-sm">
-              <Image src="/Images/product-common/Cravings & Apetite regulation.svg" alt="Cravings" width={20} height={20} className="shrink-0" />
-              <span style={{ fontFamily: 'var(--font-michroma)' }}>Cravings & Apetite regulation¹</span>
-            </div>
-            <div className="bg-white rounded-[16px] px-3 py-2.5 flex items-center gap-3 text-[12px] sm:text-[13px] text-[#1C8182] shadow-sm">
-              <Image src="/Images/product-common/Weight management.svg" alt="Weight management" width={20} height={20} className="shrink-0" />
-              <span style={{ fontFamily: 'var(--font-michroma)' }}>Weight management³</span>
-            </div>
-            <div className="bg-white rounded-[16px] px-3 py-2.5 flex items-center gap-3 text-[12px] sm:text-[13px] text-[#1C8182] shadow-sm">
-              <Image src="/Images/product-common/Blood sugar balance.svg" alt="Blood sugar balance" width={20} height={20} className="shrink-0" />
-              <span style={{ fontFamily: 'var(--font-michroma)' }}>Blood sugar balance²</span>
-            </div>
-            <div className="bg-white rounded-[16px] px-3 py-2.5 flex items-center gap-3 text-[12px] sm:text-[13px] text-[#1C8182] shadow-sm">
-              <Image src="/Images/product-common/Diet synergy.svg" alt="Diet synergy" width={20} height={20} className="shrink-0" />
-              <span style={{ fontFamily: 'var(--font-michroma)' }}>Diet synergy</span>
-            </div>
-          </div>
+  {product.attributes.slice(0, 4).map((attribute, index) => (
+    <div
+      key={index}
+      className="bg-white rounded-[16px] px-3 py-2.5 flex items-center text-[12px] sm:text-[13px] text-[#1C8182] shadow-sm"
+    >
+      <span className="w-full text-center" style={{ fontFamily: "var(--font-michroma)" }}>
+        {attribute.value}
+      </span>
+    </div>
+  ))}
+</div>
 
           {/* PURCHASE OPTIONS SECTION */}
           <div className="space-y-3 pt-1">
@@ -238,20 +239,43 @@ const partnerSlides = relatedProducts
             {/* RADIO OPTIONS CONTAINER */}
             <div className="flex flex-col gap-2.5">
               {/* 1 UNIT */}
-              <label 
-                onClick={() => setSelectedUnit(1)}
-                className="bg-white rounded-[16px] p-3.5 sm:p-4 flex items-center justify-between cursor-pointer shadow-sm transition-all hover:bg-slate-50"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-6 h-6 rounded-full border-[1.5px] border-[#1C8182] flex items-center justify-center bg-white">
-                    {selectedUnit === 1 && <div className="w-3.5 h-3.5 bg-[#1C8182] rounded-full" />}
-                  </div>
-                  <span className="text-[#074139] text-[15px]" style={{ fontFamily: 'var(--font-michroma)' }}>1 unit</span>
-                </div>
-                <span className="text-[#074139] text-[15px]" style={{ fontFamily: 'var(--font-michroma)' }}>034,99</span>
-              </label>
+              <label
+    onClick={() => setSelectedUnit(1)}
+    className="bg-white rounded-[16px] p-3.5 sm:p-4 flex items-center justify-between cursor-pointer shadow-sm transition-all hover:bg-slate-50"
+  >
+    <div className="flex items-center gap-4">
+      <div className="w-6 h-6 rounded-full border-[1.5px] border-[#1C8182] flex items-center justify-center bg-white">
+        {selectedUnit === 1 && (
+          <div className="w-3.5 h-3.5 bg-[#1C8182] rounded-full" />
+        )}
+      </div>
 
-              {/* 3 UNITS */}
+      <span
+        className="text-[#074139] text-[15px]"
+        style={{ fontFamily: "var(--font-michroma)" }}
+      >
+        1 Unit
+      </span>
+    </div>
+
+    <div className="flex items-center gap-3">
+  <span
+    className="text-[#074139] text-[15px]"
+    style={{ fontFamily: "var(--font-michroma)" }}
+  >
+    ₹{product.price}
+  </span>
+
+  <span
+    className="bg-gradient-to-r from-[#167D7F] to-[#B0E5CC] text-white text-[12px] px-3 py-1 rounded-[5px]"
+    style={{ fontFamily: "var(--font-michroma)" }}
+  >
+    {product.discountText}
+  </span>
+</div>
+  </label>
+
+              {/* 3 UNITS 
               <label 
                 onClick={() => setSelectedUnit(3)}
                 className="bg-white rounded-[16px] p-3.5 sm:p-4 flex items-center justify-between cursor-pointer shadow-sm transition-all hover:bg-slate-50"
@@ -266,9 +290,9 @@ const partnerSlides = relatedProducts
                   <span className="text-[#074139] text-[15px]" style={{ fontFamily: 'var(--font-michroma)' }}>094,47</span>
                   <div className="bg-gradient-to-r from-[#167D7F] to-[#B0E5CC] text-white text-[12px] px-3.5 py-1.5 rounded-full tracking-wider" style={{ fontFamily: 'var(--font-michroma)' }}>-10%</div>
                 </div>
-              </label>
+              </label> */}
 
-              {/* 6 UNITS */}
+              {/* 6 UNITS 
               <label 
                 onClick={() => setSelectedUnit(6)}
                 className="bg-white rounded-[16px] p-3.5 sm:p-4 flex items-center justify-between cursor-pointer shadow-sm transition-all hover:bg-slate-50"
@@ -283,7 +307,7 @@ const partnerSlides = relatedProducts
                   <span className="text-[#074139] text-[15px]" style={{ fontFamily: 'var(--font-michroma)' }}>0167,95</span>
                   <div className="bg-gradient-to-r from-[#167D7F] to-[#B0E5CC] text-white text-[12px] px-3.5 py-1.5 rounded-full tracking-wider" style={{ fontFamily: 'var(--font-michroma)' }}>-20%</div>
                 </div>
-              </label>
+              </label> */}
             </div>
           </div>
 
@@ -313,27 +337,27 @@ const partnerSlides = relatedProducts
 
           {/* SHIPPING BADGES ROW (3 SEPARATE PILLS) */}
           <div className="grid grid-cols-3 gap-3 pt-2">
-            <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2 text-[10px] sm:text-[11px] text-[#074139] shadow-sm">
+            <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2 text-[9px] sm:text-[9px] text-[#074139] shadow-sm">
               <Image src="/Images/product-common/Free shipping.svg" alt="Free shipping" width={20} height={20} className="shrink-0" />
-              <span style={{ fontFamily: 'var(--font-michroma)' }}>Free shipping over500/</span>
+              <span className="whitespace-nowrap" style={{ fontFamily: 'var(--font-michroma)' }}>Free shipping over1000</span>
             </div>
-            <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2 text-[10px] sm:text-[11px] text-[#074139] shadow-sm">
+            <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2 text-[9px] sm:text-[11px] text-[#074139] shadow-sm">
               <Image src="/Images/product-common/Fast global shipping.svg" alt="Fast global shipping" width={20} height={20} className="shrink-0" />
-              <span style={{ fontFamily: 'var(--font-michroma)' }}>Fast global shipping</span>
+              <span style={{ fontFamily: 'var(--font-michroma)' }}>Pan India shipping</span>
             </div>
-            <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2 text-[10px] sm:text-[11px] text-[#074139] shadow-sm">
+            <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2 text-[9px] sm:text-[11px] text-[#074139] shadow-sm">
               <Image src="/Images/product-common/Buy more, save more.svg" alt="Buy more, save more" width={20} height={20} className="shrink-0" />
-              <span style={{ fontFamily: 'var(--font-michroma)' }}>Buy more, save more</span>
+              <span className="whitespace-nowrap" style={{ fontFamily: 'var(--font-michroma)' }}>No Cash on Delivery</span>
             </div>
           </div>
 
-          {/* IN STOCK BANNER */}
+          {/* IN STOCK BANNER 
           <div className="bg-white rounded-[20px] py-4 px-6 flex items-center justify-center gap-3 text-[11px] sm:text-[12px] text-[#074139] shadow-sm w-full">
             <span className="w-3 h-3 rounded-full bg-[#00C853] inline-block shrink-0" />
             <span style={{ fontFamily: 'var(--font-michroma)' }}>In stock, orders placed within 17:27:22 ship the same day</span>
-          </div>
+          </div> */}
 
-          {/* SERVICE GUARANTEE PILLS (ROWS OF 3) */}
+          {/* SERVICE GUARANTEE PILLS (ROWS OF 3) 
           <div className="space-y-3">
             <div className="grid grid-cols-3 gap-3">
               <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2.5 text-[10px] sm:text-[11px] text-[#074139] shadow-sm">
@@ -364,7 +388,7 @@ const partnerSlides = relatedProducts
                 <span style={{ fontFamily: 'var(--font-michroma)' }}>All-natural</span>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* ACCORDION (DESCRIPTION) */}
           <div className="bg-white rounded-[24px] border border-slate-200 overflow-hidden shadow-sm mt-4">
@@ -410,70 +434,70 @@ const partnerSlides = relatedProducts
           {/* OUR PRODUCTS CARD */}
           <div className="bg-gradient-to-b from-[#167D7F] to-[#B0E5CC] rounded-[24px] p-6 sm:p-8 text-white text-center shadow-md space-y-6">
             <h3 className="text-lg sm:text-xl tracking-wide font-normal" style={{ fontFamily: 'var(--font-michroma)' }}>
-              Our Products
+              Similar Products
             </h3>
 
-  {partnerSlides ? (
-    <>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentPartnerSlide}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="grid grid-cols-3 gap-3 sm:gap-4"
-        >
-          {partnerSlides[currentPartnerSlide].map((relatedProduct) => (
-            <Link
-              key={relatedProduct.id}
-              href={`/product/${relatedProduct.id}`}
-              className="relative bg-[#D9D9D9] rounded-2xl h-40 sm:h-52 overflow-hidden block"
-            >
-              <Image
-                src={relatedProduct.imagePath}
-                alt={relatedProduct.title}
-                fill
-                sizes="(max-width: 640px) 33vw, 200px"
-                className="object-cover"
-              />
-            </Link>
-          ))}
-        </motion.div>
-      </AnimatePresence>
+  <AnimatePresence mode="wait">
+  <motion.div
+    key={currentPartnerSlide}
+    initial={{ opacity: 0, x: 20 }}
+    animate={{ opacity: 1, x: 0 }}
+    exit={{ opacity: 0, x: -20 }}
+    transition={{ duration: 0.3 }}
+    className="relative h-64 rounded-[24px] overflow-hidden"
+  >
+    {/* Background */}
+    <Image
+      src={similarProductSlides[currentPartnerSlide].image}
+      alt={similarProductSlides[currentPartnerSlide].badge}
+      fill
+      className="object-cover"
+    />
 
-      {partnerSlides.length > 1 && (
-        <div className="flex justify-center gap-2 pt-1">
-          {partnerSlides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentPartnerSlide(index)}
-              aria-label={`Go to slide ${index + 1}`}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
-                currentPartnerSlide === index
-                  ? "w-7 bg-[#074139]"
-                  : "w-2.5 bg-white/50 hover:bg-white/80"
-              }`}
-            />
-          ))}
-        </div>
-      )}
-    </>
-  ) : (
-    <div className="grid grid-cols-3 gap-3 sm:gap-4">
-      {defaultPartnerImages.map((img, i) => (
-        <div key={i} className="relative bg-[#D9D9D9] rounded-2xl h-40 sm:h-52 overflow-hidden">
-          <Image
-            src={img}
-            alt={`Partner ${i + 1}`}
-            fill
-            sizes="(max-width: 640px) 33vw, 200px"
-            className="object-cover"
-          />
-        </div>
-      ))}
+    {/* Overlay */}
+    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+    {/* Badge */}
+    <div className="absolute top-5 right-5">
+      <div className="bg-white/25 backdrop-blur-md rounded-full px-5 py-2">
+        <span
+          className="text-white"
+          style={{ fontFamily: "var(--font-michroma)" }}
+        >
+          {similarProductSlides[currentPartnerSlide].badge}
+        </span>
+      </div>
     </div>
-  )}
+
+    {/* Bottom Text */}
+    <div className="absolute bottom-6 left-6 flex items-center gap-3">
+  <div className="w-12 h-12 rounded-full bg-white/25 backdrop-blur-md border border-white/40 flex items-center justify-center">
+    <IconComponent className="w-6 h-6 text-white" />
+  </div>
+
+  <p
+    className="text-white text-sm"
+    style={{ fontFamily: "var(--font-michroma)" }}
+  >
+    {similarProductSlides[currentPartnerSlide].text}
+  </p>
+</div>
+  </motion.div>
+</AnimatePresence>
+
+<div className="flex justify-center gap-2 mt-3">
+  {similarProductSlides.map((_, index) => (
+    <button
+      key={index}
+      onClick={() => setCurrentPartnerSlide(index)}
+      className={`h-2.5 rounded-full ${
+        currentPartnerSlide === index
+          ? "w-7 bg-[#074139]"
+          : "w-2.5 bg-white/50"
+      }`}
+    />
+  ))}
+</div>
 </div>
 
         </div>
