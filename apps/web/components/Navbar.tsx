@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { microgrammaBold } from '@/lib/fonts'
 import { useCartStore } from '@/store/cart.store'
+import { useCart } from '@/hooks/useCart'
 import {
     ScanLine,
     Wind,
@@ -41,6 +42,33 @@ const mobileLinks = [
 
 export function Navbar() {
     const { openCart } = useCartStore()
+    const { data: apiCart } = useCart()
+    const [cartCount, setCartCount] = useState(0)
+
+    useEffect(() => {
+        const checkCart = () => {
+            let count = 0
+            if (apiCart?.items && apiCart.items.length > 0) {
+                count = apiCart.items.reduce((sum, i) => sum + i.quantity, 0)
+            } else {
+                const stored = sessionStorage.getItem('mockup_cart_item')
+                if (stored) {
+                    try {
+                        const parsed = JSON.parse(stored)
+                        count = parsed.quantity || 1
+                    } catch {
+                        count = 0
+                    }
+                }
+            }
+            setCartCount(count)
+        }
+
+        checkCart()
+        const interval = setInterval(checkCart, 1000)
+        return () => clearInterval(interval)
+    }, [apiCart])
+
     const [showNavbar, setShowNavbar] = useState(true)
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false)
@@ -330,7 +358,7 @@ export function Navbar() {
                               flex-shrink-0 transition-all duration-300 
                               hover:scale-110 hover:-translate-y-0.5 
                               hover:shadow-[0_4px_12px_rgba(26,129,127,0.2)] 
-                              rounded-full cursor-pointer
+                              rounded-full cursor-pointer relative
                             "
                             aria-label="View cart"
                         >
@@ -339,6 +367,11 @@ export function Navbar() {
                                 alt="View cart"
                                 className="w-full h-full object-contain"
                             />
+                            {cartCount > 0 && (
+                                <span className="absolute -top-1 -right-1 bg-[#1A817F] text-white text-[10px] font-bold w-4 sm:w-5 h-4 sm:h-5 rounded-full flex items-center justify-center border-2 border-white shadow-sm leading-none">
+                                    {cartCount}
+                                </span>
+                            )}
                         </button>
                     </div>
                 </div>
@@ -423,7 +456,7 @@ export function Navbar() {
                     {/* Middle: Centered Logo */}
                     <div className="flex items-center justify-center">
                         <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center">
-                            <img src="/Images/Navbar/app_icon_new.svg" alt="OBPARK" className="h-[28px] sm:h-[32px] object-contain" />
+                            <img src="/Images/Navbar/mobile_nav_icon.svg" alt="OBPARK" className="h-[28px] sm:h-[32px] object-contain" />
                         </Link>
                     </div>
 
@@ -434,7 +467,7 @@ export function Navbar() {
                             onClick={openCart}
                             className="
                               w-[36px] h-[36px]
-                              flex-shrink-0 transition-transform duration-300 hover:scale-110 rounded-full cursor-pointer
+                              flex-shrink-0 transition-transform duration-300 hover:scale-110 rounded-full cursor-pointer relative
                             "
                             aria-label="View cart"
                         >
@@ -443,6 +476,11 @@ export function Navbar() {
                                 alt="View cart"
                                 className="w-full h-full object-contain"
                             />
+                            {cartCount > 0 && (
+                                <span className="absolute -top-1 -right-1 bg-[#1A817F] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white shadow-sm leading-none">
+                                    {cartCount}
+                                </span>
+                            )}
                         </button>
 
                         <Link

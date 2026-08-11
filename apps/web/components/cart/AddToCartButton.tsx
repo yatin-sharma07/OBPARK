@@ -48,14 +48,29 @@ export function AddToCartButton({
   const handleConfirm = async (
     vehicleId: string | null
   ) => {
-    await addToCart.mutateAsync({
-      productId,
-      vehicleId: vehicleId ?? undefined,
-    })
+    try {
+      await addToCart.mutateAsync({
+        productId,
+        vehicleId: vehicleId ?? undefined,
+      })
+    } catch (e) {
+      console.error(e)
+    }
+
+    const cartItem = {
+      id: productId,
+      name: productName,
+      description: 'Premium Product',
+      price: '₹ 1437',
+      priceVal: 1437,
+      quantity: 1,
+      image: '/products/electronics/diamond-system-main.png',
+      vehicle: vehicleId ? 'Linked' : null
+    }
+    sessionStorage.setItem('mockup_cart_item', JSON.stringify(cartItem))
 
     setShowDialog(false)
-
-    openCart()
+    router.push('/cart')
   }
 
   return (

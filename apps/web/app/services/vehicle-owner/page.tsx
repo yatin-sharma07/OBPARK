@@ -1,5 +1,4 @@
 import Hero from '@/components/vehicle-owner/Hero';
-import ExploreMenu from '@/components/vehicle-owner/ExploreMenu';
 import WhyCheck from '@/components/vehicle-owner/WhyCheck';
 import HowToFind from '@/components/vehicle-owner/HowToFind';
 import CheckAndVerify from '@/components/vehicle-owner/CheckAndVerify';
@@ -17,7 +16,6 @@ export default function VehicleOwnerPage() {
             </div>
 
             <div className="w-full mx-auto xl:max-w-[1300px] px-4 sm:px-8 md:px-12 xl:px-0">
-                <ExploreMenu />
                 <WhyCheck />
                 <HowToFind />
             </div>

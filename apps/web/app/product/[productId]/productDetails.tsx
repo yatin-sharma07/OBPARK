@@ -71,8 +71,19 @@ const allImages =
     } catch (e) {
       console.error(e);
     }
+    const cartItem = {
+      id: product.id,
+      name: product.title,
+      description: product.productHeading || 'Premium Product',
+      price: `${product.currencySymbol || '₹'} ${product.price}`,
+      priceVal: product.price,
+      quantity: quantity,
+      image: product.imagePath || product.galleryImages?.[0] || '',
+      vehicle: vehicleId ? 'Linked' : null
+    };
+    sessionStorage.setItem('mockup_cart_item', JSON.stringify(cartItem));
     setShowDialog(false);
-    openCart();
+    router.push('/cart');
   };
    
 const similarProductSlides = [

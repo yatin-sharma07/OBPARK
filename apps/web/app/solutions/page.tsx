@@ -24,7 +24,9 @@ import {
   Wrench,
   Car,
   ShieldCheck,
-  Zap
+  Zap,
+  UserCheck,
+  UserCog
 } from 'lucide-react'
 
 // Industry Data for Section 7
@@ -270,6 +272,28 @@ export default function SolutionsPage() {
                   <Zap className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
                   <span className="text-xs sm:text-sm font-semibold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
                     EV - Stations
+                  </span>
+                </Link>
+
+                {/* Book a driver */}
+                <Link 
+                  href="/services/ob-driver"
+                  className="bg-[#63B1A5] text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md min-w-[180px] sm:min-w-[240px] group cursor-pointer"
+                >
+                  <UserCheck className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
+                  <span className="text-xs sm:text-sm font-semibold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
+                    Book a driver
+                  </span>
+                </Link>
+
+                {/* Book a mechanic */}
+                <Link 
+                  href="/services/car-services"
+                  className="bg-[#89CBB9] text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md min-w-[180px] sm:min-w-[240px] group cursor-pointer"
+                >
+                  <UserCog className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
+                  <span className="text-xs sm:text-sm font-semibold tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
+                    Book a mechanic
                   </span>
                 </Link>
 
