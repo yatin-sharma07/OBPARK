@@ -158,7 +158,7 @@ function OfferingsSlider({ items, microgrammaBold, michroma }: { items: any[], m
             {items.slice(slideIndex * 2, slideIndex * 2 + 2).map((item, i) => (
               <div
                 key={i}
-                className="flex flex-col gap-[10px] p-6 rounded-[20px] bg-[#FAFAFA]"
+                className="flex flex-col gap-[10px] p-6 min-h-[250px] rounded-[20px] bg-[#FAFAFA]"
                 style={{ border: '0.5px solid rgba(221,221,221,0.87)' }}
               >
                 <div className="w-10 h-10 rounded-lg bg-[#CAEDE5] flex items-center justify-center">
@@ -333,7 +333,7 @@ export function ObDriverPage() {
 </section>
 
 {/* FAQ */}
-<section className="w-full max-w-[1278px] mx-auto px-4 sm:px-8 pb-16 sm:pb-20">
+<section className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 pb-16 sm:pb-20">
   <div className="bg-[#EAF5F0] rounded-[24px] p-6 sm:p-10">
     <h2 className={`${michroma.className} text-[#074139] text-xl sm:text-[24px] leading-[1.4] sm:leading-[45px] font-normal mb-6 sm:mb-8`}>
       Frequently Asked Questions (FAQ)

@@ -189,7 +189,7 @@ export function ObMechanicPage() {
               onClick={handleFindCarServices}
               className={`${microgrammaBold.className} mt-6 bg-[#CAEDE5] hover:bg-[#b8e3d8] text-[#0D4B4D] font-bold text-[16px] sm:text-[18px] md:text-[20px] leading-[120%] rounded-full px-8 sm:px-12 md:px-16 py-3 sm:py-4`}
             >
-              Find Car Services
+              Book Mechanic
             </button>
           </div>
         </div>
@@ -323,7 +323,7 @@ export function ObMechanicPage() {
       </section>
 
       {/* FAQ */}
-      <section className="w-full max-w-[1278px] mx-auto px-4 sm:px-8 pb-12 sm:pb-16 md:pb-20">
+      <section className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 pb-12 sm:pb-16 md:pb-20">
         <div className="bg-[#EAF5F0] rounded-[16px] sm:rounded-[20px] md:rounded-[24px] p-5 sm:p-8 md:p-10">
           <h2 className={`${michroma.className} text-[#074139] text-[18px] sm:text-[20px] md:text-[24px] leading-[1.4] font-normal mb-5 sm:mb-6 md:mb-8`}>
             Frequently Asked Questions (FAQ)

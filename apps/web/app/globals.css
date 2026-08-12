@@ -31,7 +31,7 @@
 }
 
 body {
-  background-color: #F0FAF5;
+  background-color: #FFFFFF;
   color: hsl(var(--foreground));
 }
 input::placeholder {
