@@ -50,7 +50,7 @@ export default function FaqSection() {
                 <button
                     type="button"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
-                    className={`w-full text-left px-6 py-6 sm:px-8 sm:py-8 flex items-center justify-between transition-colors ${
+                    className={`w-full text-left px-6 py-6 sm:px-8 sm:py-8 flex items-center justify-between transition-colors min-h-[100px] sm:min-h-[112px] ${
                         isOpen ? 'text-[#0C403A]' : 'text-white'
                     }`}
                 >

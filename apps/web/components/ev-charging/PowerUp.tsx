@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 export default function PowerUp() {
     const features = [
         {
-            icon: '/Images/ev/powerup/wide-network.png',
+            icon: '/Images/ev-charging/wide_network_coverage.svg',
             label: (
                 <>
                     Wide Network
@@ -17,7 +17,7 @@ export default function PowerUp() {
             ),
         },
         {
-            icon: '/Images/ev/powerup/charger-types.png',
+            icon: '/Images/ev-charging/multi_carger_type.svg',
             label: (
                 <>
                     Multiple
@@ -27,7 +27,7 @@ export default function PowerUp() {
             ),
         },
         {
-            icon: '/Images/ev/powerup/secure.png',
+            icon: '/Images/ev-charging/secure and reliable.svg',
             label: (
                 <>
                     Secure &
@@ -37,7 +37,7 @@ export default function PowerUp() {
             ),
         },
         {
-            icon: '/Images/ev/powerup/save-time.png',
+            icon: '/Images/ev-charging/save time and money.svg',
             label: (
                 <>
                     Save Time
