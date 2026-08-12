@@ -22,6 +22,7 @@ import {
   BadgeCheck,
 } from 'lucide-react'
 import { section } from 'framer-motion/m'
+import { useEffect, useState } from 'react'
 
 const whyRideRows = [
   {
@@ -55,13 +56,13 @@ const offerings = [
   },
   {
     icon: MousePointerClick,
-    title: 'Book a driver now or in advance',
-    body: 'Get a driver now or schedule a driver in advance for airport transfers, important meetings, doctor visits, shopping sprees, after-party drops, or any occasion.',
+    title: 'Outstation Trip',
+    body: 'Comfortable outstation rides one-way or round-trip: on your schedule & in your own car.',
   },
   {
     icon: HeartHandshake,
-    title: 'Book a driver now or in advance',
-    body: 'Get a driver now or schedule a driver in advance for airport transfers, important meetings, doctor visits, shopping sprees, after-party drops, or any occasion.',
+    title: 'Daily Trip',
+    body: 'Book the same driver for 3–7 days/week',
   },
   {
     icon: MapPin,
@@ -73,18 +74,18 @@ const offerings = [
 const safetyPoints = [
   {
     icon: ShieldAlert,
-    title: 'Book a driver now or in advance',
-    body: 'Get a driver now or schedule a driver in advance for airport transfers, important meetings, doctor visits, shopping sprees, after-party drops, or any occasion.',
+    title: 'Emergency assist',
+    body: 'Quickly and discreetly alert local police with our in-app SOS button.',
   },
   {
     icon: UserCheck,
-    title: 'Book a driver now or in advance',
-    body: 'Get a driver now or schedule a driver in advance for airport transfers, important meetings, doctor visits, shopping sprees, after-party drops, or any occasion.',
+    title: 'Call Safely with OBDrive',
+    body: ' Connect with your driver without revealing your personal phone number.',
   },
   {
     icon: Briefcase,
-    title: 'Book a driver now or in advance',
-    body: 'Get a driver now or schedule a driver in advance for airport transfers, important meetings, doctor visits, shopping sprees, after-party drops, or any occasion.',
+    title: 'Support You Can Count On',
+    body: 'Our dedicated support team is ready to assist you. Get in touch anytime through the Obpark app or by phone.',
   },
   {
     icon: BadgeCheck,
@@ -134,6 +135,59 @@ const faqs = [
     a: 'Yes. Once your payment is completed, you can access or request your invoice directly from the OBDrive app. Go to My Account → Orders → Past Orders & Bookings to view your completed booking and invoice details.',
   },
 ]
+
+
+function OfferingsSlider({ items, microgrammaBold, michroma }: { items: any[], microgrammaBold: any, michroma: any }) {
+  const [current, setCurrent] = useState(0)
+  const itemsPerSlide = typeof window !== 'undefined' && window.innerWidth >= 1024 ? 2 : 1
+  const totalSlides = Math.ceil(items.length / 2)
+
+  useEffect(() => {
+    const t = setInterval(() => setCurrent(p => (p + 1) % totalSlides), 3000)
+    return () => clearInterval(t)
+  }, [totalSlides])
+
+  return (
+    <div className="relative overflow-hidden">
+      <div
+        className="flex transition-transform duration-700 ease-in-out"
+        style={{ transform: `translateX(-${current * 100}%)` }}
+      >
+        {Array.from({ length: totalSlides }).map((_, slideIndex) => (
+          <div key={slideIndex} className="min-w-full grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-[26px]">
+            {items.slice(slideIndex * 2, slideIndex * 2 + 2).map((item, i) => (
+              <div
+                key={i}
+                className="flex flex-col gap-[10px] p-6 rounded-[20px] bg-[#FAFAFA]"
+                style={{ border: '0.5px solid rgba(221,221,221,0.87)' }}
+              >
+                <div className="w-10 h-10 rounded-lg bg-[#CAEDE5] flex items-center justify-center">
+                  <item.icon className="w-5 h-5 text-[#0A3D31]" />
+                </div>
+                <h3 className={`${microgrammaBold.className} text-[#1A817F] text-[18px] leading-[120%] font-bold`}>
+                  {item.title}
+                </h3>
+                <p className={`${michroma.className} text-[#3E3E3E] text-[14px] leading-[28px]`}>
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      <div className="flex justify-center gap-2 mt-6">
+        {Array.from({ length: totalSlides }).map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`h-2 rounded-full transition-all duration-300 ${current === i ? 'bg-[#074139] w-6' : 'bg-gray-300 w-2'}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export function ObDriverPage() {
   const router = useRouter()
@@ -261,25 +315,7 @@ export function ObDriverPage() {
     </p>
   </div>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-[26px]">
-    {offerings.map((o, i) => (
-      <div
-        key={i}
-        className="flex flex-col gap-[10px] p-6 rounded-[20px] bg-[#FAFAFA] w-full"
-        style={{ border: '0.5px solid rgba(221,221,221,0.87)' }}
-      >
-        <div className="w-10 h-10 rounded-lg bg-[#CAEDE5] flex items-center justify-center">
-          <o.icon className="w-5 h-5 text-[#0A3D31]" />
-        </div>
-        <h3 className={`${microgrammaBold.className} text-[#1A817F] text-[18px] leading-[120%] font-bold`}>
-          {o.title}
-        </h3>
-        <p className={`${michroma.className} text-[#3E3E3E] text-[14px] leading-[28px]`}>
-  {o.body}
-</p>
-      </div>
-    ))}
-  </div>
+  <OfferingsSlider items={offerings} microgrammaBold={microgrammaBold} michroma={michroma} />
 </section>
 
 {/* Safety Points */}
@@ -293,25 +329,7 @@ export function ObDriverPage() {
     </p>
   </div>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-[26px]">
-    {safetyPoints.map((s, i) => (
-      <div
-        key={i}
-        className="flex flex-col gap-[10px] p-6 rounded-[20px] bg-[#FAFAFA] w-full"
-        style={{ border: '0.5px solid rgba(221,221,221,0.87)' }}
-      >
-        <div className="w-10 h-10 rounded-lg bg-[#CAEDE5] flex items-center justify-center">
-          <s.icon className="w-5 h-5 text-[#0A3D31]" />
-        </div>
-        <h3 className={`${microgrammaBold.className} text-[#1A817F] text-[18px] leading-[120%] font-bold`}>
-          {s.title}
-        </h3>
-        <p className={`${michroma.className} text-[#3E3E3E] text-[14px] leading-[28px]`}>
-  {s.body}
-</p>
-      </div>
-    ))}
-  </div>
+  <OfferingsSlider items={safetyPoints} microgrammaBold={microgrammaBold} michroma={michroma} />
 </section>
 
 {/* FAQ */}

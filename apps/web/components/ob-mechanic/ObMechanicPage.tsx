@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import {
   Accordion,
   AccordionContent,
@@ -14,6 +15,13 @@ import {
   MousePointerClick,
   BatteryCharging,
   CircleDot,
+  Sparkles,
+  Droplets,
+  Lightbulb,
+  Cog,
+  ShieldCheck,
+  Settings2,
+  PaintBucket,
 } from 'lucide-react'
 
 const features = [
@@ -21,6 +29,14 @@ const features = [
   { icon: MousePointerClick, title: 'AC Service & Repair' },
   { icon: BatteryCharging, title: 'Batteries' },
   { icon: CircleDot, title: 'Tyres & Wheel Care' },
+  { icon: Sparkles, title: 'Detailing Services' },
+  { icon: Droplets, title: 'Car Spa & Cleaning' },
+  { icon: ClipboardCheck, title: 'Car Inspections' },
+  { icon: Lightbulb, title: 'Windshields & Lights' },
+  { icon: Cog, title: 'Clutch & Body Parts' },
+  { icon: ShieldCheck, title: 'Insurance Claims' },
+  { icon: Settings2, title: 'Suspension & Fitments' },
+  { icon: PaintBucket, title: 'Denting & Painting' },
 ]
 
 const serviceRows = [
@@ -101,6 +117,24 @@ const faqs = [
   },
 ]
 
+function useItemsPerView() {
+  const [itemsPerView, setItemsPerView] = useState(1)
+
+  useEffect(() => {
+    const calc = () => {
+      const w = window.innerWidth
+      if (w >= 1024) setItemsPerView(4)      // desktop — 4 at a time
+      else if (w >= 640) setItemsPerView(2)  // tablet
+      else setItemsPerView(1)                // mobile
+    }
+    calc()
+    window.addEventListener('resize', calc)
+    return () => window.removeEventListener('resize', calc)
+  }, [])
+
+  return itemsPerView
+}
+
 function ImagePlaceholderIcon({ className, stroke = '#1E1E1E' }: { className?: string; stroke?: string }) {
   return (
     <svg viewBox="0 0 454.5 463.5" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -113,9 +147,23 @@ function ImagePlaceholderIcon({ className, stroke = '#1E1E1E' }: { className?: s
 
 export function ObMechanicPage() {
   const router = useRouter()
+  const itemsPerView = useItemsPerView()
+  const pageCount = Math.ceil(features.length / itemsPerView)
+  const [page, setPage] = useState(0)
+
+  useEffect(() => {
+    setPage(0)
+  }, [itemsPerView])
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setPage((p) => (p + 1) % pageCount)
+    }, 2000)
+    return () => clearInterval(id)
+  }, [pageCount])
 
   const handleFindCarServices = () => {
-    router.push('/services/ob-mechanic/book')
+    router.push('/services/ob-mechanic/quote')
   }
 
   return (
@@ -159,20 +207,48 @@ export function ObMechanicPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-[26px]">
-          {features.map((f, i) => (
-            <div
-              key={i}
-              className="flex flex-col gap-[10px] p-4 sm:p-5 md:p-6 rounded-[16px] sm:rounded-[20px] bg-[#FAFAFA] w-full"
-              style={{ border: '0.5px solid rgba(221,221,221,0.87)' }}
-            >
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#CAEDE5] flex items-center justify-center">
-                <f.icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#0A3D31]" />
+       <div className="overflow-hidden">
+          <div
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${page * 100}%)` }}
+          >
+            {Array.from({ length: pageCount }).map((_, pageIdx) => (
+              <div
+                key={pageIdx}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-[26px] w-full shrink-0"
+              >
+                {features
+                  .slice(pageIdx * itemsPerView, pageIdx * itemsPerView + itemsPerView)
+                  .map((f, i) => (
+                    <div
+                      key={i}
+                      className="flex flex-col gap-[10px] p-4 sm:p-5 md:p-6 rounded-[16px] sm:rounded-[20px] bg-[#FAFAFA] w-full"
+                      style={{ border: '0.5px solid rgba(221,221,221,0.87)' }}
+                    >
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#CAEDE5] flex items-center justify-center">
+                        <f.icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#0A3D31]" />
+                      </div>
+                      <h3 className={`${microgrammaBold.className} text-[#1A817F] text-[15px] sm:text-[16px] md:text-[18px] leading-[120%] font-bold`}>
+                        {f.title}
+                      </h3>
+                    </div>
+                  ))}
               </div>
-              <h3 className={`${microgrammaBold.className} text-[#1A817F] text-[15px] sm:text-[16px] md:text-[18px] leading-[120%] font-bold`}>
-                {f.title}
-              </h3>
-            </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Dots */}
+        <div className="flex items-center justify-center gap-2 mt-6">
+          {Array.from({ length: pageCount }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setPage(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`h-2 rounded-full transition-all ${
+                page === i ? 'w-6 bg-[#1A817F]' : 'w-2 bg-[#CAEDE5]'
+              }`}
+            />
           ))}
         </div>
 
