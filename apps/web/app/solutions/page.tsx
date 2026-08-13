@@ -143,8 +143,8 @@ export default function SolutionsPage() {
   const currentIndustry = industriesData.find((item) => item.id === activeTab) || industriesData[0]
 
   return (
-    <>
-      <main className="min-h-screen bg-[#F0F9F5] text-[#074139] py-8 sm:py-12 px-4 sm:px-6 lg:px-12 font-sans space-y-16 sm:space-y-24 max-w-[1340px] mx-auto">
+    <div className="w-full min-h-screen bg-[#F0F9F5]">
+      <main className="text-[#074139] py-8 sm:py-12 px-4 sm:px-6 lg:px-12 font-sans space-y-16 sm:space-y-24 max-w-[1340px] mx-auto">
 
       {/* ==========================================
           SECTION 1: HERO & QUICK ACTION BAR
@@ -288,7 +288,7 @@ export default function SolutionsPage() {
 
                 {/* Book a mechanic */}
                 <Link 
-                  href="/services/car-services"
+                  href="/services/ob-mechanic"
                   className="bg-[#89CBB9] text-white rounded-xl py-4 px-5 flex items-center justify-center gap-3 shadow-md min-w-[180px] sm:min-w-[240px] group cursor-pointer"
                 >
                   <UserCog className="w-5 h-5 shrink-0 transition-transform group-hover:scale-110" />
@@ -914,6 +914,6 @@ export default function SolutionsPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
