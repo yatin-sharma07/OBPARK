@@ -1,7 +1,7 @@
 'use client';
 
 import { microgrammaBold } from '@/lib/fonts';
-import { Leaf, ShieldAlert, Clock } from 'lucide-react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const fadeInUp = {
@@ -13,26 +13,17 @@ const cards = [
     {
         title: 'Protect Environment',
         description: 'Ensure your vehicle meets emission standards and contributes to a cleaner environment.',
-        icon: Leaf,
-        bgIcon: 'bg-green-50 text-[#074c43]',
-        filled: true,
-        strokeWidth: 2,
+        icon: '/Images/puc/Protect Environment.svg',
     },
     {
         title: 'Avoid Penalties',
         description: 'Stay updated with valid PUC certificate and avoid fines during traffic checks.',
-        icon: ShieldAlert,
-        bgIcon: 'bg-emerald-50 text-[#074c43]',
-        filled: true,
-        strokeWidth: 2,
+        icon: '/Images/puc/avoid Penalties.svg',
     },
     {
         title: 'Save Time & Effort',
         description: 'Get instant PUC status online without visiting RTO or PUC centers.',
-        icon: Clock,
-        bgIcon: 'bg-teal-50 text-[#074c43]',
-        filled: false,
-        strokeWidth: 2.8,
+        icon: '/Images/puc/Save Time & Effort.svg',
     },
 ];
 
@@ -50,7 +41,6 @@ export default function WhyCheck() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
                 {cards.map((card, idx) => {
-                    const Icon = card.icon;
                     return (
                         <motion.div
                             key={card.title}
@@ -61,10 +51,13 @@ export default function WhyCheck() {
                             transition={{ delay: idx * 0.1 }}
                             className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-50 shadow-[0_8px_30px_rgba(7,76,67,0.04)] flex flex-col items-center text-center group hover:shadow-md transition-all"
                         >
-                            <div className={`p-4 rounded-full ${card.bgIcon} mb-5 sm:mb-6 transition-transform group-hover:scale-110 duration-300`}>
-                                <Icon 
-                                    className={`w-7 h-7 sm:w-8 sm:h-8 ${card.filled ? 'fill-[#074c43]' : ''}`} 
-                                    strokeWidth={card.strokeWidth}
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#eefaf6] flex items-center justify-center p-3 mb-5 sm:mb-6 transition-transform group-hover:scale-110 duration-300">
+                                <Image
+                                    src={card.icon}
+                                    alt={card.title}
+                                    width={40}
+                                    height={40}
+                                    className="w-full h-full object-contain"
                                 />
                             </div>
                             <h3 className="text-lg sm:text-xl font-bold text-[#074c43] mb-2 sm:mb-3">{card.title}</h3>

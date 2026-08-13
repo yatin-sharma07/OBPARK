@@ -2,26 +2,18 @@
 
 import { motion } from 'framer-motion';
 import { microgrammaBold } from '@/lib/fonts';
-import {
-    Search,
-    FileText,
-    MapPin,
-    IndianRupee,
-    Calendar,
-    BookOpen,
-    Headphones
-} from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function ExploreMenu() {
     const items = [
-        { label: 'Check PUC Status', icon: Search, filled: false, strokeWidth: 2.8 },
-        { label: 'PUC Certificate', icon: FileText, filled: true, strokeWidth: 2 },
-        { label: 'PUC Centers', icon: MapPin, filled: true, strokeWidth: 2 },
-        { label: 'PUC Charges', icon: IndianRupee, filled: false, strokeWidth: 2.8 },
-        { label: 'Validity Details', icon: Calendar, filled: true, strokeWidth: 2 },
-        { label: 'PUC Guidelines', icon: BookOpen, filled: true, strokeWidth: 2 },
-        { label: 'Help & Support', icon: Headphones, filled: true, strokeWidth: 2 },
+        { label: 'Check PUC Status', icon: '/Images/puc/check_puc_status.svg' },
+        { label: 'PUC Certificate', icon: '/Images/puc/puc_certificate.svg' },
+        { label: 'PUC Centers', icon: '/Images/puc/puc_center.svg' },
+        { label: 'PUC Charges', icon: '/Images/puc/puc_charges.svg' },
+        { label: 'Validity Details', icon: '/Images/puc/vlidity  details.svg' },
+        { label: 'PUC Guidelines', icon: '/Images/puc/puc_guidelines.svg' },
+        { label: 'Help & Support', icon: '/Images/puc/help and support.svg' },
     ];
 
     return (
@@ -38,19 +30,21 @@ export default function ExploreMenu() {
 
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 sm:gap-5 lg:gap-6 xl:gap-8 w-full px-0 sm:px-2 md:px-4">
                 {items.map((item) => {
-                    const Icon = item.icon;
                     return (
                         <Link
                             key={item.label}
                             href="#"
                             className="flex flex-col items-center justify-center py-5 sm:py-6 px-2 sm:px-4 rounded-2xl border border-gray-200/80 hover:border-[#3fc197] hover:shadow-md transition-all bg-white text-center gap-3 sm:gap-4 group min-h-[120px] sm:h-[140px] shadow-[0_4px_20px_rgba(11,64,47,0.02)]"
                         >
-                            <Icon 
-                                className={`w-7 h-7 sm:w-8 sm:h-8 text-[#074c43] group-hover:text-[#3fc197] transition-colors duration-300 flex-shrink-0 ${
-                                    item.filled ? 'fill-[#074c43] group-hover:fill-[#3fc197]' : ''
-                                }`} 
-                                strokeWidth={item.strokeWidth}
-                            />
+                            <div className="w-8 h-8 sm:w-9 sm:h-9 relative flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                                <Image
+                                    src={item.icon}
+                                    alt={item.label}
+                                    width={36}
+                                    height={36}
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
                             <span className="font-semibold text-[#074c43] text-[11px] sm:text-xs lg:text-sm leading-tight">
                                 {item.label}
                             </span>
