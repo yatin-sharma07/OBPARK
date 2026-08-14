@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import FAQ from './FAQ'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import {
@@ -236,9 +237,10 @@ export function ObDriverPage() {
 }
 
   return (
-    <div className="w-full min-h-screen bg-white text-[#0A3D31]">
+    <div className="w-full min-h-screen bg-[#eefaf6] text-[#0A3D31] pt-3 sm:pt-4">
       {/* Hero */}
-<div className="w-[96%] mx-auto bg-[#D9D9D9] pt-24 mt-10 pb-16 px-4 sm:px-8 md:px-12 rounded-[48px]">
+      <div className="px-3 sm:px-4 md:px-6">
+        <div className="w-full bg-[#D9D9D9] min-h-[calc(100vh-32px)] flex flex-col justify-center pt-24 sm:pt-28 pb-16 px-4 sm:px-8 md:px-12 rounded-[28px] sm:rounded-[36px] md:rounded-[48px] shadow-[0_12px_30px_rgba(7,76,67,0.08)]">
   <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
     <div className="relative w-full aspect-[454.5/463.5] max-w-[454px] mx-auto lg:mx-0 overflow-hidden">
   <ImagePlaceholderIcon className="w-full h-full" stroke="#1E1E1E" />
@@ -261,6 +263,7 @@ export function ObDriverPage() {
       </Button>
     </div>
   </div>
+</div>
 </div>
 
       {/* Why ride with OBDrive */}
@@ -332,32 +335,8 @@ export function ObDriverPage() {
   <OfferingsSlider items={safetyPoints} microgrammaBold={microgrammaBold} michroma={michroma} />
 </section>
 
-{/* FAQ */}
-<section className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 pb-16 sm:pb-20">
-  <div className="bg-[#EAF5F0] rounded-[24px] p-6 sm:p-10">
-    <h2 className={`${michroma.className} text-[#074139] text-xl sm:text-[24px] leading-[1.4] sm:leading-[45px] font-normal mb-6 sm:mb-8`}>
-      Frequently Asked Questions (FAQ)
-    </h2>
-    <Accordion type="single" collapsible className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 sm:gap-y-6">
-      {faqs.map((f, i) => (
-        <AccordionItem
-          key={i}
-          value={`item-${i}`}
-          className="w-full min-h-[64px] sm:min-h-[80px] h-fit rounded-[20px] border-0 outline-none shadow-none ring-0 data-[state=open]:rounded-[24px] sm:data-[state=open]:rounded-[32px] transition-all overflow-hidden"
-          style={{ background: 'linear-gradient(to right, #A6DEC7, #308E8C)', padding: '0 20px' }}
-        >
-          <AccordionTrigger className="text-white text-sm sm:text-[16px] leading-[1.3] font-normal min-h-[64px] sm:min-h-[80px] py-3 sm:py-0 hover:no-underline [&>svg]:hidden flex items-center justify-between w-full border-0 outline-none ring-0 focus:ring-0 focus-visible:ring-0 focus:outline-none bg-transparent">
-            <span className="text-left flex-1 pr-4">{f.q}</span>
-            <span className="text-white text-xl sm:text-2xl font-light shrink-0 leading-none flex items-center">+</span>
-          </AccordionTrigger>
-          <AccordionContent className="text-white/90 text-sm pb-4 sm:pb-6 border-0 outline-none">
-            {f.a}
-          </AccordionContent>
-        </AccordionItem>
-      ))}
-    </Accordion>
-  </div>
-</section>
+  {/* FAQ */}
+  <FAQ />
 
 
     </div>
