@@ -88,14 +88,6 @@ export default function FAQ() {
     <section className="w-full bg-white">
       <div className="w-full rounded-[28px] bg-[#F0F9F5] pt-10 pb-16 sm:pt-14 sm:pb-20 md:pt-16 md:pb-28 px-6 sm:px-10 md:px-12 border border-[#E1EBE8]">
         <div className="mx-auto w-full max-w-[1300px]">
-        {/* SUBTITLE & TITLE */}
-        <p
-          className="mb-3 text-[13px] sm:text-[14px] text-[#074139] tracking-wider uppercase font-semibold"
-          style={{ fontFamily: 'var(--font-michroma)' }}
-        >
-          Frequently Asked Questions (FAQ)
-        </p>
-
         <h2
           className={`
             ${microgrammaBold.className}

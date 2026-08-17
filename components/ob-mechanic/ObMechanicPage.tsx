@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import FAQ from './FAQ'
+import { Button } from '@/components/ui/button'
 import {
   Accordion,
   AccordionContent,
@@ -84,12 +86,12 @@ const reviews = [
 
 const faqs = [
   {
-    q: 'What Is OBMechanic?',
-    a: 'OBMechanic is a technology-enabled multi-brand car service platform designed to make vehicle maintenance simple, reliable, and convenient. We connect customers with skilled technicians and trusted service solutions, ensuring quality workmanship and dependable car care for a wide range of vehicles.',
-  },
-  {
     q: 'Why Should I Choose OBMechanic?',
     a: 'OBMechanic makes car servicing simple, convenient, and reliable. Get access to a wide range of multi-brand car services at competitive prices, delivered by skilled technicians using quality parts and professional service standards.',
+  },
+  {
+    q: 'What Is OBMechanic?',
+    a: 'OBMechanic is a technology-enabled multi-brand car service platform designed to make vehicle maintenance simple, reliable, and convenient. We connect customers with skilled technicians and trusted service solutions, ensuring quality workmanship and dependable car care for a wide range of vehicles.',
   },
   {
     q: 'How Can OBMechanic Offer Savings on Car Services?',
@@ -135,16 +137,6 @@ function useItemsPerView() {
   return itemsPerView
 }
 
-function ImagePlaceholderIcon({ className, stroke = '#1E1E1E' }: { className?: string; stroke?: string }) {
-  return (
-    <svg viewBox="0 0 454.5 463.5" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <rect x="1.75" y="1.75" width="451" height="460" rx="32" stroke={stroke} strokeWidth="3.5" />
-      <circle cx="113" cy="145" r="32" stroke={stroke} strokeWidth="3.5" />
-      <path d="M75 340 L227 175 L380 340" stroke={stroke} strokeWidth="3.5" strokeLinejoin="round" strokeLinecap="round" fill="none" />
-    </svg>
-  )
-}
-
 export function ObMechanicPage() {
   const router = useRouter()
   const itemsPerView = useItemsPerView()
@@ -167,30 +159,41 @@ export function ObMechanicPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-white text-[#0A3D31]">
+    <div className="w-full min-h-screen bg-[#eefaf6] text-[#0A3D31] pt-3 sm:pt-4">
       {/* Hero */}
-      <div className="w-[96%] mx-auto bg-[#D9D9D9] pt-16 sm:pt-20 md:pt-24 mt-6 sm:mt-8 md:mt-10 pb-10 sm:pb-12 md:pb-16 px-4 sm:px-8 md:px-12 rounded-[24px] sm:rounded-[36px] md:rounded-[48px]">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 items-center">
-          <div className="relative w-full aspect-[454.5/463.5] max-w-[300px] sm:max-w-[380px] lg:max-w-[454px] mx-auto lg:mx-0 overflow-hidden">
-            <ImagePlaceholderIcon className="w-full h-full" stroke="#1E1E1E" />
-          </div>
+      <div className="px-3 sm:px-4 md:px-6">
+        <div className="relative w-full overflow-hidden bg-[#071313] min-h-[calc(100vh-32px)] flex flex-col justify-center pt-24 sm:pt-28 pb-16 px-6 sm:px-12 md:px-16 rounded-[24px] sm:rounded-[36px] md:rounded-[48px] shadow-[0_12px_30px_rgba(7,76,67,0.08)]">
+          {/* Hero Background Image */}
+          <Image
+            src="/Images/ob-mechanic/hero.jpg"
+            alt="OB Mechanic Hero"
+            fill
+            className="object-cover object-top sm:object-[center_top]"
+            priority
+          />
 
-          <div className="text-center lg:text-left">
-            <p className={`${michroma.className} text-black text-[13px] sm:text-[15px] leading-[24px] sm:leading-[28px] tracking-[0%] mb-2`}>
-              Car Servicing
+          {/* Dark Overlay Gradient for High Text Readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent pointer-events-none" />
+
+          {/* Overlaid Hero Content */}
+          <div className="relative z-10 max-w-xl text-left space-y-5">
+            <p className={`${michroma.className} text-white/80 text-xs sm:text-sm tracking-widest uppercase font-semibold`}>
+              CAR SERVICING
             </p>
-            <h1 className={`${microgrammaBold.className} text-[#1A817F] font-bold text-[28px] sm:text-[38px] md:text-[50px] leading-[120%] tracking-[0%]`}>
+            <h1 className={`${microgrammaBold.className} text-white font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] leading-[1.15]`}>
               Amazing deals for doorstep car servicing now at your fingertips
             </h1>
-            <p className={`${michroma.className} text-black text-[13px] sm:text-[15px] leading-[24px] sm:leading-[28px] tracking-[0%] mt-4 max-w-[585px] mx-auto lg:mx-0`}>
+            <p className={`${michroma.className} text-white/90 text-sm sm:text-base leading-relaxed max-w-lg mt-3`}>
               We get the garage right to your door.
             </p>
-            <button
-              onClick={handleFindCarServices}
-              className={`${microgrammaBold.className} mt-6 bg-[#CAEDE5] hover:bg-[#b8e3d8] text-[#0D4B4D] font-bold text-[16px] sm:text-[18px] md:text-[20px] leading-[120%] rounded-full px-8 sm:px-12 md:px-16 py-3 sm:py-4`}
-            >
-              Book Mechanic
-            </button>
+            <div className="pt-2">
+              <Button
+                onClick={handleFindCarServices}
+                className={`${microgrammaBold.className} bg-[#CAEDE5] hover:bg-[#b8e3d8] text-[#0D4B4D] font-bold text-base rounded-full px-10 py-6 transition-transform hover:scale-105`}
+              >
+                Find Car Services
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -323,38 +326,7 @@ export function ObMechanicPage() {
       </section>
 
       {/* FAQ */}
-      <section className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 pb-12 sm:pb-16 md:pb-20">
-        <div className="bg-[#EAF5F0] rounded-[16px] sm:rounded-[20px] md:rounded-[24px] p-5 sm:p-8 md:p-10">
-          <h2 className={`${michroma.className} text-[#074139] text-[18px] sm:text-[20px] md:text-[24px] leading-[1.4] font-normal mb-5 sm:mb-6 md:mb-8`}>
-            Frequently Asked Questions (FAQ)
-          </h2>
-          <Accordion type="single" collapsible className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 md:gap-x-8 gap-y-3 sm:gap-y-4 md:gap-y-6">
-            {faqs.map((f, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="w-full min-h-[56px] sm:min-h-[64px] md:min-h-[80px] h-fit rounded-[16px] sm:rounded-[20px] border-0 outline-none shadow-none ring-0 data-[state=open]:rounded-[20px] sm:data-[state=open]:rounded-[24px] md:data-[state=open]:rounded-[32px] transition-all overflow-hidden"
-                style={{ background: 'linear-gradient(to right, #A6DEC7, #308E8C)', padding: '0 16px' }}
-              >
-                <AccordionTrigger className="text-white text-[13px] sm:text-[14px] md:text-[16px] leading-[1.3] font-normal min-h-[56px] sm:min-h-[64px] md:min-h-[80px] py-3 sm:py-0 hover:no-underline [&>svg]:hidden flex items-center justify-between w-full border-0 outline-none ring-0 focus:ring-0 focus-visible:ring-0 focus:outline-none bg-transparent group">
-  <span className="text-left flex-1 pr-4">{f.q}</span>
-  <span className="relative text-white text-lg sm:text-xl md:text-2xl font-light shrink-0 leading-none flex items-center justify-center w-5 h-5">
-    <span className="absolute inset-0 flex items-center justify-center transition-opacity group-data-[state=open]:opacity-0">
-      +
-    </span>
-    <span className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-data-[state=open]:opacity-100">
-      −
-    </span>
-  </span>
-</AccordionTrigger>
-                <AccordionContent className="text-white/90 text-[13px] sm:text-sm pb-4 sm:pb-6 border-0 outline-none">
-                  {f.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
+      <FAQ />
     </div>
   )
 }
