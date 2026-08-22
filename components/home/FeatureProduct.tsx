@@ -76,7 +76,7 @@ export function FeatureProduct() {
 
         {/* TIMED SLIDER */}
         <div className="w-full relative overflow-hidden py-4 px-4 sm:px-8 max-w-[1200px] mx-auto">
-          <div 
+          <div
             className={`flex ${isTransitioning ? 'transition-transform duration-700 ease-in-out' : ''}`}
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             onTransitionEnd={handleTransitionEnd}
@@ -98,7 +98,7 @@ export function FeatureProduct() {
                         alt={product.title}
                         className="w-full h-full object-cover"
                         onError={(e) => {
-                          ;(e.target as HTMLImageElement).src =
+                          ; (e.target as HTMLImageElement).src =
                             'https://placehold.co/400x400/EAE6F0/2A8B87?text=Product+Image'
                         }}
                       />
@@ -142,8 +142,8 @@ export function FeatureProduct() {
           {/* Optional Indicators */}
           <div className="flex justify-center gap-3 mt-8">
             {initialProducts.map((_, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className={`h-2 rounded-full transition-all duration-500 ${i === activeDot ? 'w-8 bg-[#1C8182]' : 'w-2 bg-[#1C8182]/30'}`}
               />
             ))}
