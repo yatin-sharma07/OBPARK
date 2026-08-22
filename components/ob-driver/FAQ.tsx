@@ -7,28 +7,53 @@ import { Plus, Minus } from 'lucide-react';
 
 const faqs = [
     {
-        question: 'What is FASTag and how does it work?',
+        question: 'How Does OBDrive Work?',
         answer:
-            'FASTag is an electronic toll collection system in India, operated by the National Highway Authority of India (NHAI). It uses Radio Frequency Identification (RFID) technology for making toll payments directly from the prepaid linked account.',
+            "Request a driver through the OBDrive app, and we'll assign a verified driver to your booking. Your driver will head to your selected pickup location, while you can track their journey in real time through the app.",
     },
     {
-        question: 'How do I check my FASTag wallet balance?',
+        question: 'Can We Trust OBDrive Drivers?',
         answer:
-            'You can easily check your FASTag wallet balance by entering your vehicle registration number (VRN) on our FASTag portal or through instant SMS updates.',
+            'Your safety is our top priority, and we never compromise on it. Every OBDrive driver undergoes a thorough background verification and screening process before joining our platform. Drivers also receive proper training to ensure they meet our safety and service standards.',
     },
     {
-        question: 'How long does a FASTag recharge take to reflect?',
+        question: 'How Do I Contact My Driver?',
         answer:
-            'FASTag recharges done via UPI, Net Banking, or Credit/Debit cards are updated instantly, within 10 to 60 seconds.',
+            'Once a driver is assigned to your booking, you can contact them directly through the Obpark app. Call or message your driver conveniently from the app without needing to share your personal number.',
     },
     {
-        question: 'What should I do if my FASTag is blacklisted?',
+        question: "What's the Difference Between a Round Trip and a One-Way Trip?",
         answer:
-            'A FASTag gets blacklisted if there is insufficient balance in your wallet. Simply top up your FASTag wallet and wait 15-30 minutes for automatic unblocking.',
+            'Round Trip: Your driver picks you up and brings you back to the same location where your trip started. One-Way Trip: Your driver picks you up at your selected location and drops you off at a different destination.',
+    },
+    {
+        question: 'How Much in Advance Should I Book a Driver?',
+        answer:
+            "If a driver is available nearby, you can book an OBDrive driver instantly through the app. If no driver is currently available, or you'd like to schedule a ride in advance, we recommend booking at least 1 hour ahead. This gives us enough time to arrange a verified driver for you.",
+    },
+    {
+        question: 'Can I Extend My Booking Duration?',
+        answer:
+            "Yes. You can extend your booking if you need your driver for longer. Simply inform your driver, and they'll accommodate the additional time whenever possible. Additional charges may apply based on the extra duration or distance, as per OBDrive's pricing policy.",
+    },
+    {
+        question: 'How Can I Pay for My Driver?',
+        answer:
+            'You can pay your OBDrive driver directly at the end of your trip using Cash or UPI. You can also choose your preferred payment method while placing your booking through the Obpark app.',
+    },
+    {
+        question: 'What Is OBDrive Secure?',
+        answer:
+            'OBDrive Secure is designed to provide added peace of mind during your journey. It covers eligible damages that may occur to your car due to the fault of an OBDrive driver while driving your vehicle, subject to the applicable terms and conditions.',
+    },
+    {
+        question: 'Do You Provide Invoices?',
+        answer:
+            'Yes. Once your payment is completed, you can access or request your invoice directly from the OBDrive app. Go to My Account → Orders → Past Orders & Bookings to view your completed booking and invoice details.',
     },
 ];
 
-export function FastagFaqs() {
+export default function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     const renderCard = (faq: typeof faqs[0], index: number) => {
@@ -99,7 +124,7 @@ export function FastagFaqs() {
                             font-bold
                         `}
                     >
-                        FASTag FAQs
+                        OB Driver FAQs
                     </h2>
 
                     <div className="flex flex-col md:flex-row gap-5 sm:gap-6 w-full items-start">
@@ -121,5 +146,3 @@ export function FastagFaqs() {
         </section>
     );
 }
-
-export default FastagFaqs;

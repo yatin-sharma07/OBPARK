@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import FAQ from './FAQ'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import {
@@ -236,134 +237,113 @@ export function ObDriverPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-white text-[#0A3D31]">
+    <div className="w-full min-h-screen bg-[#eefaf6] text-[#0A3D31] pt-3 sm:pt-4">
       {/* Hero */}
-      {/* Hero Container with Background Image */}
-      <div
-        className="w-[96%] h-[700px] mx-auto bg-[#D9D9D9] bg-cover bg-center bg-no-repeat pt-24 mt-10 pb-16 px-4 sm:px-8 md:px-12 rounded-[48px] relative overflow-hidden"
-        style={{ backgroundImage: "url('/Images/ob-driver/ob-driver-main.png')" }}
-      >
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center min-h-[460px]">
+      <div className="px-3 sm:px-4 md:px-6">
+        <div className="relative w-full overflow-hidden bg-[#071313] min-h-[calc(100vh-32px)] flex flex-col justify-center pt-24 sm:pt-28 pb-16 px-6 sm:px-12 md:px-16 rounded-[28px] sm:rounded-[36px] md:rounded-[48px] shadow-[0_12px_30px_rgba(7,76,67,0.08)]">
+          {/* Hero Background Image */}
+          <Image
+            src="/Images/ob-driver/hero.png"
+            alt="OB Driver Hero"
+            fill
+            className="object-cover object-top sm:object-[center_10%]"
+            priority
+          />
 
-          {/* Left Column: Text & CTA Button */}
-          <div className="text-center lg:text-left z-10">
-            <h1 className={`${microgrammaBold.className} text-white font-bold text-3xl sm:text-4xl md:text-5xl leading-[1.2]`}>
+          {/* Dark Overlay Gradient for High Text Readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none" />
+
+          {/* Overlaid Hero Content */}
+          <div className="relative z-10 max-w-xl text-left space-y-6">
+            <h1 className={`${microgrammaBold.className} text-white font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.15]`}>
               Get a Driver in 30 minutes
             </h1>
-            <p className={`${michroma.className} text-white/80 text-sm sm:text-[15px] leading-[1.8] mt-4 max-w-[585px] mx-auto lg:mx-0`}>
-              Looking to hire a driver for your car? OBDrive is your go-to
-              on-demand or scheduled chauffeur service to hire
-              background-verified drivers
+            <p className={`${michroma.className} text-white/90 text-sm sm:text-base leading-relaxed max-w-lg`}>
+              Looking to hire a driver for your car? OBDrive is your go-to on-demand or scheduled chauffeur service to hire background-verified drivers
             </p>
-            <Button
-              onClick={handleFindDriver}
-              className={`${microgrammaBold.className} mt-6 bg-[#CAEDE5] hover:bg-[#b8e3d8] text-[#0D4B4D] font-bold text-base rounded-full px-12 py-6`}
-            >
-              Find Driver
-            </Button>
+            <div>
+              <Button
+                onClick={handleFindDriver}
+                className={`${microgrammaBold.className} mt-2 bg-[#CAEDE5] hover:bg-[#b8e3d8] text-[#0D4B4D] font-bold text-base rounded-full px-10 py-6 transition-transform hover:scale-105`}
+              >
+                Find Driver
+              </Button>
+            </div>
           </div>
-
-          {/* Right Column: Empty (Allows background image's driver to be visible) */}
-          <div className="hidden lg:block" />
         </div>
       </div>
 
-
       {/* Why ride with OBDrive */}
-      <section className="w-full overflow-hidden py-12 sm:py-16">
-        <div className="max-w-[634px] mx-auto text-center mb-12 sm:mb-16 space-y-4 sm:space-y-6 px-4">
-          <p className={`${michroma.className} text-black text-xl sm:text-2xl`}>
-            Why ride with OBDrive?
+<section className="w-full overflow-hidden py-12 sm:py-16">
+  <div className="max-w-[634px] mx-auto text-center mb-12 sm:mb-16 space-y-4 sm:space-y-6 px-4">
+    <p className={`${michroma.className} text-black text-xl sm:text-2xl`}>
+      Why ride with OBDrive?
+    </p>
+    <h2 className={`${microgrammaBold.className} text-[#1A817F] text-2xl sm:text-[28px] md:text-[32px] leading-[120%]`}>
+      Sit back, relax. We'll drive you
+      <br className="hidden sm:block" />
+      wherever you need to go.
+    </h2>
+  </div>
+
+  <div className="flex flex-col gap-10 sm:gap-16 max-w-[1278px] mt-16 mx-auto px-4 sm:px-8">
+    {whyRideRows.map((r, i) => (
+      <div
+        key={i}
+        className={`flex flex-col ${r.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-16 xl:gap-24`}
+      >
+        <div className="relative w-full max-w-[616px] aspect-square rounded-[24px] overflow-hidden shrink-0">
+          <Image src={r.image} alt={r.eyebrow} fill className="object-cover" />
+        </div>
+
+        <div className="flex flex-col justify-center w-full max-w-[532px] shrink-0 text-center lg:text-left">
+          <p className={`${michroma.className} text-black text-lg sm:text-xl md:text-[24px] leading-[100%]`}>
+            {r.eyebrow}
           </p>
-          <h2 className={`${microgrammaBold.className} text-[#1A817F] text-2xl sm:text-[28px] md:text-[32px] leading-[120%]`}>
-            Sit back, relax. We'll drive you
-            <br className="hidden sm:block" />
-            wherever you need to go.
-          </h2>
+          <h3 className={`${microgrammaBold.className} text-[#1A817F] text-2xl sm:text-[28px] md:text-[32px] leading-[120%] font-bold mt-4 sm:mt-6`}>
+            {r.heading}
+          </h3>
+          <button
+            className={`${michroma.className} mt-6 sm:mt-8 h-[43px] px-5 rounded-[30px] text-white text-sm sm:text-[16px] leading-[100%] whitespace-nowrap w-fit mx-auto lg:mx-0 bg-gradient-to-r from-[#1A817F] to-[#59D0B5]`}
+          >
+            {r.cta}
+          </button>
         </div>
+      </div>
+    ))}
+  </div>
+</section>
 
-        <div className="flex flex-col gap-10 sm:gap-16 max-w-[1278px] mt-16 mx-auto px-4 sm:px-8">
-          {whyRideRows.map((r, i) => (
-            <div
-              key={i}
-              className={`flex flex-col ${r.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-16 xl:gap-24`}
-            >
-              <div className="relative w-full max-w-[616px] aspect-square rounded-[24px] overflow-hidden shrink-0">
-                <Image src={r.image} alt={r.eyebrow} fill className="object-cover" />
-              </div>
+{/* Offerings */}
+<section className="w-full max-w-[1278px] mx-auto px-4 sm:px-8 py-12 sm:py-16">
+  <div className="text-center mb-10 sm:mb-18">
+    <h2 className={`${microgrammaBold.className} text-[#2A8B87] text-2xl sm:text-[32px] leading-[1.3] sm:leading-[28px] font-bold`}>
+      Our offerings
+    </h2>
+    <p className={`${michroma.className} text-[#4D4D4D] text-sm sm:text-[16px] leading-[160%] text-center mt-4 max-w-[607px] mx-auto`}>
+      Our easy-to-use driver app connects you with top-rated drivers, making it easy to get where you need to go.
+    </p>
+  </div>
 
-              <div className="flex flex-col justify-center w-full max-w-[532px] shrink-0 text-center lg:text-left">
-                <p className={`${michroma.className} text-black text-lg sm:text-xl md:text-[24px] leading-[100%]`}>
-                  {r.eyebrow}
-                </p>
-                <h3 className={`${microgrammaBold.className} text-[#1A817F] text-2xl sm:text-[28px] md:text-[32px] leading-[120%] font-bold mt-4 sm:mt-6`}>
-                  {r.heading}
-                </h3>
-                <button
-                  className={`${michroma.className} mt-6 sm:mt-8 h-[43px] px-5 rounded-[30px] text-white text-sm sm:text-[16px] leading-[100%] whitespace-nowrap w-fit mx-auto lg:mx-0 bg-gradient-to-r from-[#1A817F] to-[#59D0B5]`}
-                >
-                  {r.cta}
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+  <OfferingsSlider items={offerings} microgrammaBold={microgrammaBold} michroma={michroma} />
+</section>
 
-      {/* Offerings */}
-      <section className="w-full max-w-[1278px] mx-auto px-4 sm:px-8 py-12 sm:py-16">
-        <div className="text-center mb-10 sm:mb-18">
-          <h2 className={`${microgrammaBold.className} text-[#2A8B87] text-2xl sm:text-[32px] leading-[1.3] sm:leading-[28px] font-bold`}>
-            Our offerings
-          </h2>
-          <p className={`${michroma.className} text-[#4D4D4D] text-sm sm:text-[16px] leading-[160%] text-center mt-4 max-w-[607px] mx-auto`}>
-            Our easy-to-use driver app connects you with top-rated drivers, making it easy to get where you need to go.
-          </p>
-        </div>
+{/* Safety Points */}
+<section className="w-full max-w-[1278px] mx-auto px-4 sm:px-8 py-12 sm:py-16">
+  <div className="text-center mb-10 sm:mb-18">
+    <h2 className={`${microgrammaBold.className} text-[#2A8B87] text-2xl sm:text-[32px] leading-[1.3] sm:leading-[28px] font-bold`}>
+      Your safety is our top priority
+    </h2>
+    <p className={`${michroma.className} text-[#4D4D4D] text-sm sm:text-[16px] leading-[160%] text-center mt-4 max-w-[700px] mx-auto`}>
+      When you hire a driver through DriveU, you&apos;re never on your own. Behind the scenes, all DriveU employees are working to ensure every driver booking is secure from start to finish.
+    </p>
+  </div>
 
-        <OfferingsSlider items={offerings} microgrammaBold={microgrammaBold} michroma={michroma} />
-      </section>
+  <OfferingsSlider items={safetyPoints} microgrammaBold={microgrammaBold} michroma={michroma} />
+</section>
 
-      {/* Safety Points */}
-      <section className="w-full max-w-[1278px] mx-auto px-4 sm:px-8 py-12 sm:py-16">
-        <div className="text-center mb-10 sm:mb-18">
-          <h2 className={`${microgrammaBold.className} text-[#2A8B87] text-2xl sm:text-[32px] leading-[1.3] sm:leading-[28px] font-bold`}>
-            Your safety is our top priority
-          </h2>
-          <p className={`${michroma.className} text-[#4D4D4D] text-sm sm:text-[16px] leading-[160%] text-center mt-4 max-w-[700px] mx-auto`}>
-            When you hire a driver through DriveU, you&apos;re never on your own. Behind the scenes, all DriveU employees are working to ensure every driver booking is secure from start to finish.
-          </p>
-        </div>
-
-        <OfferingsSlider items={safetyPoints} microgrammaBold={microgrammaBold} michroma={michroma} />
-      </section>
-
-      {/* FAQ */}
-      <section className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 pb-16 sm:pb-20">
-        <div className="bg-[#EAF5F0] rounded-[24px] p-6 sm:p-10">
-          <h2 className={`${michroma.className} text-[#074139] text-xl sm:text-[24px] leading-[1.4] sm:leading-[45px] font-normal mb-6 sm:mb-8`}>
-            Frequently Asked Questions (FAQ)
-          </h2>
-          <Accordion type="single" collapsible className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 sm:gap-y-6">
-            {faqs.map((f, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="w-full min-h-[64px] sm:min-h-[80px] h-fit rounded-[20px] border-0 outline-none shadow-none ring-0 data-[state=open]:rounded-[24px] sm:data-[state=open]:rounded-[32px] transition-all overflow-hidden"
-                style={{ background: 'linear-gradient(to right, #A6DEC7, #308E8C)', padding: '0 20px' }}
-              >
-                <AccordionTrigger className="text-white text-sm sm:text-[16px] leading-[1.3] font-normal min-h-[64px] sm:min-h-[80px] py-3 sm:py-0 hover:no-underline [&>svg]:hidden flex items-center justify-between w-full border-0 outline-none ring-0 focus:ring-0 focus-visible:ring-0 focus:outline-none bg-transparent">
-                  <span className="text-left flex-1 pr-4">{f.q}</span>
-                  <span className="text-white text-xl sm:text-2xl font-light shrink-0 leading-none flex items-center">+</span>
-                </AccordionTrigger>
-                <AccordionContent className="text-white/90 text-sm pb-4 sm:pb-6 border-0 outline-none">
-                  {f.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
+  {/* FAQ */}
+  <FAQ />
 
 
     </div>

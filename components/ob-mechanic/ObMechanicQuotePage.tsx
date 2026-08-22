@@ -29,7 +29,7 @@ export function ObMechanicQuotePage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-white">
+    <div className="w-full min-h-screen bg-[#eefaf6]">
       <div className="max-w-[1278px] mx-auto w-full px-4 sm:px-8 pt-32 sm:pt-36 md:pt-40 pb-10 sm:pb-16">
         <form
           onSubmit={handleSubmit}

@@ -1,64 +1,0 @@
-[6n[?9001h[?1004h[m]0;C:\WINDOWS\system32\cmd.exe[?25h[?25l
-> web@0.1.0 build C:\practicals\next_js_projects\obrive\OBparknew\apps\web
-> next build[5;1H[?25h[38;2;173;127;168m[1m▲ Next.js 16.2.6[m (Turbopack)
-[?25l- Environments: .env.local[8;1H[?25h[37m[1m [m Creating an optimized production build ...
-[32m[1m✓[m Compiled successfully in 12.6s
-[?25l[37m[1m [m Running TypeScript  [36m.[m[K[74C[37m[1m [m Running TypeScript  [36m..[m[K[74C[37m[1m [m Running TypeScript  [36m...[m[K[74C[37m[1m [m Running TypeScript  [36m.[m[K[74C[37m[1m [m Running TypeScript  [36m..[m[K[74C[37m[1m [m Running TypeScript  [36m...[m[K[74C[37m[1m [m Running TypeScript  [36m.[m[K[74C[37m[1m [m Running TypeScript  [36m..[m[K[74C[37m[1m [m Running TypeScript  [36m...[m[K[74C[37m[1m [m Running TypeScript  [36m.[m[K[74C[37m[1m [m Running TypeScript  [36m..[m[K[74C[37m[1m [m Running TypeScript  [36m...[m[K[74C[37m[1m [m Running TypeScript  [36m.[m[K[74C[37m[1m [m Running TypeScript  [36m..[m[K[74C[37m[1m [m Running TypeScript  [36m...[m[K[74C[37m[1m [m Running TypeScript  [36m.[m[K[74C[37m[1m [m Running TypeScript  [36m..[m[K[74C[37m[1m [m Running TypeScript  [36m...[m[K[74C[37m[1m [m Running TypeScript  [36m.[m[37m[1m [m Running TypeScript  [36m..[K[50C[m[K[74C[37m[1m [m Running TypeScript  [36m...[m[K[74C[37m[1m [m Running TypeScript  [36m.[m[K[74C[37m[1m [m Running TypeScript  [36m..[m[K[74C[37m[1m [m Running TypeScript  [36m...[m[K[74C[37m[1m [m Running TypeScript  [36m.[m[K[74C[37m[1m [m Running TypeScript  [36m..[m[K[74C[37m[1m [m Running TypeScript  [36m...[m[K[74C[37m[1m [m Running TypeScript  [36m.[m[K[74C[37m[1m [m Running TypeScript  [36m..[m[K[74C[37m[1m [m Running TypeScript  [36m...[m[K[74C[37m[1m [m Running TypeScript  [36m.[m[K[74C[37m[1m [m Running TypeScript  [36m..[m[K[74C[37m[1m [m Running TypeScript  [36m...[m[K[74C[37m[1m [m Running TypeScript  [36m.[m[K[74C[32m[1m✓[m Finished TypeScript in 6.9s[K[37m[1m
- [m Collecting page data using 11 workers  [36m.[m[K[74C[37m[1m [m Collecting page data using 11 workers  [36m..[m[K[74C[37m[1m [m Collecting page data using 11 workers  [36m...[m[K[74C[37m[1m [m Collecting page data using 11 workers  [36m.[m[K[74C[37m[1m [m Collecting page data using 11 workers  [36m..[m[K[74C[37m[1m [m Collecting page data using 11 workers  [36m...[m[K[74C[32m[1m✓[m Collecting page data using 11 workers in 1149ms    
-[?25h[?25l[37m[1m [m Generating static pages using 11 workers (0/47)  [36m[    ][m[K[74C[37m[1m [m Generating static pages using 11 workers (0/47)  [36m[=   ][m[K[74C[37m[1m [m Generating static pages using 11 workers (16/47)  [36m[==  ][m[K[74C[37m[1m [m Generating static pages using 11 workers (24/47)  [36m[=== ][m[K[74C[32m[1m✓[m Generating static pages using 11 workers (47/47) in 1013ms[K
-[?25h[37m[1m [m Finalizing page optimization  [36m.[?25l[m[K[74C[32m[1m✓[m Finalizing page optimization in 49ms    [4m[15;1HRoute (app)[24m
-┌ ○ /
-├ ○ /_not-found
-├ ○ /about
-├ ○ /account
-├ ○ /account/orders
-├ ○ /account/settings
-├ ○ /account/vehicles
-├ ○ /business-policy
-├ ○ /cancellation-policy
-├ ○ /cart
-├ ƒ /category/[category]
-├ ○ /checkout
-├ ○ /coming-soon
-├ ○ /contact
-├ ○ /cookie-policy[?25h
-├ ○ /e-challan
-├ ○ /e-challan/details
-├ ○ /e-challan/paid
-├ ○ /e-challan/payment
-├ ○ /e-challan/pending
-├ ○ /enterprise-regulatory
-├ ○ /faq
-├ ○ /governing-law
-├ ○ /icon.svg
-├ ○ /invest
-├ ○ /legal-compliance
-├ ○ /login
-├ ○ /merchant-services
-├ ○ /our-story
-├ ○ /partners
-├ ○ /payment
-├ ○ /payment-compliance
-├ ○ /platform-policy
-├ ○ /privacy-policy
-├ ƒ /product/[productId]
-├ ○ /refund-policy
-├ ○ /services/car-insurance
-├ ○ /services/car-services
-├ ○ /services/ev-charging
-├ ○ /services/fastag
-├ ○ /services/puc
-├ ○ /services/vehicle-owner
-├ ○ /shipping-policy
-├ ○ /solutions
-├ ○ /terms-and-conditions
-├ ○ /user-rights
-└ ○ /vehicle-owner-details
-
-
-ƒ Proxy (Middleware)
-
-○  (Static)   prerendered as static content
-ƒ  (Dynamic)  server-rendered on demand
-
-[?9001l[?1004l

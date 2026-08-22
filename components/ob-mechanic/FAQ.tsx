@@ -7,28 +7,43 @@ import { Plus, Minus } from 'lucide-react';
 
 const faqs = [
     {
-        question: 'What is FASTag and how does it work?',
+        question: 'Why Should I Choose OBMechanic?',
         answer:
-            'FASTag is an electronic toll collection system in India, operated by the National Highway Authority of India (NHAI). It uses Radio Frequency Identification (RFID) technology for making toll payments directly from the prepaid linked account.',
+            'OBMechanic makes car servicing simple, convenient, and reliable. Get access to a wide range of multi-brand car services at competitive prices, delivered by skilled technicians using quality parts and professional service standards.',
     },
     {
-        question: 'How do I check my FASTag wallet balance?',
+        question: 'How Can OBMechanic Offer Savings on Car Services?',
         answer:
-            'You can easily check your FASTag wallet balance by entering your vehicle registration number (VRN) on our FASTag portal or through instant SMS updates.',
+            'OBMechanic keeps service costs competitive through an efficient, technology-driven business model. By optimizing operations, sourcing quality parts efficiently, and reducing unnecessary overheads, we can pass the savings on to customers.',
     },
     {
-        question: 'How long does a FASTag recharge take to reflect?',
+        question: 'How Is OBMechanic Different from Other Car Services?',
         answer:
-            'FASTag recharges done via UPI, Net Banking, or Credit/Debit cards are updated instantly, within 10 to 60 seconds.',
+            'OBMechanic focuses on delivering a complete, transparent car-service experience rather than simply generating service leads. We streamline the journey from service coordination and parts sourcing to quality checks and customer updates.',
     },
     {
-        question: 'What should I do if my FASTag is blacklisted?',
+        question: 'Where Can I Book a Car Service with OBMechanic?',
         answer:
-            'A FASTag gets blacklisted if there is insufficient balance in your wallet. Simply top up your FASTag wallet and wait 15-30 minutes for automatic unblocking.',
+            'You can conveniently book your car service through the OBMechanic platform. Simply choose the service you need, select a convenient date and time, and submit your booking request.',
+    },
+    {
+        question: 'How Do I Book a Car Service with OBMechanic?',
+        answer:
+            "Select your car — choose make, model, and fuel type. Choose your service — select the package that best suits your car's needs. Pick a time slot. Confirm your booking.",
+    },
+    {
+        question: "What If I'm Not Available to Drop Off My Car?",
+        answer:
+            'No problem! OBMechanic can make car servicing more convenient with pickup and drop-off assistance, subject to availability in your location.',
+    },
+    {
+        question: 'Do I Have to Pay Before the Service?',
+        answer:
+            "No, you don't have to pay upfront. At OBMechanic, your car is serviced and inspected by professionals before the final bill is generated.",
     },
 ];
 
-export function FastagFaqs() {
+export default function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     const renderCard = (faq: typeof faqs[0], index: number) => {
@@ -99,7 +114,7 @@ export function FastagFaqs() {
                             font-bold
                         `}
                     >
-                        FASTag FAQs
+                        OB Mechanic FAQs
                     </h2>
 
                     <div className="flex flex-col md:flex-row gap-5 sm:gap-6 w-full items-start">
@@ -121,5 +136,3 @@ export function FastagFaqs() {
         </section>
     );
 }
-
-export default FastagFaqs;
