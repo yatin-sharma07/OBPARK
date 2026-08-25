@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useMemo } from 'react'
 import { microgrammaBold } from '@/lib/fonts'
 import { useCartStore } from '@/store/cart.store'
 import { useCart } from '@/hooks/useCart'
@@ -35,38 +35,25 @@ const mobileLinks = [
         href: '#',
     },
     {
+        label: 'Shop',
+        href: '/shop',
+    },
+    {
         label: 'Get App',
         href: '#app',
-    },
+    }
 ]
+
 
 export function Navbar() {
     const { openCart } = useCartStore()
     const { data: apiCart } = useCart()
-    const [cartCount, setCartCount] = useState(0)
 
-    useEffect(() => {
-        const checkCart = () => {
-            let count = 0
-            if (apiCart?.items && apiCart.items.length > 0) {
-                count = apiCart.items.reduce((sum, i) => sum + i.quantity, 0)
-            } else {
-                const stored = sessionStorage.getItem('mockup_cart_item')
-                if (stored) {
-                    try {
-                        const parsed = JSON.parse(stored)
-                        count = parsed.quantity || 1
-                    } catch {
-                        count = 0
-                    }
-                }
-            }
-            setCartCount(count)
+    const itemCount = useMemo(() => {
+        if (apiCart?.items && apiCart.items.length > 0) {
+            return apiCart.items.reduce((sum: number, i: any) => sum + (i.quantity || 1), 0)
         }
-
-        checkCart()
-        const interval = setInterval(checkCart, 1000)
-        return () => clearInterval(interval)
+        return 0
     }, [apiCart])
 
     const [showNavbar, setShowNavbar] = useState(true)
@@ -245,14 +232,14 @@ export function Navbar() {
 
                             {/* Dropdown Card */}
                             <div className="absolute top-full left-1/2 -translate-x-1/2 min-w-[640px] bg-[#3C9792] rounded-[20px] p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-xl mt-2 pointer-events-auto flex">
-                                
+
                                 {/* Left Column: Resource Library & E-Book */}
                                 <div className="flex-1 pr-8 border-r border-white/20 flex flex-col">
                                     <h3 className={`${microgrammaBold.className} text-white text-xl tracking-wider mb-4`}>OBRIVE RESOURCE LIBRARY</h3>
                                     <p className={`${microgrammaBold.className} text-white/90 text-[11px] uppercase leading-[1.6] tracking-wider mb-6`}>A COLLECTION OF BLOGS, INDUSTRY INSIGHTS, AND RESOURCES SHAPING THE FUTURE OF IMMERSIVE TECHNOLOGY.</p>
-                                    
+
                                     <a href="https://obrive.com/resources" target="_blank" rel="noopener noreferrer" className={`${microgrammaBold.className} text-white text-[13px] tracking-widest uppercase hover:text-[#59D0B5] transition-colors pb-6 block border-b border-white/20 mb-6`}>READ MORE</a>
-                                    
+
                                     <div className="flex gap-5 mt-auto">
                                         {/* E-Book Mockup */}
                                         <div className="w-[130px] shrink-0 bg-[#CAEDE5] rounded-lg p-3 flex flex-col overflow-hidden relative min-h-[160px]">
@@ -264,11 +251,11 @@ export function Navbar() {
                                             <div className="text-[#0b3830] text-[8px] leading-tight font-medium relative z-10 border-b border-[#0b3830]/10 pb-1 mb-1">VR, MR, and spatial</div>
                                             <div className="text-[#0b3830] text-[8px] leading-tight font-medium relative z-10 border-b border-[#0b3830]/10 pb-1 mb-1">redefining industries</div>
                                             <div className="text-[#0b3830] text-[8px] leading-tight font-medium relative z-10">worldwide.</div>
-                                            
+
                                             {/* Spiral decoration placeholder */}
                                             <div className="absolute -bottom-8 -right-4 w-32 h-32 opacity-40">
                                                 <svg viewBox="0 0 100 100" className="w-full h-full stroke-[#0b3830]" fill="none" strokeWidth="0.5">
-                                                    {Array.from({length: 15}).map((_, i) => (
+                                                    {Array.from({ length: 15 }).map((_, i) => (
                                                         <ellipse key={i} cx="50" cy="50" rx={40 - i * 2} ry="20" transform={`rotate(${i * 12} 50 50)`} />
                                                     ))}
                                                 </svg>
@@ -282,12 +269,12 @@ export function Navbar() {
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 {/* Right Column: Support */}
                                 <div className="flex-1 pl-8">
                                     <h3 className={`${microgrammaBold.className} text-white text-xl tracking-wider mb-4`}>SUPPORT</h3>
                                     <p className={`${microgrammaBold.className} text-white/90 text-[11px] uppercase leading-[1.6] tracking-wider mb-8 whitespace-nowrap`}>EXPERT INSIGHTS, GUIDES, AND TOOLS<br />TO POWER IMMERSIVE INNOVATION</p>
-                                    
+
                                     <div className="flex flex-col">
                                         <a href="https://obrive.com/support/help-center" target="_blank" rel="noopener noreferrer" className={`${microgrammaBold.className} font-light text-white hover:text-[#59D0B5] transition-colors py-4 border-t border-white/20 tracking-wider text-[13px]`}>OB Help Center</a>
                                         <a href="https://obrive.com/faq/ob-product-faq" target="_blank" rel="noopener noreferrer" className={`${microgrammaBold.className} font-light text-white hover:text-[#59D0B5] transition-colors py-4 border-t border-white/20 tracking-wider text-[13px]`}>OB Products FAQ</a>
@@ -325,8 +312,8 @@ export function Navbar() {
                               text-white
                             "
                             style={{
-                              background: 'linear-gradient(90deg, #1A817F 0%, #59D0B5 100%)',
-                              fontFamily: 'var(--font-michroma)'
+                                background: 'linear-gradient(90deg, #1A817F 0%, #59D0B5 100%)',
+                                fontFamily: 'var(--font-michroma)'
                             }}
                         >
                             <span className="w-2.5 h-2.5 rounded-full bg-white flex-shrink-0" />
@@ -367,9 +354,9 @@ export function Navbar() {
                                 alt="View cart"
                                 className="w-full h-full object-contain"
                             />
-                            {cartCount > 0 && (
+                            {itemCount > 0 && (
                                 <span className="absolute -top-1 -right-1 bg-[#1A817F] text-white text-[10px] font-bold w-4 sm:w-5 h-4 sm:h-5 rounded-full flex items-center justify-center border-2 border-white shadow-sm leading-none">
-                                    {cartCount}
+                                    {itemCount}
                                 </span>
                             )}
                         </button>
@@ -476,9 +463,9 @@ export function Navbar() {
                                 alt="View cart"
                                 className="w-full h-full object-contain"
                             />
-                            {cartCount > 0 && (
+                            {itemCount > 0 && (
                                 <span className="absolute -top-1 -right-1 bg-[#1A817F] text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white shadow-sm leading-none">
-                                    {cartCount}
+                                    {itemCount}
                                 </span>
                             )}
                         </button>
@@ -620,7 +607,7 @@ export function Navbar() {
                                                 <span>{item.label}</span>
                                                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileResourcesOpen ? 'rotate-180' : ''}`} />
                                             </button>
-                                            
+
                                             <AnimatePresence>
                                                 {mobileResourcesOpen && (
                                                     <motion.div

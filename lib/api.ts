@@ -27,7 +27,7 @@ async function request<T>(
     const { refreshSession } = await import('./auth.api')
     try {
       const session = await refreshSession()
-      useAuthStore.getState().setAuth(session.user, session.accessToken)
+      useAuthStore.setState({ accessToken: session.accessToken })
       return request<T>(endpoint, options, false)
     } catch {
       useAuthStore.getState().clearAuth()

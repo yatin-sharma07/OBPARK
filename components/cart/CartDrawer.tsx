@@ -136,7 +136,7 @@ export function CartDrawer() {
                 {/* Items List */}
                 <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
                   {hasApiItems
-                    ? apiCart?.items.map((item) => (
+                    ? apiCart?.items.map((item: any) => (
                         <div
                           key={item.id}
                           className="flex gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-md"
@@ -145,7 +145,7 @@ export function CartDrawer() {
                             {item.product.images?.[0] ? (
                               <img
                                 src={item.product.images[0]}
-                                alt={item.product.name}
+                                alt={item.product?.productName || item.product?.title || item.product?.name || "Product"}
                                 className="w-full h-full object-cover"
                               />
                             ) : (
@@ -158,7 +158,7 @@ export function CartDrawer() {
                               {item.product.name}
                             </p>
                             <p className="text-xs text-white/70 mt-0.5">
-                              ₹{item.product.basePrice.toLocaleString('en-IN')}
+                              ₹{Number(item.product?.productCost ?? item.product?.price ?? item.product?.basePrice ?? 0).toLocaleString('en-IN')}
                             </p>
 
                             <div className="flex items-center justify-between mt-3">
@@ -222,7 +222,7 @@ export function CartDrawer() {
                               {item.name}
                             </p>
                             <p className="text-xs text-[#59D0B5] font-semibold mt-1">
-                              ₹{item.priceVal.toLocaleString('en-IN')}
+                              ₹{Number(item.priceVal ?? 0).toLocaleString('en-IN')}
                             </p>
 
                             <div className="flex items-center justify-between mt-3">

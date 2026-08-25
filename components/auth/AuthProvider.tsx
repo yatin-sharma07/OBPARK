@@ -20,9 +20,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     // Try to get a new access token using the refresh token in memory
-    api.post<AuthResponse>('/auth/refresh', { refreshToken })
+    api.post<{ accessToken: string }>('/auth/refresh', { refreshToken })
       .then((res) => {
-        setAuth(res.user, res.accessToken, res.refreshToken)
+        useAuthStore.setState({ accessToken: res.accessToken })
       })
       .catch(() => {
         clearAuth()

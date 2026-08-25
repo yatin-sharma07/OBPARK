@@ -8,9 +8,8 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-// NEW TYPE
-import { SingleProduct } from "@/app/category/mock-data/types";
-import { extraImages } from "@/app/category/mock-data/mock-data";
+// Types
+import { SingleProduct } from "@/types/product";
 
 interface CustomerReviewsProps {
   product: SingleProduct;
@@ -22,10 +21,7 @@ export function CustomerReviews({
   const [searchQuery, setSearchQuery] =
     useState("");
 
-  
-    const [activeImage, setActiveImage] = useState(
-      extraImages.extraImagesSet[0]
-    );
+
 
   // NEW → real star distribution
   const ratingDistribution =
@@ -267,22 +263,12 @@ export function CustomerReviews({
 
                 </div>
 
-                {/* Images */}
-                {extraImages.extraImagesSet &&
-                  extraImages.extraImagesSet
-                    .length > 0 && (
+                {/* Images — rendered when review has uploaded media */}
+                {review.userUploadedMedia && review.userUploadedMedia.length > 0 && (
                     <div className="pt-2">
-
                       <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 max-w-xl">
-
-
-
-
-                          {extraImages.extraImagesSet.map(
-                          (
-                            imgUrl,
-                            imgIdx
-                          ) => (
+                        {review.userUploadedMedia.map(
+                          (imgUrl, imgIdx) => (
                             <div
                               key={imgIdx}
                               className="aspect-square bg-slate-50 border border-slate-100 rounded-xl overflow-hidden p-1 flex items-center justify-center"
@@ -295,25 +281,6 @@ export function CustomerReviews({
                             </div>
                           )
                         )}
-
-                        {/* {review.userUploadedMedia.map(
-                          (
-                            imgUrl,
-                            imgIdx
-                          ) => (
-                            <div
-                              key={imgIdx}
-                              className="aspect-square bg-slate-50 border border-slate-100 rounded-xl overflow-hidden p-1 flex items-center justify-center"
-                            >
-                              <img
-                                src={imgUrl}
-                                alt="review image"
-                                className="max-w-full max-h-full object-cover rounded-lg"
-                              />
-                            </div>
-                          )
-                        )} */}
-
                       </div>
                     </div>
                   )}

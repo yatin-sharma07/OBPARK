@@ -9,134 +9,7 @@ import { useEffect, useState } from 'react'
 import { api } from '@/lib/api'
 import { ProductCard } from './ProductCard'
 
-// Fallback Mock Products Database
-const fallbackProducts: Record<string, any[]> = {
-  'electronics-smart-gadgets': [
-    {
-      id: 101,
-      productId: 'portronics-clamp-z',
-      productName: 'Portronics Clamp Z Car Phone Holder Stand with 360 Degree Rotation, AC Vent',
-      productDescription: 'Premium car phone mount with 360 degree rotation, robust spring hook, carbon fiber texture surface, and one-touch release mechanism.',
-      productCost: 261,
-      productRating: 4.6,
-      images: ['https://images.unsplash.com/photo-1586105251261-72a756497a11?w=500&auto=format&fit=crop&q=60']
-    },
-    {
-      id: 102,
-      productId: 'qubo-dashcam',
-      productName: 'Qubo Smart Dashcam Pro GPS with 1080p Full HD Video',
-      productDescription: 'High resolution dashcam with built-in GPS, night vision, G-sensor, loop recording, and mobile app support.',
-      productCost: 3499,
-      productRating: 4.8,
-      images: ['https://images.unsplash.com/photo-1508974239320-0a029497e820?w=500&auto=format&fit=crop&q=60']
-    },
-    {
-      id: 103,
-      productId: 'bluetooth-transmitter',
-      productName: 'Portronics Auto One Bluetooth Car Transmitter & Charger',
-      productDescription: 'FM modulator with dual USB fast charging, hands-free calling, music streaming, and bass boost controls.',
-      productCost: 499,
-      productRating: 4.3,
-      images: ['https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&auto=format&fit=crop&q=60']
-    },
-    {
-      id: 104,
-      productId: 'gps-tracker-obpark',
-      productName: 'Onelap Micro Smart GPS Tracker with Engine Lock',
-      productDescription: 'Real-time anti-theft GPS tracking device with analytics, ignition alerts, and remote engine cutoff.',
-      productCost: 1299,
-      productRating: 4.5,
-      images: ['https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&auto=format&fit=crop&q=60']
-    }
-  ],
-  'ev-accessories': [
-    {
-      id: 201,
-      productId: 'ev-portable-charger',
-      productName: 'Portable EV Charger 16A Type 2 with 15 Amp Plug',
-      productDescription: 'Premium portable charging solution compatible with all Type 2 electric vehicles. Features auto temperature cutoff and delay timer.',
-      productCost: 12999,
-      productRating: 4.7,
-      images: ['https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&auto=format&fit=crop&q=60']
-    },
-    {
-      id: 202,
-      productId: 'ev-charger-holster',
-      productName: 'EV Charging Cable Organizer Wall Mount Holster',
-      productDescription: 'Durable wall hanger for EV charging cable and Type 2 plug. Prevents cable tangles and socket damages.',
-      productCost: 699,
-      productRating: 4.4,
-      images: ['https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?w=500&auto=format&fit=crop&q=60']
-    },
-    {
-      id: 203,
-      productId: 'ev-extension-cable',
-      productName: 'EV Charging Extension Cable Type 2 to Type 2 (5 Meter)',
-      productDescription: 'Heavy-duty 5m extension cable for EV charging station compatibility. Weatherproof IP65 protection rating.',
-      productCost: 4499,
-      productRating: 4.6,
-      images: ['https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=500&auto=format&fit=crop&q=60']
-    }
-  ],
-  'exterior-accessories': [
-    {
-      id: 301,
-      productId: 'shinexpro-shampoo',
-      productName: 'ShineXPro Foam Wash Shampoo Concentrate (1L)',
-      productDescription: 'High-foam car wash shampoo concentrate designed to lift heavy dirt and road grime safely without affecting clear coat.',
-      productCost: 349,
-      productRating: 4.5,
-      images: ['https://images.unsplash.com/photo-1520340356584-f9917d1ecc6f?w=500&auto=format&fit=crop&q=60']
-    },
-    {
-      id: 302,
-      productId: 'detailing-brush-set',
-      productName: 'Microfiber Interior Detailing Brush Kit (5 Pieces)',
-      productDescription: 'Soft synthetic bristles detailing brush set for cleaning dashboard, console, AC vents, and leather seats.',
-      productCost: 199,
-      productRating: 4.2,
-      images: ['https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&auto=format&fit=crop&q=60']
-    },
-    {
-      id: 303,
-      productId: 'liquid-wax-polish',
-      productName: 'WaveX Carnauba Liquid Wax Polish & Paint Protection',
-      productDescription: 'Carnauba-enriched polish for deep high-gloss shine and robust UV ray paint protection.',
-      productCost: 449,
-      productRating: 4.4,
-      images: ['https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=500&auto=format&fit=crop&q=60']
-    }
-  ],
-  'emergency-utility-products': [
-    {
-      id: 401,
-      productId: 'portable-tire-inflator',
-      productName: 'Bergmann Typhoon Heavy Duty Metal Car Tyre Inflator',
-      productDescription: 'Fast, high-pressure digital air pump for inflating tires. Plugs into 12V car socket with auto shutoff feature.',
-      productCost: 2499,
-      productRating: 4.7,
-      images: ['https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500&auto=format&fit=crop&q=60']
-    },
-    {
-      id: 402,
-      productId: 'emergency-toolkit',
-      productName: 'All-in-One Car Emergency Toolkit with Jumper Cables',
-      productDescription: 'Roadside safety kit including jumper cables, tow strap, safety vest, flashlight, and essential hand tools.',
-      productCost: 1299,
-      productRating: 4.5,
-      images: ['https://images.unsplash.com/photo-1530124560676-b0007eef5916?w=500&auto=format&fit=crop&q=60']
-    },
-    {
-      id: 403,
-      productId: 'window-breaker-tool',
-      productName: '2-in-1 Car Window Glass Breaker & Seatbelt Cutter',
-      productDescription: 'Keychain-sized emergency survival hammer tool for quick vehicle escape in underwater or crash scenarios.',
-      productCost: 299,
-      productRating: 4.4,
-      images: ['https://images.unsplash.com/photo-1542382156909-9ae37b3f56fd?w=500&auto=format&fit=crop&q=60']
-    }
-  ]
-};
+
 
 interface ProductsPageProps {
   categorySlug: string;
@@ -148,35 +21,20 @@ export function ProductsPage({ categorySlug }: ProductsPageProps) {
   const [loading, setLoading] = useState<boolean>(true);
   const [sortBy, setSortBy] = useState('');
 
-  // Mapper to convert frontend categories to matching backend category ids
-  const getBackendSlug = (slug: string) => {
-    const mapping: Record<string, string> = {
-      'ev-accessories': 'ev-products',
-      'electronics-smart-gadgets': 'electronics-and-smart-gadgets',
-      'exterior-accessories': 'car-care-detaling',
-      'emergency-utility-products': 'emergency-and-safety',
-    };
-    return mapping[slug] || slug;
-  };
-
   useEffect(() => {
     async function fetchProducts() {
       try {
         setLoading(true);
-        const backendSlug = getBackendSlug(categorySlug);
-        const response = await api.get<any>(`/products?categoryslug=${backendSlug}`);
+        const response = await api.get<any>(`/products?categoryslug=${categorySlug}`);
 
         // If backend returned products, use them. Otherwise, fall back to our dummy fallback database
         if (response.products && response.products.length > 0) {
           setProducts(response.products);
           console.log("products: ", response.products);
-        } else {
-          setProducts(fallbackProducts[categorySlug] || []);
         }
       } catch (error) {
         console.error("failed to load products : ", error);
-        // Fallback in case of API error
-        setProducts(fallbackProducts[categorySlug] || []);
+
       } finally {
         setLoading(false);
       }
@@ -188,7 +46,7 @@ export function ProductsPage({ categorySlug }: ProductsPageProps) {
   }, [categorySlug]);
 
   return (
-    <div className="w-full min-h-screen bg-white text-[#0A3D31]">
+    <div className="w-full min-h-screen bg-[#eefaf6] text-[#0A3D31]">
 
       {/* Hero */}
       {/* Hero Container with Background Image */}
@@ -239,7 +97,7 @@ export function ProductsPage({ categorySlug }: ProductsPageProps) {
       </div>
 
       {/* Features Bar */}
-      <section className="w-full py-8 bg-[#F4FBF9]">
+      <section className="w-full py-8  bg-[#eefaf6]">
         <div className="w-[96%] max-w-6xl mx-auto bg-white border border-gray-100 rounded-3xl p-6 shadow-sm">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 divide-y sm:divide-y-0 lg:divide-x lg:divide-gray-100">
 

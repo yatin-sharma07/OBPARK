@@ -21,6 +21,7 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState('credit_card')
   const [showCouponInput, setShowCouponInput] = useState(false)
   const [couponCode, setCouponCode] = useState('')
+  const [updates, setUpdates] = useState(false)
   const [mockItems, setMockItems] = useState([
     {
       id: 'mock-item-1',
@@ -299,56 +300,60 @@ export default function CheckoutPage() {
 
                   {/* Payment Options Card */}
                   <div className="bg-white rounded-[16px] p-6 sm:p-8 shadow-sm flex flex-col gap-6">
-                    <div className="space-y-3">
-                      {[
-                        { id: 'credit_card', label: 'Credit Card', icon: '💳' },
-                        { id: 'debit_card', label: 'Debit Card', icon: '💳' },
-                        { id: 'upi', label: 'UPI', icon: '📱' },
-                        { id: 'gpay', label: 'Gpay', icon: '🌐' },
-                        { id: 'paypal', label: 'Paypal', icon: '🅿️' },
-                      ].map((option) => (
-                        <label
-                          key={option.id}
-                          className={`flex items-center justify-between px-4 py-3 border rounded-xl cursor-pointer transition-all ${paymentMethod === option.id
+                    {/* Disallowed features container */}
+                    <div className="opacity-50 pointer-events-none select-none space-y-6">
+                      <div className="space-y-3">
+                        {[
+                          { id: 'credit_card', label: 'Credit Card', icon: '💳' },
+                          { id: 'debit_card', label: 'Debit Card', icon: '💳' },
+                          { id: 'upi', label: 'UPI', icon: '📱' },
+                          { id: 'gpay', label: 'Gpay', icon: '🌐' },
+                          { id: 'paypal', label: 'Paypal', icon: '🅿️' },
+                        ].map((option) => (
+                          <label
+                            key={option.id}
+                            className={`flex items-center justify-between px-4 py-3 border rounded-xl transition-all ${paymentMethod === option.id
                               ? 'border-[#1D8582] bg-[#f0faf8]/30'
-                              : 'border-slate-100 hover:bg-slate-50/50'
-                            }`}
-                          style={{ fontFamily: 'var(--font-michroma)' }}
-                        >
-                          <div className="flex items-center gap-3">
-                            <input
-                              type="radio"
-                              name="payment_method"
-                              value={option.id}
-                              checked={paymentMethod === option.id}
-                              onChange={() => setPaymentMethod(option.id)}
-                              className="text-[#1D8582] focus:ring-[#1D8582] w-4 h-4 cursor-pointer"
-                            />
-                            <span className="text-xs font-semibold text-[#074139]">{option.label}</span>
-                          </div>
-                          <span className="text-base">{option.icon}</span>
+                              : 'border-slate-100'
+                              }`}
+                            style={{ fontFamily: 'var(--font-michroma)' }}
+                          >
+                            <div className="flex items-center gap-3">
+                              <input
+                                type="radio"
+                                name="payment_method"
+                                value={option.id}
+                                checked={paymentMethod === option.id}
+                                disabled
+                                className="text-[#1D8582] focus:ring-[#1D8582] w-4 h-4"
+                              />
+                              <span className="text-xs font-semibold text-[#074139]">{option.label}</span>
+                            </div>
+                            <span className="text-base">{option.icon}</span>
+                          </label>
+                        ))}
+                      </div>
+
+                      <p className="text-[10px] text-slate-500 leading-relaxed" style={{ fontFamily: 'var(--font-michroma)' }}>
+                        Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.
+                      </p>
+
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          id="newsletter-payment"
+                          disabled
+                          className="rounded border-slate-200 text-[#1D8582] focus:ring-[#1D8582] w-4 h-4"
+                        />
+                        <label htmlFor="newsletter-payment" className="text-[10px] text-slate-500" style={{ fontFamily: 'var(--font-michroma)' }}>
+                          Sign up to receive email updates and news (optional)
                         </label>
-                      ))}
-                    </div>
-
-                    <p className="text-[10px] text-slate-500 leading-relaxed" style={{ fontFamily: 'var(--font-michroma)' }}>
-                      Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.
-                    </p>
-
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        id="newsletter-payment"
-                        className="rounded border-slate-200 text-[#1D8582] focus:ring-[#1D8582] w-4 h-4 cursor-pointer"
-                      />
-                      <label htmlFor="newsletter-payment" className="text-[10px] text-slate-500 cursor-pointer" style={{ fontFamily: 'var(--font-michroma)' }}>
-                        Sign up to receive email updates and news (optional)
-                      </label>
+                      </div>
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full py-4 bg-gradient-to-r from-[#1A817F] to-[#59D0B5] hover:opacity-90 text-white font-medium text-sm rounded-full transition-all shadow-sm text-center"
+                      className="w-full py-4 bg-gradient-to-r from-[#1A817F] to-[#59D0B5] hover:opacity-90 text-white font-medium text-sm rounded-full transition-all shadow-sm text-center cursor-pointer"
                       style={{ fontFamily: 'var(--font-michroma)' }}
                     >
                       Place order

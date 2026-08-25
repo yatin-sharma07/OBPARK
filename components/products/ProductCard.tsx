@@ -7,6 +7,7 @@ import { useAddToCart } from '@/hooks/useCart'
 import { useAuthStore } from '@/store/auth.store'
 
 export interface Product {
+    category?: string | { id?: string; name?: string; slug?: string };
     id: number;
     productId: string;
     productName: string;
@@ -42,6 +43,10 @@ export function ProductCard({ product }: ProductCardProps) {
     }
 
     // Prepend backend API url for images hosted on the backend server
+    const categorySlug = typeof product.category === 'object' && product.category?.slug
+        ? product.category.slug
+        : (typeof product.category === 'string' && product.category ? product.category : 'car-accessories');
+
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
     const mainImage = product.images && product.images.length > 0
         ? (product.images[0].startsWith('http') || product.images[0].startsWith('data:')
@@ -63,7 +68,7 @@ export function ProductCard({ product }: ProductCardProps) {
             </div>
 
             {/* Product Image */}
-            <Link href={`/product/${product.productId}`} className="relative w-full aspect-square bg-transparent flex items-center justify-center overflow-hidden mb-6 cursor-pointer">
+            <Link href={`/shop/${categorySlug}/${product.productId}`} className="relative w-full aspect-square bg-transparent flex items-center justify-center overflow-hidden mb-6 cursor-pointer">
                 <Image
                     src={mainImage}
                     alt={product.productName}
@@ -74,7 +79,7 @@ export function ProductCard({ product }: ProductCardProps) {
             </Link>
 
             {/* Product Title */}
-            <Link href={`/product/${product.productId}`}>
+            <Link href={`/shop/${categorySlug}/${product.productId}`}>
                 <h3 className={`${microgrammaBold.className} text-[#0A3D31] text-[13px] sm:text-[14px] font-bold leading-[1.4] line-clamp-3 min-h-[60px] mb-4 hover:text-[#308E8C] transition-colors cursor-pointer`}>
                     {product.productName}
                 </h3>
@@ -101,14 +106,23 @@ export function ProductCard({ product }: ProductCardProps) {
                 </span>
             </div>
 
+
             {/* Actions Row */}
-            <div className="flex items-center justify-between mt-auto gap-4">
-                {/* Wishlist Button (Left) */}
-                <button className="flex items-center justify-center w-12 h-8 border border-[#308E8C]/30 hover:border-[#308E8C]/60 rounded-md transition-all bg-white text-[#308E8C] hover:bg-gray-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-heart">
+            {/* <div className="flex items-center justify-between mt-auto gap-4"> */}
+            {/* Wishlist Button (Left) */}
+            {/* <button className="flex items-center visibility-hidden justify-center w-12 h-8 border border-[#308E8C]/30 hover:border-[#308E8C]/60 rounded-md transition-all bg-white text-[#308E8C] hover:bg-gray-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-heart">
                         <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
                     </svg>
-                </button>
+                </button> */}
+
+            {/* Actions Row */}
+            <div className="flex items-center justify-end mt-auto gap-4">
+                {/* <button className="flex items-center justify-center w-12 h-8 border border-[#308E8C]/30 hover:border-[#308E8C]/60 rounded-md transition-all bg-white text-[#308E8C] hover:bg-gray-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-heart">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                    </svg>
+                </button> */}
 
                 {/* Add to Basket Button (Right) */}
                 <button

@@ -17,14 +17,23 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { SingleProduct } from "@/app/category/mock-data/types";
+import { SingleProduct } from "@/types/product";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/auth.store";
 import { useAddToCart } from "@/hooks/useCart";
+import { useProducts } from "@/hooks/useProducts";
 import { useCartStore } from "@/store/cart.store";
 import { VehicleSelectDialog } from "@/components/cart/VehicleSelectDialog";
-import { MockData } from "@/app/category/mock-data/mock-data";
+
 import { microgrammaBold } from "@/lib/fonts";
+
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+function _prepend(imgPath: string): string {
+  if (!imgPath) return "";
+  if (imgPath.startsWith("http") || imgPath.startsWith("data:")) return imgPath;
+  return `${BASE_URL}${imgPath}`;
+}
 
 interface ProductInfoProps {
   product: SingleProduct;
@@ -44,13 +53,12 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
   const [currentPartnerSlide, setCurrentPartnerSlide] = useState(0);
 
   // Gallery Images
-  const mainImg =
-  product.imagePath || "/Images/Feature-Product/Microfiber-Cloth.jpg";
+  const mainImg = product.imagePath;
 
-const allImages =
-  product.galleryImages && product.galleryImages.length > 0
-    ? [mainImg, ...product.galleryImages]
-    : [mainImg];
+  const allImages =
+    product.galleryImages && product.galleryImages.length > 0
+      ? [mainImg, ...product.galleryImages]
+      : [mainImg];
 
   const [activeImage, setActiveImage] = useState(allImages[0]);
 
@@ -58,6 +66,10 @@ const allImages =
   const decrementQty = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
   const handleAddToCart = () => {
+    if (!isAuthenticated) {
+      router.push('/login');
+      return;
+    }
     setShowDialog(true);
   };
 
@@ -85,40 +97,21 @@ const allImages =
     setShowDialog(false);
     router.push('/cart');
   };
-   
-const similarProductSlides = [
-  {
-    badge: "Car Essentials",
-    image: "/Images/similar-products/car-essentials.png",
-    text: "Must have car care essentials",
-    icon: Droplets,
-    link: "/product/premium-car-air-freshener",
-    
-  },
-  {
-    badge: "Car Polishing",
-    image: "/Images/similar-products/car-polishing.png",
-    text: "Restore shine, like new",
-    icon: Disc,
-    link: "/product/car-polishing-kit",
-  },
-  {
-    badge: "Car Repairs",
-    image: "/Images/similar-products/car-repairs.png",
-    text: "Expert care for every issue",
-    icon: Wrench,
-    link: "/product/car-repairs",
-  },
-];
 
-  const IconComponent = similarProductSlides[currentPartnerSlide].icon;
+  // Fetch similar products from the same category via API or fallback
+  const { data: categoryData } = useProducts({ categoryslug: categorySlug, limit: 10 }) as any;
 
+  const similarProducts = React.useMemo(() => {
+    const list = (categoryData?.products || [])
+      .filter((p: any) => String(p.productId || p.id) !== String(product.id));
+    return list.slice(0, 3);
+  }, [categoryData, categorySlug, product.id]);
 
 
 
   return (
     <div className="space-y-12 animate-fadeIn bg-[#F0F9F5] -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 pt-4 pb-8 rounded-[32px]">
-      
+
       {/* MAIN TOP SECTION (GALLERY + DETAILS) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-6xl mx-auto">
 
@@ -126,13 +119,13 @@ const similarProductSlides = [
         <div className="lg:col-span-6 space-y-4">
           {/* MAIN IMAGE CARD */}
           <div className="w-full aspect-square bg-white rounded-[28px] overflow-hidden flex items-center justify-center p-8 relative shadow-sm border border-slate-100">
-            <button 
+            <button
               onClick={() => window.open(activeImage, '_blank')}
               className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center text-slate-500 hover:text-teal-800 transition-colors z-10"
             >
               <Maximize2 className="w-4 h-4" />
             </button>
-            
+
             <img
               src={activeImage}
               alt={product.title}
@@ -146,11 +139,10 @@ const similarProductSlides = [
               <button
                 key={i}
                 onClick={() => setActiveImage(img)}
-                className={`w-20 h-20 sm:w-24 sm:h-24 rounded-[18px] bg-white border overflow-hidden p-2 flex items-center justify-center transition-all ${
-                  activeImage === img
-                    ? "border-[#1C8182] ring-2 ring-[#1C8182]/20 scale-95"
-                    : "border-slate-200 opacity-80 hover:opacity-100"
-                }`}
+                className={`w-20 h-20 sm:w-24 sm:h-24 rounded-[18px] bg-white border overflow-hidden p-2 flex items-center justify-center transition-all ${activeImage === img
+                  ? "border-[#1C8182] ring-2 ring-[#1C8182]/20 scale-95"
+                  : "border-slate-200 opacity-80 hover:opacity-100"
+                  }`}
               >
                 <img
                   src={img}
@@ -164,28 +156,28 @@ const similarProductSlides = [
 
         {/* RIGHT COLUMN: PRODUCT DETAILS */}
         <div className="lg:col-span-6 space-y-4">
-          
-         {/* HEADER */}
-<div className="space-y-5">
 
-  <h2
-    className={`${microgrammaBold.className} text-[24px] font-bold tracking-[2px] text-[#0D4B4D]`}
-  >
-    {product.productHeading}
-  </h2>
+          {/* HEADER */}
+          <div className="space-y-5">
 
-  <h1
-    className="text-[#074139] text-2xl sm:text-3xl leading-relaxed"
-    style={{ fontFamily: "var(--font-michroma)" }}
-  >
-    {product.title}
-  </h1>
+            <h2
+              className={`${microgrammaBold.className} text-[24px] font-bold tracking-[2px] text-[#0D4B4D]`}
+            >
+              {product.productHeading}
+            </h2>
 
-</div>
+            <h1
+              className="text-[#074139] text-2xl sm:text-3xl leading-relaxed"
+              style={{ fontFamily: "var(--font-michroma)" }}
+            >
+              {product.title}
+            </h1>
+
+          </div>
 
           {/* FULL SUBTITLE */}
           <h2 className="text-[#074139] text-base sm:text-lg sm:leading-[1.7] font-medium" style={{ fontFamily: 'var(--font-michroma)' }}>
-           {product.brand}
+            {product.brand}
           </h2>
 
           {/* TAGLINE 
@@ -202,10 +194,10 @@ const similarProductSlides = [
                 ))}
               </div>
               <span className="text-[#074139] text-[15px] whitespace-nowrap" style={{ fontFamily: 'var(--font-michroma)' }}>
-      {product.ratingData.totalReviewsCount} reviews
-    </span>
-  </div>
-            
+                {product.ratingData.totalReviewsCount} reviews
+              </span>
+            </div>
+
 
             {/* AVATAR STACK SOCIAL PROOF */}
             <div className="flex items-center gap-3">
@@ -218,27 +210,27 @@ const similarProductSlides = [
               <CheckCircle2 className="w-5 h-5 text-white fill-[#1d4ed8]" />
             </div>
           </div>
-          
+
           {/* 4 FEATURE PILLS GRID (2x2) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-  {product.attributes.slice(0, 4).map((attribute, index) => (
-    <div
-      key={index}
-      className="bg-white rounded-[16px] px-3 py-2.5 flex items-center text-[12px] sm:text-[13px] text-[#1C8182] shadow-sm"
-    >
-      <span className="w-full text-center" style={{ fontFamily: "var(--font-michroma)" }}>
-        {attribute.value}
-      </span>
-    </div>
-  ))}
-</div>
+            {product.attributes.slice(0, 4).map((attribute, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-[16px] px-3 py-2.5 flex items-center text-[12px] sm:text-[13px] text-[#1C8182] shadow-sm"
+              >
+                <span className="w-full text-center" style={{ fontFamily: "var(--font-michroma)" }}>
+                  {attribute.value}
+                </span>
+              </div>
+            ))}
+          </div>
 
           {/* PURCHASE OPTIONS SECTION */}
           <div className="space-y-3 pt-1">
             <div className="flex items-center justify-between">
               <span className="text-[#1C8182] text-[15px]" style={{ fontFamily: 'var(--font-michroma)' }}>Purchase Options</span>
             </div>
-            
+
             <div className="flex items-center justify-between pt-1">
               <span className="text-[#074139] text-[15px]" style={{ fontFamily: 'var(--font-michroma)' }}>One-Time Purchase</span>
               <div className="flex items-center gap-2 text-[#1C8182]">
@@ -251,40 +243,40 @@ const similarProductSlides = [
             <div className="flex flex-col gap-2.5">
               {/* 1 UNIT */}
               <label
-    onClick={() => setSelectedUnit(1)}
-    className="bg-white rounded-[16px] p-3.5 sm:p-4 flex items-center justify-between cursor-pointer shadow-sm transition-all hover:bg-slate-50"
-  >
-    <div className="flex items-center gap-4">
-      <div className="w-6 h-6 rounded-full border-[1.5px] border-[#1C8182] flex items-center justify-center bg-white">
-        {selectedUnit === 1 && (
-          <div className="w-3.5 h-3.5 bg-[#1C8182] rounded-full" />
-        )}
-      </div>
+                onClick={() => setSelectedUnit(1)}
+                className="bg-white rounded-[16px] p-3.5 sm:p-4 flex items-center justify-between cursor-pointer shadow-sm transition-all hover:bg-slate-50"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-6 h-6 rounded-full border-[1.5px] border-[#1C8182] flex items-center justify-center bg-white">
+                    {selectedUnit === 1 && (
+                      <div className="w-3.5 h-3.5 bg-[#1C8182] rounded-full" />
+                    )}
+                  </div>
 
-      <span
-        className="text-[#074139] text-[15px]"
-        style={{ fontFamily: "var(--font-michroma)" }}
-      >
-        1 Unit
-      </span>
-    </div>
+                  <span
+                    className="text-[#074139] text-[15px]"
+                    style={{ fontFamily: "var(--font-michroma)" }}
+                  >
+                    1 Unit
+                  </span>
+                </div>
 
-    <div className="flex items-center gap-3">
-  <span
-    className="text-[#074139] text-[15px]"
-    style={{ fontFamily: "var(--font-michroma)" }}
-  >
-    ₹{product.price}
-  </span>
+                <div className="flex items-center gap-3">
+                  <span
+                    className="text-[#074139] text-[15px]"
+                    style={{ fontFamily: "var(--font-michroma)" }}
+                  >
+                    ₹{product.price}
+                  </span>
 
-  <span
-    className="bg-gradient-to-r from-[#167D7F] to-[#B0E5CC] text-white text-[12px] px-3 py-1 rounded-[5px]"
-    style={{ fontFamily: "var(--font-michroma)" }}
-  >
-    {product.discountText}
-  </span>
-</div>
-  </label>
+                  <span
+                    className="bg-gradient-to-r from-[#167D7F] to-[#B0E5CC] text-white text-[12px] px-3 py-1 rounded-[5px]"
+                    style={{ fontFamily: "var(--font-michroma)" }}
+                  >
+                    {product.discountText}
+                  </span>
+                </div>
+              </label>
 
               {/* 3 UNITS 
               <label 
@@ -336,7 +328,7 @@ const similarProductSlides = [
               </button>
             </div>
 
-            <button 
+            <button
               onClick={handleAddToCart}
               style={{ fontFamily: 'var(--font-michroma)' }}
               className="flex-1 h-[52px] bg-gradient-to-r from-[#2D7A79] to-[#70C1B3] text-white text-[16px] sm:text-[18px] rounded-[26px] flex items-center justify-center gap-3 shadow-md transition-all hover:opacity-90 active:scale-95 tracking-wide"
@@ -403,7 +395,7 @@ const similarProductSlides = [
 
           {/* ACCORDION (DESCRIPTION) */}
           <div className="bg-white rounded-[24px] border border-slate-200 overflow-hidden shadow-sm mt-4">
-            <button 
+            <button
               onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
               className="w-full px-6 py-5 sm:px-8 sm:py-6 flex items-center justify-between text-left text-lg sm:text-xl text-[#1C8182]"
             >
@@ -421,7 +413,7 @@ const similarProductSlides = [
             </button>
             <AnimatePresence initial={false}>
               {isDescriptionOpen && (
-                <motion.div 
+                <motion.div
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
@@ -429,88 +421,71 @@ const similarProductSlides = [
                   className="overflow-hidden"
                 >
                   <div className="px-6 pb-6 sm:px-8 sm:pb-8 text-[11px] sm:text-[13px] text-slate-700 leading-[1.8]" style={{ fontFamily: 'var(--font-michroma)' }}>
-  <ul className="list-disc pl-4 space-y-4 marker:text-slate-700">
-    {product.aboutSections.map((section, i) => (
-      <li key={i}>
-        <span className="font-bold">{section.heading}</span>{section.content ? ` - ${section.content}` : ''}
-      </li>
-    ))}
-  </ul>
-</div>
+                    <ul className="list-disc pl-4 space-y-4 marker:text-slate-700">
+                      {product.aboutSections.map((section, i) => (
+                        <li key={i}>
+                          <span className="font-bold">{section.heading}</span>{section.content ? ` - ${section.content}` : ''}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
 
-          {/* OUR PRODUCTS CARD */}
-          <div className="bg-gradient-to-b from-[#167D7F] to-[#B0E5CC] rounded-[24px] p-6 sm:p-8 text-white text-center shadow-md space-y-6">
-            <h3 className="text-lg sm:text-xl tracking-wide font-normal" style={{ fontFamily: 'var(--font-michroma)' }}>
+          {/* SIMILAR PRODUCTS FROM SAME CATEGORY */}
+          <div className="bg-gradient-to-b from-[#167D7F] to-[#B0E5CC] rounded-[24px] p-6 sm:p-8 text-white shadow-md space-y-6">
+            <h3 className="text-lg sm:text-xl tracking-wide font-normal text-center" style={{ fontFamily: 'var(--font-michroma)' }}>
               Similar Products
             </h3>
 
-  <AnimatePresence mode="wait">
-  <motion.div
-    key={currentPartnerSlide}
-    initial={{ opacity: 0, x: 20 }}
-    animate={{ opacity: 1, x: 0 }}
-    exit={{ opacity: 0, x: -20 }}
-    transition={{ duration: 0.3 }}
-    className="relative h-64 rounded-[24px] overflow-hidden"
-  >
-    {/* Background */}
-    <Image
-      src={similarProductSlides[currentPartnerSlide].image}
-      alt={similarProductSlides[currentPartnerSlide].badge}
-      fill
-      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-      className="object-cover"
-    />
+            <div className="grid grid-cols-1 gap-4">
+              {similarProducts.length > 0 ? (
+                similarProducts.map((sp: any) => {
+                  const spImg = _prepend(sp.imagePath || (sp.images && sp.images[0]) || "");
+                  const spId = sp.productId || sp.id;
+                  const spTitle = sp.productName || sp.title || "";
+                  const spPrice = sp.price ?? sp.productCost ?? 0;
 
-    {/* Overlay */}
-    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-    {/* Badge */}
-    <div className="absolute top-5 right-5">
-      <div className="bg-white/25 backdrop-blur-md rounded-full px-5 py-2">
-        <span
-          className="text-white"
-          style={{ fontFamily: "var(--font-michroma)" }}
-        >
-          {similarProductSlides[currentPartnerSlide].badge}
-        </span>
-      </div>
-    </div>
-
-    {/* Bottom Text */}
-    <div className="absolute bottom-6 left-6 flex items-center gap-3">
-  <div className="w-12 h-12 rounded-full bg-white/25 backdrop-blur-md border border-white/40 flex items-center justify-center">
-    <IconComponent className="w-6 h-6 text-white" />
-  </div>
-
-  <p
-    className="text-white text-sm"
-    style={{ fontFamily: "var(--font-michroma)" }}
-  >
-    {similarProductSlides[currentPartnerSlide].text}
-  </p>
-</div>
-  </motion.div>
-</AnimatePresence>
-
-<div className="flex justify-center gap-2 mt-3">
-  {similarProductSlides.map((_, index) => (
-    <button
-      key={index}
-      onClick={() => setCurrentPartnerSlide(index)}
-      className={`h-2.5 rounded-full ${
-        currentPartnerSlide === index
-          ? "w-7 bg-[#074139]"
-          : "w-2.5 bg-white/50"
-      }`}
-    />
-  ))}
-</div>
-</div>
+                  return (
+                    <Link key={spId} href={`/product/${spId}`}>
+                      <div className="bg-white/15 backdrop-blur-sm rounded-[18px] p-4 flex items-center gap-4 hover:bg-white/25 transition-all cursor-pointer border border-white/20 shadow-sm group">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-[14px] bg-white overflow-hidden flex items-center justify-center shrink-0 p-1.5">
+                          {spImg ? (
+                            <img
+                              src={spImg}
+                              alt={spTitle}
+                              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-gray-100 flex items-center justify-center text-xs text-gray-400">No img</div>
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-white text-[13px] sm:text-[14px] font-bold leading-snug line-clamp-2 hover:underline" style={{ fontFamily: 'var(--font-michroma)' }}>
+                            {spTitle}
+                          </p>
+                          <p className="text-white/90 text-[13px] font-semibold mt-1.5" style={{ fontFamily: 'var(--font-michroma)' }}>
+                            ₹ {spPrice}
+                          </p>
+                        </div>
+                        <div className="shrink-0">
+                          <div className="w-9 h-9 rounded-full bg-white/20 group-hover:bg-white/30 flex items-center justify-center transition-colors">
+                            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })
+              ) : (
+                <p className="text-center text-white/80 text-sm py-4">No similar products available.</p>
+              )}
+            </div>
+          </div>
 
         </div>
 

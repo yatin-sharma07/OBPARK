@@ -1,12 +1,21 @@
 'use client'
 
-import { useEffect, useState, Suspense } from 'react'
+import { useEffect, useState, Suspense, useMemo } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { microgrammaBold } from '@/lib/fonts'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, CreditCard, ShieldCheck, CheckCircle2, ShoppingBag } from 'lucide-react'
 import { useInitiateRecharge, useConfirmRecharge } from '@/hooks/useFastag'
 import { useCreatePayment, useVerifyPayment } from '@/hooks/usePayment'
 import { useAuthStore } from '@/store/auth.store'
+import { useCart } from '@/hooks/useCart'
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
+function _prepend(imgPath: string): string {
+  if (!imgPath) return "";
+  if (imgPath.startsWith("http") || imgPath.startsWith("data:")) return imgPath;
+  return `${BASE_URL}${imgPath}`;
+}
 
 function PaymentContent() {
   const router = useRouter()
@@ -15,6 +24,7 @@ function PaymentContent() {
   const fastagAmount = searchParams.get('amount')
   const fastagVrn = searchParams.get('vrn')
 
+  const { data: apiCart } = useCart()
   const initiateRecharge = useInitiateRecharge()
   const confirmRecharge = useConfirmRecharge()
   const createPayment = useCreatePayment()
@@ -30,7 +40,6 @@ function PaymentContent() {
     postalCode: string
   } | null>(null)
 
-  const [subtotal, setSubtotal] = useState(180)
   const [cartItem, setCartItem] = useState<any>(null)
 
   useEffect(() => {
@@ -42,14 +51,30 @@ function PaymentContent() {
       setAddressData(JSON.parse(storedAddress))
     }
     
-    // Load dynamic cart total
+    // Load fallback mockup cart item
     const storedCart = sessionStorage.getItem('mockup_cart_item')
     if (storedCart) {
-      const parsedCart = JSON.parse(storedCart)
-      setCartItem(parsedCart)
-      setSubtotal(parsedCart.priceVal * parsedCart.quantity)
+      setCartItem(JSON.parse(storedCart))
     }
   }, [isFastag])
+
+  // Resolve active checkout items
+  const checkoutItems = useMemo(() => {
+    if (apiCart?.items && apiCart.items.length > 0) {
+      return apiCart.items;
+    }
+    return cartItem ? [cartItem] : [];
+  }, [apiCart, cartItem]);
+
+  // Calculate dynamic subtotal
+  const subtotal = useMemo(() => {
+    return checkoutItems.reduce((acc: number, item: any) => {
+      const price = Number(item.priceVal ?? item.product?.productCost ?? item.product?.price ?? 0);
+      return acc + (price * (item.quantity || 1));
+    }, 0);
+  }, [checkoutItems]);
+
+  const displayAmount = isFastag ? Number(fastagAmount || 0) : subtotal;
 
   const handleFastagPayment = async () => {
     if (!fastagVrn || !fastagAmount) return
@@ -74,21 +99,25 @@ function PaymentContent() {
   }
 
   const handleProductPayment = async () => {
-    if (!cartItem) return
-    setIsProcessing(true)
+    // Collect order details from active cart or single item
+    if (checkoutItems.length === 0) return;
+    setIsProcessing(true);
     try {
+      const primaryProduct = checkoutItems[0];
+      const primaryProductId = primaryProduct.productId || primaryProduct.id || (primaryProduct.product && primaryProduct.product.id);
+      
       const res = await createPayment.mutateAsync({
-        productId: cartItem.id,
-        quantity: cartItem.quantity,
+        productId: primaryProductId,
+        quantity: primaryProduct.quantity || 1,
         gateway: 'RAZORPAY',
-      })
+      });
 
       const options = {
         key: res.keyId,
         amount: res.amount,
         currency: res.currency,
         name: 'OBPARK',
-        description: `Purchase of ${cartItem.name}`,
+        description: `Purchase of ${primaryProduct.name ?? primaryProduct.product?.productName ?? 'OBPARK Products'}`,
         order_id: res.razorpayOrderId,
         handler: async function (response: any) {
           try {
@@ -96,241 +125,212 @@ function PaymentContent() {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,
-            })
-            // Clear the cart on successful payment
-            sessionStorage.removeItem('mockup_cart_item')
-            router.push('/checkout?success=true')
-          } catch (verificationError) {
-            console.error('Payment verification failed:', verificationError)
-            alert('Payment verification failed. Please contact support.')
+            });
+            // Redirect to home/success page
+            router.push('/?success=true');
+          } catch (err) {
+            console.error('Payment verification failed:', err);
           }
         },
-        prefill: {
-          name: addressData ? `${addressData.firstName} ${addressData.lastName}` : '',
-          email: useAuthStore.getState().user?.email || '',
-          contact: useAuthStore.getState().user?.phoneNumber || '',
+        modal: {
+          ondismiss: function () {
+            setIsProcessing(false);
+          }
         },
         theme: {
-          color: '#094639',
-        },
-      }
+          color: '#167D7F',
+        }
+      };
 
-      const rzp = new (window as any).Razorpay(options)
-      rzp.open()
+      const rzp = new (window as any).Razorpay(options);
+      rzp.open();
     } catch (err) {
-      console.error('Failed to create payment order:', err)
-    } finally {
-      setIsProcessing(false)
+      console.error(err);
+      setIsProcessing(false);
     }
   }
 
-  const fullName = addressData 
+  const fullName = addressData
     ? `${addressData.firstName} ${addressData.lastName}`
     : 'User name'
-    
+
   const fullAddress = addressData
     ? `${addressData.address}, ${addressData.city}, ${addressData.state} - ${addressData.postalCode}`
-    : 'A-102, Shanti Apartments, Near [Landmark] Municipal Park, Koramangala, Bengaluru, Karnataka - 560034'
-
-  const displayAmount = isFastag ? Number(fastagAmount) : subtotal
+    : 'A-102, Shanti Apartments, Near Municipal Park, Koramangala, Bengaluru, Karnataka - 560034'
 
   return (
-    <div className="w-full bg-[#eefaf6] min-h-screen pt-32 pb-24 px-4 sm:px-6 md:px-8 font-sans">
-      <div className="max-w-[1200px] mx-auto">
+    <div className="w-full bg-[#eefaf6] text-[#074c43] min-h-screen pt-32 pb-24 px-4 sm:px-6 md:px-8 font-sans">
+      <div className="max-w-[1200px] mx-auto space-y-8">
+        
+        {/* Simple Progress Indicator */}
+        <div className="flex items-center gap-2 text-xs font-semibold text-teal-600/70 select-none pb-2" style={{ fontFamily: 'var(--font-michroma)' }}>
+          <span>Cart</span>
+          <span>&rarr;</span>
+          <span>Checkout</span>
+          <span>&rarr;</span>
+          <span className="text-teal-700 font-bold underline">Payment</span>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
+
           {/* Left Column: Address and Payment */}
           <div className="lg:col-span-7 space-y-6">
-            
+
             {/* Delivering To Card */}
             {!isFastag && (
-              <div className="bg-white rounded-[32px] p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+              <div className="bg-white rounded-[24px] p-6 sm:p-8 shadow-[0_8px_30px_rgb(7,76,67,0.03)] border border-slate-100/50">
                 <div className="flex justify-between items-start gap-4">
                   <div className="space-y-1">
-                    <p className="text-sm">
-                      <span className="font-black text-slate-900">Delivering to</span>{' '}
-                      <span className="text-slate-500 font-medium">{fullName}</span>
+                    <p className="text-xs sm:text-sm font-bold text-teal-900" style={{ fontFamily: 'var(--font-michroma)' }}>
+                      DELIVERING TO
                     </p>
-                    <p className="text-sm font-black text-slate-900 mt-2">Address</p>
-                    <p className="text-sm text-slate-500 leading-relaxed font-medium max-w-sm">
+                    <p className="text-sm font-bold text-slate-800 pt-1" style={{ fontFamily: 'var(--font-michroma)' }}>
+                      {fullName}
+                    </p>
+                    <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-medium max-w-sm pt-2" style={{ fontFamily: 'var(--font-michroma)' }}>
                       {fullAddress}
                     </p>
                   </div>
-                  <button 
+                  <button
                     onClick={() => router.push('/checkout')}
-                    className="text-teal-600 font-medium text-sm underline shrink-0 hover:text-teal-700 transition-colors"
+                    className="text-teal-600 font-bold text-xs underline shrink-0 hover:text-teal-700 transition-colors uppercase tracking-wider"
+                    style={{ fontFamily: 'var(--font-michroma)' }}
                   >
-                    Change
+                    Edit Address
                   </button>
                 </div>
               </div>
             )}
- 
+
             {/* Payment Method Card */}
-            <div className="bg-white rounded-[32px] p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.02)] space-y-8">
-              <h3 className="font-black text-slate-900 text-sm tracking-wide">Payment method</h3>
-              
+            <div className="bg-white rounded-[24px] p-6 sm:p-8 shadow-[0_8px_30px_rgb(7,76,67,0.03)] border border-slate-100/50 space-y-6">
+              <h3 className="font-bold text-[#074139] text-base sm:text-lg tracking-wide" style={{ fontFamily: 'var(--font-michroma)' }}>
+                Payment Method
+              </h3>
+
               <div className="space-y-6">
-                
-                {/* Credit/Debit Card Option (Active) */}
-                <div className="space-y-4">
-                  <label className="flex items-center gap-3 cursor-pointer">
-                    <div className="w-4 h-4 rounded-full border-4 border-white outline outline-1 outline-teal-600 bg-teal-600 shadow-sm shrink-0"></div>
-                    <span className="font-medium text-slate-800 text-sm">Credit or debit card</span>
-                  </label>
+                {/* Active Card Option Details */}
+                <div className="bg-[#f0faf8]/30 border border-[#308E8C]/30 rounded-[18px] p-5 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-4 h-4 rounded-full border-4 border-white outline outline-1 outline-teal-600 bg-teal-600 shadow-sm shrink-0"></div>
+                      <span className="font-bold text-slate-800 text-xs sm:text-sm" style={{ fontFamily: 'var(--font-michroma)' }}>
+                        Online Payment (UPI, Cards, NetBanking)
+                      </span>
+                    </div>
+                    <span className="text-xs text-[#308E8C] font-semibold" style={{ fontFamily: 'var(--font-michroma)' }}>Secure</span>
+                  </div>
+
+                  {/* Payment Icons */}
+                  <div className="flex items-center gap-1.5 flex-wrap pt-2">
+                    {['VISA', 'Mastercard', 'AMEX', 'UPI', 'GPay', 'NetBanking'].map((icon) => (
+                      <div key={icon} className="bg-white/80 border border-slate-100 text-[9px] font-bold text-slate-600 px-2.5 py-1 rounded-md shadow-sm select-none" style={{ fontFamily: 'var(--font-michroma)' }}>
+                        {icon}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-4 flex flex-col items-center sm:items-start gap-3">
+                  <button
+                    onClick={isFastag ? handleFastagPayment : handleProductPayment}
+                    disabled={isProcessing}
+                    className="bg-gradient-to-r from-[#1A817F] to-[#59D0B5] hover:opacity-95 text-white font-bold text-sm px-10 py-4 rounded-full shadow-md w-full sm:w-72 transition-all active:scale-98 tracking-wide cursor-pointer flex items-center justify-center gap-2"
+                    style={{ fontFamily: 'var(--font-michroma)' }}
+                  >
+                    {isProcessing ? (
+                      <>
+                        <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                        <span>Processing...</span>
+                      </>
+                    ) : (
+                      <>
+                        <CreditCard className="w-4 h-4" />
+                        <span>Pay Now (₹{displayAmount.toLocaleString('en-IN')})</span>
+                      </>
+                    )}
+                  </button>
                   
-                  <div className="pl-7 space-y-4">
-                    {/* Payment Icons */}
-                    <div className="flex items-center gap-2 flex-wrap mb-6">
-                      <div className="bg-white px-2 py-1 rounded border border-slate-200 text-[10px] font-black text-slate-800 shadow-sm">Apple Pay</div>
-                      <div className="bg-blue-800 text-white px-2 py-1 rounded text-[10px] font-black shadow-sm">AMEX</div>
-                      <div className="bg-white px-2 py-1 rounded border border-slate-200 text-[10px] font-black text-red-500 shadow-sm">Mastercard</div>
-                      <div className="bg-white px-2 py-1 rounded border border-slate-200 text-[10px] font-black text-blue-500 shadow-sm">Maestro</div>
-                      <div className="bg-slate-100 text-blue-900 px-2 py-1 rounded text-[10px] font-black shadow-sm">PayPal</div>
-                      <div className="bg-[#1A1F71] text-white px-2.5 py-1 rounded text-[10px] font-black shadow-sm">VISA</div>
-                    </div>
- 
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-xs font-semibold text-slate-700 mb-1.5">Card Number</label>
-                        <input 
-                          type="text" 
-                          placeholder="1234 5678 9101 1121" 
-                          className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-shadow bg-white"
-                        />
-                      </div>
-                      
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-700 mb-1.5">Expiration Date</label>
-                          <input 
-                            type="text" 
-                            placeholder="MM/YY" 
-                            className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-shadow bg-white"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-700 mb-1.5">CVV</label>
-                          <input 
-                            type="text" 
-                            placeholder="123" 
-                            className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-shadow bg-white"
-                          />
-                        </div>
-                      </div>
-                    </div>
- 
-                    <div className="flex items-center gap-2 pt-2">
-                      <input type="checkbox" className="rounded text-teal-600 focus:ring-teal-500 border-slate-300 shadow-sm" />
-                      <span className="text-xs text-slate-500 font-medium">Save card details</span>
-                    </div>
- 
-                    <div className="pt-4">
-                      {isFastag ? (
-                        <button 
-                          onClick={handleFastagPayment}
-                          disabled={isProcessing}
-                          className="bg-gradient-to-r from-teal-700 to-[#7dc9b6] hover:from-teal-800 hover:to-[#68bbab] transition-all duration-300 text-white font-medium text-sm px-6 py-3 rounded-lg shadow-sm w-full sm:w-64 tracking-wide"
-                        >
-                          {isProcessing ? 'Processing...' : <>Pay <span className="font-black">INR</span> {displayAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</>}
-                        </button>
-                      ) : (
-                        <button 
-                          onClick={handleProductPayment}
-                          disabled={isProcessing}
-                          className="bg-gradient-to-r from-teal-700 to-[#7dc9b6] hover:from-teal-800 hover:to-[#68bbab] transition-all duration-300 text-white font-medium text-sm px-6 py-3 rounded-lg shadow-sm w-full sm:w-64 tracking-wide disabled:opacity-50"
-                        >
-                          {isProcessing ? 'Processing...' : <>Pay <span className="font-black">USD</span> {displayAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })}</>}
-                        </button>
-                      )}
-                    </div>
-                    
-                    <p className="text-[10px] text-slate-400 leading-relaxed max-w-sm pt-2">
-                      Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.
-                    </p>
+                  <div className="flex items-center gap-1.5 text-[10px] text-teal-600/70 font-semibold pt-1" style={{ fontFamily: 'var(--font-michroma)' }}>
+                    <ShieldCheck className="w-3.5 h-3.5 text-teal-600" />
+                    <span>AES-256 SSL Encrypted Secure Checkout</span>
                   </div>
                 </div>
- 
-                <hr className="border-slate-100" />
- 
-                {/* UPI Option */}
-                <label className="flex items-center gap-3 cursor-pointer py-1">
-                  <div className="w-4 h-4 rounded-full border border-slate-300 bg-white shrink-0"></div>
-                  <span className="font-medium text-slate-800 text-sm flex items-center gap-2">
-                    Scan and Pay with
-                    <span className="font-black italic text-slate-900 tracking-tighter">UPI</span>
-                  </span>
-                </label>
- 
-                <hr className="border-slate-100" />
- 
-                {/* Net Banking Option */}
-                <div className="space-y-3 py-1">
-                  <label className="flex items-center gap-3 cursor-pointer">
-                    <div className="w-4 h-4 rounded-full border border-slate-300 bg-white shrink-0"></div>
-                    <span className="font-medium text-slate-800 text-sm">Net Banking</span>
-                  </label>
-                  <div className="pl-7">
-                    <div className="relative w-48">
-                      <select className="w-full border border-slate-200 rounded-lg px-3 py-2 text-xs font-medium text-slate-700 appearance-none focus:outline-none focus:ring-1 focus:ring-teal-500 bg-white">
-                        <option value="">Value</option>
-                      </select>
-                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-500 pointer-events-none" />
-                    </div>
-                  </div>
-                </div>
- 
-                <hr className="border-slate-100" />
- 
-                {/* COD Option */}
-                {!isFastag && (
-                  <label className="flex items-center gap-3 cursor-pointer py-1">
-                    <div className="w-4 h-4 rounded-full border border-slate-300 bg-white shrink-0"></div>
-                    <span className="font-medium text-slate-800 text-sm">Cash on Delivery/Pay on Delivery</span>
-                  </label>
-                )}
- 
               </div>
             </div>
           </div>
- 
+
           {/* Right Column: Order Summary */}
-          <div className="lg:col-span-5 bg-white rounded-[32px] p-8 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
-            <div className="space-y-4">
-              <div className="flex justify-between items-center text-xs sm:text-sm font-semibold text-slate-600">
-                <span>{isFastag ? 'FASTag Recharge:' : 'Items:'}</span>
-                <span className="text-slate-900 font-bold">
-                  {isFastag 
-                    ? `₹${displayAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}` 
-                    : `$${displayAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })}`}
-                </span>
+          <div className="lg:col-span-5 bg-white rounded-[24px] p-6 sm:p-8 shadow-[0_8px_30px_rgb(7,76,67,0.03)] border border-slate-100/50 space-y-6">
+            <h3 className="text-base sm:text-lg font-bold text-[#074139] tracking-wide text-center sm:text-left" style={{ fontFamily: 'var(--font-michroma)' }}>
+              Order Summary
+            </h3>
+
+            {/* Dynamic Items List */}
+            {!isFastag && (
+              <div className="max-h-[220px] overflow-y-auto space-y-3 pr-1 border-b border-slate-100 pb-4">
+                {checkoutItems.map((item: any) => {
+                  const itemPrice = Number(item.priceVal ?? item.product?.productCost ?? item.product?.price ?? 0);
+                  const itemName = item.name ?? item.product?.productName ?? item.product?.title ?? 'Product';
+                  const itemImg = _prepend(item.image || (item.product && (item.product.images?.[0] || item.product.imagePath)) || "");
+                  const itemId = item.id || (item.product && item.product.id);
+
+                  return (
+                    <div key={itemId} className="flex items-center gap-3 bg-slate-50/50 border border-slate-100 rounded-xl p-3">
+                      <div className="w-12 h-12 bg-white rounded-lg border overflow-hidden shrink-0 flex items-center justify-center p-1">
+                        {itemImg ? (
+                          <img src={itemImg} alt={itemName} className="w-full h-full object-contain" />
+                        ) : (
+                          <ShoppingBag className="w-5 h-5 text-slate-400" />
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-bold text-slate-800 line-clamp-2" style={{ fontFamily: 'var(--font-michroma)' }}>
+                          {itemName}
+                        </p>
+                        <p className="text-[10px] text-slate-400 mt-1 font-semibold" style={{ fontFamily: 'var(--font-michroma)' }}>
+                          Qty: {item.quantity || 1}
+                        </p>
+                      </div>
+                      <span className="font-bold text-xs text-[#074139] shrink-0" style={{ fontFamily: 'var(--font-michroma)' }}>
+                        ₹{(itemPrice * (item.quantity || 1)).toLocaleString('en-IN')}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
-              {!isFastag && (
-                <div className="flex justify-between items-center text-xs sm:text-sm font-semibold text-slate-600 pb-4">
-                  <span>Delivery:</span>
-                  <span className="text-slate-400 text-[10px]">Calculated at next step</span>
-                </div>
-              )}
-              <div className="flex justify-between items-center text-xs sm:text-sm font-semibold text-slate-600 pt-4 border-t border-slate-200">
-                <span>Total:</span>
-                <span className="text-slate-900 font-bold">
-                  {isFastag 
-                    ? `₹${displayAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}` 
-                    : `$${displayAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })}`}
+            )}
+
+            <div className="space-y-3.5 pt-1" style={{ fontFamily: 'var(--font-michroma)' }}>
+              <div className="flex justify-between items-center text-xs font-medium text-slate-500">
+                <span>{isFastag ? 'FASTag Recharge Amount:' : 'Subtotal:'}</span>
+                <span className="text-slate-800 font-bold">
+                  ₹{displayAmount.toLocaleString('en-IN')}
                 </span>
               </div>
               
-              <div className="flex justify-between items-center text-sm font-black pt-6 mt-6 border-t-2 border-slate-800 text-slate-900">
+              {!isFastag && (
+                <>
+                  <div className="flex justify-between items-center text-xs font-medium text-slate-500">
+                    <span>Shipping Charges:</span>
+                    <span className="text-teal-600 font-bold">₹100</span>
+                  </div>
+                  <div className="flex justify-between items-center text-xs font-medium text-slate-500">
+                    <span>Estimated Tax (GST):</span>
+                    <span className="text-slate-800 font-bold">₹0</span>
+                  </div>
+                </>
+              )}
+
+              <div className="flex justify-between items-center text-sm font-bold pt-4 border-t border-slate-100 text-[#074139]">
                 <span>Order Total:</span>
-                <span>
-                  {isFastag 
-                    ? `₹${displayAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}` 
-                    : `$${displayAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })}`}
+                <span className="text-base font-black">
+                  ₹{(displayAmount + (isFastag ? 0 : 100)).toLocaleString('en-IN')}
                 </span>
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>

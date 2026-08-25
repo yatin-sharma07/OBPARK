@@ -137,169 +137,169 @@ export function Footer() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
       viewport={{ once: true, amount: 0.1 }}
-      className="w-full relative z-10 bg-transparent px-3 pb-3 pt-6 sm:px-5 sm:pb-5 sm:pt-10"
+      className="w-full relative z-10 bg-[#eefaf6] px-3 pb-3 pt-6 sm:px-5 sm:pb-5 sm:pt-10"
     >
-      <div 
+      <div
         className="w-full rounded-3xl overflow-hidden"
         style={{
           background: 'linear-gradient(135deg, #ACE3CA 0%, #1C8182 100%)',
         }}
       >
         <div className="max-w-350 mx-auto w-full px-6 sm:px-8 md:px-16 pt-10 pb-10">
-        {/* TOP ROW: LOGO & SOCIALS */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/20">
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center">
-              <img
-                src="/Images/footer_app_icon.svg"
-                alt="OBPARK"
-                className="h-12 sm:h-16 md:h-19 lg:h-21 object-contain"
-              />
-            </Link>
+          {/* TOP ROW: LOGO & SOCIALS */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/20">
+            <div className="flex items-center">
+              <Link href="/" className="flex items-center">
+                <img
+                  src="/Images/footer_app_icon.svg"
+                  alt="OBPARK"
+                  className="h-12 sm:h-16 md:h-19 lg:h-21 object-contain"
+                />
+              </Link>
+            </div>
+
+            <div className="flex items-center gap-1.5">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                  style={{
+                    backgroundColor: 'rgba(255,255,255,0.4)',
+                    color: '#FFFFFF',
+                  }}
+                  aria-label={`Visit our ${s.label} page`}
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
           </div>
 
-          <div className="flex items-center gap-1.5">
-             {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all hover:scale-110"
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.4)',
-                  color: '#FFFFFF',
-                }}
-                aria-label={`Visit our ${s.label} page`}
+          {/* MIDDLE SECTION: LINKS & NEWSLETTER */}
+          <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 mt-10 mb-12">
+
+            {/* LINKS GRID */}
+            <div className="grid grid-cols-2 md:flex md:flex-row md:justify-between gap-8 lg:w-[65%]">
+              <FooterLinks title="About" links={aboutLinks} />
+              <FooterLinks title="Support" links={supportLinks} />
+              <FooterLinks title="Resources" links={resourcesLinks} />
+            </div>
+
+            {/* NEWSLETTER */}
+            <div className="lg:w-[40%] flex flex-col gap-6">
+              <h3
+                className={`${microgrammaBold.className} text-white text-[17px] leading-[1.3] max-w-full`}
               >
-                {s.icon}
-              </a>
-            ))}
-          </div>
-        </div>
+                Subscribe to our newsletter and claim<br />your 15% discount today
+              </h3>
 
-        {/* MIDDLE SECTION: LINKS & NEWSLETTER */}
-        <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 mt-10 mb-12">
-          
-          {/* LINKS GRID */}
-          <div className="grid grid-cols-2 md:flex md:flex-row md:justify-between gap-8 lg:w-[65%]">
-            <FooterLinks title="About" links={aboutLinks} />
-            <FooterLinks title="Support" links={supportLinks} />
-            <FooterLinks title="Resources" links={resourcesLinks} />
-          </div>
+              <form
+                className="w-full rounded-4xl p-6 sm:p-8 flex flex-col gap-5 border-none shadow-lg"
+                style={{
+                  background: 'linear-gradient(135deg, #86C4B9 0%, #379490 100%)'
+                }}
+                onSubmit={handleSubmit}
+              >
+                <div className="grid grid-cols-2 gap-4">
+                  <InputField
+                    label="First Name"
+                    placeholder="First Name"
+                    value={form.firstName}
+                    onChange={(value) => updateForm('firstName', value)}
+                  />
 
-          {/* NEWSLETTER */}
-          <div className="lg:w-[40%] flex flex-col gap-6">
-            <h3 
-              className={`${microgrammaBold.className} text-white text-[17px] leading-[1.3] max-w-full`}
-            >
-              Subscribe to our newsletter and claim<br />your 15% discount today
-            </h3>
+                  <InputField
+                    label="Last Name"
+                    placeholder="Last Name"
+                    value={form.lastName}
+                    onChange={(value) => updateForm('lastName', value)}
+                  />
+                </div>
 
-            <form
-              className="w-full rounded-4xl p-6 sm:p-8 flex flex-col gap-5 border-none shadow-lg"
-              style={{ 
-                background: 'linear-gradient(135deg, #86C4B9 0%, #379490 100%)'
-              }}
-              onSubmit={handleSubmit}
-            >
-              <div className="grid grid-cols-2 gap-4">
                 <InputField
-                  label="First Name"
-                  placeholder="First Name"
-                  value={form.firstName}
-                  onChange={(value) => updateForm('firstName', value)}
+                  label="Email Id"
+                  placeholder="Email"
+                  value={form.email}
+                  onChange={(value) => updateForm('email', value)}
                 />
 
-                <InputField
-                  label="Last Name"
-                  placeholder="Last Name"
-                  value={form.lastName}
-                  onChange={(value) => updateForm('lastName', value)}
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  disabled={status === 'loading'}
+                  className={`${microgrammaBold.className} w-full py-3.5 mt-2 rounded-full transition-opacity hover:opacity-90`}
+                  style={{
+                    backgroundColor: '#FFFFFF',
+                    color: '#074139',
+                    fontSize: '15px',
+                  }}
+                >
+                  {status === 'loading' ? 'Submitting...' : 'Submit'}
+                </motion.button>
+                {message ? (
+                  <p
+                    className={`text-sm ${status === 'success' ? 'text-white' : 'text-red-100'}`}
+                    style={{ fontFamily: 'var(--font-michroma)' }}
+                  >
+                    {message}
+                  </p>
+                ) : null}
+              </form>
+            </div>
+          </div>
+
+          {/* BOTTOM SECTION */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="flex flex-col gap-2">
+              <Link
+                href="/privacy-policy"
+                className="text-[13px] text-white/80 hover:text-white transition-colors w-max"
+                style={{ fontFamily: 'var(--font-michroma)' }}
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/legal-compliance"
+                className="text-[13px] text-white/80 hover:text-white transition-colors w-max"
+                style={{ fontFamily: 'var(--font-michroma)' }}
+              >
+                Legal & Compliance
+              </Link>
+              <Link
+                href="/cookie-policy"
+                className="text-[13px] text-white/80 hover:text-white transition-colors w-max mb-3"
+                style={{ fontFamily: 'var(--font-michroma)' }}
+              >
+                Cookie Policy
+              </Link>
+
+              <p
+                className="text-[14px] text-white mt-1"
+                style={{ fontFamily: 'var(--font-michroma)' }}
+              >
+                © OBRIVE ™ All rights reserved.
+              </p>
+
+              {/* Payment Icons */}
+              <div className="mt-4">
+                <img
+                  src="/Images/Payment-icons-complete.svg"
+                  alt="Accepted payment methods"
+                  className="h-7 w-auto"
                 />
               </div>
-
-              <InputField
-                label="Email Id"
-                placeholder="Email"
-                value={form.email}
-                onChange={(value) => updateForm('email', value)}
-              />
-
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                disabled={status === 'loading'}
-                className={`${microgrammaBold.className} w-full py-3.5 mt-2 rounded-full transition-opacity hover:opacity-90`}
-                style={{
-                  backgroundColor: '#FFFFFF',
-                  color: '#074139',
-                  fontSize: '15px',
-                }}
-              >
-                {status === 'loading' ? 'Submitting...' : 'Submit'}
-              </motion.button>
-              {message ? (
-                <p
-                  className={`text-sm ${status === 'success' ? 'text-white' : 'text-red-100'}`}
-                  style={{ fontFamily: 'var(--font-michroma)' }}
-                >
-                  {message}
-                </p>
-              ) : null}
-            </form>
-          </div>
-        </div>
-
-        {/* BOTTOM SECTION */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="flex flex-col gap-2">
-            <Link
-              href="/privacy-policy"
-              className="text-[13px] text-white/80 hover:text-white transition-colors w-max"
-              style={{ fontFamily: 'var(--font-michroma)' }}
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/legal-compliance"
-              className="text-[13px] text-white/80 hover:text-white transition-colors w-max"
-              style={{ fontFamily: 'var(--font-michroma)' }}
-            >
-              Legal & Compliance
-            </Link>
-            <Link
-              href="/cookie-policy"
-              className="text-[13px] text-white/80 hover:text-white transition-colors w-max mb-3"
-              style={{ fontFamily: 'var(--font-michroma)' }}
-            >
-              Cookie Policy
-            </Link>
-
-            <p
-              className="text-[14px] text-white mt-1"
-              style={{ fontFamily: 'var(--font-michroma)' }}
-            >
-              © OBRIVE ™ All rights reserved.
-            </p>
-            
-            {/* Payment Icons */}
-            <div className="mt-4">
-              <img
-                src="/Images/Payment-icons-complete.svg"
-                alt="Accepted payment methods"
-                className="h-7 w-auto"
-              />
             </div>
           </div>
         </div>
       </div>
-      </div>
-      
+
       {/* DISCLAIMER TEXT */}
       <div className="w-full max-w-350 mx-auto px-4 sm:px-8 md:px-16 pt-6 pb-2">
-        <p 
+        <p
           className="text-[10px] md:text-[11px] leading-[1.6] text-[#484848]"
           style={{ fontFamily: 'var(--font-michroma)' }}
         >

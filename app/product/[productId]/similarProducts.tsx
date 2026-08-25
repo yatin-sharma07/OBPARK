@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useRef } from "react";
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 import {
   ArrowLeft,
   ArrowRight,
@@ -9,32 +11,17 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-// NEW TYPE + DATA SOURCE
-import { SingleProduct } from "@/app/category/mock-data/types";
-import { MockData } from "@/app/category/mock-data/mock-data";
-
 interface SimilarProductsProps {
-  currentProduct: SingleProduct;
+  products: any[];
 }
 
 export function SimilarProducts({
-  currentProduct,
+  products,
 }: SimilarProductsProps) {
   const sliderRef =
     useRef<HTMLDivElement>(null);
 
-  // Get all products from all categories
-  const allProducts =
-    MockData.flatMap(
-      (category) => category.items
-    );
-
-  // Remove current product
-  const relatedProducts =
-    allProducts.filter(
-      (item) =>
-        item.id !== currentProduct.id
-    );
+  const relatedProducts = products;
 
   // Slider logic unchanged
   const scroll = (
@@ -115,7 +102,7 @@ export function SimilarProducts({
         {relatedProducts.map(
           (product) => (
             <div
-              key={product.id}
+              key={product.productId || product.id}
               className="w-[240px] sm:w-[260px] shrink-0 bg-white border border-slate-100 rounded-[0.7rem] p-4 flex flex-col justify-between transition-all hover:shadow-md snap-start relative group"
             >
 
@@ -129,7 +116,7 @@ export function SimilarProducts({
 
               {/* Product Link */}
               <Link
-                href={`/product/${product.id}`}
+                href={`/shop/${product.category?.slug || 'all'}/${product.productId || product.id}`}
                 className="block space-y-4 cursor-pointer flex-1"
               >
 
@@ -138,10 +125,11 @@ export function SimilarProducts({
 
                   <img
                     src={
-                      product
-                        .imagePath
+                      product.imagePath?.startsWith('http')
+                        ? product.imagePath
+                        : `${BASE_URL}${product.imagePath}`
                     }
-                    alt={product.title}
+                    alt={product.title || product.productName}
                     className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
                   />
 
@@ -151,16 +139,14 @@ export function SimilarProducts({
                 <div className="space-y-1.5 text-center px-1">
 
                   <h3 className="text-xs font-bold text-slate-800 line-clamp-2 leading-snug tracking-tight min-h-[2rem]">
-                    {product.title}
+                    {product.title || product.productName}
                   </h3>
 
                   {/* Rating */}
                   <div className="flex items-center justify-center gap-1 text-[11px] font-black text-slate-500">
 
                     <span className="text-teal-700 pt-0.5">
-                      {product.ratingData.averageRating.toFixed(
-                        1
-                      )}
+                      {(product.productRating ?? 0).toFixed(1)}
                     </span>
 
                     <div className="flex items-center text-teal-600">
@@ -172,9 +158,7 @@ export function SimilarProducts({
                             className={`h-3 w-3 fill-current ${
                               i <
                               Math.floor(
-                                product
-                                  .ratingData
-                                  .averageRating
+                                product.productRating ?? 0
                               )
                                 ? "text-teal-600"
                                 : "text-slate-200"
@@ -192,12 +176,11 @@ export function SimilarProducts({
               <div className="space-y-3 pt-3 text-center mt-4">
 
                 <div className="text-base font-black text-slate-950 tracking-tight">
-                  {product.currencySymbol}
-                  {product.price}
+                  ₹{product.price || product.productCost}
                 </div>
 
                 <Link
-                  href={`/product/${product.id}`}
+                  href={`/shop/${product.category?.slug || 'all'}/${product.productId || product.id}`}
                   className="block w-full bg-teal-800 hover:bg-teal-900 text-white font-black text-[10px] uppercase tracking-widest py-3 rounded-xl shadow-sm transition-all text-center outline-none"
                 >
                   Buy Now

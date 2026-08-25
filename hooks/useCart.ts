@@ -1,117 +1,57 @@
-'use client'
-
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { api } from '@/lib/api'
+import { useAuthStore } from '@/store/auth.store'
 
-export interface CartItem {
-  id: string
-  quantity: number
-  compatibilityStatus: 'compatible' | 'incompatible' | 'unknown'
-  product: {
-    id: string
-    name: string
-    slug: string
-    basePrice: number
-    images: string[]
-    sku: string
-    category: { name: string }
-    compatibility: any[]
-  }
-  vehicle: {
-    id: string
-    vrn: string
-    make: string
-    model: string
-    year: number
-  } | null
-}
-
-export interface Cart {
-  id: string
-  items: CartItem[]
-  subtotal: number
-  itemCount: number
-}
-
+// 1️⃣ FETCH CART (GET /cart)
 export function useCart() {
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
   return useQuery({
     queryKey: ['cart'],
-    queryFn: () => api.get<Cart>('/cart'),
-    retry: false,
+    queryFn: () => api.get<any>('/cart'),
+    retry: false, // Don't retry if user is not logged in (401)
+    enabled: isAuthenticated,
   })
 }
 
+// 2️⃣ ADD TO CART (POST /cart/items)
 export function useAddToCart() {
-  const qc = useQueryClient()
+  const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (data: {
-      productId: string
-      vehicleId?: string
-      quantity?: number
-    }) =>
-      api.post('/cart/items', {
-        quantity: 1,
-        ...data,
-      }),
+    mutationFn: (data: { productId: string; quantity?: number; vehicleId?: string; color?: string; size?: string }) =>
+      api.post('/cart/items', data),
 
+    // Automatically refetch the cart so the UI updates immediately!
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['cart'] })
+      queryClient.invalidateQueries({ queryKey: ['cart'] })
     },
   })
 }
 
+// 3️⃣ UPDATE ITEM QUANTITY (PATCH /cart/items/:itemId)
 export function useUpdateCartItem() {
-  const qc = useQueryClient()
+  const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: ({
-      itemId,
-      quantity,
-    }: {
-      itemId: string
-      quantity: number
-    }) =>
-      api.patch(`/cart/items/${itemId}`, {
-        quantity,
-      }),
+    mutationFn: ({ itemId, quantity }: { itemId: string; quantity: number }) =>
+      api.patch(`/cart/items/${itemId}`, { quantity }),
 
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['cart'] })
+      queryClient.invalidateQueries({ queryKey: ['cart'] })
     },
   })
 }
 
+// 4️⃣ DELETE ITEM (DELETE /cart/items/:itemId)
 export function useRemoveCartItem() {
-  const qc = useQueryClient()
+  const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: (itemId: string) =>
       api.delete(`/cart/items/${itemId}`),
 
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['cart'] })
-    },
-  })
-}
-
-export function useLinkVehicleToItem() {
-  const qc = useQueryClient()
-
-  return useMutation({
-    mutationFn: ({
-      itemId,
-      vehicleId,
-    }: {
-      itemId: string
-      vehicleId: string | null
-    }) =>
-      api.patch(`/cart/items/${itemId}/vehicle`, {
-        vehicleId,
-      }),
-
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['cart'] })
+      queryClient.invalidateQueries({ queryKey: ['cart'] })
     },
   })
 }

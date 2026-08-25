@@ -31,9 +31,10 @@
 }
 
 body {
-  background-color: #FFFFFF;
+  background-color: #eefaf6;
   color: hsl(var(--foreground));
 }
+
 input::placeholder {
   font-family: var(--font-michroma);
 }
