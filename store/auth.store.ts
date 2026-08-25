@@ -3,8 +3,13 @@ import { persist } from 'zustand/middleware'
 
 interface User {
   id: string
-  email: string
-  name: string
+  email: string | null
+  name?: string | null
+  phoneNumber?: string | null
+  firebaseUid?: string
+  firstName?: string | null
+  lastName?: string | null
+  profileImage?: string | null
 }
 
 interface AuthState {
@@ -57,3 +62,4 @@ export const useAuthStore = create<AuthState>()(
     },
   ),
 )
+

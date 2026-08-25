@@ -159,6 +159,7 @@ export default function SolutionsPage() {
                 src="/Images/solutions/Smart-Parking-Solutions.jpg"
                 alt="Smart Parking Solutions"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
                 priority
               />
@@ -415,6 +416,7 @@ export default function SolutionsPage() {
               src="/Images/solutions/AI-Parking-Occupancy.jpg"
               alt="AI Parking Occupancy Detection Dashboard"
               fill
+              sizes="(max-width: 1024px) 100vw, 42vw"
               className="object-cover"
             />
           </div>
@@ -523,6 +525,7 @@ export default function SolutionsPage() {
               src="/Images/solutions/Automate-vehicle-entry.jpg"
               alt="ANPR Camera & License Plate Recognition"
               fill
+              sizes="(max-width: 1024px) 100vw, 42vw"
               className="object-cover"
             />
           </div>

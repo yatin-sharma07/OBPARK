@@ -4,351 +4,346 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from '@/components/ui/accordion'
 import { michroma, microgrammaBold } from '@/lib/fonts'
-import { ClipboardCheck, MousePointerClick, HeartHandshake, ShieldAlert, UserCheck, Briefcase, MapPin, BadgeCheck } from 'lucide-react'
-import { section } from 'framer-motion/m'
 import { useEffect, useState } from 'react'
+import { api } from '@/lib/api'
+import { ProductCard } from './ProductCard'
 
-const whyRideRows = [
-  {
-    eyebrow: 'Comfort of your car, without driving',
-    heading: 'Enjoy the comfort of the backseat in your own car, no driving required',
-    cta: 'Hire a Driver',
-    image: '/Images/ob-driver/ob-driver-1.png',
-    reverse: true,
-  },
-  {
-    eyebrow: 'Transparent pricing',
-    heading: 'We ensure our customers get drivers at the most affordable prices.',
-    cta: 'Transparent Fares, No Surprises!',
-    image: '/Images/ob-driver/ob-driver-2.png',
-    reverse: false,
-  },
-  {
-    eyebrow: 'Background-verified drivers',
-    heading: 'Our easy-to-use driver app connects you with top-rated drivers',
-    cta: 'Safe & Verified Drivers with OBDrive, Always!',
-    image: '/Images/ob-driver/ob-driver-3.png',
-    reverse: true,
-  },
-]
+// Fallback Mock Products Database
+const fallbackProducts: Record<string, any[]> = {
+  'electronics-smart-gadgets': [
+    {
+      id: 101,
+      productId: 'portronics-clamp-z',
+      productName: 'Portronics Clamp Z Car Phone Holder Stand with 360 Degree Rotation, AC Vent',
+      productDescription: 'Premium car phone mount with 360 degree rotation, robust spring hook, carbon fiber texture surface, and one-touch release mechanism.',
+      productCost: 261,
+      productRating: 4.6,
+      images: ['https://images.unsplash.com/photo-1586105251261-72a756497a11?w=500&auto=format&fit=crop&q=60']
+    },
+    {
+      id: 102,
+      productId: 'qubo-dashcam',
+      productName: 'Qubo Smart Dashcam Pro GPS with 1080p Full HD Video',
+      productDescription: 'High resolution dashcam with built-in GPS, night vision, G-sensor, loop recording, and mobile app support.',
+      productCost: 3499,
+      productRating: 4.8,
+      images: ['https://images.unsplash.com/photo-1508974239320-0a029497e820?w=500&auto=format&fit=crop&q=60']
+    },
+    {
+      id: 103,
+      productId: 'bluetooth-transmitter',
+      productName: 'Portronics Auto One Bluetooth Car Transmitter & Charger',
+      productDescription: 'FM modulator with dual USB fast charging, hands-free calling, music streaming, and bass boost controls.',
+      productCost: 499,
+      productRating: 4.3,
+      images: ['https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&auto=format&fit=crop&q=60']
+    },
+    {
+      id: 104,
+      productId: 'gps-tracker-obpark',
+      productName: 'Onelap Micro Smart GPS Tracker with Engine Lock',
+      productDescription: 'Real-time anti-theft GPS tracking device with analytics, ignition alerts, and remote engine cutoff.',
+      productCost: 1299,
+      productRating: 4.5,
+      images: ['https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&auto=format&fit=crop&q=60']
+    }
+  ],
+  'ev-accessories': [
+    {
+      id: 201,
+      productId: 'ev-portable-charger',
+      productName: 'Portable EV Charger 16A Type 2 with 15 Amp Plug',
+      productDescription: 'Premium portable charging solution compatible with all Type 2 electric vehicles. Features auto temperature cutoff and delay timer.',
+      productCost: 12999,
+      productRating: 4.7,
+      images: ['https://images.unsplash.com/photo-1563720223185-11003d516935?w=500&auto=format&fit=crop&q=60']
+    },
+    {
+      id: 202,
+      productId: 'ev-charger-holster',
+      productName: 'EV Charging Cable Organizer Wall Mount Holster',
+      productDescription: 'Durable wall hanger for EV charging cable and Type 2 plug. Prevents cable tangles and socket damages.',
+      productCost: 699,
+      productRating: 4.4,
+      images: ['https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?w=500&auto=format&fit=crop&q=60']
+    },
+    {
+      id: 203,
+      productId: 'ev-extension-cable',
+      productName: 'EV Charging Extension Cable Type 2 to Type 2 (5 Meter)',
+      productDescription: 'Heavy-duty 5m extension cable for EV charging station compatibility. Weatherproof IP65 protection rating.',
+      productCost: 4499,
+      productRating: 4.6,
+      images: ['https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=500&auto=format&fit=crop&q=60']
+    }
+  ],
+  'exterior-accessories': [
+    {
+      id: 301,
+      productId: 'shinexpro-shampoo',
+      productName: 'ShineXPro Foam Wash Shampoo Concentrate (1L)',
+      productDescription: 'High-foam car wash shampoo concentrate designed to lift heavy dirt and road grime safely without affecting clear coat.',
+      productCost: 349,
+      productRating: 4.5,
+      images: ['https://images.unsplash.com/photo-1520340356584-f9917d1ecc6f?w=500&auto=format&fit=crop&q=60']
+    },
+    {
+      id: 302,
+      productId: 'detailing-brush-set',
+      productName: 'Microfiber Interior Detailing Brush Kit (5 Pieces)',
+      productDescription: 'Soft synthetic bristles detailing brush set for cleaning dashboard, console, AC vents, and leather seats.',
+      productCost: 199,
+      productRating: 4.2,
+      images: ['https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&auto=format&fit=crop&q=60']
+    },
+    {
+      id: 303,
+      productId: 'liquid-wax-polish',
+      productName: 'WaveX Carnauba Liquid Wax Polish & Paint Protection',
+      productDescription: 'Carnauba-enriched polish for deep high-gloss shine and robust UV ray paint protection.',
+      productCost: 449,
+      productRating: 4.4,
+      images: ['https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=500&auto=format&fit=crop&q=60']
+    }
+  ],
+  'emergency-utility-products': [
+    {
+      id: 401,
+      productId: 'portable-tire-inflator',
+      productName: 'Bergmann Typhoon Heavy Duty Metal Car Tyre Inflator',
+      productDescription: 'Fast, high-pressure digital air pump for inflating tires. Plugs into 12V car socket with auto shutoff feature.',
+      productCost: 2499,
+      productRating: 4.7,
+      images: ['https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500&auto=format&fit=crop&q=60']
+    },
+    {
+      id: 402,
+      productId: 'emergency-toolkit',
+      productName: 'All-in-One Car Emergency Toolkit with Jumper Cables',
+      productDescription: 'Roadside safety kit including jumper cables, tow strap, safety vest, flashlight, and essential hand tools.',
+      productCost: 1299,
+      productRating: 4.5,
+      images: ['https://images.unsplash.com/photo-1530124560676-b0007eef5916?w=500&auto=format&fit=crop&q=60']
+    },
+    {
+      id: 403,
+      productId: 'window-breaker-tool',
+      productName: '2-in-1 Car Window Glass Breaker & Seatbelt Cutter',
+      productDescription: 'Keychain-sized emergency survival hammer tool for quick vehicle escape in underwater or crash scenarios.',
+      productCost: 299,
+      productRating: 4.4,
+      images: ['https://images.unsplash.com/photo-1542382156909-9ae37b3f56fd?w=500&auto=format&fit=crop&q=60']
+    }
+  ]
+};
 
-const offerings = [
-  {
-    icon: ClipboardCheck,
-    title: 'Book a driver now or in advance',
-    body: 'Get a driver now or schedule a driver in advance for airport transfers, important meetings, doctor visits, shopping sprees, after-party drops, or any occasion.',
-  },
-  {
-    icon: MousePointerClick,
-    title: 'Outstation Trip',
-    body: 'Comfortable outstation rides one-way or round-trip: on your schedule & in your own car.',
-  },
-  {
-    icon: HeartHandshake,
-    title: 'Daily Trip',
-    body: 'Book the same driver for 3–7 days/week',
-  },
-  {
-    icon: MapPin,
-    title: 'Best-in-class drivers',
-    body: 'Plus drivers for premium rides as well as classic drivers for budget-friendly trips.',
-  },
-]
-
-const safetyPoints = [
-  {
-    icon: ShieldAlert,
-    title: 'Emergency assist',
-    body: 'Quickly and discreetly alert local police with our in-app SOS button.',
-  },
-  {
-    icon: UserCheck,
-    title: 'Call Safely with OBDrive',
-    body: ' Connect with your driver without revealing your personal phone number.',
-  },
-  {
-    icon: Briefcase,
-    title: 'Support You Can Count On',
-    body: 'Our dedicated support team is ready to assist you. Get in touch anytime through the Obpark app or by phone.',
-  },
-  {
-    icon: BadgeCheck,
-    title: 'Safety Starts with Verification',
-    body: 'All OBDrive drivers undergo ID verification and third-party background checks before they can serve customers.',
-  },
-]
-
-const cardBody =
-  'Get a driver now or schedule a driver in advance for airport transfers, important meetings, doctor visits, shopping sprees, after-party drops, or any occasion.'
-
-const faqs = [
-  {
-    q: 'How Does OBDrive Work?',
-    a: "Request a driver through the OBDrive app, and we'll assign a verified driver to your booking. Your driver will head to your selected pickup location, while you can track their journey in real time through the app.",
-  },
-  {
-    q: 'Can We Trust OBDrive Drivers?',
-    a: 'Your safety is our top priority, and we never compromise on it. Every OBDrive driver undergoes a thorough background verification and screening process before joining our platform. Drivers also receive proper training to ensure they meet our safety and service standards.',
-  },
-  {
-    q: 'How Do I Contact My Driver?',
-    a: 'Once a driver is assigned to your booking, you can contact them directly through the Obpark app. Call or message your driver conveniently from the app without needing to share your personal number.',
-  },
-  {
-    q: "What's the Difference Between a Round Trip and a One-Way Trip?",
-    a: 'Round Trip: Your driver picks you up and brings you back to the same location where your trip started. One-Way Trip: Your driver picks you up at your selected location and drops you off at a different destination.',
-  },
-  {
-    q: 'How Much in Advance Should I Book a Driver?',
-    a: 'If a driver is available nearby, you can book an OBDrive driver instantly through the app. If no driver is currently available, or you\'d like to schedule a ride in advance, we recommend booking at least 1 hour ahead. This gives us enough time to arrange a verified driver for you.',
-  },
-  {
-    q: 'Can I Extend My Booking Duration?',
-    a: "Yes. You can extend your booking if you need your driver for longer. Simply inform your driver, and they'll accommodate the additional time whenever possible. Additional charges may apply based on the extra duration or distance, as per OBDrive's pricing policy.",
-  },
-  {
-    q: 'How Can I Pay for My Driver?',
-    a: 'You can pay your OBDrive driver directly at the end of your trip using Cash or UPI. You can also choose your preferred payment method while placing your booking through the Obpark app.',
-  },
-  {
-    q: 'What Is OBDrive Secure?',
-    a: 'OBDrive Secure is designed to provide added peace of mind during your journey. It covers eligible damages that may occur to your car due to the fault of an OBDrive driver while driving your vehicle, subject to the applicable terms and conditions.',
-  },
-  {
-    q: 'Do You Provide Invoices?',
-    a: 'Yes. Once your payment is completed, you can access or request your invoice directly from the OBDrive app. Go to My Account → Orders → Past Orders & Bookings to view your completed booking and invoice details.',
-  },
-]
-
-
-function OfferingsSlider({ items, microgrammaBold, michroma }: { items: any[], microgrammaBold: any, michroma: any }) {
-  const [current, setCurrent] = useState(0)
-  const itemsPerSlide = typeof window !== 'undefined' && window.innerWidth >= 1024 ? 2 : 1
-  const totalSlides = Math.ceil(items.length / 2)
-
-  useEffect(() => {
-    const t = setInterval(() => setCurrent(p => (p + 1) % totalSlides), 3000)
-    return () => clearInterval(t)
-  }, [totalSlides])
-
-  return (
-    <div className="relative overflow-hidden">
-      <div
-        className="flex transition-transform duration-700 ease-in-out"
-        style={{ transform: `translateX(-${current * 100}%)` }}
-      >
-        {Array.from({ length: totalSlides }).map((_, slideIndex) => (
-          <div key={slideIndex} className="min-w-full grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-[26px]">
-            {items.slice(slideIndex * 2, slideIndex * 2 + 2).map((item, i) => (
-              <div
-                key={i}
-                className="flex flex-col gap-[10px] p-6 min-h-[250px] rounded-[20px] bg-[#FAFAFA]"
-                style={{ border: '0.5px solid rgba(221,221,221,0.87)' }}
-              >
-                <div className="w-10 h-10 rounded-lg bg-[#CAEDE5] flex items-center justify-center">
-                  <item.icon className="w-5 h-5 text-[#0A3D31]" />
-                </div>
-                <h3 className={`${microgrammaBold.className} text-[#1A817F] text-[18px] leading-[120%] font-bold`}>
-                  {item.title}
-                </h3>
-                <p className={`${michroma.className} text-[#3E3E3E] text-[14px] leading-[28px]`}>
-                  {item.body}
-                </p>
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-
-      <div className="flex justify-center gap-2 mt-6">
-        {Array.from({ length: totalSlides }).map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            className={`h-2 rounded-full transition-all duration-300 ${current === i ? 'bg-[#074139] w-6' : 'bg-gray-300 w-2'}`}
-          />
-        ))}
-      </div>
-    </div>
-  )
+interface ProductsPageProps {
+  categorySlug: string;
 }
 
-export function ProductsPage() {
+export function ProductsPage({ categorySlug }: ProductsPageProps) {
   const router = useRouter()
+  const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [sortBy, setSortBy] = useState('');
 
-  const handleFindDriver = () => {
-    router.push('/services/ob-driver/book')
-  }
+  // Mapper to convert frontend categories to matching backend category ids
+  const getBackendSlug = (slug: string) => {
+    const mapping: Record<string, string> = {
+      'ev-accessories': 'ev-products',
+      'electronics-smart-gadgets': 'electronics-and-smart-gadgets',
+      'exterior-accessories': 'car-care-detaling',
+      'emergency-utility-products': 'emergency-and-safety',
+    };
+    return mapping[slug] || slug;
+  };
 
-  function ImagePlaceholderIcon({ className, stroke = '#1E1E1E' }: { className?: string; stroke?: string }) {
-    return (
-      <svg
-        viewBox="0 0 454.5 463.5"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-      >
-        {/* Outer rounded frame - exact Figma dimensions */}
-        <rect
-          x="1.75"
-          y="1.75"
-          width="451"
-          height="460"
-          rx="32"
-          stroke={stroke}
-          strokeWidth="3.5"
-        />
-        {/* Sun / circle - upper left */}
-        <circle
-          cx="113"
-          cy="145"
-          r="32"
-          stroke={stroke}
-          strokeWidth="3.5"
-        />
-        {/* Single mountain peak */}
-        <path
-          d="M75 340 L227 175 L380 340"
-          stroke={stroke}
-          strokeWidth="3.5"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-          fill="none"
-        />
-      </svg>
-    )
-  }
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        setLoading(true);
+        const backendSlug = getBackendSlug(categorySlug);
+        const response = await api.get<any>(`/products?categoryslug=${backendSlug}`);
+
+        // If backend returned products, use them. Otherwise, fall back to our dummy fallback database
+        if (response.products && response.products.length > 0) {
+          setProducts(response.products);
+          console.log("products: ", response.products);
+        } else {
+          setProducts(fallbackProducts[categorySlug] || []);
+        }
+      } catch (error) {
+        console.error("failed to load products : ", error);
+        // Fallback in case of API error
+        setProducts(fallbackProducts[categorySlug] || []);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    if (categorySlug) {
+      fetchProducts();
+    }
+  }, [categorySlug]);
 
   return (
     <div className="w-full min-h-screen bg-white text-[#0A3D31]">
+
       {/* Hero */}
       {/* Hero Container with Background Image */}
       <div
         className="w-[96%] h-[700px] mx-auto bg-[#D9D9D9] bg-cover bg-center bg-no-repeat pt-24 mt-10 pb-16 px-4 sm:px-8 md:px-12 rounded-[48px] relative overflow-hidden"
-        style={{ backgroundImage: "url('/Images/ob-driver/ob-driver-main.png')" }}
+        style={{ backgroundImage: "url('/Images/products/hero.jpg')" }}
       >
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center min-h-[460px]">
 
-          {/* Left Column: Text & CTA Button */}
-          <div className="text-center lg:text-left z-10">
-            <h1 className={`${microgrammaBold.className} text-white font-bold text-3xl sm:text-4xl md:text-5xl leading-[1.2]`}>
+          {/* Left Column: Text, Search & Buttons */}
+          <div className="text-center lg:text-left z-10 flex flex-col items-center lg:items-start">
+            <p className={`${microgrammaBold.className} text-[#59D0B5] uppercase tracking-[3px] text-xs sm:text-sm font-bold mb-2`}>
+              OBPARK SHOP
+            </p>
+            <h1 className={`${microgrammaBold.className} text-white font-bold text-3xl sm:text-4xl md:text-[44px] leading-[1.2]`}>
               Car Accessories
             </h1>
-            <p className={`${michroma.className} text-white/80 text-sm sm:text-[15px] leading-[1.8] mt-4 max-w-[585px] mx-auto lg:mx-0`}>
+            <p className={`${michroma.className} text-white/80 text-xs sm:text-[13px] leading-[1.8] mt-4 max-w-[500px]`}>
               Upgrade your ride with the best car accessories. Comfort, style, protection & convenience everything your car deserves.
             </p>
-            <Button
-              onClick={handleFindDriver}
-              className={`${microgrammaBold.className} mt-6 bg-[#CAEDE5] hover:bg-[#b8e3d8] text-[#0D4B4D] font-bold text-base rounded-full px-12 py-6`}
-            >
-              Find Driver
-            </Button>
-          </div>
 
-          {/* Right Column: Empty (Allows background image's driver to be visible) */}
+            {/* Search Input Bar */}
+            <div className="relative mt-8 max-w-md w-full">
+              <input
+                type="text"
+                placeholder="Search for Car Accessories"
+                className={`${michroma.className} w-full bg-white text-black pl-6 pr-14 py-4 rounded-full text-[10px] outline-none shadow-md placeholder-gray-400`}
+              />
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#308E8C] hover:bg-[#2A7E7C] text-white p-2 rounded-full transition-colors flex items-center justify-center w-9 h-9">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4.5 h-4.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.608 10.608Z" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex flex-wrap gap-4 mt-6">
+              <button className={`${microgrammaBold.className} bg-gradient-to-r from-[#308E8C] to-[#59D0B5] hover:opacity-95 text-white font-bold text-[10px] tracking-wider rounded-full px-6 py-3.5 flex items-center gap-1.5 transition-all`}>
+                SHOP NOW {"→"}
+              </button>
+              <button className={`${microgrammaBold.className} bg-[#0A3D31]/40 hover:bg-[#0A3D31]/60 border border-[#308E8C]/50 text-white font-bold text-[10px] tracking-wider rounded-full px-6 py-3.5 flex items-center gap-1.5 transition-all`}>
+                EXPLORE CATEGORIES {"→"}
+              </button>
+            </div>
+          </div>
           <div className="hidden lg:block" />
         </div>
       </div>
 
+      {/* Features Bar */}
+      <section className="w-full py-8 bg-[#F4FBF9]">
+        <div className="w-[96%] max-w-6xl mx-auto bg-white border border-gray-100 rounded-3xl p-6 shadow-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 divide-y sm:divide-y-0 lg:divide-x lg:divide-gray-100">
 
-      {/* Why ride with OBDrive */}
-      <section className="w-full overflow-hidden py-12 sm:py-16">
-        <div className="max-w-[634px] mx-auto text-center mb-12 sm:mb-16 space-y-4 sm:space-y-6 px-4">
-          <p className={`${michroma.className} text-black text-xl sm:text-2xl`}>
-            Why ride with OBDrive?
-          </p>
-          <h2 className={`${microgrammaBold.className} text-[#1A817F] text-2xl sm:text-[28px] md:text-[32px] leading-[120%]`}>
-            Sit back, relax. We'll drive you
-            <br className="hidden sm:block" />
-            wherever you need to go.
-          </h2>
-        </div>
-
-        <div className="flex flex-col gap-10 sm:gap-16 max-w-[1278px] mt-16 mx-auto px-4 sm:px-8">
-          {whyRideRows.map((r, i) => (
-            <div
-              key={i}
-              className={`flex flex-col ${r.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-16 xl:gap-24`}
-            >
-              <div className="relative w-full max-w-[616px] aspect-square rounded-[24px] overflow-hidden shrink-0">
-                <Image src={r.image} alt={r.eyebrow} fill className="object-cover" />
+            {/* Item 1 */}
+            <div className="flex items-center gap-4 lg:px-6 py-2 sm:py-4 lg:py-0">
+              <div className="w-12 h-12 rounded-full bg-[#E8F6F1] flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="#308E8C" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.43l-1.003.828c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.43l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 0 1 0-.255c.007-.378-.138-.75-.43-.991l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                </svg>
               </div>
-
-              <div className="flex flex-col justify-center w-full max-w-[532px] shrink-0 text-center lg:text-left">
-                <p className={`${michroma.className} text-black text-lg sm:text-xl md:text-[24px] leading-[100%]`}>
-                  {r.eyebrow}
+              <div>
+                <h4 className={`${microgrammaBold.className} text-[#0A3D31] text-[11px] sm:text-[13px] tracking-wider font-bold`}>
+                  100% Genuine Products
+                </h4>
+                <p className={`${michroma.className} text-gray-500 text-[9px] sm:text-[10px] mt-1`}>
+                  Quality you can trust
                 </p>
-                <h3 className={`${microgrammaBold.className} text-[#1A817F] text-2xl sm:text-[28px] md:text-[32px] leading-[120%] font-bold mt-4 sm:mt-6`}>
-                  {r.heading}
-                </h3>
-                <button
-                  className={`${michroma.className} mt-6 sm:mt-8 h-[43px] px-5 rounded-[30px] text-white text-sm sm:text-[16px] leading-[100%] whitespace-nowrap w-fit mx-auto lg:mx-0 bg-gradient-to-r from-[#1A817F] to-[#59D0B5]`}
-                >
-                  {r.cta}
-                </button>
               </div>
             </div>
-          ))}
+
+            {/* Item 2 */}
+            <div className="flex items-center gap-4 lg:px-6 py-2 sm:py-4 lg:py-0">
+              <div className="w-12 h-12 rounded-full bg-[#E8F6F1] flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="#308E8C" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125a1.125 1.125 0 0 0 1.125-1.125V9.75M8.25 13.875h10.875m-13.5-3.75h13.5m-3.75 3.75V9.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v5.625m17.25 0V9.75c0-.621-.504-1.125-1.125-1.125h-2.25c-.621 0-1.125.504-1.125 1.125v3.375m0 .621.504 1.125 1.125 1.125h2.25c.621 0 1.125-.504 1.125-1.125Z" />
+                </svg>
+              </div>
+              <div>
+                <h4 className={`${microgrammaBold.className} text-[#0A3D31] text-[11px] sm:text-[13px] tracking-wider font-bold`}>
+                  Fast & Secure Delivery
+                </h4>
+                <p className={`${michroma.className} text-gray-500 text-[9px] sm:text-[10px] mt-1`}>
+                  Across India
+                </p>
+              </div>
+            </div>
+
+            {/* Item 3 */}
+            <div className="flex items-center gap-4 lg:px-6 py-2 sm:py-4 lg:py-0">
+              <div className="w-12 h-12 rounded-full bg-[#E8F6F1] flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="#308E8C" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                </svg>
+              </div>
+              <div>
+                <h4 className={`${microgrammaBold.className} text-[#0A3D31] text-[11px] sm:text-[13px] tracking-wider font-bold`}>
+                  Easy Returns
+                </h4>
+                <p className={`${michroma.className} text-gray-500 text-[9px] sm:text-[10px] mt-1`}>
+                  7-Day return policy
+                </p>
+              </div>
+            </div>
+
+            {/* Item 4 */}
+            <div className="flex items-center gap-4 lg:px-6 py-2 sm:py-4 lg:py-0">
+              <div className="w-12 h-12 rounded-full bg-[#E8F6F1] flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="#308E8C" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z" />
+                </svg>
+              </div>
+              <div>
+                <h4 className={`${microgrammaBold.className} text-[#0A3D31] text-[11px] sm:text-[13px] tracking-wider font-bold`}>
+                  Secure Checkout
+                </h4>
+                <p className={`${michroma.className} text-gray-500 text-[9px] sm:text-[10px] mt-1`}>
+                  100% Safe Transactions
+                </p>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
-      {/* Offerings */}
-      <section className="w-full max-w-[1278px] mx-auto px-4 sm:px-8 py-12 sm:py-16">
-        <div className="text-center mb-10 sm:mb-18">
-          <h2 className={`${microgrammaBold.className} text-[#2A8B87] text-2xl sm:text-[32px] leading-[1.3] sm:leading-[28px] font-bold`}>
-            Our offerings
-          </h2>
-          <p className={`${michroma.className} text-[#4D4D4D] text-sm sm:text-[16px] leading-[160%] text-center mt-4 max-w-[607px] mx-auto`}>
-            Our easy-to-use driver app connects you with top-rated drivers, making it easy to get where you need to go.
-          </p>
-        </div>
+      {/* Products Grid Section */}
+      <section className="w-[96%] max-w-6xl mx-auto py-12 px-4 sm:px-0">
 
-        <OfferingsSlider items={offerings} microgrammaBold={microgrammaBold} michroma={michroma} />
-      </section>
+        {/* Case 1: Loading State */}
+        {loading && (
+          <div className="text-center py-12 text-gray-400">
+            <p className="animate-pulse">Loading products...</p>
+          </div>
+        )}
 
-      {/* Safety Points */}
-      <section className="w-full max-w-[1278px] mx-auto px-4 sm:px-8 py-12 sm:py-16">
-        <div className="text-center mb-10 sm:mb-18">
-          <h2 className={`${microgrammaBold.className} text-[#2A8B87] text-2xl sm:text-[32px] leading-[1.3] sm:leading-[28px] font-bold`}>
-            Your safety is our top priority
-          </h2>
-          <p className={`${michroma.className} text-[#4D4D4D] text-sm sm:text-[16px] leading-[160%] text-center mt-4 max-w-[700px] mx-auto`}>
-            When you hire a driver through DriveU, you&apos;re never on your own. Behind the scenes, all DriveU employees are working to ensure every driver booking is secure from start to finish.
-          </p>
-        </div>
+        {/* Case 2: Empty State */}
+        {!loading && products.length === 0 && (
+          <div className="text-center py-16 border border-dashed border-gray-200 rounded-3xl">
+            <h3 className="text-base font-bold text-gray-400">No products found</h3>
+            <p className="text-xs text-gray-400 mt-1">We couldn't find any products in this category.</p>
+          </div>
+        )}
 
-        <OfferingsSlider items={safetyPoints} microgrammaBold={microgrammaBold} michroma={michroma} />
-      </section>
-
-      {/* FAQ */}
-      <section className="w-full max-w-[1500px] mx-auto px-4 sm:px-8 pb-16 sm:pb-20">
-        <div className="bg-[#EAF5F0] rounded-[24px] p-6 sm:p-10">
-          <h2 className={`${michroma.className} text-[#074139] text-xl sm:text-[24px] leading-[1.4] sm:leading-[45px] font-normal mb-6 sm:mb-8`}>
-            Frequently Asked Questions (FAQ)
-          </h2>
-          <Accordion type="single" collapsible className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 sm:gap-y-6">
-            {faqs.map((f, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="w-full min-h-[64px] sm:min-h-[80px] h-fit rounded-[20px] border-0 outline-none shadow-none ring-0 data-[state=open]:rounded-[24px] sm:data-[state=open]:rounded-[32px] transition-all overflow-hidden"
-                style={{ background: 'linear-gradient(to right, #A6DEC7, #308E8C)', padding: '0 20px' }}
-              >
-                <AccordionTrigger className="text-white text-sm sm:text-[16px] leading-[1.3] font-normal min-h-[64px] sm:min-h-[80px] py-3 sm:py-0 hover:no-underline [&>svg]:hidden flex items-center justify-between w-full border-0 outline-none ring-0 focus:ring-0 focus-visible:ring-0 focus:outline-none bg-transparent">
-                  <span className="text-left flex-1 pr-4">{f.q}</span>
-                  <span className="text-white text-xl sm:text-2xl font-light shrink-0 leading-none flex items-center">+</span>
-                </AccordionTrigger>
-                <AccordionContent className="text-white/90 text-sm pb-4 sm:pb-6 border-0 outline-none">
-                  {f.a}
-                </AccordionContent>
-              </AccordionItem>
+        {/* Case 3: Products Found */}
+        {!loading && products.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
-          </Accordion>
-        </div>
-      </section>
+          </div>
+        )}
 
+      </section>
 
     </div>
   )

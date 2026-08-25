@@ -67,11 +67,11 @@ export default function CheckoutPage() {
             {/* Translucent Container */}
             <div className="border border-white/30 rounded-[32px] p-4 sm:p-8 flex-1 flex flex-col justify-center">
               <form onSubmit={handlePaymentClick} className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:items-stretch items-start w-full">
-                
+
                 {/* Left Column: Billing Details Form */}
                 <div className="lg:col-span-7 bg-white rounded-[16px] p-6 sm:p-8 shadow-sm flex flex-col gap-6 h-full">
                   <h3 className="text-base sm:text-lg font-bold text-[#074139] tracking-wide"
-                      style={{ fontFamily: 'var(--font-michroma)' }}>
+                    style={{ fontFamily: 'var(--font-michroma)' }}>
                     Billing Details
                   </h3>
 
@@ -233,14 +233,14 @@ export default function CheckoutPage() {
 
                 {/* Right Column: Checkout Summary, Coupon & Payment */}
                 <div className="lg:col-span-5 flex flex-col gap-6 shrink-0 w-full">
-                  
+
                   {/* Your Order Card */}
                   <div className="bg-white rounded-[16px] p-6 sm:p-8 shadow-sm flex flex-col gap-4">
                     <h3 className="text-base sm:text-lg font-bold text-[#074139] tracking-wide"
-                        style={{ fontFamily: 'var(--font-michroma)' }}>
+                      style={{ fontFamily: 'var(--font-michroma)' }}>
                       Your Order
                     </h3>
-                    
+
                     <div className="space-y-4" style={{ fontFamily: 'var(--font-michroma)' }}>
                       <div className="flex items-center justify-between text-xs sm:text-sm font-normal text-[#074139]">
                         <span>Product</span>
@@ -264,10 +264,10 @@ export default function CheckoutPage() {
                   {/* Coupon Card */}
                   <div className="bg-white rounded-[16px] p-5 shadow-sm text-left">
                     {!showCouponInput ? (
-                      <button 
+                      <button
                         type="button"
-                        onClick={() => setShowCouponInput(true)} 
-                        className="text-xs font-semibold text-[#1D8582] hover:underline cursor-pointer bg-transparent border-none p-0" 
+                        onClick={() => setShowCouponInput(true)}
+                        className="text-xs font-semibold text-[#1D8582] hover:underline cursor-pointer bg-transparent border-none p-0"
                         style={{ fontFamily: 'var(--font-michroma)' }}
                       >
                         Have a coupon? Click here
@@ -309,11 +309,10 @@ export default function CheckoutPage() {
                       ].map((option) => (
                         <label
                           key={option.id}
-                          className={`flex items-center justify-between px-4 py-3 border rounded-xl cursor-pointer transition-all ${
-                            paymentMethod === option.id
+                          className={`flex items-center justify-between px-4 py-3 border rounded-xl cursor-pointer transition-all ${paymentMethod === option.id
                               ? 'border-[#1D8582] bg-[#f0faf8]/30'
                               : 'border-slate-100 hover:bg-slate-50/50'
-                          }`}
+                            }`}
                           style={{ fontFamily: 'var(--font-michroma)' }}
                         >
                           <div className="flex items-center gap-3">

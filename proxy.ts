@@ -45,7 +45,7 @@ export function proxy(request: NextRequest) {
     path.startsWith('/services') ||
     path.startsWith('/category') ||
     path.startsWith('/shop') ||
-    path.startsWith('/product/') ||
+    path.startsWith('/product') ||
     path.startsWith('/_next') ||
     path.startsWith('/api') ||
     path.startsWith('/Images') ||

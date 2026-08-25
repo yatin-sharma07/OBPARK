@@ -24,93 +24,78 @@ type MarketSlideItem = {
   link?: string
 }
 
-
-
 const marketSlides: MarketSlideItem[][] = [
-  // 1. Car Accessories 												
-  // 2. Car Care detailing												
-  // 3. Electronics smart gagets												
-  // 4. Emergency & Safety													
-  // 5. Travel & Road Safety 												
-  // 6. Family & Pet Care Products
-  // 7. EV PRODUCTS
-  // 8. Bike Shop													
-  // 9. Guest Gifting
+  // SLIDE 1
   [
     {
-      badge: 'Car Accessories',
-      image: '/Images/obpark-market/car-accessories.png',
+      badge: 'Car Essentials',
+      image: '/Images/obpark-market/Car Essentials.jpg',
       icon: Droplets,
-      text: 'Must-have car accessories & add-ons',
-      link: '/shop/car-accessories',
+      text: 'Must have car care essentials',
+      link: '/product/premium-car-air-freshener',
     },
     {
-      badge: 'Car Care Detailing',
-      image: '/Images/obpark-market/car-care-detailing.png',
+      badge: 'Car Interiors',
+      image: '/Images/obpark-market/Car Interior.jpg',
       icon: Armchair,
-      text: 'Professional detailing & care products',
-      link: '/shop/car-care-detailing',
+      text: 'Comfort, Style & Protection',
+      link: '/product/car-dashboard-dresser',
     },
     {
-      badge: 'Electronics & Smart Gadgets',
-      image: '/Images/obpark-market/electronics-and-smart-gadgets.png',
+      badge: 'Car Exterior',
+      image: '/Images/obpark-market/Car Exterior.jpg',
       icon: Car,
-      text: 'Smart gadgets for smarter driving',
-      link: '/shop/electronics-and-smart-gadgets',
+      text: 'Shine, Protect & Impress',
+      link: '/product/cover-tata-safari',
     },
   ],
   // SLIDE 2
   [
     {
-      badge: 'Emergency & Safety',
-      image: '/Images/obpark-market/emergency-and-safety.png',
+      badge: 'Car Cleaning',
+      image: '/Images/obpark-market/CAr Cleaning.jpg',
       icon: Sparkles,
-      text: 'Stay prepared for any emergency',
-      link: '/shop/emergency-and-safety',
+      text: 'Keep Your car spotless',
+      link: '/product/car-wash-shampoo',
     },
     {
-      badge: 'Travel & Road Safety',
-      image: '/Images/obpark-market/travel-and-road-safety.png',
+      badge: 'Car Wash',
+      image: '/Images/obpark-market/Car Wash.jpg',
       icon: Droplets,
-      text: 'Travel safe, drive confident',
-      link: '/shop/travel-and-road-safety',
+      text: 'Professional car wash services',
+      link: '/product/wavex-car-shampoo-wash',
     },
     {
-      badge: 'Family & Pet Care Products',
-      image: '/Images/obpark-market/family-and-pet-care-products.png',
+      badge: 'Car Repairs',
+      image: '/Images/obpark-market/Car repair.jpg',
       icon: Wrench,
-      text: 'Comfort essentials for family & pets',
-      link: '/shop/family-and-pet-care-products',
+      text: 'Expert care for every issue',
     },
   ],
   // SLIDE 3
   [
     {
-      badge: 'EV Products',
-      image: '/Images/obpark-market/ev-products.png',
+      badge: 'Car Purchase',
+      image: '/Images/obpark-market/Car Purchase.jpg',
       icon: Key,
-      text: 'Accessories for electric vehicles',
-      link: '/shop/ev-products',
+      text: 'Buy your perfect car',
     },
     {
-      badge: 'Bike Shop',
-      image: '/Images/obpark-market/bike-shop.png',
+      badge: 'Car Polishing',
+      image: '/Images/obpark-market/Car polishing.jpg',
       icon: Disc,
-      text: 'Gear up for every ride',
-      link: '/shop/bike-shop',
+      text: 'Restore shine, like new',
+      link: '/product/car-dashboard-polish',
     },
     {
-      badge: 'Guest Gifting',
-      image: '/Images/obpark-market/guest-gifting.png',
+      badge: 'Car Lifting',
+      image: '/Images/obpark-market/Car Lifting.jpg',
       icon: ArrowUpCircle,
-      text: 'Thoughtful gifts for every occasion',
-      link: '/shop/guest-gifting',
+      text: 'Safe lifting for better service',
+      link: '/product/car-jack-for-all-car-for-vehicle',
     },
   ],
 ]
-
-
-
 
 export function ObparkMarket() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -235,8 +220,8 @@ export function ObparkMarket() {
               onClick={() => setCurrentSlide(index)}
               aria-label={`Go to slide ${index + 1}`}
               className={`h-2.5 rounded-full transition-all duration-300 ${currentSlide === index
-                ? 'w-7 bg-[#074139]'
-                : 'w-2.5 bg-gray-300 hover:bg-gray-400'
+                  ? 'w-7 bg-[#074139]'
+                  : 'w-2.5 bg-gray-300 hover:bg-gray-400'
                 }`}
             />
           ))}

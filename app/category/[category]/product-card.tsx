@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Star } from "lucide-react";
-import Link from "next/link";   // NEW
+import Link from "next/link";
 
 import { SingleProduct } from "@/app/category/mock-data/types";
 
@@ -10,15 +10,20 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+  const imageUrl = product.imagePath && product.imagePath.startsWith('/')
+    ? `${baseUrl}${product.imagePath}`
+    : product.imagePath;
+
   return (
-    <Link href={`/product/${product.id}`}>   {/* NEW WRAPPER */}
+    <Link href={`/product/${product.id}`}>
 
       <div className="bg-transparent flex flex-col sm:flex-row items-center gap-6 p-4 border-t border-b border-black/5 cursor-pointer hover:bg-slate-50 transition-colors">
 
         {/* LEFT SIDE : Product Image */}
         <div className="w-50 h-40 shrink-0 flex items-center justify-center overflow-hidden p-2">
           <img
-            src={product.imagePath}
+            src={imageUrl}
             alt={product.title}
             className="max-w-full max-h-full object-cover"
           />
