@@ -51,6 +51,7 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
   const [quantity, setQuantity] = useState(1);
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
   const [currentPartnerSlide, setCurrentPartnerSlide] = useState(0);
+  const [activeAction, setActiveAction] = useState<'add_to_bag' | 'buy_now' | null>(null);
 
   // Gallery Images
   const mainImg = product.imagePath;
@@ -65,11 +66,21 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
   const incrementQty = () => setQuantity((prev) => prev + 1);
   const decrementQty = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
-  const handleAddToCart = () => {
+  const handleAddToBagClick = () => {
     if (!isAuthenticated) {
       router.push('/login');
       return;
     }
+    setActiveAction('add_to_bag');
+    setShowDialog(true);
+  };
+
+  const handleBuyNowClick = () => {
+    if (!isAuthenticated) {
+      router.push('/login');
+      return;
+    }
+    setActiveAction('buy_now');
     setShowDialog(true);
   };
 
@@ -93,9 +104,18 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
       image: product.imagePath || product.galleryImages?.[0] || '',
       vehicle: vehicleId ? 'Linked' : null
     };
-    sessionStorage.setItem('mockup_cart_item', JSON.stringify(cartItem));
-    setShowDialog(false);
-    router.push('/cart');
+
+    if (activeAction === 'buy_now') {
+      sessionStorage.setItem('is_buy_now', 'true');
+      sessionStorage.setItem('buy_now_item', JSON.stringify(cartItem));
+      sessionStorage.setItem('mockup_cart_item', JSON.stringify(cartItem));
+      setShowDialog(false);
+      router.push('/cart');
+    } else {
+      sessionStorage.setItem('is_buy_now', 'false');
+      sessionStorage.setItem('mockup_cart_item', JSON.stringify(cartItem));
+      setShowDialog(false);
+    }
   };
 
   // Fetch similar products from the same category via API or fallback
@@ -314,28 +334,42 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
             </div>
           </div>
 
-          {/* QUANTITY & ADD TO BAG BUTTON ROW */}
-          <div className="flex items-center gap-4 pt-1">
-            <div className="flex items-center gap-3">
-              <button onClick={decrementQty} className="w-[52px] h-[52px] rounded-full bg-[#167D7F]/25 flex items-center justify-center text-white hover:opacity-75 shadow-sm transition-all">
-                <Minus className="w-5 h-5" strokeWidth={3} />
-              </button>
-              <div className="w-[52px] h-[52px] rounded-full bg-white flex items-center justify-center text-[#074139] text-xl shadow-sm" style={{ fontFamily: 'var(--font-michroma)' }}>
-                {quantity}
+          {/* QUANTITY & ACTIONS ROW */}
+          <div className="flex flex-col gap-4 pt-1">
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-[#074139] text-[15px]" style={{ fontFamily: 'var(--font-michroma)' }}>Quantity</span>
+              <div className="flex items-center gap-3">
+                <button onClick={decrementQty} className="w-[44px] h-[44px] rounded-full bg-[#167D7F]/25 flex items-center justify-center text-white hover:opacity-75 shadow-sm transition-all">
+                  <Minus className="w-4 h-4" strokeWidth={3} />
+                </button>
+                <div className="w-[44px] h-[44px] rounded-full bg-white flex items-center justify-center text-[#074139] text-lg shadow-sm" style={{ fontFamily: 'var(--font-michroma)' }}>
+                  {quantity}
+                </div>
+                <button onClick={incrementQty} className="w-[44px] h-[44px] rounded-full bg-[#167D7F]/25 flex items-center justify-center text-white hover:opacity-75 shadow-sm transition-all">
+                  <Plus className="w-4 h-4" strokeWidth={3} />
+                </button>
               </div>
-              <button onClick={incrementQty} className="w-[52px] h-[52px] rounded-full bg-[#167D7F]/25 flex items-center justify-center text-white hover:opacity-75 shadow-sm transition-all">
-                <Plus className="w-5 h-5" strokeWidth={3} />
-              </button>
             </div>
 
-            <button
-              onClick={handleAddToCart}
-              style={{ fontFamily: 'var(--font-michroma)' }}
-              className="flex-1 h-[52px] bg-gradient-to-r from-[#2D7A79] to-[#70C1B3] text-white text-[16px] sm:text-[18px] rounded-[26px] flex items-center justify-center gap-3 shadow-md transition-all hover:opacity-90 active:scale-95 tracking-wide"
-            >
-              <Image src="/Images/product-common/Add.svg" alt="Add" width={20} height={20} />
-              <span>Add to bag</span>
-            </button>
+            <div className="flex items-center gap-3 w-full">
+              <button
+                onClick={handleAddToBagClick}
+                style={{ fontFamily: 'var(--font-michroma)' }}
+                className="flex-1 h-[52px] bg-white border border-[#2D7A79] text-[#2D7A79] text-[14px] sm:text-[15px] rounded-[26px] flex items-center justify-center gap-2 shadow-sm transition-all hover:bg-slate-50 active:scale-95 tracking-wide font-semibold"
+              >
+                <Image src="/Images/product-common/Add.svg" alt="Add" width={18} height={18} className="brightness-50" />
+                <span>Add to Bag</span>
+              </button>
+
+              <button
+                onClick={handleBuyNowClick}
+                style={{ fontFamily: 'var(--font-michroma)' }}
+                className="flex-1 h-[52px] bg-gradient-to-r from-[#2D7A79] to-[#70C1B3] text-white text-[14px] sm:text-[15px] rounded-[26px] flex items-center justify-center gap-2 shadow-md transition-all hover:opacity-90 active:scale-95 tracking-wide font-semibold"
+              >
+                <ShoppingBag className="w-[18px] h-[18px]" />
+                <span>Buy Now</span>
+              </button>
+            </div>
           </div>
 
           {/* SHIPPING BADGES ROW (3 SEPARATE PILLS) */}

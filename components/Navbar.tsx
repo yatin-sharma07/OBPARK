@@ -15,8 +15,10 @@ import {
     PlugZap,
     Shield,
     Banknote,
-    ChevronDown
+    ChevronDown,
+    User
 } from 'lucide-react'
+import { useAuthStore } from '@/store/auth.store'
 const mobileLinks = [
     {
         label: 'Home',
@@ -48,6 +50,7 @@ const mobileLinks = [
 export function Navbar() {
     const { openCart } = useCartStore()
     const { data: apiCart } = useCart()
+    const { isAuthenticated } = useAuthStore()
 
     const itemCount = useMemo(() => {
         if (apiCart?.items && apiCart.items.length > 0) {
@@ -161,7 +164,7 @@ export function Navbar() {
                 <div className="hidden md:flex w-full items-center justify-between">
                     {/* LEFT LINKS - DESKTOP */}
                     <div className="flex items-center justify-start gap-4 lg:gap-5 xl:gap-7 flex-1 min-w-0">
-                        <Link
+                        {/* <Link
                             href="/"
                             className="
                   text-[#074139]
@@ -175,7 +178,7 @@ export function Navbar() {
                 "
                         >
                             Home
-                        </Link>
+                        </Link> */}
 
                         <Link
                             href="/about"
@@ -191,6 +194,22 @@ export function Navbar() {
                 "
                         >
                             About
+                        </Link>
+
+                        <Link
+                            href="/shop"
+                            className="
+                  text-[#074139]
+                  text-[10px]
+                  lg:text-xs
+                  xl:text-sm
+                  font-normal
+                  whitespace-nowrap
+                  transition-opacity
+                  hover:opacity-70
+                "
+                        >
+                            Shop
                         </Link>
 
                         {/* SOLUTIONS DROPDOWN */}
@@ -333,6 +352,23 @@ export function Navbar() {
                                 src="/Images/Navbar/phone.svg"
                                 alt="Call support"
                                 className="w-full h-full object-contain"
+                            />
+                        </Link>
+
+                        {/* USER PROFILE ICON */}
+                        <Link
+                            href={isAuthenticated ? "/login" : "/login"}
+                            className="
+                              w-10 h-10 lg:w-11 lg:h-11
+                              flex-shrink-0 transition-transform duration-300 hover:scale-110 rounded-full
+                              flex items-center justify-center  bg-white
+                            "
+                            aria-label="User Account"
+
+                        >
+                            <User
+                                className={`w-6 h-6 ${isAuthenticated ? 'text-[#177e74]' : 'text-[#177e74]/65'}`}
+                                strokeWidth={3}
                             />
                         </Link>
 
@@ -482,6 +518,21 @@ export function Navbar() {
                                 src="/Images/Navbar/phone.svg"
                                 alt="Call support"
                                 className="w-full h-full object-contain"
+                            />
+                        </Link>
+
+                        {/* USER PROFILE ICON (MOBILE) */}
+                        <Link
+                            href={isAuthenticated ? "/login" : "/login"}
+                            className="
+                              w-[36px] h-[36px]
+                              flex-shrink-0 transition-transform duration-300 hover:scale-110 rounded-full
+                              flex items-center justify-center border border-white/20 bg-white/50
+                            "
+                            aria-label="User Account"
+                        >
+                            <User
+                                className={`w-4 h-4 ${isAuthenticated ? 'text-green-500' : 'text-white'}`}
                             />
                         </Link>
                     </div>

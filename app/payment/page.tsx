@@ -42,24 +42,44 @@ function PaymentContent() {
 
   const [cartItem, setCartItem] = useState<any>(null)
 
+  const { isAuthenticated, isHydrated } = useAuthStore()
+
   useEffect(() => {
+    if (!isHydrated) return
+
+    if (!isAuthenticated) {
+      router.replace('/login')
+      return
+    }
+
     if (isFastag) return
     
     // Load dynamic address data from checkout
     const storedAddress = sessionStorage.getItem('mockup_address')
     if (storedAddress) {
       setAddressData(JSON.parse(storedAddress))
+    } else {
+      router.replace('/checkout')
+      return
     }
     
     // Load fallback mockup cart item
-    const storedCart = sessionStorage.getItem('mockup_cart_item')
+    const isBuyNow = sessionStorage.getItem('is_buy_now') === 'true'
+    const key = isBuyNow ? 'buy_now_item' : 'mockup_cart_item'
+    const storedCart = sessionStorage.getItem(key)
     if (storedCart) {
       setCartItem(JSON.parse(storedCart))
+    } else {
+      router.replace('/cart')
     }
-  }, [isFastag])
+  }, [isHydrated, isAuthenticated, isFastag, router])
 
   // Resolve active checkout items
   const checkoutItems = useMemo(() => {
+    const isBuyNow = sessionStorage.getItem('is_buy_now') === 'true';
+    if (isBuyNow && cartItem) {
+      return [cartItem];
+    }
     if (apiCart?.items && apiCart.items.length > 0) {
       return apiCart.items;
     }
@@ -103,21 +123,29 @@ function PaymentContent() {
     if (checkoutItems.length === 0) return;
     setIsProcessing(true);
     try {
+      const isBuyNow = sessionStorage.getItem('is_buy_now') === 'true';
       const primaryProduct = checkoutItems[0];
-      const primaryProductId = primaryProduct.productId || primaryProduct.id || (primaryProduct.product && primaryProduct.product.id);
       
-      const res = await createPayment.mutateAsync({
-        productId: primaryProductId,
-        quantity: primaryProduct.quantity || 1,
+      let payload: any = {
         gateway: 'RAZORPAY',
-      });
+      };
+      
+      if (isBuyNow) {
+        const primaryProductId = primaryProduct.productId || primaryProduct.id || (primaryProduct.product && primaryProduct.product.id);
+        payload.productId = primaryProductId;
+        payload.quantity = primaryProduct.quantity || 1;
+      }
+      
+      const res = await createPayment.mutateAsync(payload);
 
       const options = {
         key: res.keyId,
         amount: res.amount,
         currency: res.currency,
         name: 'OBPARK',
-        description: `Purchase of ${primaryProduct.name ?? primaryProduct.product?.productName ?? 'OBPARK Products'}`,
+        description: isBuyNow
+          ? `Purchase of ${primaryProduct.name ?? primaryProduct.product?.productName ?? 'OBPARK Products'}`
+          : `Purchase of ${checkoutItems.length} items from cart`,
         order_id: res.razorpayOrderId,
         handler: async function (response: any) {
           try {
@@ -126,6 +154,9 @@ function PaymentContent() {
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,
             });
+            sessionStorage.removeItem('is_buy_now');
+            sessionStorage.removeItem('buy_now_item');
+            sessionStorage.removeItem('mockup_cart_item');
             // Redirect to home/success page
             router.push('/?success=true');
           } catch (err) {
@@ -157,6 +188,16 @@ function PaymentContent() {
   const fullAddress = addressData
     ? `${addressData.address}, ${addressData.city}, ${addressData.state} - ${addressData.postalCode}`
     : 'A-102, Shanti Apartments, Near Municipal Park, Koramangala, Bengaluru, Karnataka - 560034'
+
+  if (!isHydrated) {
+    return (
+      <div className="w-full bg-[#eefaf6] text-[#074c43] min-h-screen pt-32 pb-16 flex items-center justify-center font-sans">
+        <div className="text-center font-bold">Loading...</div>
+      </div>
+    )
+  }
+
+  if (!isAuthenticated) return null
 
   return (
     <div className="w-full bg-[#eefaf6] text-[#074c43] min-h-screen pt-32 pb-24 px-4 sm:px-6 md:px-8 font-sans">

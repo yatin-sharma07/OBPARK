@@ -42,7 +42,14 @@ export function ObMechanicQuotePage() {
           </h1>
 
           <div className="relative w-full aspect-[510/230] mt-5 sm:mt-6 overflow-hidden bg-[#D9D9D9] flex items-center justify-center">
-            
+            <img
+              src="/Images/ob-driver-mechanic.png"
+              alt="Car Service"
+              width={510}
+              height={230}
+              className="w-full h-full object-cover"
+            />
+
           </div>
 
           <p
@@ -65,18 +72,18 @@ export function ObMechanicQuotePage() {
             </div>
 
             <div>
-  <label className={`${michroma.className} text-sm text-[#074139] font-medium block mb-2`}>
-    Enter your car brand
-  </label>
-  <input
-    type="text"
-    readOnly
-    value={brand}
-    onClick={() => setBrandModalOpen(true)}
-    placeholder="Select your car brand"
-    className={`${michroma.className} w-full border border-gray-300 rounded-lg px-4 py-3 text-[10px] tracking-[0.05em] text-[#6E9394] bg-white cursor-pointer`}
-  />
-</div>
+              <label className={`${michroma.className} text-sm text-[#074139] font-medium block mb-2`}>
+                Enter your car brand
+              </label>
+              <input
+                type="text"
+                readOnly
+                value={brand}
+                onClick={() => setBrandModalOpen(true)}
+                placeholder="Select your car brand"
+                className={`${michroma.className} w-full border border-gray-300 rounded-lg px-4 py-3 text-[10px] tracking-[0.05em] text-[#6E9394] bg-white cursor-pointer`}
+              />
+            </div>
 
             <div>
               <label className={`${michroma.className} text-sm text-[#074139] font-medium block mb-2`}>
@@ -104,42 +111,42 @@ export function ObMechanicQuotePage() {
           </div>
 
           <div className="flex flex-col items-center">
-  <Button
-    type="submit"
-    className={`${michroma.className} mt-5 w-[252px] h-10 bg-[#B5E2D1] hover:bg-[#b8e3d8] text-[#000000] font-normal text-[16px] leading-[100%] tracking-[0.05em]`}
-  >
-    Check price for free
-  </Button>
+            <Button
+              type="submit"
+              className={`${michroma.className} mt-5 w-[252px] h-10 bg-[#B5E2D1] hover:bg-[#b8e3d8] text-[#000000] font-normal text-[16px] leading-[100%] tracking-[0.05em]`}
+            >
+              Check price for free
+            </Button>
 
-  <div className="flex items-center justify-center gap-8 sm:gap-10 mt-4">
-    <div className="text-center">
-      <p
-  className={`${microgrammaBold.className} text-[#0A3D31] font-bold text-[16px] leading-[120%]`}
->
-  ★ 4/<span className="text-[11px]">5</span>
-</p>
-      <p className={`${michroma.className} text-[#6E9394] text-[12px] leading-[140%] mt-0.5`}>
-        Based on
-        <br />
-        15000 reviews
-      </p>
-    </div>
-    <div className="text-center">
-      <p className={`${microgrammaBold.className} text-[#0A3D31] font-bold text-[16px] leading-[120%]`}>
-        2 million
-      </p>
-      <p className={`${michroma.className} text-[#6E9394] text-[12px] leading-[140%] mt-0.5`}>
-        Happy customer
-      </p>
-    </div>
-  </div>
-</div>
+            <div className="flex items-center justify-center gap-8 sm:gap-10 mt-4">
+              <div className="text-center">
+                <p
+                  className={`${microgrammaBold.className} text-[#0A3D31] font-bold text-[16px] leading-[120%]`}
+                >
+                  ★ 4/<span className="text-[11px]">5</span>
+                </p>
+                <p className={`${michroma.className} text-[#6E9394] text-[12px] leading-[140%] mt-0.5`}>
+                  Based on
+                  <br />
+                  15000 reviews
+                </p>
+              </div>
+              <div className="text-center">
+                <p className={`${microgrammaBold.className} text-[#0A3D31] font-bold text-[16px] leading-[120%]`}>
+                  2 million
+                </p>
+                <p className={`${michroma.className} text-[#6E9394] text-[12px] leading-[140%] mt-0.5`}>
+                  Happy customer
+                </p>
+              </div>
+            </div>
+          </div>
         </form>
         <BrandSelectModal
-  open={brandModalOpen}
-  onClose={() => setBrandModalOpen(false)}
-  onSelect={(selected) => setBrand(selected)}
-/>
+          open={brandModalOpen}
+          onClose={() => setBrandModalOpen(false)}
+          onSelect={(selected) => setBrand(selected)}
+        />
       </div>
     </div>
   )

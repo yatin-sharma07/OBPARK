@@ -4,57 +4,56 @@ import { microgrammaBold } from '@/lib/fonts'
 import { ShoppingCart } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { api } from '@/lib/api'
 
-const initialProducts = [
-  {
-    id: 'prod-1',
-    title: 'Microfiber Cloth',
-    image: '/Images/Feature-Product/Microfiber-Cloth.jpg',
-    description:
-      'SOFTSPUN Microfiber Cloth Silk Banded Edges 800 GSM 30X40 cms 3pcs Yellow+Grey! Silk Banded Edge Towel Set Extra Thick Microfiber Cleaning Cloths Perfect for Bike Auto Cars Both Interior and Exterior.',
-  },
-  {
-    id: 'ext-prod-1',
-    title: 'Cleaning Combo',
-    image: '/Images/Feature-Product/Cleaning-Combo.jpg',
-    description:
-      '5 PCS Microfiber Car Duster Kit - Interior & Exterior Car Cleaning Detailing Tool Scratch',
-  },
-  {
-    id: 'prod-3',
-    title: 'Interior & Exterior Combo',
-    image: '/Images/Feature-Product/Interior-Exterior-Combo.jpg',
-    description:
-      'RED Dummy Tow Hook for Car Universal Triangle Bumper Exterior Accessory for Car, Truck & SUV',
-  },
-]
-
-const displayProducts = [...initialProducts, initialProducts[0]]
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
 export function FeatureProduct() {
+  const [products, setProducts] = useState<any[]>([])
   const [isMounted, setIsMounted] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(true)
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
     setIsMounted(true)
+    api.get<any[]>('/products/featured')
+      .then((data) => {
+        setProducts(data)
+      })
+      .catch((err) => {
+        console.error('Failed to fetch featured products:', err)
+      })
+  }, [])
+
+  useEffect(() => {
+    if (products.length === 0 || isHovered) return
     const timer = setInterval(() => {
       setIsTransitioning(true)
       setCurrentIndex((prev) => prev + 1)
-    }, 2000)
+    }, 2500)
     return () => clearInterval(timer)
-  }, [])
+  }, [products, isHovered])
 
-  const handleTransitionEnd = () => {
-    if (currentIndex === initialProducts.length) {
+  const handleTransitionEnd = (e: React.TransitionEvent) => {
+    if (e.target !== e.currentTarget) return
+    if (products.length === 0) return
+    if (currentIndex === products.length) {
       setIsTransitioning(false)
       setCurrentIndex(0)
     }
   }
 
-  if (!isMounted) return null
+  const getProductImage = (imgPath?: string) => {
+    if (!imgPath) return 'https://placehold.co/400x400/EAE6F0/2A8B87?text=Product+Image'
+    if (imgPath.startsWith('http') || imgPath.startsWith('data:')) return imgPath
+    return `${BASE_URL}${imgPath}`
+  }
 
-  const activeDot = currentIndex % initialProducts.length
+  if (!isMounted || products.length === 0) return null
+
+  const displayProducts = [...products, products[0]]
+  const activeDot = currentIndex % products.length
 
   return (
     <section className="w-full overflow-hidden py-16 md:py-24 bg-[#F0F9F5]">
@@ -70,12 +69,16 @@ export function FeatureProduct() {
               text-[#074139]
             `}
           >
-            Feature Product
+            Featured Products
           </h2>
         </div>
 
         {/* TIMED SLIDER */}
-        <div className="w-full relative overflow-hidden py-4 px-4 sm:px-8 max-w-[1200px] mx-auto">
+        <div
+          className="w-full relative overflow-hidden py-4 px-4 sm:px-8 max-w-[1200px] mx-auto"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <div
             className={`flex ${isTransitioning ? 'transition-transform duration-700 ease-in-out' : ''}`}
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -94,7 +97,7 @@ export function FeatureProduct() {
                   <div className="w-full md:w-[40%] flex justify-center items-center">
                     <div className="rounded-[20px] w-[200px] sm:w-[220px] md:w-[230px] aspect-square flex items-center justify-center overflow-hidden shadow-lg bg-white/10 shrink-0">
                       <img
-                        src={product.image}
+                        src={getProductImage(product.imagePath)}
                         alt={product.title}
                         className="w-full h-full object-cover"
                         onError={(e) => {
@@ -116,9 +119,9 @@ export function FeatureProduct() {
                       className="text-white/90 text-[13px] sm:text-[14px] md:text-[15px] leading-relaxed line-clamp-3"
                       style={{ fontFamily: 'var(--font-michroma)' }}
                     >
-                      {product.description}
+                      {product.productDescription || product.description}
                     </p>
-                    <button
+                    {/* <button
                       onClick={(e) => {
                         e.preventDefault()
                         e.stopPropagation()
@@ -130,9 +133,9 @@ export function FeatureProduct() {
                       <span
                         className={`${microgrammaBold.className} text-[#1C8182] text-[13px] pt-0.5`}
                       >
-                        Add
+                        Add feature product
                       </span>
-                    </button>
+                    </button> */}
                   </div>
                 </Link>
               </div>
@@ -141,7 +144,7 @@ export function FeatureProduct() {
 
           {/* Optional Indicators */}
           <div className="flex justify-center gap-3 mt-8">
-            {initialProducts.map((_, i) => (
+            {products.map((_, i) => (
               <div
                 key={i}
                 className={`h-2 rounded-full transition-all duration-500 ${i === activeDot ? 'w-8 bg-[#1C8182]' : 'w-2 bg-[#1C8182]/30'}`}

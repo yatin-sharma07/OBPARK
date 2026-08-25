@@ -1,12 +1,52 @@
 "use client";
 
 import { ArrowRight, ChevronDown, Smartphone, ShieldCheck } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "@/lib/firebase";
 import { loginUser } from "@/lib/auth.api";
 import { useAuthStore } from "@/store/auth.store";
+
+const services = [
+  {
+    name: "EV Charging",
+    description: "Locate and reserve EV slots with dynamic charging station analytics.",
+    href: "/services/ev-charging",
+    image: "https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    name: "Car Insurance",
+    description: "Compare and purchase custom auto-cover policies with immediate claims.",
+    href: "/services/car-insurance",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    name: "FASTag Recharge",
+    description: "Recharge, track usage, and manage toll accounts seamlessly in real-time.",
+    href: "/services/fastag",
+    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    name: "OB Driver",
+    description: "Book reliable, professional drivers for short trips or daily commutes.",
+    href: "/services/ob-driver",
+    image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    name: "OB Mechanic",
+    description: "Access on-demand car maintenance and professional diagnostic quotes.",
+    href: "/services/ob-mechanic",
+    image: "/Images/similar-products/car-repairs.png",
+  },
+  {
+    name: "E-Challan Clearance",
+    description: "Check and clear traffic violations with automated digital challan processing.",
+    href: "/services/e-challan",
+    image: "https://images.unsplash.com/photo-1506015391300-4802dc74de2e?q=80&w=600&auto=format&fit=crop",
+  },
+];
 
 export default function LoginPage() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -15,6 +55,7 @@ export default function LoginPage() {
   const router = useRouter();
 
   const setAuth = useAuthStore((state) => state.setAuth);
+  const { isAuthenticated, isHydrated } = useAuthStore();
 
   const handleGoogleLogin = async () => {
     setLoading(true);
@@ -43,6 +84,71 @@ export default function LoginPage() {
       setLoading(false);
     }
   };
+
+  if (isHydrated && isAuthenticated) {
+    return (
+      <main className="min-h-screen bg-[#F2FAF6]">
+        <div className="px-3 sm:px-4 md:px-6 pt-20 sm:pt-24 md:pt-28 pb-4">
+          <div className="mx-auto max-w-[2000px]">
+            <section className="w-full min-h-[calc(100vh-120px)] bg-white rounded-[28px] p-8 md:p-12 lg:p-16 shadow-[0_12px_30px_rgba(7,76,67,0.08)] flex flex-col items-center justify-center relative overflow-hidden">
+
+              {/* Header Title & Subtitle */}
+              <div className="text-center mb-12 max-w-[600px]">
+                <span className="bg-[#E5F5F0] text-[#094639] text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full inline-block mb-3">
+                  Account Active
+                </span>
+                <h1 className="text-3xl sm:text-4xl font-extrabold text-[#094639] mb-3 tracking-tight">
+                  You are already logged in
+                </h1>
+                <p className="text-gray-500 font-medium text-sm sm:text-base">
+                  Explore our premium OBPARK smart vehicle services below.
+                </p>
+              </div>
+
+              {/* Services Grid (6 cards) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-[1200px]">
+                {services.map((service, idx) => (
+                  <Link
+                    key={idx}
+                    href={service.href}
+                    className="group relative h-[220px] rounded-2xl overflow-hidden shadow-md cursor-pointer border border-[#E5F5F0] transition-all duration-500 hover:shadow-xl hover:scale-[1.03]"
+                  >
+                    {/* Background Image */}
+                    <img
+                      src={service.image}
+                      alt={service.name}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+
+                    {/* Glass Overlay (Dark gradient) */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#052b23]/90 via-[#052b23]/40 to-transparent transition-opacity duration-300 group-hover:opacity-95" />
+
+                    {/* Content inside card */}
+                    <div className="absolute inset-0 p-5 flex flex-col justify-end">
+                      <div className="flex items-center gap-2 mb-1.5 transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
+                        {/* <span className="w-1.5 h-1.5 bg-[#59D0B5] rounded-full" />
+                        <span className="text-[10px] text-white/70 uppercase tracking-widest font-semibold">
+                          OBPARK SERVICE
+                        </span> */}
+                      </div>
+                      <h3 className="text-lg font-bold text-white leading-snug">
+                        {service.name}
+                      </h3>
+
+                      {/* Subtitle / Details shown on hover */}
+                      <p className="text-xs text-white/80 mt-1 line-clamp-2 max-h-0 opacity-0 group-hover:max-h-12 group-hover:opacity-100 transition-all duration-500 overflow-hidden font-medium">
+                        {service.description}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-[#F2FAF6]">

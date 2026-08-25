@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { michroma,microgrammaBold } from '@/lib/fonts'
+import { michroma, microgrammaBold } from '@/lib/fonts'
 
 export function OneWayForm() {
   const [timing, setTiming] = useState('now')
@@ -12,6 +12,7 @@ export function OneWayForm() {
     <form className="space-y-5">
       {/* Map preview placeholder */}
       <div className="relative w-full h-[140px] bg-gray-200  overflow-hidden">
+        <Image src="/images/ob-driver-img.png" alt="" fill className='object-cover' />
       </div>
 
       {/* Location */}
@@ -87,8 +88,8 @@ export function OneWayForm() {
       {/* Secure booking */}
       <div className="pt-2 border-t border-gray-100">
         <p className={`${microgrammaBold.className} text-[11px] tracking-[0.05em] font-bold text-[#074139] mb-2`}>
-  SECURE YOUR BOOKING
-</p>
+          SECURE YOUR BOOKING
+        </p>
         <label className="flex items-start gap-2 text-xs text-gray-600 leading-relaxed">
           <input type="checkbox" className="mt-1" />
           Get vehicle damage protection plan for your car for ₹18 +GST. T&amp;C apply*

@@ -23,12 +23,20 @@ interface CartItem {
 
 export default function CartPage() {
   const router = useRouter()
-  const { isAuthenticated } = useAuthStore()
+  const { isAuthenticated, isHydrated } = useAuthStore()
 
   const [cartItems, setCartItems] = useState<CartItem[]>([])
 
   useEffect(() => {
-    const stored = sessionStorage.getItem('mockup_cart_item')
+    if (isHydrated && !isAuthenticated) {
+      router.replace('/login')
+    }
+  }, [isHydrated, isAuthenticated, router])
+
+  useEffect(() => {
+    const isBuyNow = sessionStorage.getItem('is_buy_now') === 'true'
+    const key = isBuyNow ? 'buy_now_item' : 'mockup_cart_item'
+    const stored = sessionStorage.getItem(key)
     if (stored) {
       setCartItems([JSON.parse(stored)])
     } else {
@@ -58,9 +66,13 @@ export default function CartPage() {
   const handleQtyChange = (itemId: string, qty: number) => {
     setCartItems((prev) => {
       const updated = prev.map((item) => (item.id === itemId ? { ...item, quantity: qty } : item));
-      // Save back to session storage to sync with checkout/payment pages
+      const isBuyNow = sessionStorage.getItem('is_buy_now') === 'true'
+      const key = isBuyNow ? 'buy_now_item' : 'mockup_cart_item'
       if (updated.length > 0) {
-        sessionStorage.setItem('mockup_cart_item', JSON.stringify(updated[0]));
+        sessionStorage.setItem(key, JSON.stringify(updated[0]));
+        if (isBuyNow) {
+          sessionStorage.setItem('mockup_cart_item', JSON.stringify(updated[0]));
+        }
       }
       return updated;
     })
@@ -82,6 +94,16 @@ export default function CartPage() {
       setDialogItem(null)
     }
   }
+
+  if (!isHydrated) {
+    return (
+      <div className="w-full bg-[#eefaf6] text-[#074c43] min-h-screen pt-32 pb-16 flex items-center justify-center">
+        <div className="text-center font-bold">Loading...</div>
+      </div>
+    )
+  }
+
+  if (!isAuthenticated) return null
 
   return (
     <div className="w-full bg-[#eefaf6] text-[#074c43] min-h-screen pt-[33px] md:pt-[47px] lg:pt-[52px] xl:pt-[56px] pb-16 px-3 sm:px-5">

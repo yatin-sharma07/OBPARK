@@ -8,7 +8,9 @@ export function RoundTripForm() {
   return (
     <form className="space-y-5">
       <div className="relative w-full h-[140px] bg-gray-200 rounded-lg overflow-hidden">
+        <Image src="/images/ob-driver-img.png" alt="" fill className='object-cover' />
       </div>
+
 
       <div>
         <label className={`${michroma.className} text-sm text-[#0A3D31] font-medium block mb-2`}>
