@@ -1,14 +1,16 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { microgrammaBold } from '@/lib/fonts'
 import { ChevronDown } from 'lucide-react'
 import { useAuthStore } from '@/store/auth.store'
+import { useCart } from '@/hooks/useCart'
 
 export default function CheckoutPage() {
   const router = useRouter()
   const { isAuthenticated, isHydrated } = useAuthStore()
+  const { data: apiCart } = useCart()
 
   useEffect(() => {
     if (isHydrated) {
@@ -17,13 +19,18 @@ export default function CheckoutPage() {
         return
       }
       const isBuyNow = sessionStorage.getItem('is_buy_now') === 'true'
-      const key = isBuyNow ? 'buy_now_item' : 'mockup_cart_item'
-      const stored = sessionStorage.getItem(key)
-      if (!stored) {
-        router.replace('/cart')
+      if (isBuyNow) {
+        const stored = sessionStorage.getItem('buy_now_item')
+        if (!stored) {
+          router.replace('/cart')
+        }
+      } else {
+        if (apiCart && (!apiCart.items || apiCart.items.length === 0)) {
+          router.replace('/cart')
+        }
       }
     }
-  }, [isHydrated, isAuthenticated, router])
+  }, [isHydrated, isAuthenticated, apiCart, router])
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -39,29 +46,36 @@ export default function CheckoutPage() {
   const [showCouponInput, setShowCouponInput] = useState(false)
   const [couponCode, setCouponCode] = useState('')
   const [updates, setUpdates] = useState(false)
-  const [mockItems, setMockItems] = useState([
-    {
-      id: 'mock-item-1',
-      name: '5 PCS Microfiber Car Duster Kit - Interior & Exterior Car Cleaning Detailing Tool Scratch',
-      description: 'Premium Car Care Product',
-      price: '₹ 1437',
-      priceVal: 1437,
-      quantity: 1,
-      image: '/products/electronics/diamond-system-main.png',
-      vehicle: null
-    }
-  ])
+  const [buyNowItem, setBuyNowItem] = useState<any>(null)
 
   useEffect(() => {
     const isBuyNow = sessionStorage.getItem('is_buy_now') === 'true'
-    const key = isBuyNow ? 'buy_now_item' : 'mockup_cart_item'
-    const stored = sessionStorage.getItem(key)
-    if (stored) {
-      setMockItems([JSON.parse(stored)])
+    if (isBuyNow) {
+      const stored = sessionStorage.getItem('buy_now_item')
+      if (stored) {
+        setBuyNowItem(JSON.parse(stored))
+      }
     }
   }, [])
 
-  const subtotal = mockItems.reduce((acc, item) => acc + (item.priceVal * item.quantity), 0)
+  const isBuyNow = typeof window !== 'undefined' ? sessionStorage.getItem('is_buy_now') === 'true' : false;
+
+  const checkoutItems = useMemo(() => {
+    if (isBuyNow) {
+      return buyNowItem ? [buyNowItem] : [];
+    }
+    if (apiCart?.items) {
+      return apiCart.items.map((item: any) => ({
+        priceVal: Number(item.product?.price ?? 0),
+        quantity: item.quantity,
+      }));
+    }
+    return [];
+  }, [isBuyNow, buyNowItem, apiCart]);
+
+  const subtotal = useMemo(() => {
+    return checkoutItems.reduce((acc: number, item: any) => acc + (item.priceVal * item.quantity), 0);
+  }, [checkoutItems])
 
   const handlePaymentClick = (e: React.FormEvent) => {
     e.preventDefault()
@@ -153,7 +167,7 @@ export default function CheckoutPage() {
                         >
                           <option value="">Select Country</option>
                           <option value="in">India</option>
-                          <option value="us">United States</option>
+                          {/* <option value="us">United States</option> */}
                         </select>
                         <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
                       </div>

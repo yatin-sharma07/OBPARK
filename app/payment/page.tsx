@@ -53,7 +53,7 @@ function PaymentContent() {
     }
 
     if (isFastag) return
-    
+
     // Load dynamic address data from checkout
     const storedAddress = sessionStorage.getItem('mockup_address')
     if (storedAddress) {
@@ -62,17 +62,21 @@ function PaymentContent() {
       router.replace('/checkout')
       return
     }
-    
-    // Load fallback mockup cart item
+
     const isBuyNow = sessionStorage.getItem('is_buy_now') === 'true'
-    const key = isBuyNow ? 'buy_now_item' : 'mockup_cart_item'
-    const storedCart = sessionStorage.getItem(key)
-    if (storedCart) {
-      setCartItem(JSON.parse(storedCart))
+    if (isBuyNow) {
+      const storedCart = sessionStorage.getItem('buy_now_item')
+      if (storedCart) {
+        setCartItem(JSON.parse(storedCart))
+      } else {
+        router.replace('/cart')
+      }
     } else {
-      router.replace('/cart')
+      if (apiCart && (!apiCart.items || apiCart.items.length === 0)) {
+        router.replace('/cart')
+      }
     }
-  }, [isHydrated, isAuthenticated, isFastag, router])
+  }, [isHydrated, isAuthenticated, isFastag, apiCart, router])
 
   // Resolve active checkout items
   const checkoutItems = useMemo(() => {
@@ -125,17 +129,17 @@ function PaymentContent() {
     try {
       const isBuyNow = sessionStorage.getItem('is_buy_now') === 'true';
       const primaryProduct = checkoutItems[0];
-      
+
       let payload: any = {
         gateway: 'RAZORPAY',
       };
-      
+
       if (isBuyNow) {
         const primaryProductId = primaryProduct.productId || primaryProduct.id || (primaryProduct.product && primaryProduct.product.id);
         payload.productId = primaryProductId;
         payload.quantity = primaryProduct.quantity || 1;
       }
-      
+
       const res = await createPayment.mutateAsync(payload);
 
       const options = {
@@ -202,7 +206,7 @@ function PaymentContent() {
   return (
     <div className="w-full bg-[#eefaf6] text-[#074c43] min-h-screen pt-32 pb-24 px-4 sm:px-6 md:px-8 font-sans">
       <div className="max-w-[1200px] mx-auto space-y-8">
-        
+
         {/* Simple Progress Indicator */}
         <div className="flex items-center gap-2 text-xs font-semibold text-teal-600/70 select-none pb-2" style={{ fontFamily: 'var(--font-michroma)' }}>
           <span>Cart</span>
@@ -291,7 +295,7 @@ function PaymentContent() {
                       </>
                     )}
                   </button>
-                  
+
                   <div className="flex items-center gap-1.5 text-[10px] text-teal-600/70 font-semibold pt-1" style={{ fontFamily: 'var(--font-michroma)' }}>
                     <ShieldCheck className="w-3.5 h-3.5 text-teal-600" />
                     <span>AES-256 SSL Encrypted Secure Checkout</span>
@@ -349,12 +353,12 @@ function PaymentContent() {
                   ₹{displayAmount.toLocaleString('en-IN')}
                 </span>
               </div>
-              
+
               {!isFastag && (
                 <>
                   <div className="flex justify-between items-center text-xs font-medium text-slate-500">
-                    <span>Shipping Charges:</span>
-                    <span className="text-teal-600 font-bold">₹100</span>
+                    {/* <span>Shipping Charges:</span>
+                    <span className="text-teal-600 font-bold">₹100</span> */}
                   </div>
                   <div className="flex justify-between items-center text-xs font-medium text-slate-500">
                     <span>Estimated Tax (GST):</span>
@@ -366,7 +370,8 @@ function PaymentContent() {
               <div className="flex justify-between items-center text-sm font-bold pt-4 border-t border-slate-100 text-[#074139]">
                 <span>Order Total:</span>
                 <span className="text-base font-black">
-                  ₹{(displayAmount + (isFastag ? 0 : 100)).toLocaleString('en-IN')}
+                  {/* ₹{(displayAmount + (isFastag ? 0 : 100)).toLocaleString('en-IN')} */}
+                  ₹{displayAmount.toLocaleString('en-IN')}
                 </span>
               </div>
             </div>

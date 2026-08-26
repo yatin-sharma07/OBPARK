@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import {
   ChevronDown
 } from 'lucide-react'
@@ -9,9 +10,18 @@ import {
 import { useAuthStore } from '@/store/auth.store'
 import { VehicleSelectDialog } from '@/components/cart/VehicleSelectDialog'
 import { microgrammaBold } from '@/lib/fonts'
+import { useCart, useRemoveCartItem, useUpdateCartItem } from '@/hooks/useCart'
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+function _prepend(imgPath: string): string {
+  if (!imgPath) return "";
+  if (imgPath.startsWith("http") || imgPath.startsWith("data:")) return imgPath;
+  return `${BASE_URL}${imgPath}`;
+}
 
 interface CartItem {
   id: string
+  productId?: string
   name: string
   description: string
   price: string
@@ -25,7 +35,12 @@ export default function CartPage() {
   const router = useRouter()
   const { isAuthenticated, isHydrated } = useAuthStore()
 
-  const [cartItems, setCartItems] = useState<CartItem[]>([])
+  const { data: apiCart } = useCart()
+  const removeItem = useRemoveCartItem()
+  const updateItem = useUpdateCartItem()
+
+  const [buyNowItem, setBuyNowItem] = useState<CartItem | null>(null)
+  const [buyNowQtyTrigger, setBuyNowQtyTrigger] = useState(0)
 
   useEffect(() => {
     if (isHydrated && !isAuthenticated) {
@@ -35,47 +50,71 @@ export default function CartPage() {
 
   useEffect(() => {
     const isBuyNow = sessionStorage.getItem('is_buy_now') === 'true'
-    const key = isBuyNow ? 'buy_now_item' : 'mockup_cart_item'
-    const stored = sessionStorage.getItem(key)
-    if (stored) {
-      setCartItems([JSON.parse(stored)])
-    } else {
-      setCartItems([
-        {
-          id: 'mock-item-1',
-          name: '5 PCS Microfiber Car Duster Kit - Interior & Exterior Car Cleaning Detailing Tool Scratch',
-          description: 'Premium Car Care Product',
-          price: '₹ 1437',
-          priceVal: 1437,
-          quantity: 1,
-          image: '/products/electronics/diamond-system-main.png',
-          vehicle: null
-        }
-      ])
+    if (isBuyNow) {
+      const stored = sessionStorage.getItem('buy_now_item')
+      if (stored) {
+        setBuyNowItem(JSON.parse(stored))
+      }
     }
-  }, [])
+  }, [buyNowQtyTrigger])
 
-  const subtotal = cartItems.reduce((acc, item) => acc + (item.priceVal * item.quantity), 0)
+  const isBuyNow = typeof window !== 'undefined' ? sessionStorage.getItem('is_buy_now') === 'true' : false;
 
+  const cartItems = useMemo(() => {
+    if (isBuyNow) {
+      return buyNowItem ? [buyNowItem] : [];
+    }
+    if (apiCart?.items) {
+      return apiCart.items.map((item: any) => {
+        const isLinked = sessionStorage.getItem(`vehicle_link_${item.id}`) === 'Linked';
+        return {
+          id: item.id,
+          productId: item.productId,
+          name: item.product?.name || item.product?.title || 'Premium Product',
+          description: item.product?.brand || 'OBPARK Premium Product',
+          price: `₹ ${item.product?.price ?? 0}`,
+          priceVal: Number(item.product?.price ?? 0),
+          quantity: item.quantity,
+          image: _prepend(item.product?.imagePath || ''),
+          vehicle: item.vehicleId ? 'Linked' : (isLinked ? 'Linked' : null),
+        };
+      });
+    }
+    return [];
+  }, [isBuyNow, buyNowItem, apiCart]);
+
+  const subtotal = useMemo(() => {
+    return cartItems.reduce((acc: number, item: any) => acc + (item.priceVal * item.quantity), 0);
+  }, [cartItems]);
 
   const [dialogItem, setDialogItem] = useState<{
     id: string
     productName: string
   } | null>(null)
 
-  const handleQtyChange = (itemId: string, qty: number) => {
-    setCartItems((prev) => {
-      const updated = prev.map((item) => (item.id === itemId ? { ...item, quantity: qty } : item));
-      const isBuyNow = sessionStorage.getItem('is_buy_now') === 'true'
-      const key = isBuyNow ? 'buy_now_item' : 'mockup_cart_item'
-      if (updated.length > 0) {
-        sessionStorage.setItem(key, JSON.stringify(updated[0]));
-        if (isBuyNow) {
-          sessionStorage.setItem('mockup_cart_item', JSON.stringify(updated[0]));
-        }
+  const handleQtyChange = async (itemId: string, qty: number) => {
+    if (isBuyNow) {
+      const stored = sessionStorage.getItem('buy_now_item')
+      if (stored) {
+        const parsed = JSON.parse(stored)
+        parsed.quantity = qty
+        sessionStorage.setItem('buy_now_item', JSON.stringify(parsed))
+        sessionStorage.setItem('mockup_cart_item', JSON.stringify(parsed))
+        setBuyNowQtyTrigger(prev => prev + 1)
       }
-      return updated;
-    })
+    } else {
+      await updateItem.mutateAsync({ itemId, quantity: qty })
+    }
+  }
+
+  const handleRemoveItem = async (itemId: string) => {
+    if (isBuyNow) {
+      sessionStorage.removeItem('buy_now_item')
+      sessionStorage.removeItem('mockup_cart_item')
+      setBuyNowItem(null)
+    } else {
+      await removeItem.mutateAsync(itemId)
+    }
   }
 
   const handleVehicleChange = (itemId: string, productName: string) => {
@@ -84,13 +123,22 @@ export default function CartPage() {
 
   const handleConfirmVehicle = (vehicleId: string | null) => {
     if (dialogItem) {
-      setCartItems((prev) =>
-        prev.map((item) =>
-          item.id === dialogItem.id
-            ? { ...item, vehicle: vehicleId ? 'Linked' : null }
-            : item
-        )
-      )
+      if (isBuyNow) {
+        if (buyNowItem && buyNowItem.id === dialogItem.id) {
+          const updated = { ...buyNowItem, vehicle: vehicleId ? 'Linked' : null }
+          sessionStorage.setItem('buy_now_item', JSON.stringify(updated))
+          sessionStorage.setItem('mockup_cart_item', JSON.stringify(updated))
+          setBuyNowItem(updated)
+        }
+      } else {
+        const key = `vehicle_link_${dialogItem.id}`;
+        if (vehicleId) {
+          sessionStorage.setItem(key, 'Linked');
+        } else {
+          sessionStorage.removeItem(key);
+        }
+        setBuyNowQtyTrigger(prev => prev + 1)
+      }
       setDialogItem(null)
     }
   }
@@ -132,7 +180,7 @@ export default function CartPage() {
                 <div className="flex flex-col h-full min-h-0">
                   {/* Scrollable list area */}
                   <div className="flex-1 overflow-y-auto pr-2 space-y-6 scrollbar-thin">
-                    {cartItems.map((item) => (
+                    {cartItems.map((item: any) => (
                       <div
                         key={item.id}
                         className="flex flex-col sm:flex-row gap-6 py-4 relative"
@@ -160,12 +208,20 @@ export default function CartPage() {
                                   {item.description}
                                 </p>
                               </div>
-                              <button
-                                onClick={() => handleVehicleChange(item.id, item.name)}
-                                className="text-xs font-bold text-slate-400 hover:text-teal-900 shrink-0 underline"
-                              >
-                                Change
-                              </button>
+                              <div className="flex flex-col items-end gap-2 shrink-0">
+                                <button
+                                  onClick={() => handleVehicleChange(item.id, item.name)}
+                                  className="text-xs font-bold text-[#1D8582] hover:underline"
+                                >
+                                  Change
+                                </button>
+                                <button
+                                  onClick={() => handleRemoveItem(item.id)}
+                                  className="text-xs font-bold text-red-500 hover:underline"
+                                >
+                                  Remove
+                                </button>
+                              </div>
                             </div>
 
                             {item.vehicle && (
@@ -217,13 +273,13 @@ export default function CartPage() {
                     <button
                       onClick={() => {
                         if (cartItems.length > 0) {
-                          const pId = cartItems[0].id;
+                          const pId = cartItems[0].productId || cartItems[0].id;
                           sessionStorage.setItem('mockup_cart_item', JSON.stringify(cartItems[0]));
                           // Avoid 404s by redirecting to /products if it's a fallback mock item
                           if (pId.startsWith('mock-')) {
                             router.push('/products');
                           } else {
-                            router.push(`/product/${pId}`);
+                            router.push(`/shop/all/${pId}`);
                           }
                         } else {
                           router.push('/products');
@@ -264,13 +320,16 @@ export default function CartPage() {
                   </div>
                 </div>
 
-                <a
+                <Link
                   href="/checkout"
+                  onClick={() => {
+                    sessionStorage.setItem('is_buy_now', isBuyNow ? 'true' : 'false');
+                  }}
                   className="w-full inline-flex items-center justify-center py-3.5 bg-gradient-to-r from-[#1A817F] to-[#59D0B5] hover:opacity-90 text-white font-medium text-sm rounded-full transition-all shadow-sm text-center shrink-0"
                   style={{ fontFamily: 'var(--font-michroma)' }}
                 >
                   Proceed to Checkout
-                </a>
+                </Link>
               </div>
             </div>
           </div>

@@ -87,7 +87,7 @@ export function FeatureProduct() {
             {displayProducts.map((product, index) => (
               <div key={`${product.id}-${index}`} className="w-full shrink-0 px-2 sm:px-4">
                 <Link
-                  href={`/product/${product.id}`}
+                  href={`/shop/${product.category?.slug || 'all'}/${product.id}`}
                   style={{
                     background: 'linear-gradient(135deg, #A6DEC7 0%, #1C8182 100%)',
                   }}

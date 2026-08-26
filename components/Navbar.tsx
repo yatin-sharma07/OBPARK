@@ -182,32 +182,32 @@ export function Navbar() {
 
                         <Link
                             href="/about"
-                            className="
-                  text-[#074139]
+                            className={`
+                  ${isScrolled ? 'text-[#074139]' : 'text-white'}
                   text-[10px]
                   lg:text-xs
                   xl:text-sm
                   font-normal
                   whitespace-nowrap
-                  transition-opacity
+                  transition-all duration-300
                   hover:opacity-70
-                "
+                `}
                         >
                             About
                         </Link>
 
                         <Link
                             href="/shop"
-                            className="
-                  text-[#074139]
+                            className={`
+                  ${isScrolled ? 'text-[#074139]' : 'text-white'}
                   text-[10px]
                   lg:text-xs
                   xl:text-sm
                   font-normal
                   whitespace-nowrap
-                  transition-opacity
+                  transition-all duration-300
                   hover:opacity-70
-                "
+                `}
                         >
                             Shop
                         </Link>
@@ -216,16 +216,16 @@ export function Navbar() {
                         <div className="relative group py-4 -my-4">
                             <Link
                                 href="/solutions"
-                                className="
-                  text-[#074139]
+                                className={`
+                  ${isScrolled ? 'text-[#074139]' : 'text-white'}
                   text-[10px]
                   lg:text-xs
                   xl:text-sm
                   font-normal
                   whitespace-nowrap
-                  transition-opacity
+                  transition-all duration-300
                   hover:opacity-70
-                "
+                `}
                             >
                                 Solutions
                             </Link>
@@ -234,17 +234,17 @@ export function Navbar() {
                         {/* RESOURCES DROPDOWN */}
                         <div className="relative group py-4 -my-4">
                             <span
-                                className="
-                                  text-[#074139]
-                                  text-[10px]
-                                  lg:text-xs
-                                  xl:text-sm
-                                  font-normal
-                                  whitespace-nowrap
-                                  transition-opacity
-                                  hover:opacity-70
-                                  cursor-pointer
-                                "
+                                className={`
+                                   ${isScrolled ? 'text-[#074139]' : 'text-white'}
+                                   text-[10px]
+                                   lg:text-xs
+                                   xl:text-sm
+                                   font-normal
+                                   whitespace-nowrap
+                                   transition-all duration-300
+                                   hover:opacity-70
+                                   cursor-pointer
+                                 `}
                             >
                                 Resources
                             </span>
@@ -355,22 +355,7 @@ export function Navbar() {
                             />
                         </Link>
 
-                        {/* USER PROFILE ICON */}
-                        <Link
-                            href={isAuthenticated ? "/login" : "/login"}
-                            className="
-                              w-10 h-10 lg:w-11 lg:h-11
-                              flex-shrink-0 transition-transform duration-300 hover:scale-110 rounded-full
-                              flex items-center justify-center  bg-white
-                            "
-                            aria-label="User Account"
 
-                        >
-                            <User
-                                className={`w-6 h-6 ${isAuthenticated ? 'text-[#177e74]' : 'text-[#177e74]/65'}`}
-                                strokeWidth={3}
-                            />
-                        </Link>
 
                         {/* SHOP/BASKET CIRCLE */}
                         <button
@@ -396,6 +381,25 @@ export function Navbar() {
                                 </span>
                             )}
                         </button>
+
+
+
+                        {/* USER PROFILE ICON */}
+                        <Link
+                            href={isAuthenticated ? "/login" : "/login"}
+                            className="
+                              w-10 h-10 lg:w-11 lg:h-11
+                              flex-shrink-0 transition-transform duration-300 hover:scale-110 rounded-full
+                              flex items-center justify-center  bg-white
+                            "
+                            aria-label="User Account"
+
+                        >
+                            <User
+                                className={`w-6 h-6 ${isAuthenticated ? 'text-[#177e74]' : 'text-[#177e74]/65'}`}
+                                strokeWidth={3}
+                            />
+                        </Link>
                     </div>
                 </div>
 
@@ -525,14 +529,16 @@ export function Navbar() {
                         <Link
                             href={isAuthenticated ? "/login" : "/login"}
                             className="
-                              w-[36px] h-[36px]
+                              w-10 h-10 lg:w-11 lg:h-11
                               flex-shrink-0 transition-transform duration-300 hover:scale-110 rounded-full
-                              flex items-center justify-center border border-white/20 bg-white/50
+                              flex items-center justify-center  bg-white
                             "
                             aria-label="User Account"
+
                         >
                             <User
-                                className={`w-4 h-4 ${isAuthenticated ? 'text-green-500' : 'text-white'}`}
+                                className={`w-6 h-6 ${isAuthenticated ? 'text-[#177e74]' : 'text-[#177e74]/65'}`}
+                                strokeWidth={3}
                             />
                         </Link>
                     </div>

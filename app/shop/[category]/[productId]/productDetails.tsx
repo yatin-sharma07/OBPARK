@@ -52,6 +52,7 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
   const [currentPartnerSlide, setCurrentPartnerSlide] = useState(0);
   const [activeAction, setActiveAction] = useState<'add_to_bag' | 'buy_now' | null>(null);
+  const [similarIdx, setSimilarIdx] = useState(0);
 
   // Gallery Images
   const mainImg = product.imagePath;
@@ -85,14 +86,16 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
   };
 
   const handleConfirm = async (vehicleId: string | null) => {
-    try {
-      await addToCart.mutateAsync({
-        productId: product.id,
-        vehicleId: vehicleId ?? undefined,
-        quantity: quantity,
-      });
-    } catch (e) {
-      console.error(e);
+    if (activeAction !== 'buy_now') {
+      try {
+        await addToCart.mutateAsync({
+          productId: product.id,
+          vehicleId: vehicleId ?? undefined,
+          quantity: quantity,
+        });
+      } catch (e) {
+        console.error(e);
+      }
     }
     const cartItem = {
       id: product.id,
@@ -138,7 +141,7 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
         {/* LEFT COLUMN: PRODUCT GALLERY */}
         <div className="lg:col-span-6 space-y-4">
           {/* MAIN IMAGE CARD */}
-          <div className="w-full aspect-square bg-white rounded-[28px] overflow-hidden flex items-center justify-center p-8 relative shadow-sm border border-slate-100">
+          <div className="w-full aspect-square bg-white rounded-[29px] overflow-hidden flex items-center justify-center p-8 relative shadow-sm border border-slate-100">
             <button
               onClick={() => window.open(activeImage, '_blank')}
               className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center text-slate-500 hover:text-teal-800 transition-colors z-10"
@@ -159,7 +162,7 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
               <button
                 key={i}
                 onClick={() => setActiveImage(img)}
-                className={`w-20 h-20 sm:w-24 sm:h-24 rounded-[18px] bg-white border overflow-hidden p-2 flex items-center justify-center transition-all ${activeImage === img
+                className={`w-20 h-20 sm:w-24 sm:h-24 rounded-[19px] bg-white border overflow-hidden p-2 flex items-center justify-center transition-all ${activeImage === img
                   ? "border-[#1C8182] ring-2 ring-[#1C8182]/20 scale-95"
                   : "border-slate-200 opacity-80 hover:opacity-100"
                   }`}
@@ -357,7 +360,7 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
                 style={{ fontFamily: 'var(--font-michroma)' }}
                 className="flex-1 h-[52px] bg-white border border-[#2D7A79] text-[#2D7A79] text-[14px] sm:text-[15px] rounded-[26px] flex items-center justify-center gap-2 shadow-sm transition-all hover:bg-slate-50 active:scale-95 tracking-wide font-semibold"
               >
-                <Image src="/Images/product-common/Add.svg" alt="Add" width={18} height={18} className="brightness-50" />
+                <Image src="/Images/product-common/Add.svg" alt="Add" width={18} height={18} style={{ filter: 'invert(60%) sepia(11%) saturate(3000%) hue-rotate(118deg) brightness(80%) contrast(60%)' }} />
                 <span>Add to Bag</span>
               </button>
 
@@ -366,30 +369,30 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
                 style={{ fontFamily: 'var(--font-michroma)' }}
                 className="flex-1 h-[52px] bg-gradient-to-r from-[#2D7A79] to-[#70C1B3] text-white text-[14px] sm:text-[15px] rounded-[26px] flex items-center justify-center gap-2 shadow-md transition-all hover:opacity-90 active:scale-95 tracking-wide font-semibold"
               >
-                <ShoppingBag className="w-[18px] h-[18px]" />
+                <ShoppingBag className="w-[19px] h-[19px]" />
                 <span>Buy Now</span>
               </button>
             </div>
           </div>
 
           {/* SHIPPING BADGES ROW (3 SEPARATE PILLS) */}
-          <div className="grid grid-cols-3 gap-3 pt-2">
-            <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2 text-[9px] sm:text-[9px] text-[#074139] shadow-sm">
-              <Image src="/Images/product-common/Free shipping.svg" alt="Free shipping" width={20} height={20} className="shrink-0 w-auto h-auto" />
-              <span className="whitespace-nowrap" style={{ fontFamily: 'var(--font-michroma)' }}>Free shipping over1000</span>
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-2">
+            <div className="bg-white rounded-[20px] px-2 sm:px-3 py-3 sm:py-4 flex items-center justify-center gap-1.5 sm:gap-2 text-[7px] sm:text-[9px] text-[#074139] shadow-sm">
+              <Image src="/Images/product-common/Free shipping.svg" alt="Free shipping" width={20} height={20} className="shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="leading-tight" style={{ fontFamily: 'var(--font-michroma)' }}>Free shipping over 1000</span>
             </div>
-            <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2 text-[9px] sm:text-[11px] text-[#074139] shadow-sm">
-              <Image src="/Images/product-common/Fast global shipping.svg" alt="Fast global shipping" width={20} height={20} className="shrink-0 w-auto h-auto" />
-              <span style={{ fontFamily: 'var(--font-michroma)' }}>Pan India shipping</span>
+            <div className="bg-white rounded-[20px] px-2 sm:px-3 py-3 sm:py-4 flex items-center justify-center gap-1.5 sm:gap-2 text-[7px] sm:text-[9px] text-[#074139] shadow-sm">
+              <Image src="/Images/product-common/Fast global shipping.svg" alt="Fast global shipping" width={20} height={20} className="shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="leading-tight" style={{ fontFamily: 'var(--font-michroma)' }}>Pan India shipping</span>
             </div>
-            <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2 text-[9px] sm:text-[11px] text-[#074139] shadow-sm">
-              <Image src="/Images/product-common/Buy more, save more.svg" alt="Buy more, save more" width={20} height={20} className="shrink-0 w-auto h-auto" />
-              <span className="whitespace-nowrap" style={{ fontFamily: 'var(--font-michroma)' }}>No Cash on Delivery</span>
+            <div className="bg-white rounded-[20px] px-2 sm:px-3 py-3 sm:py-4 flex items-center justify-center gap-1.5 sm:gap-2 text-[7px] sm:text-[9px] text-[#074139] shadow-sm">
+              <Image src="/Images/product-common/Buy more, save more.svg" alt="Buy more, save more" width={20} height={20} className="shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="leading-tight" style={{ fontFamily: 'var(--font-michroma)' }}>No Cash on Delivery</span>
             </div>
           </div>
 
           {/* IN STOCK BANNER 
-          <div className="bg-white rounded-[20px] py-4 px-6 flex items-center justify-center gap-3 text-[11px] sm:text-[12px] text-[#074139] shadow-sm w-full">
+          <div className="bg-white rounded-[20px] py-4 px-6 flex items-center justify-center gap-3 text-[9px] sm:text-[12px] text-[#074139] shadow-sm w-full">
             <span className="w-3 h-3 rounded-full bg-[#00C853] inline-block shrink-0" />
             <span style={{ fontFamily: 'var(--font-michroma)' }}>In stock, orders placed within 17:27:22 ship the same day</span>
           </div> */}
@@ -397,30 +400,30 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
           {/* SERVICE GUARANTEE PILLS (ROWS OF 3) 
           <div className="space-y-3">
             <div className="grid grid-cols-3 gap-3">
-              <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2.5 text-[10px] sm:text-[11px] text-[#074139] shadow-sm">
+              <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2.5 text-[10px] sm:text-[9px] text-[#074139] shadow-sm">
                 <Image src="/Images/product-common/Recurring delivery.svg" alt="Recurring delivery" width={20} height={20} className="shrink-0" />
                 <span style={{ fontFamily: 'var(--font-michroma)' }}>Recurring delivery</span>
               </div>
-              <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2.5 text-[10px] sm:text-[11px] text-[#074139] shadow-sm">
+              <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2.5 text-[10px] sm:text-[9px] text-[#074139] shadow-sm">
                 <Image src="/Images/product-common/More savings.svg" alt="More savings" width={20} height={20} className="shrink-0" />
                 <span style={{ fontFamily: 'var(--font-michroma)' }}>More savings</span>
               </div>
-              <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2.5 text-[10px] sm:text-[11px] text-[#074139] shadow-sm leading-tight">
+              <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2.5 text-[10px] sm:text-[9px] text-[#074139] shadow-sm leading-tight">
                 <Image src="/Images/product-common/Pause or cancel.svg" alt="Pause or cancel" width={20} height={20} className="shrink-0" />
                 <span style={{ fontFamily: 'var(--font-michroma)' }}>Pause or cancel<br/>anytime</span>
               </div>
             </div>
 
             <div className="grid grid-cols-3 gap-3">
-              <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2.5 text-[10px] sm:text-[11px] text-[#074139] shadow-sm">
+              <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2.5 text-[10px] sm:text-[9px] text-[#074139] shadow-sm">
                 <Image src="/Images/product-common/Lab tested.svg" alt="Lab tested" width={20} height={20} className="shrink-0" />
                 <span style={{ fontFamily: 'var(--font-michroma)' }}>Lab tested</span>
               </div>
-              <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2.5 text-[10px] sm:text-[11px] text-[#074139] shadow-sm leading-tight">
+              <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2.5 text-[10px] sm:text-[9px] text-[#074139] shadow-sm leading-tight">
                 <Image src="/Images/product-common/Certified &approved.svg" alt="Certified & approved" width={20} height={20} className="shrink-0" />
                 <span style={{ fontFamily: 'var(--font-michroma)' }}>Certified &<br/>approved</span>
               </div>
-              <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2.5 text-[10px] sm:text-[11px] text-[#074139] shadow-sm">
+              <div className="bg-white rounded-[20px] px-3 py-4 flex items-center justify-center gap-2.5 text-[10px] sm:text-[9px] text-[#074139] shadow-sm">
                 <Image src="/Images/product-common/All-natural.svg" alt="All-natural" width={20} height={20} className="shrink-0" />
                 <span style={{ fontFamily: 'var(--font-michroma)' }}>All-natural</span>
               </div>
@@ -454,7 +457,7 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <div className="px-6 pb-6 sm:px-8 sm:pb-8 text-[11px] sm:text-[13px] text-slate-700 leading-[1.8]" style={{ fontFamily: 'var(--font-michroma)' }}>
+                  <div className="px-6 pb-6 sm:px-8 sm:pb-8 text-[9px] sm:text-[13px] text-slate-700 leading-[1.8]" style={{ fontFamily: 'var(--font-michroma)' }}>
                     <ul className="list-disc pl-4 space-y-4 marker:text-slate-700">
                       {product.aboutSections.map((section, i) => (
                         <li key={i}>
@@ -469,52 +472,78 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
           </div>
 
           {/* SIMILAR PRODUCTS FROM SAME CATEGORY */}
-          <div className="bg-gradient-to-b from-[#167D7F] to-[#B0E5CC] rounded-[24px] p-6 sm:p-8 text-white shadow-md space-y-6">
+          <div className="bg-gradient-to-b from-[#167D7F] to-[#B0E5CC] rounded-[24px] p-6 sm:p-8 text-white shadow-md space-y-6 overflow-hidden">
             <h3 className="text-lg sm:text-xl tracking-wide font-normal text-center" style={{ fontFamily: 'var(--font-michroma)' }}>
               Similar Products
             </h3>
 
-            <div className="grid grid-cols-1 gap-4">
+            <div className="overflow-hidden w-full relative">
               {similarProducts.length > 0 ? (
-                similarProducts.map((sp: any) => {
-                  const spImg = _prepend(sp.imagePath || (sp.images && sp.images[0]) || "");
-                  const spId = sp.productId || sp.id;
-                  const spTitle = sp.productName || sp.title || "";
-                  const spPrice = sp.price ?? sp.productCost ?? 0;
+                <>
+                  <motion.div
+                    className="flex w-full"
+                    animate={{ x: `-${similarIdx * 100}%` }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  >
+                    {similarProducts.map((sp: any) => {
+                      const spImg = _prepend(sp.imagePath || (sp.images && sp.images[0]) || "");
+                      const spId = sp.productId || sp.id;
+                      const spTitle = sp.productName || sp.title || "";
+                      const spPrice = sp.price ?? sp.productCost ?? 0;
 
-                  return (
-                    <Link key={spId} href={`/product/${spId}`}>
-                      <div className="bg-white/15 backdrop-blur-sm rounded-[18px] p-4 flex items-center gap-4 hover:bg-white/25 transition-all cursor-pointer border border-white/20 shadow-sm group">
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-[14px] bg-white overflow-hidden flex items-center justify-center shrink-0 p-1.5">
-                          {spImg ? (
-                            <img
-                              src={spImg}
-                              alt={spTitle}
-                              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                            />
-                          ) : (
-                            <div className="w-full h-full bg-gray-100 flex items-center justify-center text-xs text-gray-400">No img</div>
-                          )}
+                      return (
+                        <div key={spId} className="w-full shrink-0 px-1">
+                          <Link href={`/product/${spId}`}>
+                            <div className="bg-white/15 backdrop-blur-sm rounded-[19px] p-4 flex items-center gap-4 hover:bg-white/25 transition-all cursor-pointer border border-white/20 shadow-sm group">
+                              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-[14px] bg-white overflow-hidden flex items-center justify-center shrink-0 p-1.5">
+                                {spImg ? (
+                                  <img
+                                    src={spImg}
+                                    alt={spTitle}
+                                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                                  />
+                                ) : (
+                                  <div className="w-full h-full bg-gray-100 flex items-center justify-center text-xs text-gray-400">No img</div>
+                                )}
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <p className="text-white text-[13px] sm:text-[14px] font-bold leading-snug line-clamp-2 hover:underline" style={{ fontFamily: 'var(--font-michroma)' }}>
+                                  {spTitle}
+                                </p>
+                                <p className="text-white/90 text-[13px] font-semibold mt-1.5" style={{ fontFamily: 'var(--font-michroma)' }}>
+                                  ₹ {spPrice}
+                                </p>
+                              </div>
+                              <div className="shrink-0">
+                                <div className="w-9 h-9 rounded-full bg-white/20 group-hover:bg-white/30 flex items-center justify-center transition-colors">
+                                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                  </svg>
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-white text-[13px] sm:text-[14px] font-bold leading-snug line-clamp-2 hover:underline" style={{ fontFamily: 'var(--font-michroma)' }}>
-                            {spTitle}
-                          </p>
-                          <p className="text-white/90 text-[13px] font-semibold mt-1.5" style={{ fontFamily: 'var(--font-michroma)' }}>
-                            ₹ {spPrice}
-                          </p>
-                        </div>
-                        <div className="shrink-0">
-                          <div className="w-9 h-9 rounded-full bg-white/20 group-hover:bg-white/30 flex items-center justify-center transition-colors">
-                            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  );
-                })
+                      );
+                    })}
+                  </motion.div>
+
+                  {/* Dot Indicators */}
+                  {similarProducts.length > 1 && (
+                    <div className="flex justify-center gap-2 pt-2">
+                      {similarProducts.map((_: any, idx: number) => (
+                        <button
+                          key={idx}
+                          onClick={() => setSimilarIdx(idx)}
+                          className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                            idx === similarIdx ? "bg-white scale-125 shadow-sm" : "bg-white/40 hover:bg-white/60"
+                          }`}
+                          aria-label={`Go to slide ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </>
               ) : (
                 <p className="text-center text-white/80 text-sm py-4">No similar products available.</p>
               )}

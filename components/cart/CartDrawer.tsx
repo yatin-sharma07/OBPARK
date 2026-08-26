@@ -65,7 +65,7 @@ export function CartDrawer() {
 
   const handleContinueShopping = () => {
     closeCart()
-    router.push('/products')
+    // router.push('/products')
   }
 
   return (
@@ -137,127 +137,127 @@ export function CartDrawer() {
                 <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
                   {hasApiItems
                     ? apiCart?.items.map((item: any) => (
-                        <div
-                          key={item.id}
-                          className="flex gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-md"
-                        >
-                          <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center shrink-0 overflow-hidden">
-                            {item.product.images?.[0] ? (
-                              <img
-                                src={item.product.images[0]}
-                                alt={item.product?.productName || item.product?.title || item.product?.name || "Product"}
-                                className="w-full h-full object-cover"
-                              />
-                            ) : (
-                              <ShoppingBag className="w-7 h-7 text-white/80" />
-                            )}
-                          </div>
+                      <div
+                        key={item.id}
+                        className="flex gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-md"
+                      >
+                        <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center shrink-0 overflow-hidden">
+                          {item.product.images?.[0] ? (
+                            <img
+                              src={item.product.images[0]}
+                              alt={item.product?.productName || item.product?.title || item.product?.name || "Product"}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <ShoppingBag className="w-7 h-7 text-white/80" />
+                          )}
+                        </div>
 
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-bold text-white truncate">
-                              {item.product.name}
-                            </p>
-                            <p className="text-xs text-white/70 mt-0.5">
-                              ₹{Number(item.product?.productCost ?? item.product?.price ?? item.product?.basePrice ?? 0).toLocaleString('en-IN')}
-                            </p>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-bold text-white truncate">
+                            {item.product.name}
+                          </p>
+                          <p className="text-xs text-white/70 mt-0.5">
+                            ₹{Number(item.product?.productCost ?? item.product?.price ?? item.product?.basePrice ?? 0).toLocaleString('en-IN')}
+                          </p>
 
-                            <div className="flex items-center justify-between mt-3">
-                              <div className="flex items-center gap-2 bg-white/10 rounded-full px-2 py-1">
-                                <button
-                                  onClick={() =>
-                                    updateItem.mutate({
-                                      itemId: item.id,
-                                      quantity: item.quantity - 1,
-                                    })
-                                  }
-                                  className="w-5 h-5 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors"
-                                >
-                                  <Minus className="w-3 h-3" />
-                                </button>
-                                <span className="text-xs font-bold text-white w-4 text-center">
-                                  {item.quantity}
-                                </span>
-                                <button
-                                  onClick={() =>
-                                    updateItem.mutate({
-                                      itemId: item.id,
-                                      quantity: item.quantity + 1,
-                                    })
-                                  }
-                                  className="w-5 h-5 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors"
-                                >
-                                  <Plus className="w-3 h-3" />
-                                </button>
-                              </div>
-
+                          <div className="flex items-center justify-between mt-3">
+                            <div className="flex items-center gap-2 bg-white/10 rounded-full px-2 py-1">
                               <button
-                                onClick={() => removeItem.mutate(item.id)}
-                                className="p-1.5 rounded-full text-white/60 hover:text-red-400 hover:bg-white/10 transition-colors"
+                                onClick={() =>
+                                  updateItem.mutate({
+                                    itemId: item.id,
+                                    quantity: item.quantity - 1,
+                                  })
+                                }
+                                className="w-5 h-5 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors"
                               >
-                                <Trash2 className="w-4 h-4" />
+                                <Minus className="w-3 h-3" />
+                              </button>
+                              <span className="text-xs font-bold text-white w-4 text-center">
+                                {item.quantity}
+                              </span>
+                              <button
+                                onClick={() =>
+                                  updateItem.mutate({
+                                    itemId: item.id,
+                                    quantity: item.quantity + 1,
+                                  })
+                                }
+                                className="w-5 h-5 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors"
+                              >
+                                <Plus className="w-3 h-3" />
                               </button>
                             </div>
+
+                            <button
+                              onClick={() => removeItem.mutate(item.id)}
+                              className="p-1.5 rounded-full text-white/60 hover:text-red-400 hover:bg-white/10 transition-colors"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
                           </div>
                         </div>
-                      ))
+                      </div>
+                    ))
                     : localCart.map((item) => (
-                        <div
-                          key={item.id}
-                          className="flex gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-md"
-                        >
-                          <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center shrink-0 overflow-hidden">
-                            {item.image ? (
-                              <img
-                                src={item.image}
-                                alt={item.name}
-                                className="w-full h-full object-cover"
-                              />
-                            ) : (
-                              <ShoppingBag className="w-7 h-7 text-white/80" />
-                            )}
-                          </div>
+                      <div
+                        key={item.id}
+                        className="flex gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-md"
+                      >
+                        <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center shrink-0 overflow-hidden">
+                          {item.image ? (
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <ShoppingBag className="w-7 h-7 text-white/80" />
+                          )}
+                        </div>
 
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-bold text-white line-clamp-2">
-                              {item.name}
-                            </p>
-                            <p className="text-xs text-[#59D0B5] font-semibold mt-1">
-                              ₹{Number(item.priceVal ?? 0).toLocaleString('en-IN')}
-                            </p>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-bold text-white line-clamp-2">
+                            {item.name}
+                          </p>
+                          <p className="text-xs text-[#59D0B5] font-semibold mt-1">
+                            ₹{Number(item.priceVal ?? 0).toLocaleString('en-IN')}
+                          </p>
 
-                            <div className="flex items-center justify-between mt-3">
-                              <div className="flex items-center gap-2 bg-white/10 rounded-full px-2 py-1">
-                                <button
-                                  onClick={() =>
-                                    handleLocalQtyChange(item.id, item.quantity - 1)
-                                  }
-                                  className="w-5 h-5 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors"
-                                >
-                                  <Minus className="w-3 h-3" />
-                                </button>
-                                <span className="text-xs font-bold text-white w-4 text-center">
-                                  {item.quantity}
-                                </span>
-                                <button
-                                  onClick={() =>
-                                    handleLocalQtyChange(item.id, item.quantity + 1)
-                                  }
-                                  className="w-5 h-5 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors"
-                                >
-                                  <Plus className="w-3 h-3" />
-                                </button>
-                              </div>
-
+                          <div className="flex items-center justify-between mt-3">
+                            <div className="flex items-center gap-2 bg-white/10 rounded-full px-2 py-1">
                               <button
-                                onClick={handleLocalRemove}
-                                className="p-1.5 rounded-full text-white/60 hover:text-red-400 hover:bg-white/10 transition-colors"
+                                onClick={() =>
+                                  handleLocalQtyChange(item.id, item.quantity - 1)
+                                }
+                                className="w-5 h-5 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors"
                               >
-                                <Trash2 className="w-4 h-4" />
+                                <Minus className="w-3 h-3" />
+                              </button>
+                              <span className="text-xs font-bold text-white w-4 text-center">
+                                {item.quantity}
+                              </span>
+                              <button
+                                onClick={() =>
+                                  handleLocalQtyChange(item.id, item.quantity + 1)
+                                }
+                                className="w-5 h-5 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors"
+                              >
+                                <Plus className="w-3 h-3" />
                               </button>
                             </div>
+
+                            <button
+                              onClick={handleLocalRemove}
+                              className="p-1.5 rounded-full text-white/60 hover:text-red-400 hover:bg-white/10 transition-colors"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
                           </div>
                         </div>
-                      ))}
+                      </div>
+                    ))}
                 </div>
 
                 {/* Footer Subtotal & Checkout */}
@@ -269,16 +269,19 @@ export function CartDrawer() {
                       {(hasApiItems
                         ? apiCart?.subtotal ?? 0
                         : localCart.reduce(
-                            (acc, i) => acc + i.priceVal * i.quantity,
-                            0
-                          )
+                          (acc, i) => acc + i.priceVal * i.quantity,
+                          0
+                        )
                       ).toLocaleString('en-IN')}
                     </span>
                   </div>
 
                   <Link
                     href="/checkout"
-                    onClick={closeCart}
+                    onClick={() => {
+                      sessionStorage.setItem('is_buy_now', 'false');
+                      closeCart();
+                    }}
                     className="w-full bg-[#59D0B5] hover:bg-[#48c0a5] text-[#074139] font-bold py-3.5 rounded-full flex items-center justify-center transition-colors shadow-lg"
                     style={{ fontFamily: 'var(--font-michroma)' }}
                   >
