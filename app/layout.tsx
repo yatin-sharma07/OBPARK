@@ -6,7 +6,7 @@ import { Providers } from '@/components/Providers'
 import Script from 'next/script'
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from '@/components/Navbar'
-import  Header  from '@/components/Header'
+import Header from '@/components/Header'
 import { CartDrawer } from '@/components/cart/CartDrawer'
 
 export const metadata: Metadata = {
@@ -62,7 +62,7 @@ export default function RootLayout({
 
         <Providers>
           <ConditionalHeader />
-        {/* <Header /> */}
+          {/* <Header /> */}
           <Navbar />
           <main className="min-h-screen w-full max-w-[100vw] ">{children}</main>
           <Footer />
