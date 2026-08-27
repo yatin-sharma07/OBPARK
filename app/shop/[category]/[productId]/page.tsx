@@ -28,16 +28,11 @@ function mapApiToSingleProduct(api: any): SingleProduct {
     (img: string) => prependBase(img)
   );
 
-  // Build aboutSections from productFeatures array
-  const aboutSections = (api.productFeatures || []).map((feat: string) => ({
-    heading: feat,
-    content: "",
-  }));
-
-  // If there is a longDescription, add it as an extra section
+  // Build aboutSections only from longDescription
+  const aboutSections = [];
   if (api.longDescription) {
     aboutSections.push({
-      heading: "Details",
+      heading: "",
       content: api.longDescription,
     });
   }

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useRef, useState, useMemo } from 'react'
 import { microgrammaBold } from '@/lib/fonts'
@@ -48,6 +49,9 @@ const mobileLinks = [
 
 
 export function Navbar() {
+    const pathname = usePathname()
+    const isHomePage = pathname === '/'
+
     const { openCart } = useCartStore()
     const { data: apiCart } = useCart()
     const { isAuthenticated } = useAuthStore()
@@ -64,6 +68,8 @@ export function Navbar() {
     const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
     const lastScrollY = useRef(0)
+
+    const linkColorClass = (isHomePage && !isScrolled) ? 'text-white' : 'text-[#074139]'
 
     useEffect(() => {
         const handleScroll = () => {
@@ -183,7 +189,7 @@ export function Navbar() {
                         <Link
                             href="/about"
                             className={`
-                  ${isScrolled ? 'text-[#074139]' : 'text-white'}
+                  ${linkColorClass}
                   text-[10px]
                   lg:text-xs
                   xl:text-sm
@@ -199,7 +205,7 @@ export function Navbar() {
                         <Link
                             href="/shop"
                             className={`
-                  ${isScrolled ? 'text-[#074139]' : 'text-white'}
+                  ${linkColorClass}
                   text-[10px]
                   lg:text-xs
                   xl:text-sm
@@ -217,7 +223,7 @@ export function Navbar() {
                             <Link
                                 href="/solutions"
                                 className={`
-                  ${isScrolled ? 'text-[#074139]' : 'text-white'}
+                  ${linkColorClass}
                   text-[10px]
                   lg:text-xs
                   xl:text-sm
@@ -235,7 +241,7 @@ export function Navbar() {
                         <div className="relative group py-4 -my-4">
                             <span
                                 className={`
-                                   ${isScrolled ? 'text-[#074139]' : 'text-white'}
+                                   ${linkColorClass}
                                    text-[10px]
                                    lg:text-xs
                                    xl:text-sm

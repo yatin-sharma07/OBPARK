@@ -116,7 +116,13 @@ export function SimilarProducts({
 
               {/* Product Link */}
               <Link
-                href={`/shop/${product.category?.slug || 'all'}/${product.productId || product.id}`}
+                href={`/shop/${
+                  typeof product.category === 'object' && product.category !== null
+                    ? product.category.slug
+                    : typeof product.category === 'string'
+                    ? product.category
+                    : product.categorySlug || 'all'
+                }/${product.productId || product.id}`}
                 className="block space-y-4 cursor-pointer flex-1"
               >
 

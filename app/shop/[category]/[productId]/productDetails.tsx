@@ -458,10 +458,11 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
                   className="overflow-hidden"
                 >
                   <div className="px-6 pb-6 sm:px-8 sm:pb-8 text-[9px] sm:text-[13px] text-slate-700 leading-[1.8]" style={{ fontFamily: 'var(--font-michroma)' }}>
-                    <ul className="list-disc pl-4 space-y-4 marker:text-slate-700">
+                    <ul className="space-y-4">
                       {product.aboutSections.map((section, i) => (
                         <li key={i}>
-                          <span className="font-bold">{section.heading}</span>{section.content ? ` - ${section.content}` : ''}
+                          {section.heading && <span className="font-bold mr-1.5">{section.heading} -</span>}
+                          <span>{section.content}</span>
                         </li>
                       ))}
                     </ul>
@@ -493,7 +494,7 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
 
                       return (
                         <div key={spId} className="w-full shrink-0 px-1">
-                          <Link href={`/product/${spId}`}>
+                          <Link href={`/shop/${categorySlug}/${spId}`}>
                             <div className="bg-white/15 backdrop-blur-sm rounded-[19px] p-4 flex items-center gap-4 hover:bg-white/25 transition-all cursor-pointer border border-white/20 shadow-sm group">
                               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-[14px] bg-white overflow-hidden flex items-center justify-center shrink-0 p-1.5">
                                 {spImg ? (
@@ -535,9 +536,8 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
                         <button
                           key={idx}
                           onClick={() => setSimilarIdx(idx)}
-                          className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                            idx === similarIdx ? "bg-white scale-125 shadow-sm" : "bg-white/40 hover:bg-white/60"
-                          }`}
+                          className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${idx === similarIdx ? "bg-white scale-125 shadow-sm" : "bg-white/40 hover:bg-white/60"
+                            }`}
                           aria-label={`Go to slide ${idx + 1}`}
                         />
                       ))}
