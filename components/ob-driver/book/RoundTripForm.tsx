@@ -7,7 +7,7 @@ import { michroma, microgrammaBold } from '@/lib/fonts'
 export function RoundTripForm() {
   return (
     <form className="space-y-5">
-      <div className="relative w-full h-[140px] bg-gray-200 rounded-lg overflow-hidden">
+      <div className="relative w-full aspect-[1020/406] bg-transparent rounded-lg overflow-hidden">
         <Image src="/Images/ob-driver-img.png" alt="" fill className='object-cover' />
       </div>
 

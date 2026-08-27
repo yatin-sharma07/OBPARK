@@ -41,12 +41,12 @@ export function ObMechanicQuotePage() {
             Experience the best car service in Banglore
           </h1>
 
-          <div className="relative w-full aspect-[510/230] mt-5 sm:mt-6 overflow-hidden bg-[#D9D9D9] flex items-center justify-center">
+          <div className="relative w-full aspect-[510/203] mt-5 sm:mt-6 overflow-hidden bg-transparent flex items-center justify-center">
             <img
               src="/Images/ob-driver-mechanic.png"
               alt="Car Service"
               width={510}
-              height={230}
+              height={203}
               className="w-full h-full object-cover"
             />
 
