@@ -70,9 +70,8 @@ export default function CategoriesPage() {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-1.5 rounded-md font-medium whitespace-nowrap transition-colors ${
-                    activeTab === tab ? 'bg-white shadow-sm' : 'text-gray-500'
-                  }`}
+                  className={`px-4 py-1.5 rounded-md font-medium whitespace-nowrap transition-colors ${activeTab === tab ? 'bg-white shadow-sm' : 'text-gray-500'
+                    }`}
                   style={activeTab === tab ? { color: '#074139' } : {}}
                 >
                   {tab === 'All Product' ? `All Product (${PRODUCTS.length})` : tab}
@@ -126,8 +125,8 @@ export default function CategoriesPage() {
           </div>
 
           <div className="flex items-center justify-between mt-4 flex-wrap gap-2">
-            <button 
-            className={`${microgrammaBold.className} text-[16px] font-bold text-[#074139] bg-white rounded-[5px] shadow-sm px-4 py-2 leading-none`}
+            <button
+              className={`${microgrammaBold.className} text-[16px] font-bold text-[#074139] bg-white rounded-[5px] shadow-sm px-4 py-2 leading-none`}
             >← Previous</button>
             <div className="flex gap-1 flex-wrap">
               {[1, 2, 3, 4, 5].map((n) => (
@@ -140,8 +139,8 @@ export default function CategoriesPage() {
                 </button>
               ))}
             </div>
-            <button 
-            className={`${microgrammaBold.className} text-[16px] font-bold text-[#074139] bg-white rounded-[5px] shadow-sm px-4 py-2 leading-none`}
+            <button
+              className={`${microgrammaBold.className} text-[16px] font-bold text-[#074139] bg-white rounded-[5px] shadow-sm px-4 py-2 leading-none`}
             >Next →</button>
           </div>
         </div>

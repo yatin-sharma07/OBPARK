@@ -50,7 +50,13 @@ const mobileLinks = [
 
 export function Navbar() {
     const pathname = usePathname()
-    const isHomePage = pathname === '/'
+    // List of routes (and their sub-routes/slugs) that should have transparent header (white text) when not scrolled
+    const transparentRoutes = ['/', '/shop']
+    const isProductPage = pathname.startsWith('/shop/') && pathname.split('/').filter(Boolean).length >= 3
+    const isTransparentPage = !isProductPage && transparentRoutes.some((route) => {
+        if (route === '/') return pathname === '/'
+        return pathname === route || pathname.startsWith(route + '/')
+    })
 
     const { openCart } = useCartStore()
     const { data: apiCart } = useCart()
@@ -69,7 +75,7 @@ export function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false)
     const lastScrollY = useRef(0)
 
-    const linkColorClass = (isHomePage && !isScrolled) ? 'text-white' : 'text-[#074139]'
+    const linkColorClass = (isTransparentPage && !isScrolled) ? 'text-white' : 'text-[#074139]'
 
     useEffect(() => {
         const handleScroll = () => {

@@ -57,12 +57,32 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
   // Gallery Images
   const mainImg = product.imagePath;
 
-  const allImages =
-    product.galleryImages && product.galleryImages.length > 0
-      ? [mainImg, ...product.galleryImages]
-      : [mainImg];
+  const allImages = Array.from(
+    new Set(
+      product.galleryImages && product.galleryImages.length > 0
+        ? [mainImg, ...product.galleryImages] : [mainImg]
+    )
+  ).filter(Boolean);
 
   const [activeImage, setActiveImage] = useState(allImages[0]);
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+
+  const visibleImages = allImages.filter((img) => !failedImages[img]);
+
+  const handleImageError = (img: string) => {
+    setFailedImages((prev) => {
+      const updated = { ...prev, [img]: true };
+
+      // If the failed image is the currently active one, find a new active image
+      if (activeImage === img) {
+        const nextValid = allImages.find((i) => !updated[i]);
+        if (nextValid) {
+          setActiveImage(nextValid);
+        }
+      }
+      return updated;
+    });
+  };
 
   const incrementQty = () => setQuantity((prev) => prev + 1);
   const decrementQty = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
@@ -139,46 +159,52 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-6xl mx-auto">
 
         {/* LEFT COLUMN: PRODUCT GALLERY */}
-        <div className="lg:col-span-6 space-y-4">
-          {/* MAIN IMAGE CARD */}
-          <div className="w-full aspect-square bg-white rounded-[29px] overflow-hidden flex items-center justify-center p-8 relative shadow-sm border border-slate-100">
-            <button
-              onClick={() => window.open(activeImage, '_blank')}
-              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center text-slate-500 hover:text-teal-800 transition-colors z-10"
-            >
-              <Maximize2 className="w-4 h-4" />
-            </button>
-
-            <img
-              src={activeImage}
-              alt={product.title}
-              className="max-w-full max-h-full object-contain transition-transform duration-500 hover:scale-105"
-            />
-          </div>
-
-          {/* THUMBNAILS ROW */}
-          <div className="flex gap-3">
-            {allImages.map((img, i) => (
+        {visibleImages.length > 0 && (
+          <div className="lg:col-span-6 space-y-4">
+            {/* MAIN IMAGE CARD */}
+            <div className="w-full aspect-square bg-white rounded-[29px] overflow-hidden flex items-center justify-center p-8 relative shadow-sm border border-slate-100">
               <button
-                key={i}
-                onClick={() => setActiveImage(img)}
-                className={`w-20 h-20 sm:w-24 sm:h-24 rounded-[19px] bg-white border overflow-hidden p-2 flex items-center justify-center transition-all ${activeImage === img
-                  ? "border-[#1C8182] ring-2 ring-[#1C8182]/20 scale-95"
-                  : "border-slate-200 opacity-80 hover:opacity-100"
-                  }`}
+                onClick={() => window.open(activeImage, '_blank')}
+                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center text-slate-500 hover:text-teal-800 transition-colors z-10"
               >
-                <img
-                  src={img}
-                  alt={`Thumbnail ${i}`}
-                  className="max-w-full max-h-full object-contain"
-                />
+                <Maximize2 className="w-4 h-4" />
               </button>
-            ))}
+
+              <img
+                src={activeImage}
+                alt={product.title}
+                onError={() => handleImageError(activeImage)}
+                className="max-w-full max-h-full object-contain transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+
+            {/* THUMBNAILS ROW */}
+            {visibleImages.length > 1 && (
+              <div className="flex gap-3">
+                {visibleImages.map((img, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveImage(img)}
+                    className={`w-20 h-20 sm:w-24 sm:h-24 rounded-[19px] bg-white border overflow-hidden p-2 flex items-center justify-center transition-all ${activeImage === img
+                      ? "border-[#1C8182] ring-2 ring-[#1C8182]/20 scale-95"
+                      : "border-slate-200 opacity-80 hover:opacity-100"
+                      }`}
+                  >
+                    <img
+                      src={img}
+                      alt={`Thumbnail ${i}`}
+                      onError={() => handleImageError(img)}
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
-        </div>
+        )}
 
         {/* RIGHT COLUMN: PRODUCT DETAILS */}
-        <div className="lg:col-span-6 space-y-4">
+        <div className={`${visibleImages.length > 0 ? 'lg:col-span-6' : 'lg:col-span-12'} space-y-4`}>
 
           {/* HEADER */}
           <div className="space-y-5">
