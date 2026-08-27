@@ -12,7 +12,7 @@ export function OneWayForm() {
     <form className="space-y-5">
       {/* Map preview placeholder */}
       <div className="relative w-full h-[140px] bg-gray-200  overflow-hidden">
-        <Image src="/images/ob-driver-img.png" alt="" fill className='object-cover' />
+        <Image src="/Images/ob-driver-img.png" alt="" fill className='object-cover' />
       </div>
 
       {/* Location */}

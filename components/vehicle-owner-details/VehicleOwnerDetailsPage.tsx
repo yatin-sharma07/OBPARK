@@ -5,25 +5,25 @@ import { microgrammaBold } from '@/lib/fonts'
 import Image from 'next/image'
 
 const NAV_ITEMS = [
-  { label: 'Fastag', href: '/fastag', icon: '/images/vehicledetails/navicons/fastag.png' },
-  { label: 'New Cars', href: '/new-cars', icon: '/images/vehicledetails/navicons/newcar.png' },
-  { label: 'Check Challan', href: '/check-challan', icon: '/images/vehicledetails/navicons/challan.png' },
-  { label: 'PUC Certificate', href: '/puc-certificate', icon: '/images/vehicledetails/navicons/puc.png' },
-  { label: 'Vehicle Owner Details', href: '/vehicle-owner-details', icon: '/images/vehicledetails/navicons/owner.png' },
-  { label: 'Car Insurance', href: '/car-insurance', icon: '/images/vehicledetails/navicons/insurance.png' },
+  { label: 'Fastag', href: '/fastag', icon: '/Images/vehicledetails/navicons/fastag.png' },
+  { label: 'New Cars', href: '/new-cars', icon: '/Images/vehicledetails/navicons/newcar.png' },
+  { label: 'Check Challan', href: '/check-challan', icon: '/Images/vehicledetails/navicons/challan.png' },
+  { label: 'PUC Certificate', href: '/puc-certificate', icon: '/Images/vehicledetails/navicons/puc.png' },
+  { label: 'Vehicle Owner Details', href: '/vehicle-owner-details', icon: '/Images/vehicledetails/navicons/owner.png' },
+  { label: 'Car Insurance', href: '/car-insurance', icon: '/Images/vehicledetails/navicons/insurance.png' },
 ]
 
 const WHY_CARDS = [
   {
-    icon: 'images/vehicledetails/cards/cardpic1.png',
+    icon: '/Images/vehicledetails/cards/cardpic1.png',
     text: 'Get instant, verified vehicle owner details online',
   },
   {
-    icon: 'images/vehicledetails/cards/cardpic2.png',
+    icon: '/Images/vehicledetails/cards/cardpic2.png',
     text: 'Check complete vehicle info in seconds',
   },
   {
-    icon: 'images/vehicledetails/cards/cardpic3.png',
+    icon: '/Images/vehicledetails/cards/cardpic3.png',
     text: 'Quick 2-step lookup for fast and reliable results',
   },
 ]
@@ -57,7 +57,7 @@ export function VehicleOwnerDetailsPage() {
             <div className="flex flex-1 items-center border border-[#074139]/20 rounded-l-[10px] bg-white overflow-hidden gap-3 h-[56px] md:h-[70px]">
               <div className="flex items-center justify-center w-12 h-full rounded-l-[10px] bg-[#1a1a2e] shrink-0">
                 <Image
-                  src="/images/vehicledetails/ind.png"
+                  src="/Images/vehicledetails/ind.png"
                   alt="India"
                   width={84}
                   height={70}
@@ -79,21 +79,21 @@ export function VehicleOwnerDetailsPage() {
 
           <div className="relative mt-4 md:mt-6 w-full max-w-[722px] h-[180px] sm:h-[220px] md:h-[267px] mx-auto">
             <Image
-  src="/images/vehicledetails/heropic.png"
-  alt="Vehicles"
-  fill
-  sizes="(max-width: 768px) 100vw, 722px"
-  className="object-contain"
-/>
+              src="/Images/vehicledetails/heropic.png"
+              alt="Vehicles"
+              fill
+              sizes="(max-width: 768px) 100vw, 722px"
+              className="object-contain"
+            />
           </div>
 
           <p className={`${microgrammaBold.className} mt-4 md:mt-6 font-bold text-center text-[16px] md:text-[26px] leading-[100%] text-[#074139]`}>
             Explore Everything About Your Vehicle
           </p>
 
-          
-<div className="mt-10 md:mt-16 w-full">
-  <div className="flex items-center flex-wrap justify-center gap-4 mx-auto px-4">
+
+          <div className="mt-10 md:mt-16 w-full">
+            <div className="flex items-center flex-wrap justify-center gap-4 mx-auto px-4">
               {NAV_ITEMS.map((item) => (
                 <Link
                   key={item.label}
@@ -111,7 +111,7 @@ export function VehicleOwnerDetailsPage() {
                 </Link>
               ))}
             </div>
-          </div>  
+          </div>
 
 
         </div>
@@ -166,27 +166,27 @@ export function VehicleOwnerDetailsPage() {
             </h3>
 
             <div className="bg-white rounded-[20px] p-6 md:p-8 flex flex-col">
-  {[
-    "Enter 'Car Number'/'Vehicle Registration Number' in the above box.",
-    "Click on 'Check Details' and get the information within seconds.",
-  ].map((step, i, arr) => (
-    <div key={i} className="flex items-stretch gap-4">
-      <div className="flex flex-col items-center">
-        <div className="w-7 h-7 rounded-full border-[0.5px] border-[#3C9792]/30 flex items-center justify-center shrink-0">
-          <span className="font-microgamma text-[11px] font-medium text-[#3C9792]">
-            {i + 1}
-          </span>
-        </div>
-        {i !== arr.length - 1 && (
-          <div className="w-px min-h-[40px] flex-1 border-l-2 border-dotted border-[#3C9792]/50 my-1" />
-        )}
-      </div>
-      <p className="font-microgamma text-[14px] md:text-[18px] leading-[28px] md:leading-[32px] font-medium text-[#074139] pb-6">
-        {step}
-      </p>
-    </div>
-  ))}
-</div>
+              {[
+                "Enter 'Car Number'/'Vehicle Registration Number' in the above box.",
+                "Click on 'Check Details' and get the information within seconds.",
+              ].map((step, i, arr) => (
+                <div key={i} className="flex items-stretch gap-4">
+                  <div className="flex flex-col items-center">
+                    <div className="w-7 h-7 rounded-full border-[0.5px] border-[#3C9792]/30 flex items-center justify-center shrink-0">
+                      <span className="font-microgamma text-[11px] font-medium text-[#3C9792]">
+                        {i + 1}
+                      </span>
+                    </div>
+                    {i !== arr.length - 1 && (
+                      <div className="w-px min-h-[40px] flex-1 border-l-2 border-dotted border-[#3C9792]/50 my-1" />
+                    )}
+                  </div>
+                  <p className="font-microgamma text-[14px] md:text-[18px] leading-[28px] md:leading-[32px] font-medium text-[#074139] pb-6">
+                    {step}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="flex flex-col gap-6 p-6 md:p-10 rounded-[20px] bg-transparent min-h-[400px]">
@@ -195,33 +195,33 @@ export function VehicleOwnerDetailsPage() {
             </h3>
 
             <div
-  className="bg-white rounded-[20px] p-6 md:p-8 flex flex-col min-h-[100px]"
-  style={{ border: '0.5px solid #CECECE' }}
->
-  {[
-    'Go to the Pariavahan website.',
-    "Select 'Know Your Vehicle Details' from the 'Informational Services' dropdown.",
-    'Provide your mobile phone number and fill in the displayed verification code.',
-    'Complete the sign-in process or create an account.',
-    "Enter the vehicle registration number and click on 'Search Vehicle' or 'Vahan Search' to get the details.",
-  ].map((step, i, arr) => (
-    <div key={i} className="flex items-stretch gap-4">
-      <div className="flex flex-col items-center">
-        <div className="w-7 h-7 rounded-full border-[0.5px] border-[#3C9792] flex items-center justify-center shrink-0">
-          <span className="font-microgamma font-medium text-[11px] text-[#3C9792]">
-            {i + 1}
-          </span>
-        </div>
-        {i !== arr.length - 1 && (
-          <div className="w-px min-h-[40px] flex-1 border-l-2 border-dotted border-[#3C9792] my-1" />
-        )}
-      </div>
-      <p className="font-microgamma text-[14px] md:text-[18px] leading-[28px] md:leading-[32px] font-medium text-[#074139] pb-6">
-        {step}
-      </p>
-    </div>
-  ))}
-</div>
+              className="bg-white rounded-[20px] p-6 md:p-8 flex flex-col min-h-[100px]"
+              style={{ border: '0.5px solid #CECECE' }}
+            >
+              {[
+                'Go to the Pariavahan website.',
+                "Select 'Know Your Vehicle Details' from the 'Informational Services' dropdown.",
+                'Provide your mobile phone number and fill in the displayed verification code.',
+                'Complete the sign-in process or create an account.',
+                "Enter the vehicle registration number and click on 'Search Vehicle' or 'Vahan Search' to get the details.",
+              ].map((step, i, arr) => (
+                <div key={i} className="flex items-stretch gap-4">
+                  <div className="flex flex-col items-center">
+                    <div className="w-7 h-7 rounded-full border-[0.5px] border-[#3C9792] flex items-center justify-center shrink-0">
+                      <span className="font-microgamma font-medium text-[11px] text-[#3C9792]">
+                        {i + 1}
+                      </span>
+                    </div>
+                    {i !== arr.length - 1 && (
+                      <div className="w-px min-h-[40px] flex-1 border-l-2 border-dotted border-[#3C9792] my-1" />
+                    )}
+                  </div>
+                  <p className="font-microgamma text-[14px] md:text-[18px] leading-[28px] md:leading-[32px] font-medium text-[#074139] pb-6">
+                    {step}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>
@@ -234,13 +234,13 @@ export function VehicleOwnerDetailsPage() {
           style={{ backgroundColor: '#EAF6F4' }}
         >
           <Image
-  src="/images/vehicledetails/backgroundimage.png"
-  alt="Vehicle Owner Details Background"
-  fill
-  sizes="100vw"
-  className="object-cover object-right md:object-center"
-  priority
-/>
+            src="/Images/vehicledetails/backgroundimage.png"
+            alt="Vehicle Owner Details Background"
+            fill
+            sizes="100vw"
+            className="object-cover object-right md:object-center"
+            priority
+          />
 
           <div className="relative z-10 flex flex-col gap-4 md:gap-8 px-6 sm:px-10 md:px-16 mt-10 py-10 md:py-16 max-w-full md:max-w-[900px]">
             <div className="flex flex-col gap-2 md:gap-2">
@@ -259,7 +259,7 @@ export function VehicleOwnerDetailsPage() {
             <div className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8">
               <div className="flex items-center gap-2">
                 <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-[#074139] bg-[##f0fdf9] flex items-center justify-center shrink-0 text-[#074139]">
-                   <Image src="/images/vehicledetails/vector1.png" alt="Instant" width={20} height={20} />
+                  <Image src="/Images/vehicledetails/vector1.png" alt="Instant" width={20} height={20} />
                 </span>
                 <span className="font-michroma font-medium text-[#000000] text-xs sm:text-[16px] leading-tight">
                   Verified &amp;<br />Authentic Records
@@ -268,7 +268,7 @@ export function VehicleOwnerDetailsPage() {
 
               <div className="flex items-center gap-2">
                 <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-[#074139] flex items-center justify-center shrink-0 text-[#074139]">
-                  <Image src="/images/vehicledetails/group.png" alt="Instant" width={20} height={20} />
+                  <Image src="/Images/vehicledetails/group.png" alt="Instant" width={20} height={20} />
                 </span>
                 <span className="font-michroma font-medium text-[#000000] text-xs sm:text-[16px] leading-tight">
                   A Secure &amp;<br />Private
@@ -277,7 +277,7 @@ export function VehicleOwnerDetailsPage() {
 
               <div className="flex items-center gap-2">
                 <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-[#074139] flex items-center justify-center shrink-0 text-[#074139]">
-                  <Image src="/images/vehicledetails/vector.png" alt="Instant" width={18} height={18} />
+                  <Image src="/Images/vehicledetails/vector.png" alt="Instant" width={18} height={18} />
                 </span>
                 <span className="font-michroma font-medium text-[#000000] text-xs sm:text-[16px] leading-tight">
                   Instant<br />Results
