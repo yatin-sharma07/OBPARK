@@ -287,17 +287,17 @@ export default function CheckoutPage() {
 
                     <div className="space-y-4" style={{ fontFamily: 'var(--font-michroma)' }}>
                       <div className="flex items-center justify-between text-xs sm:text-sm font-normal text-[#074139]">
-                        <span>Product</span>
+                        <span>Product(s) Sum</span>
                         <span className="font-bold">₹{subtotal.toLocaleString('en-IN', { minimumFractionDigits: 0 })}</span>
                       </div>
                       <div className="flex items-center justify-between text-xs sm:text-sm font-normal text-[#074139]">
                         <span>Subtotal</span>
                         <span className="font-bold">₹{subtotal.toLocaleString('en-IN', { minimumFractionDigits: 0 })}</span>
                       </div>
-                      <div className="flex items-center justify-between text-xs sm:text-sm font-normal text-[#074139]">
+                      {/* <div className="flex items-center justify-between text-xs sm:text-sm font-normal text-[#074139]">
                         <span>Shipping</span>
                         <span className="font-bold">₹100</span>
-                      </div>
+                      </div> */}
                       <div className="flex items-center justify-between text-sm sm:text-base font-bold text-[#074139] pt-2">
                         <span>Total</span>
                         <span className="font-bold">₹{(subtotal + 100).toLocaleString('en-IN', { minimumFractionDigits: 0 })}</span>

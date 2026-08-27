@@ -311,9 +311,8 @@ function PaymentContent() {
               Order Summary
             </h3>
 
-            {/* Dynamic Items List */}
             {!isFastag && (
-              <div className="max-h-[220px] overflow-y-auto space-y-3 pr-1 border-b border-slate-100 pb-4">
+              <div className="space-y-3 border-b border-slate-100 pb-4">
                 {checkoutItems.map((item: any) => {
                   const itemPrice = Number(item.priceVal ?? item.product?.productCost ?? item.product?.price ?? 0);
                   const itemName = item.name ?? item.product?.productName ?? item.product?.title ?? 'Product';
@@ -360,10 +359,10 @@ function PaymentContent() {
                     {/* <span>Shipping Charges:</span>
                     <span className="text-teal-600 font-bold">₹100</span> */}
                   </div>
-                  <div className="flex justify-between items-center text-xs font-medium text-slate-500">
+                  {/* <div className="flex justify-between items-center text-xs font-medium text-slate-500">
                     <span>Estimated Tax (GST):</span>
                     <span className="text-slate-800 font-bold">₹0</span>
-                  </div>
+                  </div> */}
                 </>
               )}
 
