@@ -2,12 +2,13 @@
 
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
+// import { Button } from '@/components/ui/button'
+// import { Card } from '@/components/ui/card'
 import { michroma, microgrammaBold } from '@/lib/fonts'
 import { useEffect, useState } from 'react'
 import { api } from '@/lib/api'
 import { ProductCard } from './ProductCard'
+import Hero from './Hero'
 
 
 
@@ -48,53 +49,7 @@ export function ProductsPage({ categorySlug }: ProductsPageProps) {
   return (
     <div className="w-full min-h-screen bg-[#eefaf6] text-[#0A3D31]">
 
-      {/* Hero */}
-      {/* Hero Container with Background Image */}
-      <div
-        className="w-[96%] h-[700px] mx-auto bg-[#D9D9D9] bg-cover bg-center bg-no-repeat pt-24 mt-10 pb-16 px-4 sm:px-8 md:px-12 rounded-[48px] relative overflow-hidden"
-        style={{ backgroundImage: "url('/Images/products/hero.jpg')" }}
-      >
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center min-h-[460px]">
-
-          {/* Left Column: Text, Search & Buttons */}
-          <div className="text-center lg:text-left z-10 flex flex-col items-center lg:items-start">
-            <p className={`${microgrammaBold.className} text-[#59D0B5] uppercase tracking-[3px] text-xs sm:text-sm font-bold mb-2`}>
-              OBPARK SHOP
-            </p>
-            <h1 className={`${microgrammaBold.className} text-white font-bold text-3xl sm:text-4xl md:text-[44px] leading-[1.2]`}>
-              Car Accessories
-            </h1>
-            <p className={`${michroma.className} text-white/80 text-xs sm:text-[13px] leading-[1.8] mt-4 max-w-[500px]`}>
-              Upgrade your ride with the best car accessories. Comfort, style, protection & convenience everything your car deserves.
-            </p>
-
-            {/* Search Input Bar */}
-            <div className="relative mt-8 max-w-md w-full">
-              <input
-                type="text"
-                placeholder="Search for Car Accessories"
-                className={`${michroma.className} w-full bg-white text-black pl-6 pr-14 py-4 rounded-full text-[10px] outline-none shadow-md placeholder-gray-400`}
-              />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#308E8C] hover:bg-[#2A7E7C] text-white p-2 rounded-full transition-colors flex items-center justify-center w-9 h-9">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4.5 h-4.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.608 10.608Z" />
-                </svg>
-              </button>
-            </div>
-
-            {/* Buttons */}
-            <div className="flex flex-wrap gap-4 mt-6">
-              <button className={`${microgrammaBold.className} bg-gradient-to-r from-[#308E8C] to-[#59D0B5] hover:opacity-95 text-white font-bold text-[10px] tracking-wider rounded-full px-6 py-3.5 flex items-center gap-1.5 transition-all`}>
-                SHOP NOW {"→"}
-              </button>
-              <button className={`${microgrammaBold.className} bg-[#0A3D31]/40 hover:bg-[#0A3D31]/60 border border-[#308E8C]/50 text-white font-bold text-[10px] tracking-wider rounded-full px-6 py-3.5 flex items-center gap-1.5 transition-all`}>
-                EXPLORE CATEGORIES {"→"}
-              </button>
-            </div>
-          </div>
-          <div className="hidden lg:block" />
-        </div>
-      </div>
+      <Hero category={categorySlug} />
 
       {/* Features Bar */}
       <section className="w-full py-8  bg-[#eefaf6]">
@@ -175,7 +130,7 @@ export function ProductsPage({ categorySlug }: ProductsPageProps) {
       </section>
 
       {/* Products Grid Section */}
-      <section className="w-[96%] max-w-6xl mx-auto py-12 px-4 sm:px-0">
+      <section id="products-section" className="w-[96%] max-w-6xl mx-auto py-12 px-4 sm:px-0">
 
         {/* Case 1: Loading State */}
         {loading && (

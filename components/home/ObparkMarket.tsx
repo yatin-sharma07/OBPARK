@@ -27,15 +27,15 @@ type MarketSlideItem = {
 
 
 const marketSlides: MarketSlideItem[][] = [
-  // 1. Car Accessories 												
-  // 2. Car Care detailing												
-  // 3. Electronics smart gagets												
-  // 4. Emergency & Safety													
-  // 5. Travel & Road Safety 												
-  // 6. Family & Pet Care Products
-  // 7. EV PRODUCTS
-  // 8. Bike Shop													
-  // 9. Guest Gifting
+  // 1. Car Accessories - car-accessories											
+  // 2. Car Care detailing - car-care-detailing												
+  // 3. Electronics smart gagets - electronics-and-smart-gadgets												
+  // 4. Emergency & Safety - emergency-and-safety													
+  // 5. Travel & Road Safety - travel-and-road-safety												
+  // 6. Family & Pet Care Products - family-and-pet-care-products
+  // 7. EV PRODUCTS - ev-products
+  // 8. Bike Shop - bike-shop													
+  // 9. Guest Gifting - guest-gifting
   [
     {
       badge: 'Car Accessories',

@@ -19,7 +19,8 @@ export function FeatureProduct() {
     setIsMounted(true)
     api.get<any[]>('/products/featured')
       .then((data) => {
-        setProducts(data)
+        setProducts(data.slice(0, 3))
+        // setProducts(data)
       })
       .catch((err) => {
         console.error('Failed to fetch featured products:', err)
