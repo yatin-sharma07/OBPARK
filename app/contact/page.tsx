@@ -16,11 +16,55 @@ import {
   ChevronRight
 } from "lucide-react";
 
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
 export default function ContactPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<{
+    type: "idle" | "loading" | "success" | "error";
+    message: string;
+  }>({ type: "idle", message: "" });
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) {
+      setStatus({ type: "error", message: "Please fill in all fields." });
+      return;
+    }
+
+    setStatus({ type: "loading", message: "Sending your message..." });
+
+    try {
+      const response = await fetch(`${BASE_URL}/contact/submit`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit message.");
+      }
+
+      setStatus({ type: "success", message: "Thank you! Your message has been sent successfully." });
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Error submitting contact message:", error);
+      setStatus({
+        type: "error",
+        message: "Something went wrong. Please try again later.",
+      });
+    }
   };
 
   const email = "info@obrive.com";
@@ -103,21 +147,64 @@ export default function ContactPage() {
                 className="w-full lg:w-[450px] bg-white rounded-3xl p-6 md:p-8 shadow-2xl z-10"
               >
                 <h3 className="text-2xl font-bold text-[#094639] mb-6">Send us a Message</h3>
-                <form className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
-                    <input type="text" placeholder="John Doe" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#094639]/20 focus:border-[#094639] transition-colors" />
+                    <input
+                      type="text"
+                      placeholder="John Doe"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      disabled={status.type === "loading"}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#094639]/20 focus:border-[#094639] transition-colors"
+                    />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-1">Email Address</label>
-                    <input type="email" placeholder="john@example.com" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#094639]/20 focus:border-[#094639] transition-colors" />
+                    <input
+                      type="email"
+                      placeholder="john@example.com"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      disabled={status.type === "loading"}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#094639]/20 focus:border-[#094639] transition-colors"
+                    />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-1">Message</label>
-                    <textarea rows={4} placeholder="How can we help you?" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#094639]/20 focus:border-[#094639] transition-colors resize-none"></textarea>
+                    <textarea
+                      rows={4}
+                      placeholder="How can we help you?"
+                      required
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      disabled={status.type === "loading"}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#094639]/20 focus:border-[#094639] transition-colors resize-none"
+                    ></textarea>
                   </div>
-                  <button type="button" className="w-full bg-[#094639] text-white font-bold py-4 rounded-xl hover:bg-[#07362c] transition-colors mt-2">
-                    Submit Message
+
+                  {status.message && (
+                    <div
+                      className={`p-3.5 rounded-xl text-xs font-semibold ${
+                        status.type === "success"
+                          ? "bg-green-50 text-green-700 border border-green-200/50"
+                          : status.type === "error"
+                          ? "bg-red-50 text-red-700 border border-red-200/50"
+                          : "bg-gray-50 text-gray-600 border border-gray-100"
+                      }`}
+                    >
+                      {status.message}
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={status.type === "loading"}
+                    className="w-full bg-[#094639] text-white font-bold py-4 rounded-xl hover:bg-[#07362c] transition-colors mt-2 disabled:opacity-50 flex items-center justify-center gap-2"
+                  >
+                    {status.type === "loading" ? "Submitting..." : "Submit Message"}
                   </button>
                 </form>
               </motion.div>

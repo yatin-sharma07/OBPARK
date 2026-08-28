@@ -38,7 +38,7 @@ export function CtaBanner() {
       )
 
       setStatus('success')
-      setMessage(response.message)
+      setMessage('Successfully subscribed to the newsletter!')
       setForm({ firstName: '', lastName: '', email: '', phone: '' })
     } catch (error) {
       setStatus('error')

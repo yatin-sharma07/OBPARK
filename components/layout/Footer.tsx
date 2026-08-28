@@ -123,7 +123,7 @@ export function Footer() {
       )
 
       setStatus('success')
-      setMessage(response.message)
+      setMessage('Successfully subscribed to the newsletter!')
       setForm({ firstName: '', lastName: '', email: '' })
     } catch (error) {
       setStatus('error')
