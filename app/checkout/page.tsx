@@ -300,7 +300,8 @@ export default function CheckoutPage() {
                       </div> */}
                       <div className="flex items-center justify-between text-sm sm:text-base font-bold text-[#074139] pt-2">
                         <span>Total</span>
-                        <span className="font-bold">₹{(subtotal + 100).toLocaleString('en-IN', { minimumFractionDigits: 0 })}</span>
+                        {/* <span className="font-bold">₹{(subtotal + 100).toLocaleString('en-IN', { minimumFractionDigits: 0 })}</span> */}
+                        <span className="font-bold">₹{subtotal.toLocaleString('en-IN', { minimumFractionDigits: 0 })}</span>
                       </div>
                     </div>
                   </div>
