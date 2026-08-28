@@ -187,13 +187,12 @@ export default function ContactPage() {
 
                   {status.message && (
                     <div
-                      className={`p-3.5 rounded-xl text-xs font-semibold ${
-                        status.type === "success"
+                      className={`p-3.5 rounded-xl text-xs font-semibold ${status.type === "success"
                           ? "bg-green-50 text-green-700 border border-green-200/50"
                           : status.type === "error"
-                          ? "bg-red-50 text-red-700 border border-red-200/50"
-                          : "bg-gray-50 text-gray-600 border border-gray-100"
-                      }`}
+                            ? "bg-red-50 text-red-700 border border-red-200/50"
+                            : "bg-gray-50 text-gray-600 border border-gray-100"
+                        }`}
                     >
                       {status.message}
                     </div>

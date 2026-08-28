@@ -412,7 +412,7 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
               <span className="leading-tight" style={{ fontFamily: 'var(--font-michroma)' }}>Pan India shipping</span>
             </div>
             <div className="bg-white rounded-[20px] px-2 sm:px-3 py-3 sm:py-4 flex items-center justify-center gap-1.5 sm:gap-2 text-[7px] sm:text-[9px] text-[#074139] shadow-sm">
-              <Image src="/Images/product-common/Buy more, save more.svg" alt="Buy more, save more" width={20} height={20} className="shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
+              <Image src="/Images/product-common/buy-more-save-more.svg" alt="Buy more, save more" width={20} height={20} className="shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
               <span className="leading-tight" style={{ fontFamily: 'var(--font-michroma)' }}>No Cash on Delivery</span>
             </div>
           </div>
