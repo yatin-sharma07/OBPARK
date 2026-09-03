@@ -1,6 +1,5 @@
 'use client'
-
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -8,6 +7,24 @@ import { X, Minus, Plus, Trash2, ShoppingBag } from 'lucide-react'
 import { useCartStore } from '@/store/cart.store'
 import { useCart, useRemoveCartItem, useUpdateCartItem } from '@/hooks/useCart'
 import { microgrammaBold } from '@/lib/fonts'
+import { calculateClientPricing, CartItemInput } from '@/lib/pricingEngine'
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+
+function resolveImageUrl(imgPath?: string): string {
+  if (!imgPath) return ''
+  const trimmed = imgPath.trim()
+  if (
+    trimmed.startsWith('http://') ||
+    trimmed.startsWith('https://') ||
+    trimmed.startsWith('data:')
+  ) {
+    return encodeURI(trimmed)
+  }
+  const cleanBase = BASE_URL.replace(/\/+$/, '')
+  const cleanPath = trimmed.startsWith('/') ? trimmed : `/${trimmed}`
+  return encodeURI(`${cleanBase}${cleanPath}`)
+}
 
 interface LocalCartItem {
   id: string
@@ -26,6 +43,7 @@ export function CartDrawer() {
   const updateItem = useUpdateCartItem()
 
   const [localCart, setLocalCart] = useState<LocalCartItem[]>([])
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({})
 
   useEffect(() => {
     if (isOpen) {
@@ -44,6 +62,40 @@ export function CartDrawer() {
   const hasApiItems = (apiCart?.items?.length ?? 0) > 0
   const hasLocalItems = localCart.length > 0
   const isEmpty = !isLoading && !hasApiItems && !hasLocalItems
+
+  const drawerPricingItems: CartItemInput[] = useMemo(() => {
+    if (hasApiItems && apiCart?.items) {
+      return apiCart.items.map((item: any) => {
+        const p = item.product || {};
+        const cost = Number(p.price ?? p.productCost ?? p.basePrice ?? 0);
+        return {
+          product: {
+            id: item.id,
+            productId: item.productId,
+            productName: p.name || p.title || 'Product',
+            price: cost,
+            productCost: cost,
+            gstRate: Number(p.gstRate ?? 18),
+          },
+          quantity: item.quantity,
+        };
+      });
+    }
+    return localCart.map((item: LocalCartItem) => ({
+      product: {
+        id: item.id,
+        productName: item.name,
+        price: item.priceVal,
+        productCost: item.priceVal,
+        gstRate: 18,
+      },
+      quantity: item.quantity,
+    }));
+  }, [hasApiItems, apiCart, localCart]);
+
+  const pricing = useMemo(() => {
+    return calculateClientPricing(drawerPricingItems);
+  }, [drawerPricingItems]);
 
   const handleLocalQtyChange = (id: string, newQty: number) => {
     if (newQty <= 0) {
@@ -136,94 +188,150 @@ export function CartDrawer() {
                 {/* Items List */}
                 <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
                   {hasApiItems
-                    ? apiCart?.items.map((item: any) => (
-                      <div
-                        key={item.id}
-                        className="flex gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-md"
-                      >
-                        <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center shrink-0 overflow-hidden">
-                          {item.product.images?.[0] ? (
-                            <img
-                              src={item.product.images[0]}
-                              alt={item.product?.productName || item.product?.title || item.product?.name || "Product"}
-                              className="w-full h-full object-cover"
-                            />
-                          ) : (
-                            <ShoppingBag className="w-7 h-7 text-white/80" />
-                          )}
-                        </div>
+                    ? apiCart?.items.map((item: any) => {
+                      const product = item.product || {}
+                      const rawImg =
+                        product.imagePath ||
+                        (Array.isArray(product.images) && product.images[0]) ||
+                        product.image ||
+                        ''
+                      const resolvedImg = resolveImageUrl(rawImg)
+                      const isBroken = !resolvedImg || failedImages[item.id]
+                      const title =
+                        product.name ||
+                        product.title ||
+                        product.productName ||
+                        'Premium Product'
+                      const price = Number(
+                        product.price ??
+                          product.productCost ??
+                          product.basePrice ??
+                          0
+                      )
 
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-bold text-white truncate">
-                            {item.product.name}
-                          </p>
-                          <p className="text-xs text-white/70 mt-0.5">
-                            ₹{Number(item.product?.productCost ?? item.product?.price ?? item.product?.basePrice ?? 0).toLocaleString('en-IN')}
-                          </p>
+                      return (
+                        <div
+                          key={item.id}
+                          className="flex gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-md"
+                        >
+                          <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center shrink-0 overflow-hidden relative">
+                            {!isBroken ? (
+                              <img
+                                src={resolvedImg}
+                                alt={title}
+                                className="w-full h-full object-cover"
+                                onError={(e) => {
+                                  const target = e.currentTarget
+                                  // If backend URL fails, try local relative asset
+                                  if (
+                                    rawImg.startsWith('/') &&
+                                    target.src.startsWith(BASE_URL)
+                                  ) {
+                                    target.src = encodeURI(rawImg)
+                                  } else {
+                                    setFailedImages((prev) => ({
+                                      ...prev,
+                                      [item.id]: true,
+                                    }))
+                                  }
+                                }}
+                              />
+                            ) : (
+                              <ShoppingBag className="w-7 h-7 text-white/80" />
+                            )}
+                          </div>
 
-                          <div className="flex items-center justify-between mt-3">
-                            <div className="flex items-center gap-2 bg-white/10 rounded-full px-2 py-1">
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-bold text-white truncate">
+                              {title}
+                            </p>
+                            <p className="text-xs text-white/70 mt-0.5">
+                              ₹{price.toLocaleString('en-IN')}
+                            </p>
+
+                            <div className="flex items-center justify-between mt-3">
+                              <div className="flex items-center gap-2 bg-white/10 rounded-full px-2 py-1">
+                                <button
+                                  onClick={() =>
+                                    updateItem.mutate({
+                                      itemId: item.id,
+                                      quantity: item.quantity - 1,
+                                    })
+                                  }
+                                  className="w-5 h-5 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors"
+                                >
+                                  <Minus className="w-3 h-3" />
+                                </button>
+                                <span className="text-xs font-bold text-white w-4 text-center">
+                                  {item.quantity}
+                                </span>
+                                <button
+                                  onClick={() =>
+                                    updateItem.mutate({
+                                      itemId: item.id,
+                                      quantity: item.quantity + 1,
+                                    })
+                                  }
+                                  className="w-5 h-5 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors"
+                                >
+                                  <Plus className="w-3 h-3" />
+                                </button>
+                              </div>
+
                               <button
-                                onClick={() =>
-                                  updateItem.mutate({
-                                    itemId: item.id,
-                                    quantity: item.quantity - 1,
-                                  })
-                                }
-                                className="w-5 h-5 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors"
+                                onClick={() => removeItem.mutate(item.id)}
+                                className="p-1.5 rounded-full text-white/60 hover:text-red-400 hover:bg-white/10 transition-colors"
                               >
-                                <Minus className="w-3 h-3" />
-                              </button>
-                              <span className="text-xs font-bold text-white w-4 text-center">
-                                {item.quantity}
-                              </span>
-                              <button
-                                onClick={() =>
-                                  updateItem.mutate({
-                                    itemId: item.id,
-                                    quantity: item.quantity + 1,
-                                  })
-                                }
-                                className="w-5 h-5 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors"
-                              >
-                                <Plus className="w-3 h-3" />
+                                <Trash2 className="w-4 h-4" />
                               </button>
                             </div>
-
-                            <button
-                              onClick={() => removeItem.mutate(item.id)}
-                              className="p-1.5 rounded-full text-white/60 hover:text-red-400 hover:bg-white/10 transition-colors"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
                           </div>
                         </div>
-                      </div>
-                    ))
-                    : localCart.map((item) => (
-                      <div
-                        key={item.id}
-                        className="flex gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-md"
-                      >
-                        <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center shrink-0 overflow-hidden">
-                          {item.image ? (
-                            <img
-                              src={item.image}
-                              alt={item.name}
-                              className="w-full h-full object-cover"
-                            />
-                          ) : (
-                            <ShoppingBag className="w-7 h-7 text-white/80" />
-                          )}
-                        </div>
+                      )
+                    })
+                    : localCart.map((item) => {
+                      const rawImg = item.image || ''
+                      const resolvedImg = resolveImageUrl(rawImg)
+                      const isBroken = !resolvedImg || failedImages[item.id]
 
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-bold text-white line-clamp-2">
-                            {item.name}
-                          </p>
-                          <p className="text-xs text-[#59D0B5] font-semibold mt-1">
-                            ₹{Number(item.priceVal ?? 0).toLocaleString('en-IN')}
-                          </p>
+                      return (
+                        <div
+                          key={item.id}
+                          className="flex gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur-md"
+                        >
+                          <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center shrink-0 overflow-hidden relative">
+                            {!isBroken ? (
+                              <img
+                                src={resolvedImg}
+                                alt={item.name}
+                                className="w-full h-full object-cover"
+                                onError={(e) => {
+                                  const target = e.currentTarget
+                                  if (
+                                    rawImg.startsWith('/') &&
+                                    target.src.startsWith(BASE_URL)
+                                  ) {
+                                    target.src = encodeURI(rawImg)
+                                  } else {
+                                    setFailedImages((prev) => ({
+                                      ...prev,
+                                      [item.id]: true,
+                                    }))
+                                  }
+                                }}
+                              />
+                            ) : (
+                              <ShoppingBag className="w-7 h-7 text-white/80" />
+                            )}
+                          </div>
+
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-bold text-white line-clamp-2">
+                              {item.name}
+                            </p>
+                            <p className="text-xs text-[#59D0B5] font-semibold mt-1">
+                              ₹{Number(item.priceVal ?? 0).toLocaleString('en-IN')}
+                            </p>
 
                           <div className="flex items-center justify-between mt-3">
                             <div className="flex items-center gap-2 bg-white/10 rounded-full px-2 py-1">
@@ -256,23 +364,50 @@ export function CartDrawer() {
                             </button>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                        </div>
+                      )
+                    })}
                 </div>
 
                 {/* Footer Subtotal & Checkout */}
-                <div className="p-6 bg-black/10 space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-white/80">Subtotal</span>
-                    <span className="text-lg font-bold text-white">
-                      ₹
-                      {(hasApiItems
-                        ? apiCart?.subtotal ?? 0
-                        : localCart.reduce(
-                          (acc, i) => acc + i.priceVal * i.quantity,
-                          0
-                        )
-                      ).toLocaleString('en-IN')}
+                <div className="p-5 bg-black/20 backdrop-blur-md space-y-3 border-t border-white/10">
+                  <div className="space-y-1.5 text-xs text-white/80">
+                    <div className="flex items-center justify-between">
+                      <span>Subtotal</span>
+                      <span className="font-semibold text-white">₹{pricing.subtotal.toLocaleString('en-IN')}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span>Platform Charges</span>
+                      {pricing.platformFee === 0 ? (
+                        <span className="font-bold text-[#59D0B5] text-[10px]">WAIVED</span>
+                      ) : (
+                        <span className="font-semibold text-white">₹{pricing.platformFee}</span>
+                      )}
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span>Estimated GST (Tax)</span>
+                      <span className="font-semibold text-white">₹{pricing.tax.toLocaleString('en-IN')}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span>Shipping Fee</span>
+                      {pricing.isFreeShipping ? (
+                        <span className="font-bold text-[#59D0B5] text-[10px]">FREE</span>
+                      ) : (
+                        <span className="font-semibold text-white">₹{pricing.shippingCharge}</span>
+                      )}
+                    </div>
+                  </div>
+
+                  {!pricing.isFreeShipping && pricing.amountNeededForFreeShipping > 0 && (
+                    <div className="p-2 bg-white/10 rounded-xl text-[10px] text-white/90 text-center">
+                      Add <strong>₹{pricing.amountNeededForFreeShipping}</strong> more for <strong>FREE Delivery!</strong>
+                    </div>
+                  )}
+
+                  <div className="pt-2 border-t border-white/10 flex items-center justify-between">
+                    <span className="text-sm font-bold text-white">Total Amount</span>
+                    <span className="text-lg font-bold text-[#59D0B5]">
+                      ₹{pricing.totalAmount.toLocaleString('en-IN')}
                     </span>
                   </div>
 

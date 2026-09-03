@@ -21,7 +21,7 @@ export function useCreatePayment() {
     mutationFn: (data: {
       productId: string
       quantity: number
-      gateway: 'RAZORPAY' | 'PAYU'
+      gateway: 'RAZORPAY' | 'PAYU' 
       couponCode?: string
     }) =>
       api.post<CreatePaymentResponse>('/payment/create', data),

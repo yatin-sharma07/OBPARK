@@ -23,8 +23,6 @@ import { useAuthStore } from "@/store/auth.store";
 import { useAddToCart } from "@/hooks/useCart";
 import { useProducts } from "@/hooks/useProducts";
 import { useCartStore } from "@/store/cart.store";
-import { VehicleSelectDialog } from "@/components/cart/VehicleSelectDialog";
-
 import { microgrammaBold } from "@/lib/fonts";
 
 
@@ -46,12 +44,10 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
   const addToCart = useAddToCart();
   const openCart = useCartStore((s) => s.openCart);
 
-  const [showDialog, setShowDialog] = useState(false);
   const [selectedUnit, setSelectedUnit] = useState(1); // 1, 3, or 6 units
   const [quantity, setQuantity] = useState(1);
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(false);
   const [currentPartnerSlide, setCurrentPartnerSlide] = useState(0);
-  const [activeAction, setActiveAction] = useState<'add_to_bag' | 'buy_now' | null>(null);
   const [similarIdx, setSimilarIdx] = useState(0);
 
   // Gallery Images
@@ -87,13 +83,34 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
   const incrementQty = () => setQuantity((prev) => prev + 1);
   const decrementQty = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
-  const handleAddToBagClick = () => {
+  const handleAddToBagClick = async () => {
     if (!isAuthenticated) {
       router.push('/login');
       return;
     }
-    setActiveAction('add_to_bag');
-    setShowDialog(true);
+    try {
+      await addToCart.mutateAsync({
+        productId: product.id,
+        quantity: quantity,
+      });
+    } catch (e) {
+      console.error(e);
+    }
+    const cartItem = {
+      id: product.id,
+      productId: product.id,
+      name: product.title,
+      description: product.productHeading || 'Premium Product',
+      price: `${product.currencySymbol || '₹'} ${product.price}`,
+      priceVal: product.price,
+      quantity: quantity,
+      image: product.imagePath || product.galleryImages?.[0] || '',
+      vehicle: null,
+      gstRate: 18,
+    };
+    sessionStorage.setItem('is_buy_now', 'false');
+    sessionStorage.setItem('mockup_cart_item', JSON.stringify(cartItem));
+    openCart();
   };
 
   const handleBuyNowClick = () => {
@@ -101,44 +118,22 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
       router.push('/login');
       return;
     }
-    setActiveAction('buy_now');
-    setShowDialog(true);
-  };
-
-  const handleConfirm = async (vehicleId: string | null) => {
-    if (activeAction !== 'buy_now') {
-      try {
-        await addToCart.mutateAsync({
-          productId: product.id,
-          vehicleId: vehicleId ?? undefined,
-          quantity: quantity,
-        });
-      } catch (e) {
-        console.error(e);
-      }
-    }
     const cartItem = {
       id: product.id,
+      productId: product.id,
       name: product.title,
       description: product.productHeading || 'Premium Product',
       price: `${product.currencySymbol || '₹'} ${product.price}`,
       priceVal: product.price,
       quantity: quantity,
       image: product.imagePath || product.galleryImages?.[0] || '',
-      vehicle: vehicleId ? 'Linked' : null
+      vehicle: null,
+      gstRate: 18,
     };
-
-    if (activeAction === 'buy_now') {
-      sessionStorage.setItem('is_buy_now', 'true');
-      sessionStorage.setItem('buy_now_item', JSON.stringify(cartItem));
-      sessionStorage.setItem('mockup_cart_item', JSON.stringify(cartItem));
-      setShowDialog(false);
-      router.push('/cart');
-    } else {
-      sessionStorage.setItem('is_buy_now', 'false');
-      sessionStorage.setItem('mockup_cart_item', JSON.stringify(cartItem));
-      setShowDialog(false);
-    }
+    sessionStorage.setItem('is_buy_now', 'true');
+    sessionStorage.setItem('buy_now_item', JSON.stringify(cartItem));
+    sessionStorage.setItem('mockup_cart_item', JSON.stringify(cartItem));
+    router.push('/cart');
   };
 
   // Fetch similar products from the same category via API or fallback
@@ -580,15 +575,6 @@ export function ProductInfo({ product, categorySlug }: ProductInfoProps) {
 
       </div>
 
-      {/* BOTTOM SECTION REMOVED */}
-      {showDialog && (
-        <VehicleSelectDialog
-          productName={product.title}
-          onConfirm={handleConfirm}
-          onCancel={() => setShowDialog(false)}
-          isLoading={addToCart.isPending}
-        />
-      )}
     </div>
   );
 }

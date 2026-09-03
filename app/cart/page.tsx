@@ -11,6 +11,7 @@ import { useAuthStore } from '@/store/auth.store'
 import { VehicleSelectDialog } from '@/components/cart/VehicleSelectDialog'
 import { microgrammaBold } from '@/lib/fonts'
 import { useCart, useRemoveCartItem, useUpdateCartItem } from '@/hooks/useCart'
+import { calculateClientPricing, CartItemInput } from '@/lib/pricingEngine'
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 function _prepend(imgPath: string): string {
@@ -29,6 +30,7 @@ interface CartItem {
   quantity: number
   image: string
   vehicle: string | null
+  gstRate?: number
 }
 
 export default function CartPage() {
@@ -62,20 +64,26 @@ export default function CartPage() {
 
   const cartItems = useMemo(() => {
     if (isBuyNow) {
-      return buyNowItem ? [buyNowItem] : [];
+      if (!buyNowItem) return [];
+      return [{
+        ...buyNowItem,
+        gstRate: Number(buyNowItem.gstRate ?? 18),
+      }];
     }
     if (apiCart?.items) {
       return apiCart.items.map((item: any) => {
         const isLinked = sessionStorage.getItem(`vehicle_link_${item.id}`) === 'Linked';
+        const priceVal = Number(item.product?.price ?? item.product?.productCost ?? 0);
         return {
           id: item.id,
           productId: item.productId,
           name: item.product?.name || item.product?.title || 'Premium Product',
           description: item.product?.brand || 'OBPARK Premium Product',
-          price: `₹ ${item.product?.price ?? 0}`,
-          priceVal: Number(item.product?.price ?? 0),
+          price: `₹ ${priceVal}`,
+          priceVal,
           quantity: item.quantity,
-          image: _prepend(item.product?.imagePath || ''),
+          gstRate: Number(item.product?.gstRate ?? 18),
+          image: _prepend(item.product?.imagePath || (item.product?.images && item.product?.images[0]) || ''),
           vehicle: item.vehicleId ? 'Linked' : (isLinked ? 'Linked' : null),
         };
       });
@@ -83,9 +91,25 @@ export default function CartPage() {
     return [];
   }, [isBuyNow, buyNowItem, apiCart]);
 
-  const subtotal = useMemo(() => {
-    return cartItems.reduce((acc: number, item: any) => acc + (item.priceVal * item.quantity), 0);
+  const pricingInput: CartItemInput[] = useMemo(() => {
+    return cartItems.map((it: any) => ({
+      product: {
+        id: it.id,
+        productId: it.productId,
+        productName: it.name,
+        price: it.priceVal,
+        productCost: it.priceVal,
+        gstRate: it.gstRate,
+      },
+      quantity: it.quantity,
+    }));
   }, [cartItems]);
+
+  const pricing = useMemo(() => {
+    return calculateClientPricing(pricingInput);
+  }, [pricingInput]);
+
+  const subtotal = pricing.subtotal;
 
   const [dialogItem, setDialogItem] = useState<{
     id: string
@@ -303,20 +327,44 @@ export default function CartPage() {
                   Cart Total
                 </h3>
 
-                <div className="space-y-4 my-auto py-6" style={{ fontFamily: 'var(--font-michroma)' }}>
+                <div className="space-y-3.5 my-auto py-5" style={{ fontFamily: 'var(--font-michroma)' }}>
                   <div className="flex items-center justify-between text-xs sm:text-sm font-normal text-[#074139]">
                     <span>Subtotal</span>
-                    <span className="font-bold">₹{subtotal.toLocaleString('en-IN', { minimumFractionDigits: 0 })}</span>
+                    <span className="font-bold">₹{pricing.subtotal.toLocaleString('en-IN', { minimumFractionDigits: 0 })}</span>
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs sm:text-sm font-normal text-[#074139]">
+                    <span>Platform Charges</span>
+                    {pricing.platformFee === 0 ? (
+                      <span className="font-bold text-teal-600 uppercase text-xs">WAIVED</span>
+                    ) : (
+                      <span className="font-bold">₹{pricing.platformFee}</span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs sm:text-sm font-normal text-[#074139]">
+                    <span>Estimated GST (Tax)</span>
+                    <span className="font-bold">₹{pricing.tax.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
                   </div>
 
                   <div className="flex items-center justify-between text-xs sm:text-sm font-normal text-[#074139]">
                     <span>Shipping</span>
-                    <span className="font-normal text-slate-500">Calculate shipping</span>
+                    {pricing.isFreeShipping ? (
+                      <span className="font-bold text-teal-600 uppercase text-xs">FREE</span>
+                    ) : (
+                      <span className="font-bold">₹{pricing.shippingCharge}</span>
+                    )}
                   </div>
 
-                  <div className="pt-4 flex items-center justify-between text-sm sm:text-base font-bold text-[#074139]">
+                  {!pricing.isFreeShipping && pricing.amountNeededForFreeShipping > 0 && (
+                    <div className="p-2.5 bg-teal-50/80 rounded-xl border border-teal-100 text-[10px] text-teal-800 leading-tight">
+                      Add <strong>₹{pricing.amountNeededForFreeShipping}</strong> more for <strong>FREE Delivery!</strong>
+                    </div>
+                  )}
+
+                  <div className="pt-3.5 flex items-center justify-between text-sm sm:text-base font-bold text-[#074139] border-t border-slate-100">
                     <span>Total</span>
-                    <span className="font-bold">₹{subtotal.toLocaleString('en-IN', { minimumFractionDigits: 0 })}</span>
+                    <span className="font-bold">₹{pricing.totalAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
                   </div>
                 </div>
 

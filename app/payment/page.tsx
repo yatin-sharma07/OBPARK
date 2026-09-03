@@ -8,6 +8,7 @@ import { useInitiateRecharge, useConfirmRecharge } from '@/hooks/useFastag'
 import { useCreatePayment, useVerifyPayment } from '@/hooks/usePayment'
 import { useAuthStore } from '@/store/auth.store'
 import { useCart } from '@/hooks/useCart'
+import { calculateClientPricing, CartItemInput, PricingSummary } from '@/lib/pricingEngine'
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -78,6 +79,24 @@ function PaymentContent() {
     }
   }, [isHydrated, isAuthenticated, isFastag, apiCart, router])
 
+  const [confirmedPricing, setConfirmedPricing] = useState<PricingSummary | null>(null);
+  const [appliedCoupon, setAppliedCoupon] = useState<string>('');
+
+  useEffect(() => {
+    const stored = sessionStorage.getItem('confirmed_pricing');
+    if (stored) {
+      try {
+        setConfirmedPricing(JSON.parse(stored));
+      } catch (e) {
+        // ignore
+      }
+    }
+    const storedCoupon = sessionStorage.getItem('applied_coupon');
+    if (storedCoupon) {
+      setAppliedCoupon(storedCoupon);
+    }
+  }, []);
+
   // Resolve active checkout items
   const checkoutItems = useMemo(() => {
     const isBuyNow = sessionStorage.getItem('is_buy_now') === 'true';
@@ -90,15 +109,23 @@ function PaymentContent() {
     return cartItem ? [cartItem] : [];
   }, [apiCart, cartItem]);
 
-  // Calculate dynamic subtotal
-  const subtotal = useMemo(() => {
-    return checkoutItems.reduce((acc: number, item: any) => {
-      const price = Number(item.priceVal ?? item.product?.productCost ?? item.product?.price ?? 0);
-      return acc + (price * (item.quantity || 1));
-    }, 0);
-  }, [checkoutItems]);
+  const fallbackPricing = useMemo(() => {
+    const inputs: CartItemInput[] = checkoutItems.map((item: any) => ({
+      product: {
+        id: item.id || (item.product && item.product.id),
+        productId: item.productId || (item.product && item.product.productId),
+        productName: item.name || item.product?.name || item.product?.title || 'Product',
+        price: Number(item.priceVal ?? item.product?.price ?? item.product?.productCost ?? 0),
+        productCost: Number(item.priceVal ?? item.product?.price ?? item.product?.productCost ?? 0),
+        gstRate: Number(item.gstRate ?? item.product?.gstRate ?? 18),
+      },
+      quantity: item.quantity || 1,
+    }));
+    return calculateClientPricing(inputs, { couponCode: appliedCoupon });
+  }, [checkoutItems, appliedCoupon]);
 
-  const displayAmount = isFastag ? Number(fastagAmount || 0) : subtotal;
+  const pricing = confirmedPricing || fallbackPricing;
+  const displayAmount = isFastag ? Number(fastagAmount || 0) : pricing.totalAmount;
 
   const handleFastagPayment = async () => {
     if (!fastagVrn || !fastagAmount) return
@@ -132,6 +159,7 @@ function PaymentContent() {
 
       let payload: any = {
         gateway: 'RAZORPAY',
+        couponCode: appliedCoupon || undefined,
       };
 
       if (isBuyNow) {
@@ -345,32 +373,54 @@ function PaymentContent() {
               </div>
             )}
 
-            <div className="space-y-3.5 pt-1" style={{ fontFamily: 'var(--font-michroma)' }}>
+            <div className="space-y-3 pt-1" style={{ fontFamily: 'var(--font-michroma)' }}>
               <div className="flex justify-between items-center text-xs font-medium text-slate-500">
                 <span>{isFastag ? 'FASTag Recharge Amount:' : 'Subtotal:'}</span>
                 <span className="text-slate-800 font-bold">
-                  ₹{displayAmount.toLocaleString('en-IN')}
+                  ₹{(isFastag ? Number(fastagAmount || 0) : pricing.subtotal).toLocaleString('en-IN', { minimumFractionDigits: 0 })}
                 </span>
               </div>
 
               {!isFastag && (
                 <>
                   <div className="flex justify-between items-center text-xs font-medium text-slate-500">
-                    {/* <span>Shipping Charges:</span>
-                    <span className="text-teal-600 font-bold">₹100</span> */}
+                    <span>Platform Charges:</span>
+                    {pricing.platformFee === 0 ? (
+                      <span className="text-teal-600 font-bold uppercase text-[10px]">WAIVED</span>
+                    ) : (
+                      <span className="text-slate-800 font-bold">₹{pricing.platformFee}</span>
+                    )}
                   </div>
-                  {/* <div className="flex justify-between items-center text-xs font-medium text-slate-500">
-                    <span>Estimated Tax (GST):</span>
-                    <span className="text-slate-800 font-bold">₹0</span>
-                  </div> */}
+
+                  <div className="flex justify-between items-center text-xs font-medium text-slate-500">
+                    <span>Estimated GST (Tax):</span>
+                    <span className="text-slate-800 font-bold">
+                      ₹{pricing.tax.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between items-center text-xs font-medium text-slate-500">
+                    <span>Shipping Charges:</span>
+                    {pricing.shippingCharge === 0 ? (
+                      <span className="text-teal-600 font-bold uppercase text-[10px]">FREE</span>
+                    ) : (
+                      <span className="text-slate-800 font-bold">₹{pricing.shippingCharge}</span>
+                    )}
+                  </div>
+
+                  {pricing.discount > 0 && (
+                    <div className="flex justify-between items-center text-xs font-bold text-emerald-600">
+                      <span>Coupon Discount ({appliedCoupon}):</span>
+                      <span>- ₹{pricing.discount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+                    </div>
+                  )}
                 </>
               )}
 
-              <div className="flex justify-between items-center text-sm font-bold pt-4 border-t border-slate-100 text-[#074139]">
+              <div className="flex justify-between items-center text-sm font-bold pt-3 border-t border-slate-100 text-[#074139]">
                 <span>Order Total:</span>
                 <span className="text-base font-black">
-                  {/* ₹{(displayAmount + (isFastag ? 0 : 100)).toLocaleString('en-IN')} */}
-                  ₹{displayAmount.toLocaleString('en-IN')}
+                  ₹{displayAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                 </span>
               </div>
             </div>
