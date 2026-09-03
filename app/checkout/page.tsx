@@ -487,7 +487,7 @@ export default function CheckoutPage() {
                       {backendPricing && (
                         <span className="inline-flex items-center gap-1 text-[10px] font-bold text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full border border-teal-100">
                           <CheckCircle2 className="w-3 h-3 text-teal-600" />
-                          Backend Confirmed
+                          Ready for checkout
                         </span>
                       )}
                     </div>
@@ -683,11 +683,10 @@ export default function CheckoutPage() {
                       ].map((option) => (
                         <label
                           key={option.id}
-                          className={`flex items-center justify-between px-4 py-3 border rounded-xl transition-all cursor-pointer ${
-                            paymentMethod === option.id
+                          className={`flex items-center justify-between px-4 py-3 border rounded-xl transition-all cursor-pointer ${paymentMethod === option.id
                               ? 'border-[#1D8582] bg-[#f0faf8]/50'
                               : 'border-slate-100'
-                          }`}
+                            }`}
                           style={{ fontFamily: 'var(--font-michroma)' }}
                         >
                           <div className="flex items-center gap-3">
